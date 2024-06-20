@@ -53,30 +53,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\Cidade.cs" />
-    <Compile Include="Class\controllerPais.cs" />
-    <Compile Include="Class\Controller.cs" />
-    <Compile Include="Class\Dao.cs" />
-    <Compile Include="Class\DaoPais.cs" />
-    <Compile Include="Class\Estado.cs" />
-    <Compile Include="Class\Pais.cs" />
-    <Compile Include="Forms\ConsultaCidade.cs">
+    <Compile Include="Controller\controllerCliente.cs" />
+    <Compile Include="Controller\controllerEstado.cs" />
+    <Compile Include="Controller\controllerFuncionario.cs" />
+    <Compile Include="Dao\DaoCliente.cs" />
+    <Compile Include="Dao\DaoFuncionario.cs" />
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ConsultaCidade.Designer.cs">
-      <DependentUpon>ConsultaCidade.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ConsultaEstado.cs">
+    <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\Funcionario.cs" />
+    <Compile Include="views\Cadastros\CadastroPai.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ConsultaEstado.Designer.cs">
+    <Compile Include="views\Cadastros\CadastroPai.Designer.cs">
+      <DependentUpon>CadastroPai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cidade.cs" />
+    <Compile Include="Controller\controllerCidade.cs" />
+    <Compile Include="Controller\controllerPais.cs" />
+    <Compile Include="Controller\controllerPai.cs" />
+    <Compile Include="Dao\Dao.cs" />
+    <Compile Include="Dao\DaoCidade.cs" />
+    <Compile Include="Dao\DaoEstado.cs" />
+    <Compile Include="Dao\DaoPais.cs" />
+    <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\Pai.cs" />
+    <Compile Include="Models\Pais.cs" />
+    <Compile Include="views\Cadastros\CadastroPais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroPais.Designer.cs">
+      <DependentUpon>CadastroPais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaCidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaCidades.Designer.cs">
+      <DependentUpon>ConsultaCidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaCliente.Designer.cs">
+      <DependentUpon>ConsultaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaEstado.Designer.cs">
       <DependentUpon>ConsultaEstado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ConsultaPais.cs">
+    <Compile Include="views\Consultas\ConsultaPai.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ConsultaPais.Designer.cs">
-      <DependentUpon>ConsultaPais.cs</DependentUpon>
+    <Compile Include="views\Consultas\ConsultaPai.Designer.cs">
+      <DependentUpon>ConsultaPai.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -86,14 +121,51 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\ConsultaCidade.resx">
-      <DependentUpon>ConsultaCidade.cs</DependentUpon>
+    <Compile Include="views\Cadastros\CadastroCidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroCidades.Designer.cs">
+      <DependentUpon>CadastroCidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroCliente.Designer.cs">
+      <DependentUpon>CadastroCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaPais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaPais.Designer.cs">
+      <DependentUpon>ConsultaPais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroEstado.Designer.cs">
+      <DependentUpon>CadastroEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\validadores.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ConsultaEstado.resx">
+    <EmbeddedResource Include="views\Cadastros\CadastroPai.resx">
+      <DependentUpon>CadastroPai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Cadastros\CadastroPais.resx">
+      <DependentUpon>CadastroPais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Consultas\ConsultaCidades.resx">
+      <DependentUpon>ConsultaCidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Consultas\ConsultaCliente.resx">
+      <DependentUpon>ConsultaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Consultas\ConsultaEstado.resx">
       <DependentUpon>ConsultaEstado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ConsultaPais.resx">
-      <DependentUpon>ConsultaPais.cs</DependentUpon>
+    <EmbeddedResource Include="views\Consultas\ConsultaPai.resx">
+      <DependentUpon>ConsultaPai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
@@ -107,6 +179,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="views\Cadastros\CadastroCidades.resx">
+      <DependentUpon>CadastroCidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Cadastros\CadastroCliente.resx">
+      <DependentUpon>CadastroCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Consultas\ConsultaPais.resx">
+      <DependentUpon>ConsultaPais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Cadastros\CadastroEstado.resx">
+      <DependentUpon>CadastroEstado.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -121,5 +205,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

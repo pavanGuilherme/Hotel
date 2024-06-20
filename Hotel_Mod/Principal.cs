@@ -1,4 +1,5 @@
-﻿using Hotel_Mod.Forms;
+﻿
+using Hotel_Mod.views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,31 +20,30 @@ namespace Hotel_Mod
         public Principal()
         {
             InitializeComponent();
-
         }
 
 
 
 
-        private void OpenChildForm(Form childForm, object btnsender)
-        {
-            if (activeForm != null)
-            {
-                activeForm.Close();
-            }
-            btn_close.Visible = true;
-            activeForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            this.panel2.Controls.Add(childForm);
-            this.panel2.Tag = childForm;
-            childForm.BringToFront();
-            childForm.Show();
-            lbl_title.Text = childForm.Text;
+        //private void OpenChildForm(Form childForm, object btnsender)
+        //{
+        //    if (activeForm != null)
+        //    {
+        //        activeForm.Close();
+        //    }
+        //    btn_close.Visible = true;
+        //    activeForm = childForm;
+        //    childForm.TopLevel = false;
+        //    childForm.FormBorderStyle = FormBorderStyle.None;
+        //    childForm.Dock = DockStyle.Fill;
+        //    this.panel2.Controls.Add(childForm);
+        //    this.panel2.Tag = childForm;
+        //    childForm.BringToFront();
+        //    childForm.Show();
+        //    lbl_title.Text = childForm.Text;
 
 
-        }
+        //}
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,7 +53,8 @@ namespace Hotel_Mod
 
         private void btn_pais_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.ConsultaPais(), sender);
+            ConsultaPais consultaPais = new ConsultaPais();
+            consultaPais.ShowDialog();
         }
 
         private void btn_close_Click(object sender, EventArgs e)
@@ -72,23 +73,28 @@ namespace Hotel_Mod
 
         private void btn_checkout_Click(object sender, EventArgs e)
         {
+        
 
         }
 
         private void btn_estado_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.ConsultaEstado(), sender);
+            ConsultaEstado consultaEstado = new ConsultaEstado();
+            consultaEstado.ShowDialog();
+
         }
 
         private void btn_cidade_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.ConsultaCidade(), sender);
+            ConsultaCidades consultaCidades = new ConsultaCidades();
+            consultaCidades.ShowDialog();
         }
-        
+
 
         private void btn_cliente_Click(object sender, EventArgs e)
         {
-
+            ConsultaCliente consultaCliente = new ConsultaCliente();
+            consultaCliente.ShowDialog();
         }
 
         private void btn_fornecedor_Click(object sender, EventArgs e)

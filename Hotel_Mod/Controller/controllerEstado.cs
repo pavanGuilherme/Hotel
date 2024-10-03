@@ -1,4 +1,5 @@
 ﻿using Hotel_Mod.Class;
+using Hotel_Mod.Dao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,14 +36,18 @@ namespace Hotel_Mod.Controller
             return daoEstado.GetAll(inativos);
         }
 
-        public override T pesquisar(int id)
-        {
-            return daoEstado.pesquisar(id);
-        }
+      
 
         public string GetNomePaisByEstadoId(int estado_ID)
         {
             return daoEstado.GetNomePaisByEstadoId(estado_ID);
+        }
+
+
+
+        public override T GetById(int idObj)
+        {
+            return daoEstado.GetById(idObj);
         }
 
         public bool JaCadastrado(string nome, int idAtual)

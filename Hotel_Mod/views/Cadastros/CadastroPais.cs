@@ -29,7 +29,7 @@ namespace Hotel_Mod.views
             //verifica se há um país a ser alterado
             if (altera != -1)
             {
-                Pais pais = controllerPais.pesquisar(altera);
+                Pais pais = controllerPais.GetById(altera);
                 if (pais != null)
                 {
                     //carrega os dados do país nos controles do formulário

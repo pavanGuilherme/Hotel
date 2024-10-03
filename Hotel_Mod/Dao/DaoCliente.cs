@@ -12,7 +12,6 @@ namespace Hotel_Mod.Dao
 {
     public class DaoCliente<T> : Dao<T>
     {
-
         public DaoCliente() : base()
         {
         }
@@ -32,15 +31,28 @@ namespace Hotel_Mod.Dao
                     while (reader.Read())
                     {
                         dynamic obj = Activator.CreateInstance(typeof(T));
-                        obj.cliente_ID= Convert.ToInt32(reader["cliente_ID"]);
+                        obj.cliente_ID = Convert.ToInt32(reader["cliente_id"]);
                         obj.nome = Convert.ToString(reader["nome"]);
                         obj.sobrenome = Convert.ToString(reader["sobrenome"]);
+                        obj.data_nascimento = Convert.ToDateTime(reader["data_nascimento"]);
                         obj.telefone = Convert.ToString(reader["telefone"]);
                         obj.cpf = Convert.ToString(reader["cpf"]);
+                        obj.email = Convert.ToString(reader["email"]);
                         obj.rg = Convert.ToString(reader["rg"]);
+                        obj.tipo_pcd = Convert.ToBoolean(reader["tipo_pcd"]);
+                        obj.estrangeiro = Convert.ToBoolean(reader["estrangeiro"]);
+                        obj.profissao = Convert.ToString(reader["profissao"]);
+                        obj.cep = Convert.ToString(reader["cep"]);
+                        obj.logradouro = Convert.ToString(reader["logradouro"]);
+                        obj.numero = Convert.ToString(reader["numero"]);
+                        obj.bairro = Convert.ToString(reader["bairro"]);
+                        obj.complemento = Convert.ToString(reader["complemento"]);
+                        obj.cidade_id = Convert.ToInt32(reader["cidade_id"]);
+                        obj.ativo = Convert.ToBoolean(reader["ativo"]);
+                        obj.data_cadastro = Convert.ToDateTime(reader["data_cadastro"]);
+                        obj.data_ult_alt = Convert.ToDateTime(reader["data_ult_alt"]);
                         clientes.Add(obj);
                     }
-
                 }
             }
             return clientes;
@@ -52,19 +64,20 @@ namespace Hotel_Mod.Dao
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO clientes (nome,sobrenome, data_nascimento,telefone, cpf, rg, tipo_pcd, estrangeiro, " +
-                    "profissao, cep, logradouro, numero, bairro, cidade, estado, pais, ativo, data_cadastro, dat_ult_alt) " +
-                    "values (@nome,@sobrenome, @data_nascimento, @telefone, @cpf, @rg, @tipo_pcd, @estrangeiro, @profissao, @cep, @logradouro, @numero, " +
-                    "@bairro, @cidade, @estado, @pais, @ativo, @data_cadastro, @dat_ult_alt)";
+                string query = "INSERT INTO clientes (nome, sobrenome, data_nascimento, telefone, cpf, email, rg, tipo_pcd, estrangeiro, " +
+                    "profissao, cep, logradouro, numero, bairro, complemento, cidade_id, ativo, data_cadastro, data_ult_alt) " +
+                    "VALUES (@nome, @sobrenome, @data_nascimento, @telefone, @cpf, @email, @rg, @tipo_pcd, @estrangeiro, @profissao, @cep, @logradouro, " +
+                    "@numero, @bairro, @complemento, @cidade_id, @ativo, @data_cadastro, @data_ult_alt)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
-                command.Parameters.AddWithValue("@nome", cliente.nome );
+                command.Parameters.AddWithValue("@nome", cliente.nome);
                 command.Parameters.AddWithValue("@sobrenome", cliente.sobrenome);
                 command.Parameters.AddWithValue("@data_nascimento", cliente.data_nascimento);
                 command.Parameters.AddWithValue("@telefone", cliente.telefone);
-                command.Parameters.AddWithValue("@rg", cliente.rg);
                 command.Parameters.AddWithValue("@cpf", cliente.cpf);
+                command.Parameters.AddWithValue("@email", cliente.email);
+                command.Parameters.AddWithValue("@rg", cliente.rg);
                 command.Parameters.AddWithValue("@tipo_pcd", cliente.tipo_pcd);
                 command.Parameters.AddWithValue("@estrangeiro", cliente.estrangeiro);
                 command.Parameters.AddWithValue("@profissao", cliente.profissao);
@@ -72,32 +85,31 @@ namespace Hotel_Mod.Dao
                 command.Parameters.AddWithValue("@logradouro", cliente.logradouro);
                 command.Parameters.AddWithValue("@numero", cliente.numero);
                 command.Parameters.AddWithValue("@bairro", cliente.bairro);
-                command.Parameters.AddWithValue("@cidade", cliente.cidade);
-                command.Parameters.AddWithValue("@estado", cliente.estado);
-                command.Parameters.AddWithValue("@pais", cliente.pais);
+                command.Parameters.AddWithValue("@complemento", cliente.complemento);
+                command.Parameters.AddWithValue("@cidade_id", cliente.cidade_id);
                 command.Parameters.AddWithValue("@ativo", cliente.ativo);
                 command.Parameters.AddWithValue("@data_cadastro", cliente.data_cadastro);
-                command.Parameters.AddWithValue("@dat_ult_alt", cliente.dat_ult_alt);
-      
+                command.Parameters.AddWithValue("@data_ult_alt", cliente.data_ult_alt);
+
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-
         }
+
+      
 
         public override void excluir(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM clientes where cliente_ID = @cliente_ID";
+                string query = "DELETE FROM clientes WHERE cliente_id = @cliente_id";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@cliente_ID", id);
+                command.Parameters.AddWithValue("@cliente_id", id);
 
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-
         }
 
         public override void alterar(T obj)
@@ -105,15 +117,20 @@ namespace Hotel_Mod.Dao
             dynamic cliente = obj;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "UPDATE clientes SET nome = @nome, sobrenome = @sobrenome, data_nascimento = @data_nascimento, telefone = @telefone, rg = @rg, cpf = @cpf, tipo_pcd = @tipo_pcd, estrangeiro = @estrangeiro, profissao = @profissao, cep = @cep, logradouro = @logradouro, numero = @numero, bairro = @bairro, cidade = @cidade, estado = @estado, pais = @pais, data_cadastro = @data_cadastro, data_ult_alt = @data_ult_alt  WHERE cliente_ID = @cliente_ID";
+                string query = "UPDATE clientes SET nome = @nome, sobrenome = @sobrenome, data_nascimento = @data_nascimento, telefone = @telefone, " +
+                    "cpf = @cpf, email = @email, rg = @rg, tipo_pcd = @tipo_pcd, estrangeiro = @estrangeiro, profissao = @profissao, cep = @cep, " +
+                    "logradouro = @logradouro, numero = @numero, bairro = @bairro, complemento = @complemento, cidade_id = @cidade_id, " +
+                    "ativo = @ativo, data_cadastro = @data_cadastro, data_ult_alt = @data_ult_alt " +
+                    "WHERE cliente_id = @cliente_id";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@nome", cliente.nome);
                 command.Parameters.AddWithValue("@sobrenome", cliente.sobrenome);
                 command.Parameters.AddWithValue("@data_nascimento", cliente.data_nascimento);
                 command.Parameters.AddWithValue("@telefone", cliente.telefone);
-                command.Parameters.AddWithValue("@rg", cliente.rg);
                 command.Parameters.AddWithValue("@cpf", cliente.cpf);
+                command.Parameters.AddWithValue("@email", cliente.email);
+                command.Parameters.AddWithValue("@rg", cliente.rg);
                 command.Parameters.AddWithValue("@tipo_pcd", cliente.tipo_pcd);
                 command.Parameters.AddWithValue("@estrangeiro", cliente.estrangeiro);
                 command.Parameters.AddWithValue("@profissao", cliente.profissao);
@@ -121,29 +138,65 @@ namespace Hotel_Mod.Dao
                 command.Parameters.AddWithValue("@logradouro", cliente.logradouro);
                 command.Parameters.AddWithValue("@numero", cliente.numero);
                 command.Parameters.AddWithValue("@bairro", cliente.bairro);
-                command.Parameters.AddWithValue("@cidade", cliente.cidade);
-                command.Parameters.AddWithValue("@estado", cliente.estado);
-                command.Parameters.AddWithValue("@pais", cliente.pais);
+                command.Parameters.AddWithValue("@complemento", cliente.complemento);
+                command.Parameters.AddWithValue("@cidade_id", cliente.cidade_id);
                 command.Parameters.AddWithValue("@ativo", cliente.ativo);
                 command.Parameters.AddWithValue("@data_cadastro", cliente.data_cadastro);
-                command.Parameters.AddWithValue("@dat_ult_alt", cliente.dat_ult_alt);
-
-
-
+                command.Parameters.AddWithValue("@data_ult_alt", cliente.data_ult_alt);
+                command.Parameters.AddWithValue("@cliente_id", cliente.cliente_id);
 
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
+        public List<string> GetCidadeEstadoEPaisByCidadeId(int cidade_ID)
+        {
+            List<string> cidadeInfos = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            SELECT c.cidade AS cidade, e.estado AS estado, p.pais AS pais
+            FROM cidades c
+            INNER JOIN estados e ON c.estado_ID = e.estado_ID
+            INNER JOIN paises p ON e.pais_ID = p.pais_ID
+            WHERE c.cidade_ID = @cidade_ID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@cidade_ID", cidade_ID);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string cidadeInfo = string.Format("{0}, {1}, {2}",
+                            reader["cidade"],
+                            reader["estado"],
+                            reader["pais"]);
+                        cidadeInfos.Add(cidadeInfo);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ocorreu um erro ao obter informações da cidade: " + ex.Message);
+                }
+            }
+            return cidadeInfos;
+        }
 
 
-        public override T pesquisar(int id)
+
+
+        public override T GetById(int cliente_id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "select * from clientes where cliente_ID = @cliente_ID";
+                string query = "SELECT * FROM clientes WHERE cliente_id = @cliente_id";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@cliente_ID", id);
+                command.Parameters.AddWithValue("@cliente_id", cliente_id);
 
                 connection.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -151,12 +204,13 @@ namespace Hotel_Mod.Dao
                     if (reader.Read())
                     {
                         dynamic obj = Activator.CreateInstance(typeof(T));
-                        obj.cliente_ID = Convert.ToInt32(reader["cliente_ID"]);
+                        obj.cliente_ID = Convert.ToInt32(reader["cliente_id"]);
                         obj.nome = reader["nome"].ToString();
                         obj.sobrenome = reader["sobrenome"].ToString();
                         obj.data_nascimento = DateTime.Parse(reader["data_nascimento"].ToString());
                         obj.telefone = reader["telefone"].ToString();
                         obj.cpf = reader["cpf"].ToString();
+                        obj.email = reader["email"].ToString();
                         obj.rg = reader["rg"].ToString();
                         obj.tipo_pcd = Convert.ToBoolean(reader["tipo_pcd"]);
                         obj.estrangeiro = Convert.ToBoolean(reader["estrangeiro"]);
@@ -165,9 +219,8 @@ namespace Hotel_Mod.Dao
                         obj.logradouro = reader["logradouro"].ToString();
                         obj.numero = reader["numero"].ToString();
                         obj.bairro = reader["bairro"].ToString();
-                        obj.cidade = reader["cidade"].ToString();
-                        obj.estado = reader["estado"].ToString();
-                        obj.pais = reader["pais"].ToString();
+                        obj.complemento = reader["complemento"].ToString();
+                        obj.cidade_id = Convert.ToInt32(reader["cidade_id"]);
                         obj.ativo = Convert.ToBoolean(reader["ativo"]);
                         obj.data_cadastro = DateTime.Parse(reader["data_cadastro"].ToString());
                         obj.data_ult_alt = DateTime.Parse(reader["data_ult_alt"].ToString());
@@ -177,13 +230,8 @@ namespace Hotel_Mod.Dao
                     {
                         return default(T);
                     }
-
-
                 }
-
-
             }
-
         }
     }
 }

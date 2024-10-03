@@ -166,6 +166,7 @@
             this.Controls.Add(this.lbl_cidade);
             this.Controls.Add(this.txt_cidade);
             this.Name = "CadastroCidades";
+            this.Text = "Cadastro Cidades";
             this.Controls.SetChildIndex(this.txt_dat_cad, 0);
             this.Controls.SetChildIndex(this.lbl_data_cadastro, 0);
             this.Controls.SetChildIndex(this.txt_dat_ult_alt, 0);

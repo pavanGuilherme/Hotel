@@ -63,17 +63,40 @@ namespace Hotel_Mod.views
 
         public override void Pesquisar()
         {
-            string pesquisa = txt_pesquisar.Text.Trim(); //obtem a pesquisa do txt
+            string pesquisa = txt_pesquisar.Text.Trim(); // Obtém a pesquisa do txt
 
-            //verifica se há um termo de pesquisa
+            // Verifica se há um termo de pesquisa
             if (!string.IsNullOrEmpty(pesquisa))
             {
                 try
                 {
-                    //filtra os dados dos países
-                    List<Pais> resultadosPesquisa = controllerPais.GetAll(btn_buscainativos.Checked).Where(p => p.pais.ToLower().Contains(pesquisa.ToLower())).ToList();
-                    dataGridViewPais.DataSource = resultadosPesquisa; //atualiza o DataSource do DataGridView com os resultados da pesquisa
-                    txt_pesquisar.Text = string.Empty; //limpa o txt pesquisa
+                    List<Pais> resultadosPesquisa = new List<Pais>();
+                    bool buscaInativos = btn_buscainativos.Checked;
+
+                    if (btn_nome.Checked)
+                    {
+                        // Pesquisa por Nome
+                        resultadosPesquisa = controllerPais.GetAll(buscaInativos)
+                                                           .Where(p => p.pais.Contains(pesquisa))
+                                                           .ToList();
+                    }
+                    else if (btn_Codigo.Checked)
+                    {
+                        // Pesquisa por Código
+                        if (int.TryParse(pesquisa, out int codigoPesquisa))
+                        {
+                            resultadosPesquisa = controllerPais.GetAll(buscaInativos)
+                                                               .Where(p => p.pais_ID == codigoPesquisa)
+                                                               .ToList();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor, insira um código válido.", "Código inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+                    dataGridViewPais.DataSource = resultadosPesquisa; // Atualiza o DataSource do DataGridView com os resultados da pesquisa
+                    txt_pesquisar.Text = string.Empty; // Limpa o txt pesquisa
                 }
                 catch (Exception ex)
                 {
@@ -82,9 +105,14 @@ namespace Hotel_Mod.views
             }
             else
             {
+                // Se não houver nada no txt, atualiza a consulta de países normalmente
                 AtualizarConsultaPaises(btn_buscainativos.Checked);
             }
         }
+
+
+    
+             
 
         public void AtualizarConsultaPaises(bool incluirInativos)
         {
@@ -155,6 +183,7 @@ namespace Hotel_Mod.views
                 MessageBox.Show("Ocorreu um erro ao carregar os países: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
 

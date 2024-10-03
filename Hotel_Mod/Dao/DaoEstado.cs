@@ -65,11 +65,44 @@ namespace Hotel_Mod.Class
 
         }
 
+
+        public override T GetById(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM estados WHERE estado_ID = @estado_ID";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@estado_ID", id);
+
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        dynamic obj = Activator.CreateInstance(typeof(T));
+                        obj.estado_ID = Convert.ToInt32(reader["estado_ID"]);
+                        obj.estado = reader["estado"].ToString();
+                        obj.uf = reader["uf"].ToString();
+                        obj.pais_ID = Convert.ToInt32(reader["pais_ID"]);
+                        obj.ativo = Convert.ToBoolean(reader["ativo"]);
+                        obj.data_cadastro = DateTime.Parse(reader["data_cadastro"].ToString());
+                        obj.data_ult_alt = DateTime.Parse(reader["data_ult_alt"].ToString());
+                        return obj;
+                    }
+                    else
+                    {
+                        return default(T); // retorna default se o estado não for encontrado
+                    }
+                }
+            }
+        }
+
         public override void excluir(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "DELETE  * FROM estados where estado_ID = @estado_ID";
+                string query = "DELETE FROM estados where estado_ID = @estado_ID";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@estado_ID", id);
@@ -128,41 +161,5 @@ namespace Hotel_Mod.Class
             return nomePais;
         }
 
-
-        public override T pesquisar(int estado_ID)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "select * from estados where estado_ID = @estado_ID";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@estado_ID", estado_ID);
-
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        dynamic obj = Activator.CreateInstance(typeof(T));
-                        obj.estado_ID = Convert.ToInt32(reader["estado_ID"]);
-                        obj.estado = reader["estado"].ToString();
-                        obj.uf = reader["uf"].ToString();
-                        obj.pais_ID = Convert.ToInt32(reader["pais_ID"]);
-                        obj.ativo = Convert.ToBoolean(reader["ativo"]);
-                        obj.data_cadastro = DateTime.Parse(reader["data_cadastro"].ToString());
-                        obj.data_ult_alt = DateTime.Parse(reader["data_ult_alt"].ToString());
-                        return obj;
-                    }
-                    else
-                    {
-                        return default(T);
-                    }
-
-
-                }
-
-
-            }
-
-        }
     }
 }

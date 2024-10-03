@@ -36,9 +36,15 @@ namespace Hotel_Mod.Controller
         {
             return daoCliente.GetAll(inativos);
         }
-        public override T pesquisar(int id)
+       
+        public override T GetById(int idObj)
         {
-            return daoCliente.pesquisar(id);
+            return daoCliente.GetById(idObj);
+        }
+
+        public List<string> GetCidadeEstadoEPaisByCidadeId(int cidade_ID)
+        {
+           return daoCliente.GetCidadeEstadoEPaisByCidadeId(cidade_ID);
         }
 
 

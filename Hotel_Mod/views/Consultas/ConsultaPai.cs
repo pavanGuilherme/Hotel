@@ -50,6 +50,16 @@ namespace Hotel_Mod.views
         {
             Close();
         }
+
+        private void ConsultaPai_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_pesquisar_Click(object sender, EventArgs e)
+        {
+            Pesquisar();
+        }
     }
 }
 

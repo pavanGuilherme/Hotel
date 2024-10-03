@@ -171,6 +171,7 @@
             this.Controls.Add(this.txt_estado);
             this.Controls.Add(this.lbl_pais);
             this.Name = "CadastroEstado";
+            this.Text = "Cadastro Estado";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroEstado_FormClosed);
             this.Controls.SetChildIndex(this.txt_dat_cad, 0);
             this.Controls.SetChildIndex(this.lbl_data_cadastro, 0);

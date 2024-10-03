@@ -9,6 +9,7 @@ using System.Text;
 using Hotel_Mod.Models;
 using System.Windows.Forms;
 using System.Linq;
+using Hotel_Mod.views.Cadastros;
 
 namespace Hotel_Mod.views
 {
@@ -16,19 +17,19 @@ namespace Hotel_Mod.views
     {
 
         private controllerCliente<Clientes> controllerCliente;
-        private CadastroCliente CadastroCliente;
+        private CadastroClientes cadastroCliente;
         public ConsultaCliente()
         {
             InitializeComponent();
             controllerCliente = new controllerCliente<Clientes>();
-            CadastroCliente = new CadastroCliente();
-            CadastroCliente.Owner = this;
+            cadastroCliente = new CadastroClientes();
+            cadastroCliente.Owner = this;
         }
 
         public override void Incluir()
         {
             ResetCadastro();
-            CadastroCliente.ShowDialog();
+            cadastroCliente.ShowDialog();
         }
 
 
@@ -36,8 +37,8 @@ namespace Hotel_Mod.views
         {
             if (dataGridViewCliente.SelectedRows.Count > 0)
             {
-                int cliente_ID = (int)dataGridViewCliente.SelectedRows[0].Cells["Código"].Value;
-                CadastroCliente CadastroCliente = new CadastroCliente(cliente_ID);
+                int cliente_ID = (int)dataGridViewCliente.SelectedRows[0].Cells["codigo"].Value;
+                CadastroClientes CadastroCliente = new CadastroClientes(cliente_ID);
                 CadastroCliente.Owner = this;
                 CadastroCliente.ShowDialog();
             }
@@ -53,7 +54,7 @@ namespace Hotel_Mod.views
             {
                 if (MessageBox.Show("Tem certeza de que deseja excluir este Cliente?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int cliente_ID = (int)dataGridViewCliente.SelectedRows[0].Cells["Código"].Value;
+                    int cliente_ID = (int)dataGridViewCliente.SelectedRows[0].Cells["codigo"].Value;
                     controllerCliente.excluir(cliente_ID);
                     dataGridViewCliente.DataSource = controllerCliente.GetAll(btn_buscainativos.Checked);
                 }
@@ -114,9 +115,22 @@ namespace Hotel_Mod.views
                 MessageBox.Show("Ocorreu um erro ao atualizar a consulta de clientes: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void AtualizarConsultaClientes(bool incluirInativos)
+        {
+            try
+            {
+                //recarrega os dados das alunos na consulta 
+                dataGridViewCliente.DataSource = controllerCliente.GetAll(incluirInativos);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro ao atualizar a consulta de clientes: " + ex.Message.ToString(), "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void ResetCadastro()
         {
-            CadastroCliente.LimparCampos();
+            cadastroCliente.LimparCampos();
         }
 
         private void btn_sair_Click(object sender, EventArgs e)
@@ -126,8 +140,8 @@ namespace Hotel_Mod.views
                 if (dataGridViewCliente.SelectedRows.Count > 0)
                 {
                     // Capturar o ID e o nome do país selecionado
-                    int cliente_ID = Convert.ToInt32(dataGridViewCliente.SelectedRows[0].Cells["Código"].Value);
-                    string nome = dataGridViewCliente.SelectedRows[0].Cells["Nome"].Value.ToString();
+                    int cliente_ID = Convert.ToInt32(dataGridViewCliente.SelectedRows[0].Cells["codigo"].Value);
+                    string nome = dataGridViewCliente.SelectedRows[0].Cells["nome"].Value.ToString();
 
                     // Passar os detalhes do país selecionado de volta para a tela principal
                     this.Tag = new Tuple<int, string>(cliente_ID, nome);
@@ -150,7 +164,32 @@ namespace Hotel_Mod.views
             bool incluirInativos = btn_buscainativos.Checked;
             AtualizarConsultaPaises(incluirInativos);
         }
+
+        private void ConsultaCliente_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                CadastroClientes cadastroCliente = new CadastroClientes();
+                cadastroCliente.FormClosed += (s, args) => AtualizarConsultaClientes(btn_buscainativos.Checked); //quando aciona o Form Closed chama o AtualizarConsulta
+
+                dataGridViewCliente.AutoGenerateColumns = false;
+                dataGridViewCliente.Columns["codigo"].DataPropertyName = "codigo";
+                dataGridViewCliente.Columns["nome"].DataPropertyName = "nome";
+                dataGridViewCliente.Columns["sobrenome"].DataPropertyName = "sobrenome";
+                dataGridViewCliente.Columns["cpf_cnpj"].DataPropertyName = "cpf_cnpj";
+                dataGridViewCliente.Columns["email"].DataPropertyName = "email";
+                dataGridViewCliente.Columns["telefone"].DataPropertyName = "telefone";
+
+                AtualizarConsultaPaises(btn_buscainativos.Checked);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro ao carregar os países: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
+
 
 

@@ -33,8 +33,8 @@ namespace Hotel_Mod.views
         {
             if (DataGridViewCidades.SelectedRows.Count > 0)
             {
-                int idCidade = (int)DataGridViewCidades.SelectedRows[0].Cells["Código"].Value;
-                CadastroCidades cadastroCidades = new CadastroCidades(idCidade);
+                int cidade_ID = (int)DataGridViewCidades.SelectedRows[0].Cells["Código"].Value;
+                CadastroCidades cadastroCidades = new CadastroCidades(cidade_ID);
                 CadastroCidades.Owner = this;
                 CadastroCidades.ShowDialog();
             }
@@ -48,10 +48,10 @@ namespace Hotel_Mod.views
         {
             if (DataGridViewCidades.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show("Tem certeza de que deseja excluir este país?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Tem certeza de que deseja excluir esta cidade ?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int idCidade = (int)DataGridViewCidades.CurrentRow.Cells[0].Value;
-                    controllerCidade.excluir(idCidade);
+                    int cidade_ID = (int)DataGridViewCidades.CurrentRow.Cells[0].Value;
+                    controllerCidade.excluir(cidade_ID);
                     DataGridViewCidades.DataSource = controllerCidade.GetAll(btn_buscainativos.Checked);
                 }
             }
@@ -95,7 +95,7 @@ namespace Hotel_Mod.views
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao atualizar a consulta de países: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro ao atualizar a consulta de cidades: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void ResetCadastro()
@@ -103,7 +103,9 @@ namespace Hotel_Mod.views
             CadastroCidades.LimparCampos();
         }
 
-        private void btn_sair_Click(object sender, EventArgs e)
+
+     
+        private void btn_sair_Click_1(object sender, EventArgs e)
         {
             if (btn_sair.Text == "Selecionar")
             {
@@ -129,31 +131,32 @@ namespace Hotel_Mod.views
             }
         }
 
-        private void btn_buscainativos_CheckedChanged(object sender, EventArgs e)
-        {
-            bool incluirInativos = btn_buscainativos.Checked;
-            AtualizarConsultaCidades(incluirInativos);
-        }
-
-        private void ConsultaPais_Load(object sender, EventArgs e)
+        private void ConsultaCidades_Load(object sender, EventArgs e)
         {
             try
             {
-                CadastroPais cadastroPaises = new CadastroPais();
-                cadastroPaises.FormClosed += (s, args) => AtualizarConsultaCidades(btn_buscainativos.Checked); //quando aciona o Form Closed chama o AtualizarConsulta
+                CadastroEstado cadastroEstado = new CadastroEstado();
+                cadastroEstado.FormClosed += (s, args) => AtualizarConsultaCidades(btn_buscainativos.Checked); //quando aciona o Form Closed chama o AtualizarConsulta
 
                 DataGridViewCidades.AutoGenerateColumns = false;
-                DataGridViewCidades.Columns["Código"].DataPropertyName = "pais_ID";
+                DataGridViewCidades.Columns["Código"].DataPropertyName = "cidade_ID";
                 DataGridViewCidades.Columns["Cidade"].DataPropertyName = "cidade";
                 DataGridViewCidades.Columns["DDD"].DataPropertyName = "ddd";
-            
+         
+
 
                 AtualizarConsultaCidades(btn_buscainativos.Checked);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao carregar as cidades: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro ao carregar os estados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btn_buscainativos_CheckedChanged_1(object sender, EventArgs e)
+        {
+            bool incluirInativos = btn_buscainativos.Checked;
+            AtualizarConsultaCidades(incluirInativos);
         }
     }
 }

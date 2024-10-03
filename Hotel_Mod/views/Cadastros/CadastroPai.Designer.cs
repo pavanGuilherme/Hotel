@@ -91,6 +91,7 @@
             // txt_codigo
             // 
             this.txt_codigo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_codigo.Enabled = false;
             this.txt_codigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_codigo.Location = new System.Drawing.Point(32, 43);
             this.txt_codigo.Name = "txt_codigo";
@@ -101,7 +102,7 @@
             // btn_salvar
             // 
             this.btn_salvar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_salvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btn_salvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_salvar.FlatAppearance.BorderSize = 0;
             this.btn_salvar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -122,7 +123,7 @@
             // btn_sair
             // 
             this.btn_sair.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_sair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btn_sair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
             this.btn_sair.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -143,6 +144,7 @@
             // lbl_dat_ult_alt
             // 
             this.lbl_dat_ult_alt.AutoSize = true;
+            this.lbl_dat_ult_alt.Enabled = false;
             this.lbl_dat_ult_alt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_dat_ult_alt.Location = new System.Drawing.Point(305, 508);
             this.lbl_dat_ult_alt.Name = "lbl_dat_ult_alt";
@@ -153,6 +155,7 @@
             // txt_dat_ult_alt
             // 
             this.txt_dat_ult_alt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_dat_ult_alt.Enabled = false;
             this.txt_dat_ult_alt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_dat_ult_alt.Location = new System.Drawing.Point(306, 537);
             this.txt_dat_ult_alt.Name = "txt_dat_ult_alt";
@@ -163,6 +166,7 @@
             // lbl_data_cadastro
             // 
             this.lbl_data_cadastro.AutoSize = true;
+            this.lbl_data_cadastro.Enabled = false;
             this.lbl_data_cadastro.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_data_cadastro.Location = new System.Drawing.Point(27, 508);
             this.lbl_data_cadastro.Name = "lbl_data_cadastro";
@@ -173,6 +177,7 @@
             // txt_dat_cad
             // 
             this.txt_dat_cad.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_dat_cad.Enabled = false;
             this.txt_dat_cad.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_dat_cad.Location = new System.Drawing.Point(32, 537);
             this.txt_dat_cad.Name = "txt_dat_cad";

@@ -7,38 +7,38 @@ using System.Threading.Tasks;
 namespace Hotel_Mod.Class
 {
 
-        public class controllerCidade<T> : controllerPai<T>
+    public class controllerCidade<T> : controllerPai<T>
+    {
+        private DaoCidade<T> daoCidade;
+
+        public controllerCidade() : base()
         {
-            private DaoCidade<T> daoCidade;
+            daoCidade = new DaoCidade<T>();
+        }
 
-            public controllerCidade() : base()
-            {
-                daoCidade = new DaoCidade<T>();
-            }
+        public override void alterar(T obj)
+        {
+            daoCidade.alterar(obj);
+        }
+        public override void excluir(int cidade_ID)
+        {
+            daoCidade.excluir(cidade_ID);
+        }
 
-            public override void alterar(T obj)
-            {
-                daoCidade.alterar(obj);
-            }
-            public override void excluir(int idobj)
-            {
-                daoCidade.excluir(idobj);
-            }
+        public override void salvar(T obj)
+        {
+            daoCidade.Salvar(obj);
+        }
+     
+        public override List<T> GetAll(bool inativos)
+        {
+            return daoCidade.GetAll(inativos);
+        }
 
-            public override void salvar(T obj)
-            {
-                daoCidade.Salvar(obj);
-            }
-
-            public override List<T> GetAll(bool inativos)
-            {
-                return daoCidade.GetAll(inativos);
-            }
-
-            public override T pesquisar(int id)
-            {
-                return daoCidade.pesquisar(id);
-            }
+        public override T GetById(int id)
+        {
+            return daoCidade.GetById(id);
+        }
         public string GetNomeEstadoByCidadeId(int cidade_ID)
         {
             return daoCidade.GetNomeEstadoByCidadeId(cidade_ID);
@@ -70,5 +70,5 @@ namespace Hotel_Mod.Class
             return false;
         }
     }
-    
+
 }

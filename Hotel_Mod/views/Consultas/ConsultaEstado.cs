@@ -169,5 +169,31 @@ namespace Hotel_Mod.views
                 MessageBox.Show("Ocorreu um erro ao carregar os estados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btn_sair_Click_1(object sender, EventArgs e)
+        {
+            if (btn_sair.Text == "Selecionar")
+            {
+                if (dataGridViewEstado.SelectedRows.Count > 0)
+                {
+                    // Capturar o ID e o nome do país selecionado
+                    int estado_ID = Convert.ToInt32(dataGridViewEstado.SelectedRows[0].Cells["Código"].Value);
+                    string nome = dataGridViewEstado.SelectedRows[0].Cells["Estado"].Value.ToString();
+
+                    // Passar os detalhes do país selecionado de volta para a tela principal
+                    this.Tag = new Tuple<int, string>(estado_ID, nome);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, selecione um estado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                Close();
+            }
+        }
     }
 }

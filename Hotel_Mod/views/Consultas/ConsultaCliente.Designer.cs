@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.dataGridViewCliente = new System.Windows.Forms.DataGridView();
-            this.Código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sobrenome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpf_cnpj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).BeginInit();
@@ -68,22 +68,22 @@
             // 
             this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Código,
+            this.codigo,
             this.Nome,
             this.Sobrenome,
-            this.CPF,
-            this.RG,
+            this.cpf_cnpj,
+            this.email,
             this.Telefone});
             this.dataGridViewCliente.Location = new System.Drawing.Point(12, 63);
             this.dataGridViewCliente.Name = "dataGridViewCliente";
             this.dataGridViewCliente.Size = new System.Drawing.Size(970, 399);
             this.dataGridViewCliente.TabIndex = 69;
             // 
-            // Código
+            // codigo
             // 
-            this.Código.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Código.HeaderText = "Código";
-            this.Código.Name = "Código";
+            this.codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.codigo.HeaderText = "Código";
+            this.codigo.Name = "codigo";
             // 
             // Nome
             // 
@@ -97,17 +97,17 @@
             this.Sobrenome.HeaderText = "Sobrenome";
             this.Sobrenome.Name = "Sobrenome";
             // 
-            // CPF
+            // cpf_cnpj
             // 
-            this.CPF.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CPF.HeaderText = "CPF";
-            this.CPF.Name = "CPF";
+            this.cpf_cnpj.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cpf_cnpj.HeaderText = "CPF / CNPJ";
+            this.cpf_cnpj.Name = "cpf_cnpj";
             // 
-            // RG
+            // email
             // 
-            this.RG.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.RG.HeaderText = "RG";
-            this.RG.Name = "RG";
+            this.email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.email.HeaderText = "Email";
+            this.email.Name = "email";
             // 
             // Telefone
             // 
@@ -121,6 +121,8 @@
             this.ClientSize = new System.Drawing.Size(1005, 545);
             this.Controls.Add(this.dataGridViewCliente);
             this.Name = "ConsultaCliente";
+            this.Text = "Consulta Clientes";
+            this.Load += new System.EventHandler(this.ConsultaCliente_Load);
             this.Controls.SetChildIndex(this.txt_pesquisar, 0);
             this.Controls.SetChildIndex(this.btn_sair, 0);
             this.Controls.SetChildIndex(this.btn_excluir, 0);
@@ -141,11 +143,11 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Código;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sobrenome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPF;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cpf_cnpj;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefone;
     }
 }

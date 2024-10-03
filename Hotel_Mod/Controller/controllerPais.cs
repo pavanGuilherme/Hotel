@@ -15,6 +15,7 @@ namespace Hotel_Mod.Class
             daoPais = new DaoPais<T>();           
         }
 
+
         public override void alterar(T obj)
         {
             daoPais.alterar(obj);
@@ -33,11 +34,12 @@ namespace Hotel_Mod.Class
         {
             return daoPais.GetAll(inativos);
         }
-        public override T pesquisar(int id)
-        {
-           return daoPais.pesquisar(id);
-        }
+       
 
+        public override T GetById(int idObj)
+        {
+            return daoPais.GetById(idObj);
+        }
 
         public bool JaCadastrado(string nome, int idAtual)
         {

@@ -63,15 +63,19 @@
             this.btn_excluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_excluir.FlatAppearance.BorderSize = 0;
             // 
+            // txt_pesquisar
+            // 
+            this.txt_pesquisar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(770, 12);
+            // 
             // btn_sair
             // 
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Location = new System.Drawing.Point(770, 12);
             // 
             // dataGridViewPais
             // 
@@ -117,7 +121,7 @@
             this.ClientSize = new System.Drawing.Size(1005, 545);
             this.Controls.Add(this.dataGridViewPais);
             this.Name = "ConsultaPais";
-            this.Text = "ConsultaPais";
+            this.Text = "Consulta Pais";
             this.Load += new System.EventHandler(this.ConsultaPais_Load);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.txt_pesquisar, 0);

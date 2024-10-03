@@ -19,32 +19,38 @@ namespace Hotel_Mod.views
         {
             InitializeComponent();
             controllerCidade = new controllerCidade<Cidade>();
+            consultaEstado = new ConsultaEstado();
+            ControllerEstado = new controllerEstado<Estado>();  
         }
 
-        public CadastroCidades(int idCidade) : this()
+        public CadastroCidades(int cidade_ID) : this()
         {
-            altera = idCidade;
+            altera = cidade_ID;
             carrega();
         }
-
-
-
         public override void carrega()
         {
             //verifica se há um país a ser alterado
             if (altera != -1)
             {
-                Cidade cidade = controllerCidade.pesquisar(altera);
+                Cidade cidade = controllerCidade.GetById(altera);
                 if (cidade != null)
                 {
                     //carrega os dados do país nos controles do formulário
                     txt_codigo.Text = cidade.cidade_ID.ToString();
                     txt_cidade.Text = cidade.cidade;
                     txt_ddd.Text = cidade.ddd;
+                    txt_cod_estado.Text = cidade.estado_ID.ToString();
                     txt_dat_cad.Text = cidade.data_cadastro.ToString();
                     txt_dat_ult_alt.Text = cidade.data_ult_alt.ToString();
                     check_ativo.Checked = cidade.ativo;
                     check_inativo.Checked = !cidade.ativo;
+
+                    string nomeEstado = controllerCidade.GetNomeEstadoByCidadeId(cidade.cidade_ID);
+                    if (!string.IsNullOrEmpty(nomeEstado))
+                    {
+                        txt_estado.Text = nomeEstado;
+                    }
 
                 }
                 else
@@ -58,7 +64,7 @@ namespace Hotel_Mod.views
         {
             if (!validadores.CampoObrigatorio(txt_cidade.Text))
             {
-                MessageBox.Show("Campo País é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo cidade é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_cidade.Focus();
             }
             else if (!validadores.CampoObrigatorio(txt_ddd.Text))
@@ -81,6 +87,7 @@ namespace Hotel_Mod.views
                     {
                         string cidade = txt_cidade.Text;
                         string ddd = txt_ddd.Text;
+                        int estado_ID = int.Parse(txt_cod_estado.Text);
 
 
                         DateTime.TryParse(txt_dat_cad.Text, out DateTime dataCadastro);
@@ -90,7 +97,7 @@ namespace Hotel_Mod.views
                         {
                             cidade = cidade,
                             ddd = ddd,
-
+                            estado_ID = estado_ID,
                             data_cadastro = dataCadastro,
                             data_ult_alt = dataUltAlt,
                             ativo = ativo
@@ -158,6 +165,7 @@ namespace Hotel_Mod.views
             txt_codigo.Clear();
             txt_cidade.Clear();
             txt_ddd.Clear();
+            txt_cod_estado.Clear(); 
             txt_dat_cad.Clear();
             txt_dat_ult_alt.Clear();
             check_ativo.Checked = true;
@@ -165,22 +173,20 @@ namespace Hotel_Mod.views
 
         private void btn_search_Click(object sender, EventArgs e)
         {
-            consultaEstado = new ConsultaEstado();
             consultaEstado.btn_sair.Text = "Selecionar";
 
-
-             if (consultaEstado.ShowDialog() == DialogResult.OK)
+            if (consultaEstado.ShowDialog() == DialogResult.OK)
             {
                 // Receber os detalhes do país selecionado
                 var estadoDetalhes = consultaEstado.Tag as Tuple<int, string>;
                 if (estadoDetalhes != null)
                 {
-                    int estadoID = estadoDetalhes.Item1;
-                    string estadoNome = estadoDetalhes.Item2;
+                    int estado_ID = estadoDetalhes.Item1;
+                    string estado = estadoDetalhes.Item2;
 
                     // Atualizar o campo txtPais com o nome do país selecionado
-                    txt_cod_estado.Text = estadoID.ToString();
-                    txt_estado.Text = estadoNome;
+                    txt_cod_estado.Text = estado_ID.ToString();
+                    txt_estado.Text = estado;
                 }
             }
         }
@@ -196,7 +202,7 @@ namespace Hotel_Mod.views
             {
                 if (!string.IsNullOrEmpty(txt_cod_estado.Text))
                 {
-                    Estado estado = ControllerEstado.pesquisar(int.Parse(txt_cod_estado.Text));
+                    Estado estado = ControllerEstado.GetById(int.Parse(txt_cod_estado.Text));
                     if (estado != null)
                     {
                         txt_estado.Text = estado.estado;

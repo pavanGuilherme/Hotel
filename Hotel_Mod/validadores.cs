@@ -10,7 +10,7 @@ namespace Hotel_Mod.views
 {
     public class validadores
     {
-        public void AtualizarCampoComDataPadrao(MaskedTextBox campoTexto, out DateTime data) //atualiza campo data no Salvar();
+        public static void AtualizarCampoComDataPadrao(MaskedTextBox campoTexto, out DateTime data) //atualiza campo data no Salvar();
         {
             string entrada = campoTexto.Text;
             DateTime dataPadrao = new DateTime(1800, 1, 1);
@@ -28,7 +28,7 @@ namespace Hotel_Mod.views
             }
         }
 
-        public void AtualizarCampoData(DateTime data, MaskedTextBox campoTexto) //atualiza campo data no Carrega();
+        public static void AtualizarCampoData(DateTime data, MaskedTextBox campoTexto) //atualiza campo data no Carrega();
         {
             DateTime dataPadrao = new DateTime(1800, 1, 1);
             if (data == dataPadrao)

@@ -12,7 +12,8 @@ namespace Hotel_Mod.Class
         public abstract void salvar(T obj);
         public abstract void excluir(int idobj);
         public abstract void alterar(T obj);
-        public abstract T pesquisar(int id);
+
+        public abstract T GetById(int idobj);
 
     }
 }

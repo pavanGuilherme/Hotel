@@ -44,7 +44,7 @@
             // btn_pesquisar
             // 
             this.btn_pesquisar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_pesquisar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btn_pesquisar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_pesquisar.FlatAppearance.BorderSize = 0;
             this.btn_pesquisar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -60,11 +60,12 @@
             this.btn_pesquisar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_pesquisar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_pesquisar.UseVisualStyleBackColor = false;
+            this.btn_pesquisar.Click += new System.EventHandler(this.btn_pesquisar_Click);
             // 
             // btn_incluir
             // 
             this.btn_incluir.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_incluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btn_incluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.btn_incluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_incluir.FlatAppearance.BorderSize = 0;
             this.btn_incluir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -85,7 +86,7 @@
             // btn_alterar
             // 
             this.btn_alterar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_alterar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btn_alterar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.btn_alterar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_alterar.FlatAppearance.BorderSize = 0;
             this.btn_alterar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -106,7 +107,7 @@
             // btn_excluir
             // 
             this.btn_excluir.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_excluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btn_excluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.btn_excluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_excluir.FlatAppearance.BorderSize = 0;
             this.btn_excluir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -127,7 +128,7 @@
             // btn_sair
             // 
             this.btn_sair.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_sair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btn_sair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
             this.btn_sair.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -215,6 +216,7 @@
             this.Controls.Add(this.txt_pesquisar);
             this.Name = "ConsultaPai";
             this.Text = "ConsultaPai";
+            this.Load += new System.EventHandler(this.ConsultaPai_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);

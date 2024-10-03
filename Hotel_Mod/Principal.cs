@@ -14,7 +14,7 @@ namespace Hotel_Mod
 {
     public partial class Principal : Form
     {
-        private Button activeButton;
+       
 
         private Form activeForm;
         public Principal()
@@ -25,25 +25,23 @@ namespace Hotel_Mod
 
 
 
-        //private void OpenChildForm(Form childForm, object btnsender)
-        //{
-        //    if (activeForm != null)
-        //    {
-        //        activeForm.Close();
-        //    }
-        //    btn_close.Visible = true;
-        //    activeForm = childForm;
-        //    childForm.TopLevel = false;
-        //    childForm.FormBorderStyle = FormBorderStyle.None;
-        //    childForm.Dock = DockStyle.Fill;
-        //    this.panel2.Controls.Add(childForm);
-        //    this.panel2.Tag = childForm;
-        //    childForm.BringToFront();
-        //    childForm.Show();
-        //    lbl_title.Text = childForm.Text;
-
-
-        //}
+        private void OpenChildForm(Form childForm, object btnsender)
+        {
+            if (activeForm != null)
+            {
+                activeForm.Close();
+            }
+           
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.panel2.Controls.Add(childForm);
+            this.panel2.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+            lbl_title.Text = childForm.Text;
+        }
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -68,7 +66,7 @@ namespace Hotel_Mod
         private void Reset()
         {
             lbl_title.Text = "HOME";
-            btn_close.Visible = false;
+   
         }
 
         private void btn_checkout_Click(object sender, EventArgs e)
@@ -79,8 +77,8 @@ namespace Hotel_Mod
 
         private void btn_estado_Click(object sender, EventArgs e)
         {
-            ConsultaEstado consultaEstado = new ConsultaEstado();
-            consultaEstado.ShowDialog();
+            ConsultaEstado consultaEstado  = new ConsultaEstado();
+            OpenChildForm(consultaEstado, sender);
 
         }
 

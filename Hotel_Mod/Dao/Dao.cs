@@ -22,7 +22,7 @@ namespace Hotel_Mod.Class
         public abstract void Salvar(T obj);
         public abstract void alterar(T obj);
         public abstract void excluir(int id);
-        public abstract T pesquisar(int id);
+        public abstract T GetById(int id);
 
         protected SqlConnection GetConnection()
         {

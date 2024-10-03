@@ -47,6 +47,9 @@ namespace Hotel_Mod.Dao
             return funcionarios;
         }
 
+
+
+
         public override void Salvar(T obj)
         {
             dynamic funcionario = obj;
@@ -87,6 +90,55 @@ namespace Hotel_Mod.Dao
                 command.ExecuteNonQuery();
             }
 
+        }
+
+        public override T GetById(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM funcionario WHERE idFuncionario = @id";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        dynamic obj = Activator.CreateInstance(typeof(T));
+                        obj.idFuncionario = Convert.ToInt32(reader["idFuncionario"]);
+                        obj.funcionario = reader["funcionario"].ToString();
+                        obj.apelido = reader["apelido"].ToString();
+                        obj.endereco = reader["endereco"].ToString();
+                        obj.bairro = reader["bairro"].ToString();
+                        obj.numero = reader["numero"].ToString();
+                        obj.cep = reader["cep"].ToString();
+                        obj.complemento = reader["complemento"].ToString();
+                        obj.sexo = reader["sexo"].ToString();
+                        obj.email = reader["email"].ToString();
+                        obj.telefone = reader["telefone"].ToString();
+                        obj.celular = reader["celular"].ToString();
+                        obj.data_nasc = DateTime.Parse(reader["data_nasc"].ToString());
+                        obj.cpf = reader["cpf"].ToString();
+                        obj.rg = reader["rg"].ToString();
+                        obj.cargo = reader["cargo"].ToString();
+                        obj.salario = Convert.ToDecimal(reader["salario"].ToString());
+                        obj.pis = reader["pis"].ToString();
+                        obj.data_admissao = DateTime.Parse(reader["data_admissao"].ToString());
+                        obj.data_demissao = DateTime.Parse(reader["data_demissao"].ToString());
+                        obj.Ativo = Convert.ToBoolean(reader["Ativo"]);
+                        obj.dataCadastro = DateTime.Parse(reader["dataCadastro"].ToString());
+                        obj.dataUltAlt = DateTime.Parse(reader["dataUltAlt"].ToString());
+                        obj.idCidade = Convert.ToInt32(reader["idCidade"]);
+                        return obj;
+                    }
+                    else
+                    {
+                        return default(T);
+                    }
+                }
+            }
         }
 
         public override void excluir(int id)
@@ -145,7 +197,7 @@ namespace Hotel_Mod.Dao
             }
         }
 
-        public List<string> GetCEPByCidadeId(int cidade_ID)
+        public List<string> GetCEPByIdCidade(int cidade_ID)
         {
             List<string> cidadeInfos = new List<string>();
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -158,9 +210,9 @@ namespace Hotel_Mod.Dao
                 FROM 
                     cidades
                 JOIN 
-                    estados ON cidades.estado_ID = estados.estado_ID
+                    estado ON cidades.estado_ID = estads.estado_ID
                 JOIN 
-                    paises ON estados.paises_ID = paises.pais_ID
+                    pais ON estados.pais_ID = paises.pais_ID
                 WHERE 
                     cidades.cidade_ID = @cidade_ID";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -186,62 +238,6 @@ namespace Hotel_Mod.Dao
                 }
             }
             return cidadeInfos;
-        }
-
-
-        public override T pesquisar(int funcionario_ID)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "select * from funcionarios where funcionario_ID = @funcionario_ID";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@funcionario_ID", funcionario_ID);
-
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        dynamic obj = Activator.CreateInstance(typeof(T));
-                        obj.funcionario_ID = Convert.ToInt32(reader["funcionario_ID"]);
-                        obj.nome = reader["nome"].ToString();
-                        obj.sobrenome = reader["sobrenome"].ToString();
-                        obj.endereco = reader["endereco"].ToString();
-                        obj.bairro = reader["bairro"].ToString();
-                        obj.numero = Convert.ToInt32(reader["numero"]);
-                        obj.cep = reader["cep"].ToString();
-                        obj.complemento = reader["complemento"].ToString();
-                        obj.sexo = reader["sexo"].ToString();
-                        obj.email = reader["email"].ToString();
-                        obj.telefone = reader["telefone"].ToString();
-                        obj.celular = reader["celular"].ToString();
-                        obj.data_nascimento = DateTime.Parse(reader["data_nascimento"].ToString());
-                        obj.cpf = reader["cpf"].ToString();
-                        obj.rg = reader["rg"].ToString();
-                        obj.cargo = reader["cargo"].ToString();
-                        obj.salario = Convert.ToDecimal(reader["salario"]);
-                        obj.pis = reader["pis"].ToString();
-                        obj.data_admissao = DateTime.Parse(reader["data_admissao"].ToString());
-                        obj.data_demissao = reader["data_demissao"] != DBNull.Value ? (DateTime?)DateTime.Parse(reader["data_demissao"].ToString()) : null;
-                        obj.ativo = Convert.ToBoolean(reader["ativo"]);
-                        obj.data_cadastro = DateTime.Parse(reader["data_cadastro"].ToString());
-                        obj.data_ult_alt = DateTime.Parse(reader["data_ult_alt"].ToString());
-                        obj.cidade_id = Convert.ToInt32(reader["cidade_id"]);
-
-                        return obj;
-
-                    }
-                    else
-                    {
-                        return default(T);
-                    }
-
-
-                }
-
-
-            }
-
         }
 
 

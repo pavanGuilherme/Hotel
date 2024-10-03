@@ -8,7 +8,7 @@ namespace Hotel_Mod.Models
 {
     public class Clientes
     {
-
+        
         public int cliente_ID { get; set; }
         public string nome { get; set; }
         public string sobrenome { get; set; }
@@ -18,14 +18,14 @@ namespace Hotel_Mod.Models
         public string email { get; set; }
         public string rg { get; set; }
         public bool tipo_pcd { get; set; }
-        public bool estrangeriro { get; set; }
+        public bool estrangeiro { get; set; }
         public string profissao { get; set; }
         public string cep { get; set; }
         public string logradouro { get; set; }
         public string numero { get; set; }
         public string bairro { get; set; }
         public string complemento { get; set; }
-        public int cidade_ID { get; set; }
+        public int cidade_id { get; set; }
         public string cidade { get; set; }
         public string estado { get; set; }
         public string pais { get; set; }

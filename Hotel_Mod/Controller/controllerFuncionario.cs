@@ -37,11 +37,17 @@ namespace Hotel_Mod.Controller
             return daoFuncionario.GetAll(inativos);
         }
 
-        public override T pesquisar(int id)
+       
+        public List<string> GetCEPByIdCidade(int cidade_ID)
         {
-            return daoFuncionario.pesquisar(id);
+            return daoFuncionario.GetCEPByIdCidade(cidade_ID);
         }
 
+
+        public override T GetById(int idObj)
+        {
+            return daoFuncionario.GetById(idObj);
+        }
         public bool JaCadastrado(string nome, int idAtual)
         {
             List<T> obj = daoFuncionario.GetAll(false);
@@ -64,6 +70,21 @@ namespace Hotel_Mod.Controller
                 Console.WriteLine("Aviso: O tipo genérico T não é compatível.");
             }
 
+            return false;
+        }
+
+
+        public bool BuscaNome(string nome, int idAtual)
+        {
+            List<Funcionario> funcinoarios = daoFuncionario.GetAll(false).Cast<Funcionario>().ToList();
+
+            foreach (Funcionario funcionario in funcinoarios)
+            {
+                if (string.Equals(funcionario.nome, nome, StringComparison.OrdinalIgnoreCase) && funcionario.funcionario_ID != idAtual)
+                {
+                    return true;
+                }
+            }
             return false;
         }
 

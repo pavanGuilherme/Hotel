@@ -102,41 +102,40 @@ namespace Hotel_Mod.Class
             }
         }
 
-
-        public override T pesquisar(int id)
+        public override T GetById(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "select * from paises where pais_ID = @id";
+                string query = "SELECT * FROM pais WHERE pais_ID = @id";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@pais_ID", id);
 
                 connection.Open();
+
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
                         dynamic obj = Activator.CreateInstance(typeof(T));
                         obj.pais_ID = Convert.ToInt32(reader["pais_ID"]);
-                        obj.pais = reader["pais"].ToString();
-                        obj.sigla = reader["sigla"].ToString();
-                        obj.ddi = reader["ddi"].ToString();
-                        obj.ativo = Convert.ToBoolean(reader["ativo"]);
+                        obj.Pais = reader["pais"].ToString();
+                        obj.Sigla = reader["sigla"].ToString();
+                        obj.DDI = reader["ddi"].ToString();
+                        obj.Ativo = Convert.ToBoolean(reader["ativo"]);
                         obj.data_cadastro = DateTime.Parse(reader["data_cadastro"].ToString());
                         obj.data_ult_alt = DateTime.Parse(reader["data_ult_alt"].ToString());
                         return obj;
                     }
                     else
                     {
-                        return default(T);
+                        return default(T); // retorna default se o país não for encontrado
                     }
-
-
                 }
-
-
             }
-
         }
+
+
+    
+        
     }
 }

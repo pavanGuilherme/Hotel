@@ -36,6 +36,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCidades)).BeginInit();
             this.SuspendLayout();
             // 
+            // btn_buscainativos
+            // 
+            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged_1);
+            // 
             // btn_pesquisar
             // 
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -60,6 +64,7 @@
             // 
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click_1);
             // 
             // DataGridViewCidades
             // 
@@ -97,6 +102,8 @@
             this.ClientSize = new System.Drawing.Size(1005, 545);
             this.Controls.Add(this.DataGridViewCidades);
             this.Name = "ConsultaCidades";
+            this.Text = "Consulta Cidades";
+            this.Load += new System.EventHandler(this.ConsultaCidades_Load);
             this.Controls.SetChildIndex(this.txt_pesquisar, 0);
             this.Controls.SetChildIndex(this.btn_sair, 0);
             this.Controls.SetChildIndex(this.btn_excluir, 0);

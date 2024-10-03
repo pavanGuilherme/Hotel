@@ -129,6 +129,7 @@
             this.Controls.Add(this.Txt_sigla);
             this.Controls.Add(this.Txt_pais);
             this.Name = "CadastroPais";
+            this.Text = "Cadastro Paises";
             this.Controls.SetChildIndex(this.txt_dat_cad, 0);
             this.Controls.SetChildIndex(this.lbl_data_cadastro, 0);
             this.Controls.SetChildIndex(this.txt_dat_ult_alt, 0);

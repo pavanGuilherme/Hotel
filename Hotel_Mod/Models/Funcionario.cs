@@ -27,7 +27,7 @@ namespace Hotel_Mod.Models
         public decimal salario { get; set; }
         public string pis { get; set; }
         public DateTime data_admissao { get; set; }
-        public DateTime ?data_demissao { get; set; } 
+        public DateTime data_demissao { get; set; } 
         public bool ativo { get; set; }
         public DateTime data_cadastro { get; set; }
         public DateTime data_ult_alt { get; set; }

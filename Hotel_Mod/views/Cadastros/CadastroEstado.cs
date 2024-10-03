@@ -44,7 +44,7 @@ namespace Hotel_Mod.views
         {
             if (altera != -1)
             {
-                Estado estado = controllerEstado.pesquisar(altera);
+                Estado estado = controllerEstado.GetById(altera);
                 if (estado != null)
                 {
                     txt_codigo.Text = estado.estado_ID.ToString();
@@ -160,10 +160,6 @@ namespace Hotel_Mod.views
             ((ConsultaEstado)this.Owner).AtualizarConsultaEstados(false);
         }
 
-
-
-
-
         private void txt_cod_pais_Leave(object sender, EventArgs e)
         {
             if (!validadores.VerificaNumeros(txt_cod_pais.Text))
@@ -175,7 +171,7 @@ namespace Hotel_Mod.views
             {
                 if (!string.IsNullOrEmpty(txt_cod_pais.Text))
                 {
-                    Pais pais = controllerPais.pesquisar(int.Parse(txt_cod_pais.Text));
+                    Pais pais = controllerPais.GetById(int.Parse(txt_cod_pais.Text));
                     if (pais != null)
                     {
                         txt_pais.Text = pais.pais;

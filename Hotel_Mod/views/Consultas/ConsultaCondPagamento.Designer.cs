@@ -30,7 +30,7 @@
         {
             this.dataGridViewCondPagamento = new System.Windows.Forms.DataGridView();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cond_pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.condicao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCondPagamento)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +65,7 @@
             this.dataGridViewCondPagamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCondPagamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
-            this.cond_pagamento});
+            this.condicao});
             this.dataGridViewCondPagamento.Location = new System.Drawing.Point(12, 71);
             this.dataGridViewCondPagamento.Name = "dataGridViewCondPagamento";
             this.dataGridViewCondPagamento.Size = new System.Drawing.Size(981, 412);
@@ -76,10 +76,11 @@
             this.codigo.HeaderText = "Código";
             this.codigo.Name = "codigo";
             // 
-            // cond_pagamento
+            // condicao
             // 
-            this.cond_pagamento.HeaderText = "Condição de Pagamento";
-            this.cond_pagamento.Name = "cond_pagamento";
+            this.condicao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.condicao.HeaderText = "Condição de Pagamento";
+            this.condicao.Name = "condicao";
             // 
             // ConsultaCondPagamento
             // 
@@ -109,6 +110,6 @@
 
         private System.Windows.Forms.DataGridView dataGridViewCondPagamento;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cond_pagamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn condicao;
     }
 }

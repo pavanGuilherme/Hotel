@@ -28,6 +28,25 @@ namespace Hotel_Mod.views
             }
         }
 
+
+        public static string FormataPreco(string texto)
+        {
+            texto = texto.Replace(".", "").Replace(" ", "");
+
+            if (string.IsNullOrWhiteSpace(texto))
+            {
+                return string.Empty;
+            }
+            if (decimal.TryParse(texto, out decimal value))
+            {
+                return value.ToString("N2");
+            }
+            else
+            {
+                throw new FormatException("Valor inválido.");
+            }
+        }
+
         public static void AtualizarCampoData(DateTime data, MaskedTextBox campoTexto) //atualiza campo data no Carrega();
         {
             DateTime dataPadrao = new DateTime(1800, 1, 1);

@@ -151,9 +151,11 @@ namespace Hotel_Mod.views.Consultas
                 {
                     int quarto_ID = Convert.ToInt32(dataGridViewQuarto.SelectedRows[0].Cells["quarto_ID"].Value);
                     int numero = Convert.ToInt32(dataGridViewQuarto.SelectedRows[0].Cells["numero"].Value);
-           
+                    int andar = Convert.ToInt32(dataGridViewQuarto.SelectedRows[0].Cells["andar"].Value);
+                    decimal valor = Convert.ToInt32(dataGridViewQuarto.SelectedRows[0].Cells["valor"].Value);
 
-                    this.Tag = new Tuple<int, int>(quarto_ID, numero);
+
+                    this.Tag = new Tuple<int, int, int, decimal>(quarto_ID, numero, andar, valor);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -166,6 +168,7 @@ namespace Hotel_Mod.views.Consultas
             {
                 Close();
             }
+
         }
     }
 }

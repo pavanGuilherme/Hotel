@@ -1,5 +1,6 @@
 ﻿using Hotel_Mod.Controller;
 using Hotel_Mod.Models;
+using Hotel_Mod.views.Consultas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +16,10 @@ namespace Hotel_Mod.views.Cadastros
 
         private ConsultaCidades consultaCidades;
         private controllerCliente<Clientes> controllerCliente;
-        public bool pcd = false;
-        public bool estrangeiro = false;
+        private controllerCondPagamento<CondicaoPagamento> ControllerCondicaoPagamento;
+        private ConsultaCondPagamento consultaCondPagamento;
+
+        
 
 
         public CadastroClientes()
@@ -24,7 +27,10 @@ namespace Hotel_Mod.views.Cadastros
 
             controllerCliente = new controllerCliente<Clientes>();
             consultaCidades = new ConsultaCidades();
+            consultaCondPagamento = new ConsultaCondPagamento();
             InitializeComponent();
+            check_fisica.Checked = true;
+            check_juridica.Checked = false;
         }
 
         public CadastroClientes(int cliente_ID) : this()
@@ -56,15 +62,13 @@ namespace Hotel_Mod.views.Cadastros
             return new Clientes
             {
                 nome = txt_nome.Text,
-                sobrenome = txt_sobrenome.Text,
+                apelido = txt_apelido.Text,
                 data_nascimento = DateTime.Parse(txt_data_nascimento.Text),
                 telefone = txt_telefone.Text,
+                celular = txt_celular.Text,
                 cpf = txt_cpf.Text,
                 email = txt_email.Text,
                 rg = txt_rg.Text,
-                tipo_pcd = pcd,
-                estrangeiro = estrangeiro,
-                profissao = txt_profissao.Text,
                 cep = txt_cep.Text,
                 logradouro = txt_logradouro.Text,
                 numero = txt_numero.Text,
@@ -81,13 +85,12 @@ namespace Hotel_Mod.views.Cadastros
         {
             txt_codigo.Text = clientes.cliente_ID.ToString();
             txt_nome.Text = clientes.nome;
-            txt_sobrenome.Text = clientes.sobrenome;
+            txt_apelido.Text = clientes.apelido;
             txt_telefone.Text = clientes.telefone;
+            txt_celular.Text = clientes.celular;
             txt_numero.Text = clientes.numero;
             txt_email.Text = clientes.email;
             txt_cpf.Text = clientes.cpf;
-            check_pcd.Checked = clientes.tipo_pcd;
-            check_estrangeiro.Checked = clientes.estrangeiro;
             txt_rg.Text = clientes.rg;
             txt_cep.Text = clientes.cep;
             txt_logradouro.Text = clientes.logradouro;
@@ -95,11 +98,12 @@ namespace Hotel_Mod.views.Cadastros
             txt_complemento.Text = clientes.complemento;
             txt_bairro.Text = clientes.bairro;
             txt_cod_cidade.Text = clientes.cidade_id.ToString();
-            txt_profissao.Text = clientes.profissao;
             txt_dat_cad.Text = clientes.data_cadastro.ToString();
             txt_dat_ult_alt.Text = clientes.data_ult_alt.ToString();
             check_ativo.Checked = clientes.ativo;
             check_inativo.Checked = !clientes.ativo;
+            check_juridica.Checked.ToString();
+            check_fisica.Checked.ToString();
         }
 
         public override void salvar()
@@ -109,15 +113,15 @@ namespace Hotel_Mod.views.Cadastros
                 MessageBox.Show("Campo nome é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_nome.Focus();
             }
-            else if (!validadores.CampoObrigatorio(txt_sobrenome.Text))
+            else if (!validadores.CampoObrigatorio(txt_apelido.Text))
             {
-                MessageBox.Show("Campo sobrenome é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_sobrenome.Focus();
+                MessageBox.Show("Campo apelido é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_apelido.Focus();
             }
-            else if (!validadores.CampoObrigatorio(comboBox_sexo.Text))
+            else if (!validadores.CampoObrigatorio(txt_sexo.Text))
             {
                 MessageBox.Show("Campo sexo é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                comboBox_sexo.Focus();
+                txt_sexo.Focus();
             }
             else if (!validadores.CampoObrigatorio(txt_email.Text))
             {
@@ -173,26 +177,7 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
-        private void check_estrangeiro_CheckedChanged(object sender, EventArgs e)
-        {
-            estrangeiro = check_estrangeiro.Checked;
-            if (check_estrangeiro.Checked == true)
-            {
-                txt_rg.Text = string.Empty; 
-                txt_rg.Enabled = false;
-            }
-            else if (check_estrangeiro.Checked == false)
-            {
-                txt_rg.Enabled = true;
-            }
-
-        }
-
-        private void check_pcd_CheckedChanged(object sender, EventArgs e)
-        {
-            pcd = check_pcd.Checked;
-        }
-
+      
         private void check_ativo_CheckedChanged(object sender, EventArgs e)
         {
             ativo = check_ativo.Checked;
@@ -232,6 +217,45 @@ namespace Hotel_Mod.views.Cadastros
                     }
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            consultaCondPagamento.btn_sair.Text = "Selecionar";
+
+            if (consultaCondPagamento.ShowDialog() == DialogResult.OK)
+            {
+                // Receber os detalhes da condição de pagamento selecionada
+                var condPagamentoDetalhes = consultaCondPagamento.Tag as Tuple<int, string>;
+                if (condPagamentoDetalhes != null)
+                {
+                    int condPagamento_ID = condPagamentoDetalhes.Item1;
+                    string condicaoPagamento = condPagamentoDetalhes.Item2;
+
+                    // Atualizar os campos com os valores corretos
+                    txt_cod_cond_pagamento.Text = condPagamento_ID.ToString(); // Atualiza o campo Código com o ID
+                    txt_condicao_pagamento.Text = condicaoPagamento; // Atualiza o campo Condição de Pagamento com o nome
+                }
+            }
+
+        }
+
+        private void check_fisica_CheckedChanged(object sender, EventArgs e)
+        {
+       
+            check_juridica.Checked = false;
+            lbl_apelido.Text = "Apelido";
+            lbl_cpf.Text = "CPF";
+            lbl_rg.Text = "RG";
+        }
+
+        private void check_juridica_CheckedChanged(object sender, EventArgs e)
+        {
+        
+            check_fisica.Checked = false;
+            lbl_apelido.Text = "Apelido";
+            lbl_cpf.Text = "CNPJ";
+            lbl_rg.Text = "IE";
         }
     }
 }

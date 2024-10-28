@@ -18,6 +18,7 @@ namespace Hotel_Mod.views
 
         private controllerCliente<Clientes> controllerCliente;
         private CadastroClientes cadastroCliente;
+
         public ConsultaCliente()
         {
             InitializeComponent();
@@ -86,35 +87,13 @@ namespace Hotel_Mod.views
             }
             else
             {
-                AtualizarConsultaPaises(btn_buscainativos.Checked);
+                AtualizarConsultaClientes(btn_buscainativos.Checked);
             }
         }
-        public void AtualizarConsultaEstados(bool incluirInativos)
-        {
-            try
-            {
-                //recarrega os dados dos estados na consulta de estados
-                dataGridViewCliente.DataSource = controllerCliente.GetAll(incluirInativos);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao atualizar a consulta de clientes: " + ex.Message.ToString(), "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
+        
 
 
-        public void AtualizarConsultaPaises(bool incluirInativos)
-        {
-            try
-            {
-                //recarrega os dados dos países na consulta de países
-                dataGridViewCliente.DataSource = controllerCliente.GetAll(incluirInativos);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao atualizar a consulta de clientes: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         public void AtualizarConsultaClientes(bool incluirInativos)
         {
@@ -133,18 +112,45 @@ namespace Hotel_Mod.views
             cadastroCliente.LimparCampos();
         }
 
+
+
+        private void ConsultaCliente_Load(object sender, EventArgs e)
+        {
+            try
+            {
+
+                CadastroClientes cadastroCliente = new CadastroClientes();
+                cadastroCliente.FormClosed += (s, args) => AtualizarConsultaClientes(btn_buscainativos.Checked); //quando aciona o Form Closed chama o AtualizarConsulta
+
+                dataGridViewCliente.AutoGenerateColumns = false;
+                dataGridViewCliente.Columns["codigo"].DataPropertyName = "cliente_ID";
+                dataGridViewCliente.Columns["nome"].DataPropertyName = "nome";
+                dataGridViewCliente.Columns["apelido"].DataPropertyName = "apelido";
+                dataGridViewCliente.Columns["cpf_cnpj"].DataPropertyName = "cpf";
+                dataGridViewCliente.Columns["email"].DataPropertyName = "email";
+                dataGridViewCliente.Columns["celular"].DataPropertyName = "celular";
+
+                AtualizarConsultaClientes(btn_buscainativos.Checked);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro ao carregar os países: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btn_sair_Click(object sender, EventArgs e)
         {
             if (btn_sair.Text == "Selecionar")
             {
                 if (dataGridViewCliente.SelectedRows.Count > 0)
                 {
-                    // Capturar o ID e o nome do país selecionado
                     int cliente_ID = Convert.ToInt32(dataGridViewCliente.SelectedRows[0].Cells["codigo"].Value);
                     string nome = dataGridViewCliente.SelectedRows[0].Cells["nome"].Value.ToString();
+                    string cpf = dataGridViewCliente.SelectedRows[0].Cells["cpf_cnpj"].Value.ToString();
+                    string celular = dataGridViewCliente.SelectedRows[0].Cells["celular"].Value.ToString();
 
-                    // Passar os detalhes do país selecionado de volta para a tela principal
-                    this.Tag = new Tuple<int, string>(cliente_ID, nome);
+
+                    this.Tag = new Tuple<int, string, string, string>(cliente_ID, nome, cpf, celular);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -159,35 +165,11 @@ namespace Hotel_Mod.views
             }
         }
 
-        private void btn_buscainativos_CheckedChanged(object sender, EventArgs e)
+        private void btn_buscainativos_CheckedChanged_1(object sender, EventArgs e)
         {
             bool incluirInativos = btn_buscainativos.Checked;
-            AtualizarConsultaPaises(incluirInativos);
+            AtualizarConsultaClientes(incluirInativos);
         }
-
-        private void ConsultaCliente_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                CadastroClientes cadastroCliente = new CadastroClientes();
-                cadastroCliente.FormClosed += (s, args) => AtualizarConsultaClientes(btn_buscainativos.Checked); //quando aciona o Form Closed chama o AtualizarConsulta
-
-                dataGridViewCliente.AutoGenerateColumns = false;
-                dataGridViewCliente.Columns["codigo"].DataPropertyName = "codigo";
-                dataGridViewCliente.Columns["nome"].DataPropertyName = "nome";
-                dataGridViewCliente.Columns["sobrenome"].DataPropertyName = "sobrenome";
-                dataGridViewCliente.Columns["cpf_cnpj"].DataPropertyName = "cpf_cnpj";
-                dataGridViewCliente.Columns["email"].DataPropertyName = "email";
-                dataGridViewCliente.Columns["telefone"].DataPropertyName = "telefone";
-
-                AtualizarConsultaPaises(btn_buscainativos.Checked);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao carregar os países: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
     }
 }
 

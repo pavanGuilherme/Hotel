@@ -36,3 +36,10 @@ C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Consultas.ConsultaFormaPa
 C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Cadastros.CadastroCondPagamento.resources
 C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Consultas.ConsultaCondPagamento.resources
 C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Cadastros.CadastroClientes.resources
+C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Cadastros.CadastroNotaCompra.resources
+C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Consultas.ConsultaNotaCompra.resources
+C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Cadastros.CadastroContasPagar.resources
+C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Cadastros.CadastroReserva.resources
+C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Consultas.ConsultaReserva.resources
+C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Cadastros.CadastroHospede.resources
+C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Consultas.ConsultaHospede.resources

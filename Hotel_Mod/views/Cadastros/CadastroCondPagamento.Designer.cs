@@ -44,19 +44,19 @@
             this.txt_porcentagem_total = new System.Windows.Forms.RichTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txt_cod_forma = new System.Windows.Forms.RichTextBox();
-            this.btn_cod_pais = new System.Windows.Forms.Button();
+            this.btn_cod_forma = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.txt_forma_pagamento = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView_parcelas = new System.Windows.Forms.DataGridView();
-            this.numero_parcelas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.forma_pagamento_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.forma_pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_excluir_parcela = new System.Windows.Forms.Button();
             this.txt_dias = new System.Windows.Forms.RichTextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.numeroParcela = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idFormaPag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.formaPagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_parcelas)).BeginInit();
             this.SuspendLayout();
@@ -243,14 +243,15 @@
             this.txt_cod_forma.TabIndex = 124;
             this.txt_cod_forma.Text = "";
             // 
-            // btn_cod_pais
+            // btn_cod_forma
             // 
-            this.btn_cod_pais.Location = new System.Drawing.Point(537, 176);
-            this.btn_cod_pais.Name = "btn_cod_pais";
-            this.btn_cod_pais.Size = new System.Drawing.Size(73, 31);
-            this.btn_cod_pais.TabIndex = 126;
-            this.btn_cod_pais.Text = "search";
-            this.btn_cod_pais.UseVisualStyleBackColor = true;
+            this.btn_cod_forma.Location = new System.Drawing.Point(537, 176);
+            this.btn_cod_forma.Name = "btn_cod_forma";
+            this.btn_cod_forma.Size = new System.Drawing.Size(73, 31);
+            this.btn_cod_forma.TabIndex = 126;
+            this.btn_cod_forma.Text = "search";
+            this.btn_cod_forma.UseVisualStyleBackColor = true;
+            this.btn_cod_forma.Click += new System.EventHandler(this.btn_cod_forma_Click);
             // 
             // label9
             // 
@@ -280,49 +281,21 @@
             this.button1.TabIndex = 129;
             this.button1.Text = "Adicionar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView_parcelas
             // 
             this.dataGridView_parcelas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_parcelas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.numero_parcelas,
+            this.numeroParcela,
             this.porcentagem,
-            this.forma_pagamento_id,
-            this.forma_pagamento,
+            this.idFormaPag,
+            this.formaPagamento,
             this.dias});
             this.dataGridView_parcelas.Location = new System.Drawing.Point(28, 230);
             this.dataGridView_parcelas.Name = "dataGridView_parcelas";
             this.dataGridView_parcelas.Size = new System.Drawing.Size(924, 236);
             this.dataGridView_parcelas.TabIndex = 130;
-            // 
-            // numero_parcelas
-            // 
-            this.numero_parcelas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numero_parcelas.HeaderText = "N° de Parcelas";
-            this.numero_parcelas.Name = "numero_parcelas";
-            // 
-            // porcentagem
-            // 
-            this.porcentagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.porcentagem.HeaderText = "%";
-            this.porcentagem.Name = "porcentagem";
-            // 
-            // forma_pagamento_id
-            // 
-            this.forma_pagamento_id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.forma_pagamento_id.HeaderText = "Cod. Forma Pagamento";
-            this.forma_pagamento_id.Name = "forma_pagamento_id";
-            // 
-            // forma_pagamento
-            // 
-            this.forma_pagamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.forma_pagamento.HeaderText = "Forma de Pagamento";
-            this.forma_pagamento.Name = "forma_pagamento";
-            // 
-            // dias
-            // 
-            this.dias.HeaderText = "N° de Dias";
-            this.dias.Name = "dias";
             // 
             // btn_excluir_parcela
             // 
@@ -332,6 +305,7 @@
             this.btn_excluir_parcela.TabIndex = 131;
             this.btn_excluir_parcela.Text = "Excluir";
             this.btn_excluir_parcela.UseVisualStyleBackColor = true;
+            this.btn_excluir_parcela.Click += new System.EventHandler(this.btn_excluir_parcela_Click);
             // 
             // txt_dias
             // 
@@ -353,6 +327,35 @@
             this.label10.TabIndex = 133;
             this.label10.Text = "Dias";
             // 
+            // numeroParcela
+            // 
+            this.numeroParcela.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.numeroParcela.HeaderText = "N° de Parcelas";
+            this.numeroParcela.Name = "numeroParcela";
+            // 
+            // porcentagem
+            // 
+            this.porcentagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.porcentagem.HeaderText = "%";
+            this.porcentagem.Name = "porcentagem";
+            // 
+            // idFormaPag
+            // 
+            this.idFormaPag.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idFormaPag.HeaderText = "Cod. Forma Pagamento";
+            this.idFormaPag.Name = "idFormaPag";
+            // 
+            // formaPagamento
+            // 
+            this.formaPagamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.formaPagamento.HeaderText = "Forma de Pagamento";
+            this.formaPagamento.Name = "formaPagamento";
+            // 
+            // dias
+            // 
+            this.dias.HeaderText = "N° de Dias";
+            this.dias.Name = "dias";
+            // 
             // CadastroCondPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,7 +367,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txt_forma_pagamento);
-            this.Controls.Add(this.btn_cod_pais);
+            this.Controls.Add(this.btn_cod_forma);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txt_cod_forma);
             this.Controls.Add(this.label7);
@@ -408,7 +411,7 @@
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.txt_cod_forma, 0);
             this.Controls.SetChildIndex(this.label8, 0);
-            this.Controls.SetChildIndex(this.btn_cod_pais, 0);
+            this.Controls.SetChildIndex(this.btn_cod_forma, 0);
             this.Controls.SetChildIndex(this.txt_forma_pagamento, 0);
             this.Controls.SetChildIndex(this.label9, 0);
             this.Controls.SetChildIndex(this.button1, 0);
@@ -442,18 +445,18 @@
         private System.Windows.Forms.RichTextBox txt_porcentagem_total;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RichTextBox txt_cod_forma;
-        private System.Windows.Forms.Button btn_cod_pais;
+        private System.Windows.Forms.Button btn_cod_forma;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox txt_forma_pagamento;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView_parcelas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numero_parcelas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn porcentagem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn forma_pagamento_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn forma_pagamento;
         private System.Windows.Forms.Button btn_excluir_parcela;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dias;
         private System.Windows.Forms.RichTextBox txt_dias;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeroParcela;
+        private System.Windows.Forms.DataGridViewTextBoxColumn porcentagem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idFormaPag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn formaPagamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dias;
     }
 }

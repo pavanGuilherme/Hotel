@@ -45,10 +45,10 @@ namespace Hotel_Mod.views.Cadastros
                     txt_unidade.Text = produto.unidade;
                     txt_saldo.Text = produto.saldo.ToString();
                     txt_custo_medio.Text = produto.custo_medio.ToString();
-                    txt_preco_venda.Text = produto.preco_venda.ToString();
+                    txt_preco_medio.Text = produto.preco_venda.ToString();
                     txt_preco_ult_compra.Text = produto.preco_ult_compra.ToString();
-                    txt_dat_ult_compra.Text = produto.data_ult_compra.ToString();
-                    txt_obs.Text = produto.observacao;
+                    txt_data_ultcompra.Text = produto.data_ult_compra.ToString();
+                    txt_observacao.Text = produto.observacao;
                     txt_fornecedor_ID.Text = produto.fornecedor_ID.ToString();
                     txt_dat_cad.Text = produto.data_cadastro.ToString();
                     txt_dat_ult_alt.Text = produto.data_ult_alt.ToString();
@@ -74,10 +74,10 @@ namespace Hotel_Mod.views.Cadastros
                 MessageBox.Show("Campo Unidade é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_unidade.Focus();
             }
-            else if (!validadores.CampoObrigatorio(txt_preco_venda.Text))
+            else if (!validadores.CampoObrigatorio(txt_preco_medio.Text))
             {
-                MessageBox.Show("Campo Preço Venda é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_preco_venda.Focus();
+                MessageBox.Show("Campo Preço Médio é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_preco_medio.Focus();
             }
             else
             {
@@ -96,10 +96,9 @@ namespace Hotel_Mod.views.Cadastros
                         string unidade = txt_unidade.Text;
                         decimal saldo = decimal.Parse(txt_saldo.Text);
                         decimal custo_medio = decimal.Parse(txt_custo_medio.Text);
-                        decimal preco_venda = decimal.Parse(txt_preco_venda.Text);
                         decimal preco_ult_compra = decimal.Parse(txt_preco_ult_compra.Text);
-                        DateTime data_ult_compra = DateTime.Parse(txt_dat_ult_compra.Text);
-                        string observacao = txt_obs.Text;
+                        DateTime data_ult_compra = DateTime.Parse(txt_data_ultcompra.Text);
+                        string observacao = txt_observacao.Text;
                         int fornecedor_ID = int.Parse(txt_fornecedor_ID.Text);
 
                         DateTime.TryParse(txt_dat_cad.Text, out DateTime data_cadastro);
@@ -111,7 +110,6 @@ namespace Hotel_Mod.views.Cadastros
                             unidade = unidade,
                             saldo = saldo,
                             custo_medio = custo_medio,
-                            preco_venda = preco_venda,
                             preco_ult_compra = preco_ult_compra,
                             data_ult_compra = data_ult_compra,
                             observacao = observacao,
@@ -146,13 +144,6 @@ namespace Hotel_Mod.views.Cadastros
             altera = -1;
             txt_codigo.Clear();
             txt_produto.Clear();
-            txt_unidade.Clear();
-            txt_saldo.Clear();
-            txt_custo_medio.Clear();
-            txt_preco_venda.Clear();
-            txt_preco_ult_compra.Clear();
-            txt_dat_ult_compra.Clear();
-            txt_obs.Clear();
             txt_fornecedor_ID.Clear();
             txt_dat_cad.Clear();
             txt_dat_ult_alt.Clear();
@@ -168,38 +159,6 @@ namespace Hotel_Mod.views.Cadastros
         {
             // Atualiza a consulta de produtos ao fechar o formulário de cadastro
             ((ConsultaProduto)this.Owner).AtualizarConsultaProdutos(false);
-        }
-
-        private void CadastroProduto_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_produto_Leave(object sender, EventArgs e)
-        {
-            if (!validadores.VerificaLetras(txt_produto.Text))
-            {
-                MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_produto.Focus();
-            }
-        }
-
-        private void txt_unidade_Leave(object sender, EventArgs e)
-        {
-            if (!validadores.VerificaLetrasSemEspaco(txt_unidade.Text))
-            {
-                MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_unidade.Focus();
-            }
-        }
-
-        private void txt_preco_venda_Leave(object sender, EventArgs e)
-        {
-            if (!validadores.VerificaNumeros(txt_preco_venda.Text))
-            {
-                MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_preco_venda.Focus();
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)

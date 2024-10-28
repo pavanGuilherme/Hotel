@@ -49,6 +49,7 @@
             this.contasAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_hospede = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_compras = new System.Windows.Forms.Button();
             this.btn_Home = new System.Windows.Forms.Button();
@@ -184,14 +185,14 @@
             // fornecedorToolStripMenuItem
             // 
             this.fornecedorToolStripMenuItem.Name = "fornecedorToolStripMenuItem";
-            this.fornecedorToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.fornecedorToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.fornecedorToolStripMenuItem.Text = "Fornecedor";
             this.fornecedorToolStripMenuItem.Click += new System.EventHandler(this.fornecedorToolStripMenuItem_Click);
             // 
             // produtosToolStripMenuItem1
             // 
             this.produtosToolStripMenuItem1.Name = "produtosToolStripMenuItem1";
-            this.produtosToolStripMenuItem1.Size = new System.Drawing.Size(180, 26);
+            this.produtosToolStripMenuItem1.Size = new System.Drawing.Size(159, 26);
             this.produtosToolStripMenuItem1.Text = "Produtos";
             this.produtosToolStripMenuItem1.Click += new System.EventHandler(this.produtosToolStripMenuItem1_Click);
             // 
@@ -234,6 +235,7 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panel1.Controls.Add(this.btn_hospede);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btn_compras);
             this.panel1.Controls.Add(this.btn_Home);
@@ -247,6 +249,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(237, 720);
             this.panel1.TabIndex = 2;
+            // 
+            // btn_hospede
+            // 
+            this.btn_hospede.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_hospede.FlatAppearance.BorderSize = 0;
+            this.btn_hospede.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_hospede.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btn_hospede.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btn_hospede.Image = ((System.Drawing.Image)(resources.GetObject("btn_hospede.Image")));
+            this.btn_hospede.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_hospede.Location = new System.Drawing.Point(0, 235);
+            this.btn_hospede.Name = "btn_hospede";
+            this.btn_hospede.Size = new System.Drawing.Size(234, 64);
+            this.btn_hospede.TabIndex = 12;
+            this.btn_hospede.Text = "   Hóspedes";
+            this.btn_hospede.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_hospede.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_hospede.UseVisualStyleBackColor = false;
+            this.btn_hospede.Click += new System.EventHandler(this.btn_hospede_Click);
             // 
             // pictureBox1
             // 
@@ -267,14 +288,15 @@
             this.btn_compras.ForeColor = System.Drawing.Color.Gainsboro;
             this.btn_compras.Image = ((System.Drawing.Image)(resources.GetObject("btn_compras.Image")));
             this.btn_compras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_compras.Location = new System.Drawing.Point(0, 305);
+            this.btn_compras.Location = new System.Drawing.Point(0, 375);
             this.btn_compras.Name = "btn_compras";
-            this.btn_compras.Size = new System.Drawing.Size(231, 64);
+            this.btn_compras.Size = new System.Drawing.Size(234, 64);
             this.btn_compras.TabIndex = 9;
             this.btn_compras.Text = "   Compras";
             this.btn_compras.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_compras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_compras.UseVisualStyleBackColor = false;
+            this.btn_compras.Click += new System.EventHandler(this.btn_compras_Click);
             // 
             // btn_Home
             // 
@@ -315,14 +337,15 @@
             this.btn_reservas.ForeColor = System.Drawing.Color.Gainsboro;
             this.btn_reservas.Image = ((System.Drawing.Image)(resources.GetObject("btn_reservas.Image")));
             this.btn_reservas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_reservas.Location = new System.Drawing.Point(0, 235);
+            this.btn_reservas.Location = new System.Drawing.Point(0, 305);
             this.btn_reservas.Name = "btn_reservas";
-            this.btn_reservas.Size = new System.Drawing.Size(231, 64);
+            this.btn_reservas.Size = new System.Drawing.Size(234, 64);
             this.btn_reservas.TabIndex = 7;
             this.btn_reservas.Text = "   Reservas";
             this.btn_reservas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_reservas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_reservas.UseVisualStyleBackColor = false;
+            this.btn_reservas.Click += new System.EventHandler(this.btn_reservas_Click);
             // 
             // button2
             // 
@@ -333,9 +356,9 @@
             this.button2.ForeColor = System.Drawing.Color.Gainsboro;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(3, 375);
+            this.button2.Location = new System.Drawing.Point(0, 446);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(231, 64);
+            this.button2.Size = new System.Drawing.Size(234, 64);
             this.button2.TabIndex = 9;
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -350,9 +373,9 @@
             this.button1.ForeColor = System.Drawing.Color.Gainsboro;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 445);
+            this.button1.Location = new System.Drawing.Point(-3, 516);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(231, 64);
+            this.button1.Size = new System.Drawing.Size(237, 64);
             this.button1.TabIndex = 8;
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -369,7 +392,7 @@
             this.btn_clientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_clientes.Location = new System.Drawing.Point(0, 165);
             this.btn_clientes.Name = "btn_clientes";
-            this.btn_clientes.Size = new System.Drawing.Size(231, 64);
+            this.btn_clientes.Size = new System.Drawing.Size(234, 64);
             this.btn_clientes.TabIndex = 8;
             this.btn_clientes.Text = "   Clientes";
             this.btn_clientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -472,5 +495,6 @@
         private System.Windows.Forms.ToolStripMenuItem contasAPagarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contasAToolStripMenuItem;
         private System.Windows.Forms.Button btn_Home;
+        private System.Windows.Forms.Button btn_hospede;
     }
 }

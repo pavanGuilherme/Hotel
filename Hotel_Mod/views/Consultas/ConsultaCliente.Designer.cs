@@ -31,13 +31,17 @@
             this.dataGridViewCliente = new System.Windows.Forms.DataGridView();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sobrenome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apelido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cpf_cnpj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Celular = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCliente)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btn_buscainativos
+            // 
+            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged_1);
             // 
             // btn_pesquisar
             // 
@@ -63,6 +67,7 @@
             // 
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
             // dataGridViewCliente
             // 
@@ -70,10 +75,10 @@
             this.dataGridViewCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
             this.Nome,
-            this.Sobrenome,
+            this.Apelido,
             this.cpf_cnpj,
             this.email,
-            this.Telefone});
+            this.Celular});
             this.dataGridViewCliente.Location = new System.Drawing.Point(12, 63);
             this.dataGridViewCliente.Name = "dataGridViewCliente";
             this.dataGridViewCliente.Size = new System.Drawing.Size(970, 399);
@@ -91,11 +96,11 @@
             this.Nome.HeaderText = "Nome";
             this.Nome.Name = "Nome";
             // 
-            // Sobrenome
+            // Apelido
             // 
-            this.Sobrenome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Sobrenome.HeaderText = "Sobrenome";
-            this.Sobrenome.Name = "Sobrenome";
+            this.Apelido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Apelido.HeaderText = "Apelido";
+            this.Apelido.Name = "Apelido";
             // 
             // cpf_cnpj
             // 
@@ -109,11 +114,11 @@
             this.email.HeaderText = "Email";
             this.email.Name = "email";
             // 
-            // Telefone
+            // Celular
             // 
-            this.Telefone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Telefone.HeaderText = "Telefone";
-            this.Telefone.Name = "Telefone";
+            this.Celular.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Celular.HeaderText = "Celular";
+            this.Celular.Name = "Celular";
             // 
             // ConsultaCliente
             // 
@@ -145,9 +150,9 @@
         private System.Windows.Forms.DataGridView dataGridViewCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sobrenome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apelido;
         private System.Windows.Forms.DataGridViewTextBoxColumn cpf_cnpj;
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Celular;
     }
 }

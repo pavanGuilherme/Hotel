@@ -553,7 +553,6 @@
             // 
             this.txt_rg_ie.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_rg_ie.Location = new System.Drawing.Point(202, 132);
-            this.txt_rg_ie.Mask = "_________-__";
             this.txt_rg_ie.Name = "txt_rg_ie";
             this.txt_rg_ie.Size = new System.Drawing.Size(136, 29);
             this.txt_rg_ie.TabIndex = 248;

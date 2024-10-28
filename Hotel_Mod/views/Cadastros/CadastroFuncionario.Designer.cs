@@ -130,19 +130,21 @@
             // 
             // txt_rg
             // 
+            this.txt_rg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_rg.Location = new System.Drawing.Point(166, 121);
             this.txt_rg.Mask = "________-_";
             this.txt_rg.Name = "txt_rg";
-            this.txt_rg.Size = new System.Drawing.Size(87, 20);
+            this.txt_rg.Size = new System.Drawing.Size(99, 26);
             this.txt_rg.TabIndex = 204;
             this.txt_rg.Leave += new System.EventHandler(this.txt_rg_Leave);
             // 
             // txt_cpf
             // 
+            this.txt_cpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_cpf.Location = new System.Drawing.Point(31, 121);
             this.txt_cpf.Mask = "_________-__";
             this.txt_cpf.Name = "txt_cpf";
-            this.txt_cpf.Size = new System.Drawing.Size(103, 20);
+            this.txt_cpf.Size = new System.Drawing.Size(103, 26);
             this.txt_cpf.TabIndex = 203;
             this.txt_cpf.Leave += new System.EventHandler(this.txt_cpf_Leave);
             // 
@@ -227,6 +229,7 @@
             this.button1.TabIndex = 186;
             this.button1.Text = "search";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txt_cod_cidade
             // 

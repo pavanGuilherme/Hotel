@@ -145,5 +145,20 @@ namespace Hotel_Mod
         {
             OpenChildForm(new ConsultaCondPagamento()); 
         }
+
+        private void btn_compras_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ConsultaNotaCompra()); 
+        }
+
+        private void btn_reservas_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ConsultaReserva());
+        }
+
+        private void btn_hospede_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ConsultaHospede());   
+        }
     }
 }

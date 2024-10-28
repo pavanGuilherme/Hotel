@@ -81,7 +81,7 @@
             this.tipo,
             this.ativo,
             this.disponivel});
-            this.dataGridViewQuarto.Location = new System.Drawing.Point(13, 71);
+            this.dataGridViewQuarto.Location = new System.Drawing.Point(13, 72);
             this.dataGridViewQuarto.Name = "dataGridViewQuarto";
             this.dataGridViewQuarto.Size = new System.Drawing.Size(970, 411);
             this.dataGridViewQuarto.TabIndex = 69;

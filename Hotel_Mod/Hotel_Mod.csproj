@@ -55,21 +55,27 @@
   <ItemGroup>
     <Compile Include="Controller\controllerCliente.cs" />
     <Compile Include="Controller\controllerCondPagamento.cs" />
+    <Compile Include="Controller\controllerContasPagar.cs" />
     <Compile Include="Controller\controllerEstado.cs" />
     <Compile Include="Controller\controllerFormaPagamento.cs" />
     <Compile Include="Controller\controllerFornecedor.cs" />
     <Compile Include="Controller\controllerFuncionario.cs" />
+    <Compile Include="Controller\controllerHospede.cs" />
     <Compile Include="Controller\controllerNotaCompra.cs" />
     <Compile Include="Controller\controllerProduto.cs" />
     <Compile Include="Controller\controllerQuarto.cs" />
+    <Compile Include="Controller\controllerReserva.cs" />
     <Compile Include="Dao\DaoCliente.cs" />
     <Compile Include="Dao\DaoCondicaoPagamento.cs" />
+    <Compile Include="Dao\DaoContasPagar.cs" />
     <Compile Include="Dao\DaoFormaPagamento.cs" />
     <Compile Include="Dao\DaoFornecedor.cs" />
     <Compile Include="Dao\DaoFuncionario.cs" />
+    <Compile Include="Dao\DaoHospede.cs" />
     <Compile Include="Dao\DaoNotaCompra.cs" />
     <Compile Include="Dao\DaoProduto.cs" />
     <Compile Include="Dao\DaoQuarto.cs" />
+    <Compile Include="Dao\DaoReserva.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,18 +84,29 @@
     </Compile>
     <Compile Include="Models\Clientes.cs" />
     <Compile Include="Models\CondicaoPagamento.cs" />
+    <Compile Include="Models\ContasPagar.cs" />
+    <Compile Include="Models\ContasReceber.cs" />
     <Compile Include="Models\FormaPagamento.cs" />
     <Compile Include="Models\Fornecedor.cs" />
     <Compile Include="Models\Funcionario.cs" />
+    <Compile Include="Models\Hospede.cs" />
+    <Compile Include="Models\NotaCompra_Produto.cs" />
     <Compile Include="Models\nota_Compra.cs" />
     <Compile Include="Models\parcela.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Quarto.cs" />
+    <Compile Include="Models\Reserva.cs" />
     <Compile Include="views\Cadastros\CadastroCondPagamento.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="views\Cadastros\CadastroCondPagamento.Designer.cs">
       <DependentUpon>CadastroCondPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroContasPagar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroContasPagar.Designer.cs">
+      <DependentUpon>CadastroContasPagar.cs</DependentUpon>
     </Compile>
     <Compile Include="views\Cadastros\CadastroFormaPagamento.cs">
       <SubType>Form</SubType>
@@ -102,6 +119,12 @@
     </Compile>
     <Compile Include="views\Cadastros\CadastroFuncionario.Designer.cs">
       <DependentUpon>CadastroFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroHospede.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroHospede.Designer.cs">
+      <DependentUpon>CadastroHospede.cs</DependentUpon>
     </Compile>
     <Compile Include="views\Cadastros\CadastroNotaCompra.cs">
       <SubType>Form</SubType>
@@ -156,6 +179,12 @@
     <Compile Include="views\Cadastros\CadastroClientes.Designer.cs">
       <DependentUpon>CadastroClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\Cadastros\CadastroReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroReserva.Designer.cs">
+      <DependentUpon>CadastroReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\Consultas\ConsultaCondPagamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +196,18 @@
     </Compile>
     <Compile Include="views\Consultas\ConsultaFormaPagamento.Designer.cs">
       <DependentUpon>ConsultaFormaPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaHospede.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaHospede.Designer.cs">
+      <DependentUpon>ConsultaHospede.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaNotaCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaNotaCompra.Designer.cs">
+      <DependentUpon>ConsultaNotaCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="views\Consultas\ConsultaProduto.cs">
       <SubType>Form</SubType>
@@ -243,17 +284,29 @@
     <Compile Include="views\Consultas\ConsultaQuarto.Designer.cs">
       <DependentUpon>ConsultaQuarto.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\Consultas\ConsultaReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaReserva.Designer.cs">
+      <DependentUpon>ConsultaReserva.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Cadastros\CadastroCondPagamento.resx">
       <DependentUpon>CadastroCondPagamento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\Cadastros\CadastroContasPagar.resx">
+      <DependentUpon>CadastroContasPagar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\Cadastros\CadastroFormaPagamento.resx">
       <DependentUpon>CadastroFormaPagamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Cadastros\CadastroFuncionario.resx">
       <DependentUpon>CadastroFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Cadastros\CadastroHospede.resx">
+      <DependentUpon>CadastroHospede.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Cadastros\CadastroNotaCompra.resx">
       <DependentUpon>CadastroNotaCompra.cs</DependentUpon>
@@ -276,6 +329,9 @@
     <EmbeddedResource Include="views\Cadastros\CadastroClientes.resx">
       <DependentUpon>CadastroClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\Cadastros\CadastroReserva.resx">
+      <DependentUpon>CadastroReserva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\Consultas\ConsultaCidades.resx">
       <DependentUpon>ConsultaCidades.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,6 +352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\Consultas\ConsultaFuncionario.resx">
       <DependentUpon>ConsultaFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Consultas\ConsultaHospede.resx">
+      <DependentUpon>ConsultaHospede.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Consultas\ConsultaNotaCompra.resx">
+      <DependentUpon>ConsultaNotaCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Consultas\ConsultaPai.resx">
       <DependentUpon>ConsultaPai.cs</DependentUpon>
@@ -326,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\Consultas\ConsultaQuarto.resx">
       <DependentUpon>ConsultaQuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Consultas\ConsultaReserva.resx">
+      <DependentUpon>ConsultaReserva.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -22,6 +22,7 @@ namespace Hotel_Mod.Models
         public decimal total_pagar { get; set; }
         public int Cond_Pagamento_ID { get; set; }
         public string observacao { get; set; }
+        public List<NotaCompra_Produto> Produtos { get; set; }
         public DateTime? data_cancelamento { get; set; }
         public DateTime data_cadastro { get; set; }
         public DateTime data_ult_alt { get; set; }

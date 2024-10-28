@@ -15,7 +15,7 @@ namespace Hotel_Mod.views.Cadastros
     {
 
         private controllerCondPagamento<CondicaoPagamento> controllerCondPagamento;
-        private ConsultaFormaPagamento consultaFormasPagamento;
+        public ConsultaFormaPagamento consultaFormasPagamento;
         private ControllerFormaPagamento<FormaPagamento> formaPagamentoController;
 
 
@@ -75,7 +75,7 @@ namespace Hotel_Mod.views.Cadastros
                 }
             }
 
-            if (validadores.CampoObrigatorio(txt_cond_pagamento.Text))
+            if (!validadores.CampoObrigatorio(txt_cond_pagamento.Text))
             {
                 MessageBox.Show("Campo Condição de Pagamento é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_cond_pagamento.Focus();
@@ -157,7 +157,7 @@ namespace Hotel_Mod.views.Cadastros
                     numeroParcela = Convert.ToInt32(row.Cells["numeroParcela"].Value),
                     dias = Convert.ToInt32(row.Cells["dias"].Value),
                     porcentagem = Convert.ToDecimal(row.Cells["porcentagem"].Value),
-                    FormaPagamento_ID = Convert.ToInt32(row.Cells["CódFormaPag"].Value)
+                    FormaPagamento_ID = Convert.ToInt32(row.Cells["idFormaPagamento"].Value)
                 };
                 parcela.Add(parcelas);
             }
@@ -226,23 +226,6 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
-        private void btnConsultaFormaPag_Click(object sender, EventArgs e)
-        {
-            consultaFormasPagamento.btn_sair.Text = "Selecionar";
-
-            if (consultaFormasPagamento.ShowDialog() == DialogResult.OK)
-            {
-                var infosFormaPag = consultaFormasPagamento.Tag as Tuple<int, string>;
-                if (infosFormaPag != null)
-                {
-                    int idFormaPag = infosFormaPag.Item1;
-                    string formaPag = infosFormaPag.Item2;
-
-                    txt_cod_forma.Text = idFormaPag.ToString();
-                    txt_forma_pagamento.Text = formaPag;
-                }
-            }
-        }
 
         private void txt_cod_forma_Leave(object sender, EventArgs e)
         {
@@ -281,57 +264,6 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
-        private void btnAddParcela_Click(object sender, EventArgs e)
-        {
-            if (validadores.CampoObrigatorio(txt_parcela.Text))
-            {
-                MessageBox.Show("Campo Nº Parcela é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_parcela.Focus();
-            }
-            else if (validadores.CampoObrigatorio(txt_dias.Text))
-            {
-                MessageBox.Show("Campo Dias é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_dias.Focus();
-            }
-            else if (validadores.CampoObrigatorio(txt_porcentagem.Text))
-            {
-                MessageBox.Show("Campo % é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_porcentagem.Focus();
-            }
-            else if (validadores.CampoObrigatorio(txt_cod_forma.Text))
-            {
-                MessageBox.Show("Campo Código Forma Pagamento é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_cod_forma.Focus();
-            }
-            else
-            {
-                try
-                {
-                    int numeroParcela = Convert.ToInt32(txt_parcela.Text);
-                    if (verificaNumeroParcela(numeroParcela))
-                    {
-                        MessageBox.Show("Número de parcela já existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txt_parcela.Focus();
-                        return;
-                    }
-
-                    int dias = Convert.ToInt32(txt_dias.Text);
-                    decimal porcentagem = Convert.ToDecimal(txt_porcentagem.Text);
-                    int idFormaPag = Convert.ToInt32(txt_cod_forma.Text);
-                    string formaPagamento = txt_forma_pagamento.Text;
-
-                    dataGridView_parcelas.Rows.Add(numeroParcela, dias, porcentagem, idFormaPag, formaPagamento); // Adiciona nova linha com os valores
-
-                    atualizaPorcentagemTotal();
-                    dataGridView_parcelas.Sort(dataGridView_parcelas.Columns["numeroParcela"], ListSortDirection.Ascending);
-                    limpaCamposparcela();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao adicionar parcela: " + ex.Message);
-                }
-            }
-        }
 
         private void btnExcluirParcela_Click(object sender, EventArgs e)
         {
@@ -403,6 +335,101 @@ namespace Hotel_Mod.views.Cadastros
                 e.Handled = true;
             }
         }
+
+        private void btn_cod_forma_Click(object sender, EventArgs e)
+        {
+            consultaFormasPagamento.btn_sair.Text = "Selecionar";
+
+            if (consultaFormasPagamento.ShowDialog() == DialogResult.OK)
+            {
+                var infosFormaPag = consultaFormasPagamento.Tag as Tuple<int, string>;
+                if (infosFormaPag != null)
+                {
+                    int forma_pag_ID = infosFormaPag.Item1;
+                    string formaPag = infosFormaPag.Item2;
+
+                    txt_cod_forma.Text = forma_pag_ID.ToString();
+                    txt_forma_pagamento.Text = formaPag;
+                }
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!validadores.CampoObrigatorio(txt_parcela.Text))
+            {
+                MessageBox.Show("Campo Nº Parcela é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_parcela.Focus();
+            }
+            else if (!validadores.CampoObrigatorio(txt_dias.Text))
+            {
+                MessageBox.Show("Campo Dias é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_dias.Focus();
+            }
+            else if (   !validadores.CampoObrigatorio(txt_porcentagem.Text))
+            {
+                MessageBox.Show("Campo % é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_porcentagem.Focus();
+            }
+            else if (!validadores.CampoObrigatorio(txt_cod_forma.Text.ToString()))
+            {
+                MessageBox.Show("Campo Código Forma Pagamento é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_cod_forma.Focus();
+            }
+            else
+            {
+                try
+                {
+                    int numeroParcela = Convert.ToInt32(txt_parcela.Text);
+                    if (verificaNumeroParcela(numeroParcela))
+                    {
+                        MessageBox.Show("Número de parcela já existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txt_parcela.Focus();
+                        return;
+                    }
+
+                    int dias = Convert.ToInt32(txt_dias.Text);
+                    decimal porcentagem = Convert.ToDecimal(txt_porcentagem.Text);
+                    int idFormaPag = Convert.ToInt32(txt_cod_forma.Text);
+                    string formaPagamento = txt_forma_pagamento.Text;
+
+                    dataGridView_parcelas.Rows.Add(numeroParcela, dias, porcentagem, idFormaPag, formaPagamento); // Adiciona nova linha com os valores
+
+                    atualizaPorcentagemTotal();
+                    dataGridView_parcelas.Sort(dataGridView_parcelas.Columns["numeroParcela"], ListSortDirection.Ascending);
+                    limpaCamposparcela();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao adicionar parcela: " + ex.Message);
+                }
+            }
+
+        }
+
+        private void btn_excluir_parcela_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView_parcelas.SelectedRows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in dataGridView_parcelas.SelectedRows)
+                    {
+                        dataGridView_parcelas.Rows.Remove(row);
+                    }
+                    atualizaPorcentagemTotal();
+                }
+                else
+                {
+                    MessageBox.Show("Selecione uma parcela para excluir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao excluir parcela: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }       
     }
 }
 

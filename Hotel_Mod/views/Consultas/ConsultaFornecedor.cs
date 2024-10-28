@@ -104,29 +104,6 @@ namespace Hotel_Mod.views
 
 
 
-        private void ConsultaFornecedor_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                CadastroFornecedor cadastroFornecedor = new CadastroFornecedor();
-                cadastroFornecedor.FormClosed += (s, args) => AtualizarConsultaFornecedores(btn_buscainativos.Checked);
-
-                dataGridViewFornecedor.AutoGenerateColumns = false;
-                dataGridViewFornecedor.Columns["codigo"].DataPropertyName = "fornecedor_ID";
-                dataGridViewFornecedor.Columns["fornecedor_razao_social"].DataPropertyName = "fornecedor_razao_social";
-                dataGridViewFornecedor.Columns["cpf_cnpj"].DataPropertyName = "cpf_cnpj";
-                dataGridViewFornecedor.Columns["ativo"].DataPropertyName = "ativo";
-                
-
-                AtualizarConsultaFornecedores(btn_buscainativos.Checked);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao carregar os fornecedores: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
         private void btn_buscainativos_CheckedChanged_1(object sender, EventArgs e)
         {
             bool incluirInativos = btn_buscainativos.Checked;
@@ -156,6 +133,29 @@ namespace Hotel_Mod.views
             {
                 Close();
             }
+        }
+
+        private void ConsultaFornecedor_Load_1(object sender, EventArgs e)
+        {
+            try
+            {
+                CadastroFornecedor cadastroFornecedor = new CadastroFornecedor();
+                cadastroFornecedor.FormClosed += (s, args) => AtualizarConsultaFornecedores(btn_buscainativos.Checked);
+
+                dataGridViewFornecedor.AutoGenerateColumns = false;
+                dataGridViewFornecedor.Columns["codigo"].DataPropertyName = "fornecedor_ID";
+                dataGridViewFornecedor.Columns["fornecedor_razao_social"].DataPropertyName = "fornecedor_razao_social";
+                dataGridViewFornecedor.Columns["cpf_cnpj"].DataPropertyName = "cpf_cnpj";
+                dataGridViewFornecedor.Columns["ativo"].DataPropertyName = "ativo";
+
+
+                AtualizarConsultaFornecedores(btn_buscainativos.Checked);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro ao carregar os fornecedores: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

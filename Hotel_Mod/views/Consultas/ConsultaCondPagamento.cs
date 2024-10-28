@@ -157,8 +157,8 @@ namespace Hotel_Mod.views.Consultas
             {
                 if (dataGridViewCondPagamento.SelectedRows.Count > 0)
                 {
-                    int condPagamentoId = Convert.ToInt32(dataGridViewCondPagamento.SelectedRows[0].Cells["Código"].Value);
-                    string condPag = dataGridViewCondPagamento.SelectedRows[0].Cells["Condição"].Value.ToString();
+                    int condPagamentoId = Convert.ToInt32(dataGridViewCondPagamento.SelectedRows[0].Cells["codigo"].Value);
+                    string condPag = dataGridViewCondPagamento.SelectedRows[0].Cells["cond_Pagamento"].Value.ToString();
 
                     this.Tag = new Tuple<int, string>(condPagamentoId, condPag);
                     this.DialogResult = DialogResult.OK;
@@ -179,7 +179,7 @@ namespace Hotel_Mod.views.Consultas
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                int condPagamentoId = (int)dataGridViewCondPagamento.Rows[e.RowIndex].Cells["Código"].Value;
+                int condPagamentoId = (int)dataGridViewCondPagamento.Rows[e.RowIndex].Cells["codigo"].Value;
                 ResetCadastro(condPagamentoId);
                 cadastroCondicaoPagamento.ShowDialog();
             }
@@ -192,8 +192,8 @@ namespace Hotel_Mod.views.Consultas
                 cadastroCondicaoPagamento.FormClosed += (s, args) => AtualizarConsultaCondPag(btn_buscainativos.Checked); // Quando aciona o Form Closed chama o AtualizarConsulta
 
                 dataGridViewCondPagamento.AutoGenerateColumns = false;
-                dataGridViewCondPagamento.Columns["Código"].DataPropertyName = "Condicao_pagamento_ID";
-                dataGridViewCondPagamento.Columns["Condição"].DataPropertyName = "condicaoPagamento";
+                dataGridViewCondPagamento.Columns["codigo"].DataPropertyName = "codigo";
+                dataGridViewCondPagamento.Columns["condicao"].DataPropertyName = "condicao";
 
                 AtualizarConsultaCondPag(btn_buscainativos.Checked);
             }

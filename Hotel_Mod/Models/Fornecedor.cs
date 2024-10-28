@@ -27,6 +27,7 @@ namespace Hotel_Mod.Models
         public DateTime data_ult_alt { get; set; }
         public bool Ativo { get; set; }
         public int cidade_ID { get; set; }
-    
+        public int CondPagamento_ID { get; set; }
+
     }
 }

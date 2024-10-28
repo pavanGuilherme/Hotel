@@ -2,16 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hotel_Mod;
 
 namespace Hotel_Mod.Class
 {
-    public class controllerNotaCompra<T> : controllerPai<T>
+    public class ControllerNotaCompra<T> : controllerPai<T> where T : nota_Compra
     {
-        private DaoNotaCompra<T> daoNotaCompra;
+        private Daonota_compra<T> daoNotaCompra;
 
-        public controllerNotaCompra() : base()
+        public ControllerNotaCompra() : base()
         {
-            daoNotaCompra = new DaoNotaCompra<T>();
+            daoNotaCompra = new Daonota_compra<T>();
         }
 
         public override void alterar(T obj)
@@ -24,44 +25,48 @@ namespace Hotel_Mod.Class
             daoNotaCompra.excluir(idObj);
         }
 
-        public override void salvar(T obj)
+        public override List<T> GetAll(bool incluiInativos)
         {
-            daoNotaCompra.Salvar(obj);
-        }
-
-        public override List<T> GetAll(bool inativos)
-        {
-            return daoNotaCompra.GetAll(inativos);
+            List<T> lista = new List<T>();
+            var ordens = daoNotaCompra.GetAll(incluiInativos);
+            foreach (var item in ordens)
+            {
+                lista.Add(item as T);
+            }
+            return lista;
         }
 
         public override T GetById(int idObj)
         {
-            return daoNotaCompra.GetById(idObj);
+            throw new NotImplementedException();
         }
 
-        public bool JaCadastrado(int numNota, int modelo, int serie, int idAtual)
+        public T GetNotaById(int numero, int serie, int idFornecedor)
         {
-            List<T> obj = daoNotaCompra.GetAll(false);
+            return daoNotaCompra.GetNotaById(numero, serie, idFornecedor) as T;
+        }
 
-            if (typeof(T) == typeof(nota_Compra))
-            {
-                var Model = obj.Cast<nota_Compra>().ToList();
+        public override void salvar(T obj)
+        {
+            daoNotaCompra.Salvar(obj as nota_Compra);
+        }
+        public Produto GetProdutoById(int produto_ID)
+        {
+            return daoNotaCompra.GetProdutoById(produto_ID);
+        }
 
-                foreach (var nota in Model)
-                {
-                    // Verifica se a nota de compra já existe e não é a nota atual que está sendo alterada
-                    if (nota.num_Nota == numNota && nota.modelo == modelo && nota.serie == serie && nota.num_Nota != idAtual)
-                    {
-                        return true;
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine("Aviso: O tipo genérico T não é compatível.");
-            }
+        public void AtualizarProdutosNotaCompra(nota_Compra obj)
+        {
+            daoNotaCompra.AtualizarProdutosnota_compra((nota_Compra)obj);
+        }
+        public bool CancelarNotaCompra(int numeroNota, int serie, int idFornecedor)
+        {
+            return daoNotaCompra.Cancelarnota_compra(numeroNota, serie, idFornecedor);
+        }
 
-            return false;
+        public bool ExisteNota(int numeroNota, string serie, int idFornecedor)
+        {
+            return daoNotaCompra.ExisteNota(numeroNota, serie, idFornecedor);
         }
     }
 }

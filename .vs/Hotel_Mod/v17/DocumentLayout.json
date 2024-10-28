@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "C:\\Hotel\\Hotel_Mod\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|c:\\hotel\\hotel_mod\\hotel_mod\\views\\cadastros\\cadastronotacompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|solutionrelative:hotel_mod\\views\\cadastros\\cadastronotacompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|c:\\hotel\\hotel_mod\\hotel_mod\\views\\cadastros\\cadastroreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|solutionrelative:hotel_mod\\views\\cadastros\\cadastroreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|c:\\hotel\\hotel_mod\\hotel_mod\\views\\cadastros\\cadastronotacompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|solutionrelative:hotel_mod\\views\\cadastros\\cadastronotacompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|c:\\hotel\\hotel_mod\\hotel_mod\\views\\cadastros\\cadastroclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|solutionrelative:hotel_mod\\views\\cadastros\\cadastroclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|c:\\hotel\\hotel_mod\\hotel_mod\\views\\cadastros\\cadastropais.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|solutionrelative:hotel_mod\\views\\cadastros\\cadastropais.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|c:\\hotel\\hotel_mod\\hotel_mod\\views\\cadastros\\cadastrocondpagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|solutionrelative:hotel_mod\\views\\cadastros\\cadastrocondpagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|c:\\hotel\\hotel_mod\\hotel_mod\\views\\cadastros\\cadastroquarto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|solutionrelative:hotel_mod\\views\\cadastros\\cadastroquarto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|c:\\hotel\\hotel_mod\\hotel_mod\\controller\\controllernotacompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|solutionrelative:hotel_mod\\controller\\controllernotacompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|c:\\hotel\\hotel_mod\\hotel_mod\\views\\cadastros\\cadastroreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4F79FF96-BCD6-404A-8CFE-88267D99E2CA}|Hotel_Mod\\Hotel_Mod.csproj|solutionrelative:hotel_mod\\views\\cadastros\\cadastroreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,93 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CadastroCondPagamento.cs [Design]",
-              "DocumentMoniker": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroCondPagamento.cs",
-              "RelativeDocumentMoniker": "Hotel_Mod\\views\\Cadastros\\CadastroCondPagamento.cs",
-              "ToolTip": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroCondPagamento.cs [Design]",
-              "RelativeToolTip": "Hotel_Mod\\views\\Cadastros\\CadastroCondPagamento.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "CadastroReserva.cs",
+              "DocumentMoniker": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroReserva.cs",
+              "RelativeDocumentMoniker": "Hotel_Mod\\views\\Cadastros\\CadastroReserva.cs",
+              "ToolTip": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroReserva.cs",
+              "RelativeToolTip": "Hotel_Mod\\views\\Cadastros\\CadastroReserva.cs",
+              "ViewState": "AQIAANcAAAAAAAAAAAAawOYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T00:54:23.748Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CadastroQuarto.cs [Design]",
-              "DocumentMoniker": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroQuarto.cs",
-              "RelativeDocumentMoniker": "Hotel_Mod\\views\\Cadastros\\CadastroQuarto.cs",
-              "ToolTip": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroQuarto.cs [Design]",
-              "RelativeToolTip": "Hotel_Mod\\views\\Cadastros\\CadastroQuarto.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T00:54:17.738Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CadastroPais.cs [Design]",
-              "DocumentMoniker": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroPais.cs",
-              "RelativeDocumentMoniker": "Hotel_Mod\\views\\Cadastros\\CadastroPais.cs",
-              "ToolTip": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroPais.cs [Design]",
-              "RelativeToolTip": "Hotel_Mod\\views\\Cadastros\\CadastroPais.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T00:54:15.249Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CadastroClientes.cs [Design]",
-              "DocumentMoniker": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroClientes.cs",
-              "RelativeDocumentMoniker": "Hotel_Mod\\views\\Cadastros\\CadastroClientes.cs",
-              "ToolTip": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroClientes.cs [Design]",
-              "RelativeToolTip": "Hotel_Mod\\views\\Cadastros\\CadastroClientes.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T00:49:53.746Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-10-28T18:50:20.207Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CadastroNotaCompra.cs",
-              "DocumentMoniker": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroNotaCompra.cs",
-              "RelativeDocumentMoniker": "Hotel_Mod\\views\\Cadastros\\CadastroNotaCompra.cs",
-              "ToolTip": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroNotaCompra.cs",
-              "RelativeToolTip": "Hotel_Mod\\views\\Cadastros\\CadastroNotaCompra.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAFAAAA",
+              "Title": "CadastroReserva.cs [Design]",
+              "DocumentMoniker": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroReserva.cs",
+              "RelativeDocumentMoniker": "Hotel_Mod\\views\\Cadastros\\CadastroReserva.cs",
+              "ToolTip": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroReserva.cs [Design]",
+              "RelativeToolTip": "Hotel_Mod\\views\\Cadastros\\CadastroReserva.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T00:49:18.775Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CadastroNotaCompra.cs [Design]",
-              "DocumentMoniker": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroNotaCompra.cs",
-              "RelativeDocumentMoniker": "Hotel_Mod\\views\\Cadastros\\CadastroNotaCompra.cs",
-              "ToolTip": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\views\\Cadastros\\CadastroNotaCompra.cs [Design]",
-              "RelativeToolTip": "Hotel_Mod\\views\\Cadastros\\CadastroNotaCompra.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T00:48:48.951Z",
+              "WhenOpened": "2024-10-28T18:51:09.393Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "controllerNotaCompra.cs",
-              "DocumentMoniker": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\Controller\\controllerNotaCompra.cs",
-              "RelativeDocumentMoniker": "Hotel_Mod\\Controller\\controllerNotaCompra.cs",
-              "ToolTip": "C:\\Hotel\\Hotel_Mod\\Hotel_Mod\\Controller\\controllerNotaCompra.cs",
-              "RelativeToolTip": "Hotel_Mod\\Controller\\controllerNotaCompra.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T00:47:44.057Z",
-              "EditorCaption": ""
             }
           ]
         }

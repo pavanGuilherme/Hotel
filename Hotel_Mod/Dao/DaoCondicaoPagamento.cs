@@ -4,9 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Hotel_Mod.Dao
@@ -59,25 +56,23 @@ namespace Hotel_Mod.Dao
 
                     cmdCondicaoPagamento.ExecuteNonQuery(); // Atualiza condição de pagamento
 
-                    // Obtém as parcelas que existem no banco referente ao ID da condição de pagamento atual
+                    // Mantendo a lógica para parcelas
                     string querySelectParcelas = "SELECT * FROM parcela WHERE CondPagamento_ID = @CondPagamento_ID";
                     SqlCommand cmdSelectParcelas = new SqlCommand(querySelectParcelas, conn, transaction);
                     cmdSelectParcelas.Parameters.AddWithValue("@CondPagamento_ID", obj.CondPagamento_ID);
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmdSelectParcelas);
                     DataTable parcelasExistentes = new DataTable();
-                    adapter.Fill(parcelasExistentes); // Preenche um DataTable com as parcelas
+                    adapter.Fill(parcelasExistentes);
 
-                    // Percorre as parcelas
                     foreach (var parcela in obj.parcelas)
                     {
-                        bool existe = false; // Verificar se parcela existe ou não
+                        bool existe = false;
 
-                        foreach (DataRow row in parcelasExistentes.Rows) // Percorre as parcelas no banco
+                        foreach (DataRow row in parcelasExistentes.Rows)
                         {
-                            if ((int)row["numeroParcela"] == parcela.numeroParcela) // Vê se aquele número de parcela já existe
+                            if ((int)row["numeroParcela"] == parcela.numeroParcela)
                             {
-                                // Atualiza a parcela existente
                                 string queryUpdateParcela = @"UPDATE parcela 
                                                               SET dias = @dias, porcentagem = @porcentagem, FormaPagamento_ID = @FormaPagamento_ID 
                                                               WHERE CondPagamento_ID = @CondPagamento_ID AND numeroParcela = @numeroParcela";
@@ -89,13 +84,13 @@ namespace Hotel_Mod.Dao
                                 cmdUpdateParcela.Parameters.AddWithValue("@numeroParcela", parcela.numeroParcela);
 
                                 cmdUpdateParcela.ExecuteNonQuery();
-                                existe = true; // Marca que a parcela existe
+                                existe = true;
                                 break;
                             }
                         }
-                        if (!existe) // Se não existir a parcela
+
+                        if (!existe)
                         {
-                            // Insere nova parcela
                             string queryInsertParcela = @"INSERT INTO parcela 
                                                           (numeroParcela, dias, porcentagem, CondPagamento_ID, FormaPagamento_ID) 
                                                           VALUES (@numeroParcela, @dias, @porcentagem, @CondPagamento_ID, @FormaPagamento_ID)";
@@ -110,10 +105,10 @@ namespace Hotel_Mod.Dao
                         }
                     }
 
-                    foreach (DataRow row in parcelasExistentes.Rows) // Percorre de novo as parcelas
+                    foreach (DataRow row in parcelasExistentes.Rows)
                     {
                         bool existe = false;
-                        foreach (var parcela in obj.parcelas) // Vê se a parcela ainda existe
+                        foreach (var parcela in obj.parcelas)
                         {
                             if ((int)row["numeroParcela"] == parcela.numeroParcela)
                             {
@@ -121,8 +116,8 @@ namespace Hotel_Mod.Dao
                                 break;
                             }
                         }
-                        if (!existe) // Se não existe mais
-                        {   // Apaga a parcela que não foi encontrada
+                        if (!existe)
+                        {
                             string queryDeleteParcela = "DELETE FROM parcela WHERE CondPagamento_ID = @CondPagamento_ID AND numeroParcela = @numeroParcela";
                             SqlCommand cmdDeleteParcela = new SqlCommand(queryDeleteParcela, conn, transaction);
                             cmdDeleteParcela.Parameters.AddWithValue("@CondPagamento_ID", obj.CondPagamento_ID);
@@ -132,11 +127,11 @@ namespace Hotel_Mod.Dao
                         }
                     }
 
-                    transaction.Commit(); // Confirma a transação
+                    transaction.Commit();
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback(); // Se der erro, volta
+                    transaction.Rollback();
                     throw new Exception("Erro ao alterar condição de pagamento: " + ex.Message);
                 }
             }
@@ -151,13 +146,11 @@ namespace Hotel_Mod.Dao
 
                 try
                 {
-                    // Deleta as parcelas com o ID da condição de pagamento
                     string deleteParcelas = "DELETE FROM parcela WHERE CondPagamento_ID = @CondPagamento_ID";
                     SqlCommand cmdDeleteParcelas = new SqlCommand(deleteParcelas, conn, transaction);
                     cmdDeleteParcelas.Parameters.AddWithValue("@CondPagamento_ID", id);
                     cmdDeleteParcelas.ExecuteNonQuery();
 
-                    // Deleta condição de pagamento
                     string deleteCondicaoPagamento = "DELETE FROM condicaoPagamento WHERE CondPagamento_ID = @CondPagamento_ID";
                     SqlCommand cmdDeleteCondicaoPagamento = new SqlCommand(deleteCondicaoPagamento, conn, transaction);
                     cmdDeleteCondicaoPagamento.Parameters.AddWithValue("@CondPagamento_ID", id);
@@ -204,9 +197,9 @@ namespace Hotel_Mod.Dao
                         CondicaoPagamento condicaoPagamento = new CondicaoPagamento();
                         condicaoPagamento.CondPagamento_ID = Convert.ToInt32(reader["CondPagamento_ID"]);
                         condicaoPagamento.condicaoPagamento = reader["condicaoPagamento"].ToString();
-                        condicaoPagamento.desconto = Convert.ToDecimal(reader["desconto"]);
-                        condicaoPagamento.juros = Convert.ToDecimal(reader["juros"]);
-                        condicaoPagamento.multa = Convert.ToDecimal(reader["multa"]);
+                        condicaoPagamento.desconto = reader["desconto"] != DBNull.Value ? Convert.ToDecimal(reader["desconto"]) : 0;
+                        condicaoPagamento.juros = reader["juros"] != DBNull.Value ? Convert.ToDecimal(reader["juros"]) : 0;
+                        condicaoPagamento.multa = reader["multa"] != DBNull.Value ? Convert.ToDecimal(reader["multa"]) : 0;
                         condicaoPagamento.Ativo = Convert.ToBoolean(reader["Ativo"]);
                         condicaoPagamento.data_cadastro = Convert.ToDateTime(reader["data_cadastro"]);
                         condicaoPagamento.data_ult_alt = Convert.ToDateTime(reader["data_ult_alt"]);
@@ -217,32 +210,6 @@ namespace Hotel_Mod.Dao
             }
 
             return condicoesPagamento;
-        }
-
-        public string GetFormaPagByParcelaId(int idParcela)
-        {
-            string formaPag = null;
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "SELECT FormaPagamento.formaPagamento FROM parcela INNER JOIN FormaPagamento ON parcela.FormaPagamento_ID = FormaPagamento.FormaPagamento_ID WHERE parcela.idParcela = @idParcela";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@idParcela", idParcela);
-
-                try
-                {
-                    connection.Open();
-                    object result = command.ExecuteScalar();
-                    if (result != null)
-                    {
-                        formaPag = result.ToString();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Ocorreu um erro ao obter a forma de pagamento: " + ex.Message);
-                }
-            }
-            return formaPag;
         }
 
         public override CondicaoPagamento GetById(int id)
@@ -264,14 +231,13 @@ namespace Hotel_Mod.Dao
                         condicaoPagamento = new CondicaoPagamento();
                         condicaoPagamento.CondPagamento_ID = Convert.ToInt32(reader["CondPagamento_ID"]);
                         condicaoPagamento.condicaoPagamento = reader["condicaoPagamento"].ToString();
-                        condicaoPagamento.desconto = Convert.ToDecimal(reader["desconto"]);
-                        condicaoPagamento.juros = Convert.ToDecimal(reader["juros"]);
-                        condicaoPagamento.multa = Convert.ToDecimal(reader["multa"]);
+                        condicaoPagamento.desconto = reader["desconto"] != DBNull.Value ? Convert.ToDecimal(reader["desconto"]) : 0;
+                        condicaoPagamento.juros = reader["juros"] != DBNull.Value ? Convert.ToDecimal(reader["juros"]) : 0;
+                        condicaoPagamento.multa = reader["multa"] != DBNull.Value ? Convert.ToDecimal(reader["multa"]) : 0;
                         condicaoPagamento.Ativo = Convert.ToBoolean(reader["Ativo"]);
                         condicaoPagamento.data_cadastro = Convert.ToDateTime(reader["data_cadastro"]);
                         condicaoPagamento.data_ult_alt = Convert.ToDateTime(reader["data_ult_alt"]);
 
-                        // Carregar Parcelas
                         condicaoPagamento.parcelas = GetParcelasByCondicaoPagamentoId(condicaoPagamento.CondPagamento_ID);
                     }
                 }
@@ -320,12 +286,11 @@ namespace Hotel_Mod.Dao
 
                 try
                 {
-                    // Insere uma nova condição de pagamento
                     string queryCondicaoPagamento = @"INSERT INTO condicaoPagamento 
                                                       (condicaoPagamento, desconto, juros, multa, Ativo, data_cadastro, data_ult_alt) 
                                                       VALUES (@condicaoPagamento, @desconto, @juros, @multa, @Ativo, @data_cadastro, @data_ult_alt);
                                                       SELECT SCOPE_IDENTITY();";
-                    SqlCommand cmdCondicaoPagamento = new SqlCommand(queryCondicaoPagamento, conn, transaction); // Novo comando para transação e conexão
+                    SqlCommand cmdCondicaoPagamento = new SqlCommand(queryCondicaoPagamento, conn, transaction);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@condicaoPagamento", obj.condicaoPagamento);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@desconto", obj.desconto);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@juros", obj.juros);
@@ -334,15 +299,14 @@ namespace Hotel_Mod.Dao
                     cmdCondicaoPagamento.Parameters.AddWithValue("@data_cadastro", obj.data_cadastro);
                     cmdCondicaoPagamento.Parameters.AddWithValue("@data_ult_alt", obj.data_ult_alt);
 
-                    int idCondPagamento = Convert.ToInt32(cmdCondicaoPagamento.ExecuteScalar()); // Retorna o último valor da identidade gerada (SCOPE_IDENTITY)
+                    int idCondPagamento = Convert.ToInt32(cmdCondicaoPagamento.ExecuteScalar());
 
-                    // Insere as parcelas da condição de pagamento
                     foreach (var parcela in obj.parcelas)
                     {
                         string queryParcela = @"INSERT INTO parcela 
                                                 (numeroParcela, dias, porcentagem, CondPagamento_ID, FormaPagamento_ID) 
                                                 VALUES (@numeroParcela, @dias, @porcentagem, @CondPagamento_ID, @FormaPagamento_ID)";
-                        SqlCommand cmdParcela = new SqlCommand(queryParcela, conn, transaction); // Novo comando para inserir as parcelas e o ID da condição de pagamento
+                        SqlCommand cmdParcela = new SqlCommand(queryParcela, conn, transaction);
                         cmdParcela.Parameters.AddWithValue("@numeroParcela", parcela.numeroParcela);
                         cmdParcela.Parameters.AddWithValue("@dias", parcela.dias);
                         cmdParcela.Parameters.AddWithValue("@porcentagem", parcela.porcentagem);
@@ -360,6 +324,32 @@ namespace Hotel_Mod.Dao
                     throw new Exception("Erro ao salvar condição de pagamento: " + ex.Message);
                 }
             }
+        }
+
+        public string GetFormaPagByParcelaId(int idParcela)
+        {
+            string formaPag = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT FormaPagamento.formaPagamento FROM parcela INNER JOIN FormaPagamento ON parcela.FormaPagamento_ID = FormaPagamento.FormaPagamento_ID WHERE parcela.idParcela = @idParcela";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idParcela", idParcela);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        formaPag = result.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ocorreu um erro ao obter a forma de pagamento: " + ex.Message);
+                }
+            }
+            return formaPag;
         }
     }
 }

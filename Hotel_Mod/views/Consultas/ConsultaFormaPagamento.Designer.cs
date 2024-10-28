@@ -60,6 +60,7 @@
             // 
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
             // dataGridViewFormaPagamento
             // 

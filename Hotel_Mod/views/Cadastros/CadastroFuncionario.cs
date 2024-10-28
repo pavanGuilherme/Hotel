@@ -13,12 +13,13 @@ namespace Hotel_Mod.views.Cadastros
     public partial class CadastroFuncionario : Hotel_Mod.views.CadastroPai
     {
         private controllerFuncionario<Funcionario> controllerFuncionario;
-        private ConsultaCidades ConsultaCidades;
+        private ConsultaCidades consultaCidades;
+        private ControllerFornecedor<Fornecedor> controllerFornecedor;
         public CadastroFuncionario()
         {
             InitializeComponent();
             controllerFuncionario = new controllerFuncionario<Funcionario>();
-            ConsultaCidades = new ConsultaCidades();
+            consultaCidades = new ConsultaCidades();
         }
 
         public CadastroFuncionario(int funcionario_ID) : this()
@@ -378,6 +379,37 @@ namespace Hotel_Mod.views.Cadastros
             {
                 MessageBox.Show("RG inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_rg.Focus();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            consultaCidades.btn_sair.Text = "Selecionar";
+
+            if (consultaCidades.ShowDialog() == DialogResult.OK)
+            {
+                var cidadeDetalhes = consultaCidades.Tag as Tuple<int, string>;
+
+                if (cidadeDetalhes != null)
+                {
+                    int cidade_ID = cidadeDetalhes.Item1;
+                    string cidadeNome = cidadeDetalhes.Item2;
+
+                    txt_cod_cidade.Text = cidade_ID.ToString();
+                    txt_cidade.Text = cidadeNome;
+
+                    List<string> cidadeEstadoPais = controllerFornecedor.GetCEPByIdCidade(cidade_ID);
+
+                    if (cidadeEstadoPais.Count > 0)
+                    {
+                        string[] info = cidadeEstadoPais[0].Split(',');
+                        if (info.Length >= 3)
+                        {
+                            txt_uf.Text = info[1].Trim();
+                            txt_pais.Text = info[2].Trim();
+                        }
+                    }
+                }
             }
         }
     }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.dataGridViewFornecedor = new System.Windows.Forms.DataGridView();
-            this.ativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpf_cnpj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fornecedor_razao_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fornecedor_razao_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpf_cnpj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFornecedor)).BeginInit();
             this.SuspendLayout();
@@ -80,25 +80,29 @@
             this.dataGridViewFornecedor.Size = new System.Drawing.Size(971, 397);
             this.dataGridViewFornecedor.TabIndex = 69;
             // 
-            // ativo
+            // codigo
             // 
-            this.ativo.HeaderText = "ativo";
-            this.ativo.Name = "ativo";
-            // 
-            // cpf_cnpj
-            // 
-            this.cpf_cnpj.HeaderText = "cpf/cnpj";
-            this.cpf_cnpj.Name = "cpf_cnpj";
+            this.codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.codigo.HeaderText = "codigo";
+            this.codigo.Name = "codigo";
             // 
             // fornecedor_razao_social
             // 
+            this.fornecedor_razao_social.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.fornecedor_razao_social.HeaderText = "fornecedor";
             this.fornecedor_razao_social.Name = "fornecedor_razao_social";
             // 
-            // codigo
+            // cpf_cnpj
             // 
-            this.codigo.HeaderText = "codigo";
-            this.codigo.Name = "codigo";
+            this.cpf_cnpj.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cpf_cnpj.HeaderText = "cpf/cnpj";
+            this.cpf_cnpj.Name = "cpf_cnpj";
+            // 
+            // ativo
+            // 
+            this.ativo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ativo.HeaderText = "ativo";
+            this.ativo.Name = "ativo";
             // 
             // ConsultaFornecedor
             // 
@@ -107,6 +111,7 @@
             this.Controls.Add(this.dataGridViewFornecedor);
             this.Name = "ConsultaFornecedor";
             this.Text = "Consulta Fornecedor";
+            this.Load += new System.EventHandler(this.ConsultaFornecedor_Load_1);
             this.Controls.SetChildIndex(this.txt_pesquisar, 0);
             this.Controls.SetChildIndex(this.btn_sair, 0);
             this.Controls.SetChildIndex(this.btn_excluir, 0);

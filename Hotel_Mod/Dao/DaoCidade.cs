@@ -15,6 +15,24 @@ namespace Hotel_Mod.Class
         {
         }
 
+        public int GetUltimoCodigo()
+        {
+            int proximoCodigo = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT MAX(cidade_ID) FROM cidades";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    proximoCodigo = Convert.ToInt32(result);
+                }
+            }
+            return proximoCodigo;
+        }
+
         public override List<T> GetAll(bool incluiInativos)
         {
             List<T> cidades = new List<T>();
@@ -70,7 +88,7 @@ namespace Hotel_Mod.Class
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM pais WHERE pais_ID = @pais_ID";
+                string query = "SELECT * FROM paises WHERE pais_ID = @pais_ID";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@pais_ID", id);
 

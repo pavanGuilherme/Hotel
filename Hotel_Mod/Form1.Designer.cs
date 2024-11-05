@@ -62,6 +62,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelTitleBar = new System.Windows.Forms.Panel();
             this.lbl_title = new System.Windows.Forms.Label();
+            this.btn_quartos = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -235,6 +236,7 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panel1.Controls.Add(this.btn_quartos);
             this.panel1.Controls.Add(this.btn_hospede);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btn_compras);
@@ -247,12 +249,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 29);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(237, 720);
+            this.panel1.Size = new System.Drawing.Size(184, 720);
             this.panel1.TabIndex = 2;
             // 
             // btn_hospede
             // 
-            this.btn_hospede.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_hospede.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.btn_hospede.FlatAppearance.BorderSize = 0;
             this.btn_hospede.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_hospede.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
@@ -261,7 +263,7 @@
             this.btn_hospede.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_hospede.Location = new System.Drawing.Point(0, 235);
             this.btn_hospede.Name = "btn_hospede";
-            this.btn_hospede.Size = new System.Drawing.Size(234, 64);
+            this.btn_hospede.Size = new System.Drawing.Size(181, 64);
             this.btn_hospede.TabIndex = 12;
             this.btn_hospede.Text = "   Hóspedes";
             this.btn_hospede.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -272,7 +274,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(137, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(117, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(64, 64);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -281,7 +283,7 @@
             // 
             // btn_compras
             // 
-            this.btn_compras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_compras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.btn_compras.FlatAppearance.BorderSize = 0;
             this.btn_compras.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_compras.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
@@ -290,7 +292,7 @@
             this.btn_compras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_compras.Location = new System.Drawing.Point(0, 375);
             this.btn_compras.Name = "btn_compras";
-            this.btn_compras.Size = new System.Drawing.Size(234, 64);
+            this.btn_compras.Size = new System.Drawing.Size(181, 64);
             this.btn_compras.TabIndex = 9;
             this.btn_compras.Text = "   Compras";
             this.btn_compras.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -300,7 +302,7 @@
             // 
             // btn_Home
             // 
-            this.btn_Home.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_Home.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.btn_Home.FlatAppearance.BorderSize = 0;
             this.btn_Home.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_Home.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
@@ -309,7 +311,7 @@
             this.btn_Home.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Home.Location = new System.Drawing.Point(0, 95);
             this.btn_Home.Name = "btn_Home";
-            this.btn_Home.Size = new System.Drawing.Size(234, 64);
+            this.btn_Home.Size = new System.Drawing.Size(181, 64);
             this.btn_Home.TabIndex = 10;
             this.btn_Home.Text = "    Home";
             this.btn_Home.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -319,17 +321,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Nirmala UI", 15.70909F);
+            this.label2.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.LightGray;
             this.label2.Location = new System.Drawing.Point(11, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 30);
+            this.label2.Size = new System.Drawing.Size(84, 17);
             this.label2.TabIndex = 11;
-            this.label2.Text = "GpSystem";
+            this.label2.Text = "HOTEL DOVE";
             // 
             // btn_reservas
             // 
-            this.btn_reservas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_reservas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.btn_reservas.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btn_reservas.FlatAppearance.BorderSize = 0;
             this.btn_reservas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -339,7 +341,7 @@
             this.btn_reservas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_reservas.Location = new System.Drawing.Point(0, 305);
             this.btn_reservas.Name = "btn_reservas";
-            this.btn_reservas.Size = new System.Drawing.Size(234, 64);
+            this.btn_reservas.Size = new System.Drawing.Size(181, 64);
             this.btn_reservas.TabIndex = 7;
             this.btn_reservas.Text = "   Reservas";
             this.btn_reservas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -356,9 +358,9 @@
             this.button2.ForeColor = System.Drawing.Color.Gainsboro;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 446);
+            this.button2.Location = new System.Drawing.Point(0, 514);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(234, 64);
+            this.button2.Size = new System.Drawing.Size(181, 64);
             this.button2.TabIndex = 9;
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -373,9 +375,9 @@
             this.button1.ForeColor = System.Drawing.Color.Gainsboro;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(-3, 516);
+            this.button1.Location = new System.Drawing.Point(-3, 584);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(237, 64);
+            this.button1.Size = new System.Drawing.Size(184, 64);
             this.button1.TabIndex = 8;
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -383,7 +385,7 @@
             // 
             // btn_clientes
             // 
-            this.btn_clientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_clientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.btn_clientes.FlatAppearance.BorderSize = 0;
             this.btn_clientes.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_clientes.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
@@ -392,7 +394,7 @@
             this.btn_clientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_clientes.Location = new System.Drawing.Point(0, 165);
             this.btn_clientes.Name = "btn_clientes";
-            this.btn_clientes.Size = new System.Drawing.Size(234, 64);
+            this.btn_clientes.Size = new System.Drawing.Size(181, 64);
             this.btn_clientes.TabIndex = 8;
             this.btn_clientes.Text = "   Clientes";
             this.btn_clientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -405,9 +407,9 @@
             this.panel2.AutoSize = true;
             this.panel2.Controls.Add(this.panelTitleBar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(237, 29);
+            this.panel2.Location = new System.Drawing.Point(184, 29);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1227, 720);
+            this.panel2.Size = new System.Drawing.Size(1280, 720);
             this.panel2.TabIndex = 3;
             // 
             // panelTitleBar
@@ -419,7 +421,7 @@
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(0, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(1227, 28);
+            this.panelTitleBar.Size = new System.Drawing.Size(1280, 28);
             this.panelTitleBar.TabIndex = 2;
             // 
             // lbl_title
@@ -428,11 +430,30 @@
             this.lbl_title.AutoSize = true;
             this.lbl_title.Font = new System.Drawing.Font("Nirmala UI", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_title.ForeColor = System.Drawing.Color.White;
-            this.lbl_title.Location = new System.Drawing.Point(576, -2);
+            this.lbl_title.Location = new System.Drawing.Point(603, -2);
             this.lbl_title.Name = "lbl_title";
             this.lbl_title.Size = new System.Drawing.Size(74, 30);
             this.lbl_title.TabIndex = 0;
             this.lbl_title.Text = "HOME";
+            // 
+            // btn_quartos
+            // 
+            this.btn_quartos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btn_quartos.FlatAppearance.BorderSize = 0;
+            this.btn_quartos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_quartos.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btn_quartos.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btn_quartos.Image = ((System.Drawing.Image)(resources.GetObject("btn_quartos.Image")));
+            this.btn_quartos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_quartos.Location = new System.Drawing.Point(0, 445);
+            this.btn_quartos.Name = "btn_quartos";
+            this.btn_quartos.Size = new System.Drawing.Size(181, 64);
+            this.btn_quartos.TabIndex = 13;
+            this.btn_quartos.Text = "  Ocupações";
+            this.btn_quartos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_quartos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_quartos.UseVisualStyleBackColor = false;
+            this.btn_quartos.Click += new System.EventHandler(this.btn_quartos_Click);
             // 
             // Hotel
             // 
@@ -496,5 +517,6 @@
         private System.Windows.Forms.ToolStripMenuItem contasAToolStripMenuItem;
         private System.Windows.Forms.Button btn_Home;
         private System.Windows.Forms.Button btn_hospede;
+        private System.Windows.Forms.Button btn_quartos;
     }
 }

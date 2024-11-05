@@ -18,6 +18,7 @@ namespace Hotel_Mod.Controller
             daoFornecedor = new DaoFornecedor<T>();
         }
 
+    
         public int GetUltimoCodigo()
         {
             return daoFornecedor.GetUltimoCodigo();
@@ -50,14 +51,10 @@ namespace Hotel_Mod.Controller
             return daoFornecedor.GetAll(inativos);
         }
 
-       
-
-        public List<string> GetCEPByIdCidade(int cidade_ID)
+        public List<string> GetCidadeEstadoEPaisByCidadeId(int cidade_ID)
         {
-            return daoFornecedor.GetCEPByIdCidade(cidade_ID);
+            return daoFornecedor.GetCidadeEstadoEPaisByCidadeId(cidade_ID);
         }
-
-     
 
         public bool JaCadastrado(string razaoSocial, int idAtual)
         {

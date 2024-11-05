@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Txt_pais = new System.Windows.Forms.RichTextBox();
-            this.Txt_sigla = new System.Windows.Forms.RichTextBox();
-            this.Txt_ddi = new System.Windows.Forms.RichTextBox();
             this.lbl_pais = new System.Windows.Forms.Label();
             this.lbl_sigla = new System.Windows.Forms.Label();
             this.lbl_ddi = new System.Windows.Forms.Label();
+            this.txt_sigla = new System.Windows.Forms.TextBox();
+            this.txt_pais = new System.Windows.Forms.TextBox();
+            this.txt_ddi = new System.Windows.Forms.TextBox();
             this.status.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // txt_codigo
+            // 
+            this.txt_codigo.Size = new System.Drawing.Size(106, 31);
             // 
             // btn_salvar
             // 
@@ -49,44 +53,12 @@
             // 
             // txt_dat_ult_alt
             // 
+            this.txt_dat_ult_alt.Size = new System.Drawing.Size(192, 31);
             this.txt_dat_ult_alt.Text = "19/06/2024 08:18:08";
             // 
             // txt_dat_cad
             // 
             this.txt_dat_cad.Text = "19/06/2024 08:18:08";
-            // 
-            // Txt_pais
-            // 
-            this.Txt_pais.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Txt_pais.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.Txt_pais.Location = new System.Drawing.Point(32, 137);
-            this.Txt_pais.Name = "Txt_pais";
-            this.Txt_pais.Size = new System.Drawing.Size(211, 31);
-            this.Txt_pais.TabIndex = 87;
-            this.Txt_pais.Text = "";
-            this.Txt_pais.Leave += new System.EventHandler(this.Txt_pais_Leave_1);
-            // 
-            // Txt_sigla
-            // 
-            this.Txt_sigla.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Txt_sigla.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.Txt_sigla.Location = new System.Drawing.Point(32, 209);
-            this.Txt_sigla.Name = "Txt_sigla";
-            this.Txt_sigla.Size = new System.Drawing.Size(211, 31);
-            this.Txt_sigla.TabIndex = 88;
-            this.Txt_sigla.Text = "";
-            this.Txt_sigla.Leave += new System.EventHandler(this.Txt_sigla_Leave);
-            // 
-            // Txt_ddi
-            // 
-            this.Txt_ddi.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Txt_ddi.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.Txt_ddi.Location = new System.Drawing.Point(31, 286);
-            this.Txt_ddi.Name = "Txt_ddi";
-            this.Txt_ddi.Size = new System.Drawing.Size(211, 31);
-            this.Txt_ddi.TabIndex = 89;
-            this.Txt_ddi.Text = "";
-            this.Txt_ddi.Leave += new System.EventHandler(this.Txt_ddi_Leave);
             // 
             // lbl_pais
             // 
@@ -118,18 +90,46 @@
             this.lbl_ddi.TabIndex = 92;
             this.lbl_ddi.Text = "DDI";
             // 
+            // txt_sigla
+            // 
+            this.txt_sigla.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_sigla.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_sigla.Location = new System.Drawing.Point(31, 209);
+            this.txt_sigla.Name = "txt_sigla";
+            this.txt_sigla.Size = new System.Drawing.Size(138, 29);
+            this.txt_sigla.TabIndex = 136;
+            // 
+            // txt_pais
+            // 
+            this.txt_pais.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_pais.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_pais.Location = new System.Drawing.Point(31, 137);
+            this.txt_pais.Name = "txt_pais";
+            this.txt_pais.Size = new System.Drawing.Size(214, 29);
+            this.txt_pais.TabIndex = 135;
+            // 
+            // txt_ddi
+            // 
+            this.txt_ddi.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_ddi.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_ddi.Location = new System.Drawing.Point(31, 284);
+            this.txt_ddi.Name = "txt_ddi";
+            this.txt_ddi.Size = new System.Drawing.Size(138, 29);
+            this.txt_ddi.TabIndex = 137;
+            // 
             // CadastroPais
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(982, 583);
+            this.Controls.Add(this.txt_ddi);
+            this.Controls.Add(this.txt_pais);
+            this.Controls.Add(this.txt_sigla);
             this.Controls.Add(this.lbl_ddi);
             this.Controls.Add(this.lbl_sigla);
             this.Controls.Add(this.lbl_pais);
-            this.Controls.Add(this.Txt_ddi);
-            this.Controls.Add(this.Txt_sigla);
-            this.Controls.Add(this.Txt_pais);
             this.Name = "CadastroPais";
             this.Text = "Cadastro Paises";
+            this.Load += new System.EventHandler(this.CadastroPais_Load);
             this.Controls.SetChildIndex(this.txt_dat_cad, 0);
             this.Controls.SetChildIndex(this.lbl_data_cadastro, 0);
             this.Controls.SetChildIndex(this.txt_dat_ult_alt, 0);
@@ -139,12 +139,12 @@
             this.Controls.SetChildIndex(this.txt_codigo, 0);
             this.Controls.SetChildIndex(this.lbl_codigo, 0);
             this.Controls.SetChildIndex(this.status, 0);
-            this.Controls.SetChildIndex(this.Txt_pais, 0);
-            this.Controls.SetChildIndex(this.Txt_sigla, 0);
-            this.Controls.SetChildIndex(this.Txt_ddi, 0);
             this.Controls.SetChildIndex(this.lbl_pais, 0);
             this.Controls.SetChildIndex(this.lbl_sigla, 0);
             this.Controls.SetChildIndex(this.lbl_ddi, 0);
+            this.Controls.SetChildIndex(this.txt_sigla, 0);
+            this.Controls.SetChildIndex(this.txt_pais, 0);
+            this.Controls.SetChildIndex(this.txt_ddi, 0);
             this.status.ResumeLayout(false);
             this.status.PerformLayout();
             this.ResumeLayout(false);
@@ -153,12 +153,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox Txt_pais;
-        private System.Windows.Forms.RichTextBox Txt_sigla;
-        private System.Windows.Forms.RichTextBox Txt_ddi;
         private System.Windows.Forms.Label lbl_pais;
         private System.Windows.Forms.Label lbl_sigla;
         private System.Windows.Forms.Label lbl_ddi;
+        private System.Windows.Forms.TextBox txt_sigla;
+        private System.Windows.Forms.TextBox txt_pais;
+        private System.Windows.Forms.TextBox txt_ddi;
     }
 }

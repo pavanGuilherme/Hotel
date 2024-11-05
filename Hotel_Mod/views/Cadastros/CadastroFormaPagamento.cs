@@ -1,4 +1,5 @@
-﻿using Hotel_Mod.Controller;
+﻿using Hotel_Mod.Class;
+using Hotel_Mod.Controller;
 using Hotel_Mod.Models;
 using Hotel_Mod.views.Consultas;
 using System;
@@ -125,6 +126,15 @@ namespace Hotel_Mod.views.Cadastros
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_forma_pagamento.Focus();
+            }
+        }
+
+        private void CadastroFormaPagamento_Load_1(object sender, EventArgs e)
+        {
+            if (altera == -1)
+            {
+                int novoCodigo = controllerFormaPagamento.GetUltimoCodigo() + 1;
+                txt_codigo.Text = novoCodigo.ToString();
             }
         }
     }

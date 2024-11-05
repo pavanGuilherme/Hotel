@@ -11,6 +11,24 @@ namespace Hotel_Mod.Class
         {
         }
 
+        public int GetUltimoCodigo()
+        {
+            int proximoCodigo = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT MAX(num_Nota) FROM nota_compra";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    proximoCodigo = Convert.ToInt32(result);
+                }
+            }
+            return proximoCodigo;
+        }
+
         public override List<nota_Compra> GetAll(bool incluiInativos)
         {
             List<nota_Compra> notasCompra = new List<nota_Compra>();
@@ -244,7 +262,7 @@ namespace Hotel_Mod.Class
                         produto = new Produto
                         {
                             produto_ID = idProduto,
-                            produto = reader["produto"].ToString(),
+                            nome_produto = reader["produto"].ToString(),
                             unidade = reader["unidade"].ToString()
                         };
                     }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Hotel_Mod.Models
 {
     public class parcela
@@ -14,8 +9,5 @@ namespace Hotel_Mod.Models
         public decimal porcentagem { get; set; }
         public int CondPagamento_ID { get; set; }
         public int FormaPagamento_ID { get; set; }
-        public DateTime data_cadastro { get; set; }
-        public DateTime data_ult_alt { get; set; }
-        public bool Ativo { get; set; }
     }
 }

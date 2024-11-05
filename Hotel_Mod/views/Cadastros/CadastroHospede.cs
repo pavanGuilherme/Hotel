@@ -1,4 +1,5 @@
-﻿using Hotel_Mod.Controller;
+﻿using Hotel_Mod.Class;
+using Hotel_Mod.Controller;
 using Hotel_Mod.Models;
 using Hotel_Mod.views.Consultas;
 using System;
@@ -35,7 +36,11 @@ namespace Hotel_Mod.views.Cadastros
 
         private void CadastroHospede_Load(object sender, EventArgs e)
         {
-
+            if (altera == -1)
+            {
+                int novoCodigo = controllerHospede.GetUltimoCodigo() + 1;
+                txt_codigo.Text = novoCodigo.ToString();
+            }
         }
 
         public override void salvar()
@@ -223,6 +228,11 @@ namespace Hotel_Mod.views.Cadastros
         private void check_ativo_CheckedChanged(object sender, EventArgs e)
         {
             ativo = check_ativo.Checked;
+        }
+
+        private void btn_salvar_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

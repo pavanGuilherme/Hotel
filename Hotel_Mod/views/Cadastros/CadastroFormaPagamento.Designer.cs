@@ -71,6 +71,7 @@
             // 
             // txt_forma_pagamento
             // 
+            this.txt_forma_pagamento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_forma_pagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_forma_pagamento.Location = new System.Drawing.Point(31, 127);
             this.txt_forma_pagamento.Name = "txt_forma_pagamento";
@@ -95,6 +96,7 @@
             this.Controls.Add(this.txt_forma_pagamento);
             this.Name = "CadastroFormaPagamento";
             this.Text = "Cadastro Forma Pagamento";
+            this.Load += new System.EventHandler(this.CadastroFormaPagamento_Load_1);
             this.Controls.SetChildIndex(this.txt_dat_cad, 0);
             this.Controls.SetChildIndex(this.lbl_data_cadastro, 0);
             this.Controls.SetChildIndex(this.txt_dat_ult_alt, 0);
@@ -108,7 +110,6 @@
             this.Controls.SetChildIndex(this.lbl_Forma_Pagamento, 0);
             this.status.ResumeLayout(false);
             this.status.PerformLayout();
-            //((System.ComponentModel.ISupportInitialize)(this.performanceCounter1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

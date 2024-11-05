@@ -16,21 +16,22 @@ namespace Hotel_Mod.Dao
 
         public int GetUltimoCodigo()
         {
-            int ultimoCodigo = 0;
+            int proximoCodigo = 0;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT IDENT_CURRENT('fornecedor')";
+                string query = "SELECT MAX(fornecedor_ID) FROM fornecedor";
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
                 var result = command.ExecuteScalar();
                 if (result != DBNull.Value)
                 {
-                    ultimoCodigo = Convert.ToInt32(result);
+                    proximoCodigo = Convert.ToInt32(result);
                 }
             }
-            return ultimoCodigo;
+            return proximoCodigo;
         }
+       
 
         public override List<T> GetAll(bool incluiInativos)
         {
@@ -78,7 +79,7 @@ namespace Hotel_Mod.Dao
                         obj.tipo_pessoa = Convert.ToBoolean(reader["tipo_pessoa"]);
                         obj.fornecedor_razao_social = reader["fornecedor_razao_social"].ToString();
                         obj.apelido_nome_fantasia = reader["apelido_nome_fantasia"].ToString();
-                        obj.endereco = reader["endereco"].ToString();
+                        obj.logradouro = reader["logradouro"].ToString();
                         obj.bairro = reader["bairro"].ToString();
                         obj.numero = reader["numero"].ToString();
                         obj.cep = reader["cep"].ToString();
@@ -155,18 +156,18 @@ namespace Hotel_Mod.Dao
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"INSERT INTO Fornecedor (tipo_pessoa, fornecedor_razao_social, apelido_nome_fantasia, 
-                                endereco, bairro, numero, cep, complemento, email, telefone, celular, 
+                                logradouro, bairro, numero, cep, complemento, email, telefone, celular, 
                                 nome_contato, cpf_cnpj, rg_ie, data_cadastro, data_ult_alt, Ativo, cidade_id) 
                                 VALUES (@tipo_pessoa, @fornecedor_razao_social, @apelido_nome_fantasia, 
-                                @endereco, @bairro, @numero, @cep, @complemento, @email, 
+                                @logradouro, @bairro, @numero, @cep, @complemento, @email, 
                                 @telefone, @celular, @nome_contato, @cpf_cnpj, @rg_ie, 
-                                @data_cadastro, @data_ult_alt, @Ativo, @cidade_id)";
+                                @dataCadastro, @dataUltAlt, @Ativo, @cidade_id)";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@tipo_pessoa", fornecedor.tipo_pessoa);
                 command.Parameters.AddWithValue("@fornecedor_razao_social", fornecedor.fornecedor_razao_social);
                 command.Parameters.AddWithValue("@apelido_nome_fantasia", fornecedor.apelido_nome_fantasia);
-                command.Parameters.AddWithValue("@endereco", fornecedor.endereco);
+                command.Parameters.AddWithValue("@logradouro", fornecedor.logradouro);
                 command.Parameters.AddWithValue("@bairro", fornecedor.bairro);
                 command.Parameters.AddWithValue("@numero", fornecedor.numero);
                 command.Parameters.AddWithValue("@cep", fornecedor.cep);
@@ -200,6 +201,45 @@ namespace Hotel_Mod.Dao
             }
         }
 
+
+        public List<string> GetCidadeEstadoEPaisByCidadeId(int cidade_ID)
+        {
+            List<string> cidadeInfos = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            SELECT c.cidade AS cidade, e.estado AS estado, p.pais AS pais
+            FROM cidades c
+            INNER JOIN estados e ON c.estado_ID = e.estado_ID
+            INNER JOIN paises p ON e.pais_ID = p.pais_ID
+            WHERE c.cidade_ID = @cidade_ID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@cidade_ID", cidade_ID);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string cidadeInfo = string.Format("{0}, {1}, {2}",
+                            reader["cidade"],
+                            reader["estado"],
+                            reader["pais"]);
+                        cidadeInfos.Add(cidadeInfo);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ocorreu um erro ao obter informações da cidade: " + ex.Message);
+                }
+            }
+            return cidadeInfos;
+        }
+
         public override void alterar(T obj)
         {
             dynamic fornecedor = obj;
@@ -210,7 +250,7 @@ namespace Hotel_Mod.Dao
                                 tipo_pessoa = @tipo_pessoa, 
                                 fornecedor_razao_social = @fornecedor_razao_social, 
                                 apelido_nome_fantasia = @apelido_nome_fantasia, 
-                                endereco = @endereco, 
+                                logradouro = @logradouro, 
                                 bairro = @bairro, 
                                 numero = @numero, 
                                 cep = @cep, 
@@ -231,7 +271,7 @@ namespace Hotel_Mod.Dao
                 command.Parameters.AddWithValue("@tipo_pessoa", fornecedor.tipo_pessoa);
                 command.Parameters.AddWithValue("@fornecedor_razao_social", fornecedor.fornecedor_razao_social);
                 command.Parameters.AddWithValue("@apelido_nome_fantasia", fornecedor.apelido_nome_fantasia);
-                command.Parameters.AddWithValue("@endereco", fornecedor.endereco);
+                command.Parameters.AddWithValue("@logradouro", fornecedor.logradouro);
                 command.Parameters.AddWithValue("@bairro", fornecedor.bairro);
                 command.Parameters.AddWithValue("@numero", fornecedor.numero);
                 command.Parameters.AddWithValue("@cep", fornecedor.cep);

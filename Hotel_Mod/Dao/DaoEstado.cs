@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Hotel_Mod.Class
 {
@@ -12,6 +13,24 @@ namespace Hotel_Mod.Class
 
         public DaoEstado() : base()
         {
+        }
+
+        public int GetUltimoCodigo()
+        {
+            int proximoCodigo = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT MAX(estado_ID) FROM estados";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    proximoCodigo = Convert.ToInt32(result);
+                }
+            }
+            return proximoCodigo;
         }
 
         public override List<T> GetAll(bool incluiInativos)
@@ -102,15 +121,30 @@ namespace Hotel_Mod.Class
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM estados where estado_ID = @estado_ID";
+                string query = "DELETE FROM estados WHERE estado_ID = @estado_ID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@estado_ID", id);
+                command.Parameters.AddWithValue("estado_ID", id);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    //verifica se a exceção está relacionada a uma restrição de chave estrangeira (uso em algum cadastro)
+                    if (ex.Number == 547) //código de erro para conflito de chave estrangeira
+                    {
+                        MessageBox.Show("Não é possível excluir o estado, pois ele está sendo utilizado em um cadastro.", "Erro ao deletar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
             }
-
         }
 
         public override void alterar(T obj)

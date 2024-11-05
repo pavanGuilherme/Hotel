@@ -22,6 +22,11 @@ namespace Hotel_Mod.Controller
         {
             daoFuncionario.alterar(obj);
         }
+
+        public int GetUltimoCodigo()
+        {
+            return daoFuncionario.GetUltimoCodigo();
+        }
         public override void excluir(int idobj)
         {
             daoFuncionario.excluir(idobj);

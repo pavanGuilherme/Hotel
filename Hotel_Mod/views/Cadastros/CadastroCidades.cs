@@ -171,25 +171,7 @@ namespace Hotel_Mod.views
             check_ativo.Checked = true;
         }
 
-        private void btn_search_Click(object sender, EventArgs e)
-        {
-            consultaEstado.btn_sair.Text = "Selecionar";
-
-            if (consultaEstado.ShowDialog() == DialogResult.OK)
-            {
-                // Receber os detalhes do país selecionado
-                var estadoDetalhes = consultaEstado.Tag as Tuple<int, string>;
-                if (estadoDetalhes != null)
-                {
-                    int estado_ID = estadoDetalhes.Item1;
-                    string estado = estadoDetalhes.Item2;
-
-                    // Atualizar o campo txtPais com o nome do país selecionado
-                    txt_cod_estado.Text = estado_ID.ToString();
-                    txt_estado.Text = estado;
-                }
-            }
-        }
+  
 
         private void txt_cod_estado_Leave(object sender, EventArgs e)
         {
@@ -215,6 +197,35 @@ namespace Hotel_Mod.views
                 }
             }
 
+        }
+
+        private void CadastroCidades_Load(object sender, EventArgs e)
+        {
+            if (altera == -1)
+            {
+                int novoCodigo = controllerCidade.GetUltimoCodigo() + 1;
+                txt_codigo.Text = novoCodigo.ToString();
+            }
+        }
+
+        private void btn_search_Click_1(object sender, EventArgs e)
+        {
+            consultaEstado.btn_sair.Text = "Selecionar";
+
+            if (consultaEstado.ShowDialog() == DialogResult.OK)
+            {
+                // Receber os detalhes do país selecionado
+                var estadoDetalhes = consultaEstado.Tag as Tuple<int, string>;
+                if (estadoDetalhes != null)
+                {
+                    int estado_ID = estadoDetalhes.Item1;
+                    string estado = estadoDetalhes.Item2;
+
+                    // Atualizar o campo txtPais com o nome do país selecionado
+                    txt_cod_estado.Text = estado_ID.ToString();
+                    txt_estado.Text = estado;
+                }
+            }
         }
     }
 }

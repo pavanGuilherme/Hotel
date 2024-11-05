@@ -214,6 +214,7 @@
             this.Controls.Add(this.lbl_numero);
             this.Name = "CadastroQuarto";
             this.Text = "Cadastro Quartos";
+            this.Load += new System.EventHandler(this.CadastroQuarto_Load_1);
             this.Controls.SetChildIndex(this.lbl_numero, 0);
             this.Controls.SetChildIndex(this.txt_numero, 0);
             this.Controls.SetChildIndex(this.lbl_andar, 0);

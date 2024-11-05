@@ -20,6 +20,10 @@ namespace Hotel_Mod.Controller
         {
             daoHospede.alterar(obj);
         }
+        public int GetUltimoCodigo()
+        {
+            return daoHospede.GetUltimoCodigo();
+        }
 
         public override void excluir(int idObj)
         {

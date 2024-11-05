@@ -16,13 +16,13 @@ namespace Hotel_Mod.views
     public partial class ConsultaCliente : Hotel_Mod.views.ConsultaPai
     {
 
-        private controllerCliente<Clientes> controllerCliente;
+        private controllerCliente<Cliente> controllerCliente;
         private CadastroClientes cadastroCliente;
 
         public ConsultaCliente()
         {
             InitializeComponent();
-            controllerCliente = new controllerCliente<Clientes>();
+            controllerCliente = new controllerCliente<Cliente>();
             cadastroCliente = new CadastroClientes();
             cadastroCliente.Owner = this;
         }
@@ -76,13 +76,13 @@ namespace Hotel_Mod.views
                 try
                 {
                     //filtra os dados dos países
-                    List<Clientes> resultadosPesquisa = controllerCliente.GetAll(btn_buscainativos.Checked).Where(p => p.nome.ToLower().Contains(pesquisa.ToLower())).ToList();
+                    List<Cliente> resultadosPesquisa = controllerCliente.GetAll(btn_buscainativos.Checked).Where(p => p.nome.ToLower().Contains(pesquisa.ToLower())).ToList();
                     dataGridViewCliente.DataSource = resultadosPesquisa; //atualiza o DataSource do DataGridView com os resultados da pesquisa
                     txt_pesquisar.Text = string.Empty; //limpa o txt pesquisa
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ocorreu um erro ao pesquisar países: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ocorreu um erro ao pesquisar o Cliente: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -128,13 +128,13 @@ namespace Hotel_Mod.views
                 dataGridViewCliente.Columns["apelido"].DataPropertyName = "apelido";
                 dataGridViewCliente.Columns["cpf_cnpj"].DataPropertyName = "cpf";
                 dataGridViewCliente.Columns["email"].DataPropertyName = "email";
-                dataGridViewCliente.Columns["celular"].DataPropertyName = "celular";
+                dataGridViewCliente.Columns["telefone"].DataPropertyName = "telefone";
 
                 AtualizarConsultaClientes(btn_buscainativos.Checked);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro ao carregar os países: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocorreu um erro ao carregar os clientes: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -147,7 +147,7 @@ namespace Hotel_Mod.views
                     int cliente_ID = Convert.ToInt32(dataGridViewCliente.SelectedRows[0].Cells["codigo"].Value);
                     string nome = dataGridViewCliente.SelectedRows[0].Cells["nome"].Value.ToString();
                     string cpf = dataGridViewCliente.SelectedRows[0].Cells["cpf_cnpj"].Value.ToString();
-                    string celular = dataGridViewCliente.SelectedRows[0].Cells["celular"].Value.ToString();
+                    string celular = dataGridViewCliente.SelectedRows[0].Cells["telefone"].Value.ToString();
 
 
                     this.Tag = new Tuple<int, string, string, string>(cliente_ID, nome, cpf, celular);

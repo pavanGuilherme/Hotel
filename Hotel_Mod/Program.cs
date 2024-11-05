@@ -16,7 +16,7 @@ namespace Hotel_Mod
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Hotel());
+            Application.Run(new Hotel ());
         }
     }
 }

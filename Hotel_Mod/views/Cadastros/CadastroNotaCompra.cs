@@ -449,7 +449,7 @@ namespace Hotel_Mod.views.Cadastros
                 {
                     dataGridView_produtos.Rows.Add(
                         produto.produto_ID,
-                        produtoDetalhes.produto,
+                        produtoDetalhes.nome_produto,
                         produtoDetalhes.unidade,
                         produto.quantidade_Produto,
                         produto.precoProduto,
@@ -987,21 +987,19 @@ namespace Hotel_Mod.views.Cadastros
         {
             if (!string.IsNullOrEmpty(txt_cod_produto.Text))
             {
-                Produto produto = ControllerProduto.GetById(int.Parse(txt_cod_produto.Text));
-                if (produto != null)
+                var produto = ControllerProduto.getProduto(int.Parse(txt_cod_produto.Text));
+                if (produto.HasValue)
                 {
-                    txt_produto.Text = produto.produto;
-                    precoUNProduto = produto.preco_venda;
-                    txt_unidade.Text = produto.unidade;
+                    txt_produto.Text = produto.Value.Produto;
+                    txt_unidade.Text = produto.Value.Unidade;
                 }
                 else
                 {
-                    MessageBox.Show("Produto não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Produto não encontrado ou inativo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txt_cod_produto.Focus();
                     txt_cod_produto.Clear();
                     txt_produto.Clear();
                     txt_unidade.Clear();
-
                 }
             }
         }
@@ -1016,6 +1014,13 @@ namespace Hotel_Mod.views.Cadastros
             else
             {
                 txt_data_chegada.Text = DateTime.Now.ToString();
+            }
+
+
+            if (altera == -1)
+            {
+                int novoCodigo = ControllerNotaCompra.GetUltimoCodigo() + 1;
+                txt_codigo.Text = novoCodigo.ToString();
             }
         }
     }

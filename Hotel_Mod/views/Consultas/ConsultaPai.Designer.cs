@@ -34,10 +34,10 @@
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_sair = new System.Windows.Forms.Button();
             this.txt_pesquisar = new System.Windows.Forms.RichTextBox();
-            this.btn_buscainativos = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_Codigo = new System.Windows.Forms.RadioButton();
             this.btn_nome = new System.Windows.Forms.RadioButton();
+            this.btn_buscainativos = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -155,18 +155,6 @@
             this.txt_pesquisar.TabIndex = 66;
             this.txt_pesquisar.Text = "";
             // 
-            // btn_buscainativos
-            // 
-            this.btn_buscainativos.AutoSize = true;
-            this.btn_buscainativos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_buscainativos.Location = new System.Drawing.Point(605, 22);
-            this.btn_buscainativos.Name = "btn_buscainativos";
-            this.btn_buscainativos.Size = new System.Drawing.Size(131, 24);
-            this.btn_buscainativos.TabIndex = 67;
-            this.btn_buscainativos.TabStop = true;
-            this.btn_buscainativos.Text = "Busca Inativos";
-            this.btn_buscainativos.UseVisualStyleBackColor = true;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btn_Codigo);
@@ -201,13 +189,24 @@
             this.btn_nome.Text = "Nome";
             this.btn_nome.UseVisualStyleBackColor = true;
             // 
+            // btn_buscainativos
+            // 
+            this.btn_buscainativos.AutoSize = true;
+            this.btn_buscainativos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_buscainativos.Location = new System.Drawing.Point(603, 26);
+            this.btn_buscainativos.Name = "btn_buscainativos";
+            this.btn_buscainativos.Size = new System.Drawing.Size(132, 24);
+            this.btn_buscainativos.TabIndex = 69;
+            this.btn_buscainativos.Text = "Busca Inativos";
+            this.btn_buscainativos.UseVisualStyleBackColor = true;
+            // 
             // ConsultaPai
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 545);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_buscainativos);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_pesquisar);
             this.Controls.Add(this.btn_incluir);
             this.Controls.Add(this.btn_alterar);
@@ -225,7 +224,6 @@
         }
 
         #endregion
-        protected System.Windows.Forms.RadioButton btn_buscainativos;
         protected System.Windows.Forms.Button btn_pesquisar;
         protected System.Windows.Forms.Button btn_incluir;
         protected System.Windows.Forms.Button btn_alterar;
@@ -235,5 +233,6 @@
         protected System.Windows.Forms.RadioButton btn_Codigo;
         protected System.Windows.Forms.RadioButton btn_nome;
         public System.Windows.Forms.Button btn_sair;
+        public System.Windows.Forms.CheckBox btn_buscainativos;
     }
 }

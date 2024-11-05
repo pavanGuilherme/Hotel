@@ -33,7 +33,7 @@ namespace Hotel_Mod.views.Cadastros
         {
             if (dataGridViewProduto.SelectedRows.Count > 0)
             {
-                int produto_ID = (int)dataGridViewProduto.SelectedRows[0].Cells["Código"].Value;
+                int produto_ID = (int)dataGridViewProduto.SelectedRows[0].Cells["produto_ID"].Value;
                 CadastroProduto cadastroProduto = new CadastroProduto();
                 cadastroProduto.Owner = this;
                 cadastroProduto.ShowDialog();
@@ -71,7 +71,7 @@ namespace Hotel_Mod.views.Cadastros
                 try
                 {
                     //filtra os dados dos produtos
-                    List<Produto> resultadosPesquisa = controllerProduto.GetAll(btn_buscainativos.Checked).Where(p => p.produto.ToLower().Contains(pesquisa.ToLower())).ToList();
+                    List<Produto> resultadosPesquisa = controllerProduto.GetAll(btn_buscainativos.Checked).Where(p => p.nome_produto.ToLower().Contains(pesquisa.ToLower())).ToList();
                     dataGridViewProduto.DataSource = resultadosPesquisa; //atualiza o DataSource do DataGridView com os resultados da pesquisa
                     txt_pesquisar.Text = string.Empty; //limpa o txt pesquisa
                 }
@@ -131,7 +131,13 @@ namespace Hotel_Mod.views.Cadastros
         }
 
 
-        private void ConsultaProduto_Load(object sender, EventArgs e)
+        private void btn_buscainativos_CheckedChanged_1(object sender, EventArgs e)
+        {
+            bool incluirInativos = btn_buscainativos.Checked;
+            AtualizarConsultaProdutos(incluirInativos);
+        }
+
+        private void ConsultaProduto_Load_1(object sender, EventArgs e)
         {
             try
             {
@@ -139,11 +145,10 @@ namespace Hotel_Mod.views.Cadastros
                 cadastroProduto.FormClosed += (s, args) => AtualizarConsultaProdutos(btn_buscainativos.Checked); //quando aciona o Form Closed chama o AtualizarConsulta
 
                 dataGridViewProduto.AutoGenerateColumns = false;
-                dataGridViewProduto.Columns["Código"].DataPropertyName = "produto_ID";
-                dataGridViewProduto.Columns["Produto"].DataPropertyName = "produto";
-                dataGridViewProduto.Columns["Unidade"].DataPropertyName = "unidade";
-                dataGridViewProduto.Columns["Custo Médio"].DataPropertyName = "custo_medio";
-                dataGridViewProduto.Columns["Preço Venda"].DataPropertyName = "preco_venda";
+                dataGridViewProduto.Columns["produto_ID"].DataPropertyName = "produto_ID";
+                dataGridViewProduto.Columns["produto_unidade"].DataPropertyName = "unidade";
+                dataGridViewProduto.Columns["nome_produto"].DataPropertyName = "nome_produto";
+                dataGridViewProduto.Columns["preco_medio"].DataPropertyName = "preco_medio";
                 dataGridViewProduto.Columns["Ativo"].DataPropertyName = "ativo";
 
                 AtualizarConsultaProdutos(btn_buscainativos.Checked);
@@ -152,12 +157,7 @@ namespace Hotel_Mod.views.Cadastros
             {
                 MessageBox.Show("Ocorreu um erro ao carregar os produtos: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
 
-        private void btn_buscainativos_CheckedChanged_1(object sender, EventArgs e)
-        {
-            bool incluirInativos = btn_buscainativos.Checked;
-            AtualizarConsultaProdutos(incluirInativos);
         }
     }
 }

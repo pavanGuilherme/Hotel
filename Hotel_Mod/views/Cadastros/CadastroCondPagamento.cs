@@ -157,7 +157,7 @@ namespace Hotel_Mod.views.Cadastros
                     numeroParcela = Convert.ToInt32(row.Cells["numeroParcela"].Value),
                     dias = Convert.ToInt32(row.Cells["dias"].Value),
                     porcentagem = Convert.ToDecimal(row.Cells["porcentagem"].Value),
-                    FormaPagamento_ID = Convert.ToInt32(row.Cells["idFormaPagamento"].Value)
+                    FormaPagamento_ID = Convert.ToInt32(row.Cells["FormaPagamento_ID"].Value)
                 };
                 parcela.Add(parcelas);
             }
@@ -389,12 +389,13 @@ namespace Hotel_Mod.views.Cadastros
                         return;
                     }
 
+                    
                     int dias = Convert.ToInt32(txt_dias.Text);
                     decimal porcentagem = Convert.ToDecimal(txt_porcentagem.Text);
                     int idFormaPag = Convert.ToInt32(txt_cod_forma.Text);
                     string formaPagamento = txt_forma_pagamento.Text;
 
-                    dataGridView_parcelas.Rows.Add(numeroParcela, dias, porcentagem, idFormaPag, formaPagamento); // Adiciona nova linha com os valores
+                    dataGridView_parcelas.Rows.Add(numeroParcela, porcentagem, idFormaPag, formaPagamento, dias); // Adiciona nova linha com os valores
 
                     atualizaPorcentagemTotal();
                     dataGridView_parcelas.Sort(dataGridView_parcelas.Columns["numeroParcela"], ListSortDirection.Ascending);
@@ -429,7 +430,14 @@ namespace Hotel_Mod.views.Cadastros
             {
                 MessageBox.Show("Erro ao excluir parcela: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }       
+        }
+
+        private void CadastroCondPagamento_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+            ((ConsultaCondPagamento)this.Owner).AtualizarConsultaCondPag(false);
+
+        }
     }
 }
 

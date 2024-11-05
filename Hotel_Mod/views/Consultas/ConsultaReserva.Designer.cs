@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.dataGridViewReserva = new System.Windows.Forms.DataGridView();
-            this.cod_reserva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quarto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.andar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.check_in = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.check_out = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkout = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReserva)).BeginInit();
@@ -64,29 +64,29 @@
             // 
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click_1);
+          
             // 
             // dataGridViewReserva
             // 
             this.dataGridViewReserva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewReserva.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cod_reserva,
+            this.codigo,
             this.nome,
             this.quarto,
             this.andar,
-            this.check_in,
-            this.check_out,
+            this.checkin,
+            this.checkout,
             this.telefone});
             this.dataGridViewReserva.Location = new System.Drawing.Point(12, 68);
             this.dataGridViewReserva.Name = "dataGridViewReserva";
             this.dataGridViewReserva.Size = new System.Drawing.Size(971, 413);
             this.dataGridViewReserva.TabIndex = 69;
             // 
-            // cod_reserva
+            // codigo
             // 
-            this.cod_reserva.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cod_reserva.HeaderText = "Cód Reserva";
-            this.cod_reserva.Name = "cod_reserva";
+            this.codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.codigo.HeaderText = "Cód Reserva";
+            this.codigo.Name = "codigo";
             // 
             // nome
             // 
@@ -106,17 +106,17 @@
             this.andar.HeaderText = "Andar";
             this.andar.Name = "andar";
             // 
-            // check_in
+            // checkin
             // 
-            this.check_in.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.check_in.HeaderText = "Data Check_in";
-            this.check_in.Name = "check_in";
+            this.checkin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.checkin.HeaderText = "Checkin";
+            this.checkin.Name = "checkin";
             // 
-            // check_out
+            // checkout
             // 
-            this.check_out.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.check_out.HeaderText = "Data Check_out";
-            this.check_out.Name = "check_out";
+            this.checkout.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.checkout.HeaderText = "Checkout";
+            this.checkout.Name = "checkout";
             // 
             // telefone
             // 
@@ -131,6 +131,7 @@
             this.Controls.Add(this.dataGridViewReserva);
             this.Name = "ConsultaReserva";
             this.Text = "Consulta Reserva";
+            this.Load += new System.EventHandler(this.ConsultaReserva_Load);
             this.Controls.SetChildIndex(this.txt_pesquisar, 0);
             this.Controls.SetChildIndex(this.btn_sair, 0);
             this.Controls.SetChildIndex(this.btn_excluir, 0);
@@ -151,12 +152,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewReserva;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cod_reserva;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn quarto;
         private System.Windows.Forms.DataGridViewTextBoxColumn andar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn check_in;
-        private System.Windows.Forms.DataGridViewTextBoxColumn check_out;
+        private System.Windows.Forms.DataGridViewTextBoxColumn checkin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn checkout;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefone;
     }
 }

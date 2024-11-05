@@ -31,7 +31,7 @@
             this.txt_data_nascimento = new System.Windows.Forms.MaskedTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_busca_condicao = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.txt_condicao_pagamento = new System.Windows.Forms.TextBox();
             this.txt_cod_cond_pagamento = new System.Windows.Forms.TextBox();
@@ -73,8 +73,6 @@
             this.txt_apelido = new System.Windows.Forms.TextBox();
             this.txt_sexo = new System.Windows.Forms.ComboBox();
             this.lbl_sexo = new System.Windows.Forms.Label();
-            this.lbl_celular = new System.Windows.Forms.Label();
-            this.txt_celular = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txt_nome_contato = new System.Windows.Forms.TextBox();
             this.status.SuspendLayout();
@@ -141,7 +139,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.btn_busca_condicao);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.txt_condicao_pagamento);
             this.groupBox2.Controls.Add(this.txt_cod_cond_pagamento);
@@ -163,15 +161,15 @@
             this.label12.TabIndex = 187;
             this.label12.Text = "Condição de Pagamento";
             // 
-            // button2
+            // btn_busca_condicao
             // 
-            this.button2.Location = new System.Drawing.Point(134, 60);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(73, 29);
-            this.button2.TabIndex = 187;
-            this.button2.Text = "search";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btn_busca_condicao.Location = new System.Drawing.Point(134, 60);
+            this.btn_busca_condicao.Name = "btn_busca_condicao";
+            this.btn_busca_condicao.Size = new System.Drawing.Size(73, 29);
+            this.btn_busca_condicao.TabIndex = 187;
+            this.btn_busca_condicao.Text = "search";
+            this.btn_busca_condicao.UseVisualStyleBackColor = true;
+            this.btn_busca_condicao.Click += new System.EventHandler(this.Btn_busca_condicao_Click);
             // 
             // label11
             // 
@@ -249,7 +247,7 @@
             // 
             this.txt_pais.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_pais.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_pais.Location = new System.Drawing.Point(693, 120);
+            this.txt_pais.Location = new System.Drawing.Point(704, 120);
             this.txt_pais.Name = "txt_pais";
             this.txt_pais.Size = new System.Drawing.Size(173, 29);
             this.txt_pais.TabIndex = 189;
@@ -258,7 +256,7 @@
             // 
             this.txt_estado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_estado.Location = new System.Drawing.Point(460, 124);
+            this.txt_estado.Location = new System.Drawing.Point(482, 122);
             this.txt_estado.Name = "txt_estado";
             this.txt_estado.Size = new System.Drawing.Size(173, 29);
             this.txt_estado.TabIndex = 188;
@@ -297,23 +295,23 @@
             this.txt_logradouro.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_logradouro.Location = new System.Drawing.Point(218, 57);
             this.txt_logradouro.Name = "txt_logradouro";
-            this.txt_logradouro.Size = new System.Drawing.Size(266, 29);
+            this.txt_logradouro.Size = new System.Drawing.Size(374, 29);
             this.txt_logradouro.TabIndex = 162;
             // 
             // txt_complemento
             // 
             this.txt_complemento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_complemento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_complemento.Location = new System.Drawing.Point(659, 54);
+            this.txt_complemento.Location = new System.Drawing.Point(704, 54);
             this.txt_complemento.Name = "txt_complemento";
-            this.txt_complemento.Size = new System.Drawing.Size(172, 29);
+            this.txt_complemento.Size = new System.Drawing.Size(190, 29);
             this.txt_complemento.TabIndex = 163;
             // 
             // txt_numero
             // 
             this.txt_numero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_numero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_numero.Location = new System.Drawing.Point(527, 54);
+            this.txt_numero.Location = new System.Drawing.Point(608, 54);
             this.txt_numero.Name = "txt_numero";
             this.txt_numero.Size = new System.Drawing.Size(90, 29);
             this.txt_numero.TabIndex = 164;
@@ -322,7 +320,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(655, 27);
+            this.label10.Location = new System.Drawing.Point(700, 27);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(129, 24);
             this.label10.TabIndex = 167;
@@ -342,7 +340,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(523, 27);
+            this.label3.Location = new System.Drawing.Point(604, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 24);
             this.label3.TabIndex = 169;
@@ -352,16 +350,16 @@
             // 
             this.txt_bairro.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_bairro.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_bairro.Location = new System.Drawing.Point(859, 54);
+            this.txt_bairro.Location = new System.Drawing.Point(917, 54);
             this.txt_bairro.Name = "txt_bairro";
-            this.txt_bairro.Size = new System.Drawing.Size(233, 29);
+            this.txt_bairro.Size = new System.Drawing.Size(223, 29);
             this.txt_bairro.TabIndex = 170;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(855, 27);
+            this.label5.Location = new System.Drawing.Point(913, 27);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 24);
             this.label5.TabIndex = 172;
@@ -400,7 +398,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(689, 93);
+            this.label4.Location = new System.Drawing.Point(700, 93);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 24);
             this.label4.TabIndex = 171;
@@ -420,7 +418,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(465, 93);
+            this.label7.Location = new System.Drawing.Point(487, 91);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 24);
             this.label7.TabIndex = 174;
@@ -442,7 +440,7 @@
             this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_email.Location = new System.Drawing.Point(32, 199);
             this.txt_email.Name = "txt_email";
-            this.txt_email.Size = new System.Drawing.Size(331, 29);
+            this.txt_email.Size = new System.Drawing.Size(462, 29);
             this.txt_email.TabIndex = 202;
             // 
             // lbl_data_nascimento
@@ -459,7 +457,7 @@
             // 
             this.lbl_telefone.AutoSize = true;
             this.lbl_telefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_telefone.Location = new System.Drawing.Point(393, 172);
+            this.lbl_telefone.Location = new System.Drawing.Point(510, 172);
             this.lbl_telefone.Name = "lbl_telefone";
             this.lbl_telefone.Size = new System.Drawing.Size(90, 24);
             this.lbl_telefone.TabIndex = 197;
@@ -489,9 +487,9 @@
             // 
             this.txt_telefone.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_telefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_telefone.Location = new System.Drawing.Point(397, 199);
+            this.txt_telefone.Location = new System.Drawing.Point(514, 199);
             this.txt_telefone.Name = "txt_telefone";
-            this.txt_telefone.Size = new System.Drawing.Size(197, 29);
+            this.txt_telefone.Size = new System.Drawing.Size(222, 29);
             this.txt_telefone.TabIndex = 193;
             // 
             // txt_nome
@@ -500,7 +498,7 @@
             this.txt_nome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_nome.Location = new System.Drawing.Point(33, 121);
             this.txt_nome.Name = "txt_nome";
-            this.txt_nome.Size = new System.Drawing.Size(331, 29);
+            this.txt_nome.Size = new System.Drawing.Size(503, 29);
             this.txt_nome.TabIndex = 222;
             // 
             // groupBox_pessoa
@@ -552,7 +550,7 @@
             // 
             this.lbl_apelido.AutoSize = true;
             this.lbl_apelido.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_apelido.Location = new System.Drawing.Point(387, 92);
+            this.lbl_apelido.Location = new System.Drawing.Point(561, 95);
             this.lbl_apelido.Name = "lbl_apelido";
             this.lbl_apelido.Size = new System.Drawing.Size(75, 24);
             this.lbl_apelido.TabIndex = 226;
@@ -562,20 +560,21 @@
             // 
             this.txt_apelido.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_apelido.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_apelido.Location = new System.Drawing.Point(391, 121);
+            this.txt_apelido.Location = new System.Drawing.Point(565, 124);
             this.txt_apelido.Name = "txt_apelido";
             this.txt_apelido.Size = new System.Drawing.Size(288, 29);
             this.txt_apelido.TabIndex = 225;
             // 
             // txt_sexo
             // 
+            this.txt_sexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txt_sexo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_sexo.FormattingEnabled = true;
             this.txt_sexo.Items.AddRange(new object[] {
             "MASCULINO",
             "FEMININO",
             "OUTRO"});
-            this.txt_sexo.Location = new System.Drawing.Point(726, 116);
+            this.txt_sexo.Location = new System.Drawing.Point(906, 121);
             this.txt_sexo.Name = "txt_sexo";
             this.txt_sexo.Size = new System.Drawing.Size(154, 32);
             this.txt_sexo.TabIndex = 227;
@@ -584,36 +583,17 @@
             // 
             this.lbl_sexo.AutoSize = true;
             this.lbl_sexo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_sexo.Location = new System.Drawing.Point(724, 89);
+            this.lbl_sexo.Location = new System.Drawing.Point(904, 94);
             this.lbl_sexo.Name = "lbl_sexo";
             this.lbl_sexo.Size = new System.Drawing.Size(54, 24);
             this.lbl_sexo.TabIndex = 228;
             this.lbl_sexo.Text = "Sexo";
             // 
-            // lbl_celular
-            // 
-            this.lbl_celular.AutoSize = true;
-            this.lbl_celular.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_celular.Location = new System.Drawing.Point(608, 172);
-            this.lbl_celular.Name = "lbl_celular";
-            this.lbl_celular.Size = new System.Drawing.Size(69, 24);
-            this.lbl_celular.TabIndex = 230;
-            this.lbl_celular.Text = "Celular";
-            // 
-            // txt_celular
-            // 
-            this.txt_celular.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txt_celular.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_celular.Location = new System.Drawing.Point(612, 199);
-            this.txt_celular.Name = "txt_celular";
-            this.txt_celular.Size = new System.Drawing.Size(197, 29);
-            this.txt_celular.TabIndex = 229;
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(841, 172);
+            this.label13.Location = new System.Drawing.Point(760, 172);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(155, 24);
             this.label13.TabIndex = 232;
@@ -623,9 +603,9 @@
             // 
             this.txt_nome_contato.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_nome_contato.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_nome_contato.Location = new System.Drawing.Point(845, 199);
+            this.txt_nome_contato.Location = new System.Drawing.Point(764, 199);
             this.txt_nome_contato.Name = "txt_nome_contato";
-            this.txt_nome_contato.Size = new System.Drawing.Size(334, 29);
+            this.txt_nome_contato.Size = new System.Drawing.Size(296, 29);
             this.txt_nome_contato.TabIndex = 231;
             // 
             // CadastroClientes
@@ -634,8 +614,6 @@
             this.ClientSize = new System.Drawing.Size(1204, 618);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txt_nome_contato);
-            this.Controls.Add(this.lbl_celular);
-            this.Controls.Add(this.txt_celular);
             this.Controls.Add(this.lbl_sexo);
             this.Controls.Add(this.txt_sexo);
             this.Controls.Add(this.lbl_apelido);
@@ -657,6 +635,8 @@
             this.Controls.Add(this.txt_telefone);
             this.Name = "CadastroClientes";
             this.Text = "Cadastro Clientes";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroClientes_FormClosed);
+            this.Load += new System.EventHandler(this.CadastroClientes_Load);
             this.Controls.SetChildIndex(this.txt_telefone, 0);
             this.Controls.SetChildIndex(this.lbl_cpf, 0);
             this.Controls.SetChildIndex(this.lbl_rg, 0);
@@ -685,8 +665,6 @@
             this.Controls.SetChildIndex(this.lbl_apelido, 0);
             this.Controls.SetChildIndex(this.txt_sexo, 0);
             this.Controls.SetChildIndex(this.lbl_sexo, 0);
-            this.Controls.SetChildIndex(this.txt_celular, 0);
-            this.Controls.SetChildIndex(this.lbl_celular, 0);
             this.Controls.SetChildIndex(this.txt_nome_contato, 0);
             this.Controls.SetChildIndex(this.label13, 0);
             this.status.ResumeLayout(false);
@@ -707,7 +685,7 @@
         private System.Windows.Forms.MaskedTextBox txt_data_nascimento;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_busca_condicao;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txt_condicao_pagamento;
         private System.Windows.Forms.TextBox txt_cod_cond_pagamento;
@@ -749,8 +727,6 @@
         private System.Windows.Forms.TextBox txt_apelido;
         private System.Windows.Forms.ComboBox txt_sexo;
         private System.Windows.Forms.Label lbl_sexo;
-        private System.Windows.Forms.Label lbl_celular;
-        private System.Windows.Forms.TextBox txt_celular;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txt_nome_contato;
     }

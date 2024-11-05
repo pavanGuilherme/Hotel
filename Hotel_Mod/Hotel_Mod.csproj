@@ -82,7 +82,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\CondicaoPagamento.cs" />
     <Compile Include="Models\ContasPagar.cs" />
     <Compile Include="Models\ContasReceber.cs" />
@@ -92,6 +92,7 @@
     <Compile Include="Models\Hospede.cs" />
     <Compile Include="Models\NotaCompra_Produto.cs" />
     <Compile Include="Models\nota_Compra.cs" />
+    <Compile Include="Models\ocupacao.cs" />
     <Compile Include="Models\parcela.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Quarto.cs" />
@@ -290,6 +291,12 @@
     <Compile Include="views\Consultas\ConsultaReserva.Designer.cs">
       <DependentUpon>ConsultaReserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\Consultas\newConsultaQuartos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Consultas\newConsultaQuartos.Designer.cs">
+      <DependentUpon>newConsultaQuartos.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -373,6 +380,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="views\Cadastros\CadastroCidades.resx">
       <DependentUpon>CadastroCidades.cs</DependentUpon>
@@ -392,6 +400,9 @@
     <EmbeddedResource Include="views\Consultas\ConsultaReserva.resx">
       <DependentUpon>ConsultaReserva.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\Consultas\newConsultaQuartos.resx">
+      <DependentUpon>newConsultaQuartos.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -406,6 +417,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\cama_icone.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\cama_icone.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

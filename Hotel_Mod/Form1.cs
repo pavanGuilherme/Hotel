@@ -160,5 +160,15 @@ namespace Hotel_Mod
         {
             OpenChildForm(new ConsultaHospede());   
         }
+
+        private void nEWCONSULTAQUARTOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+      
+        }
+
+        private void btn_quartos_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new newConsultaQuartos());
+        }
     }
 }

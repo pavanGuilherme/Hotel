@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Hotel_Mod.views
 {
@@ -22,21 +23,26 @@ namespace Hotel_Mod.views
         public virtual void salvar() { }
         public virtual void bloquear() { }
         public virtual void desbloquear() { }
-        public virtual void carrega() { }
-        public virtual void LimparCampos() { }
+
+
+
+        public virtual void carrega() 
+        {
+            check_ativo.Enabled = true;
+            check_inativo.Enabled = true;
+            status.Enabled = true;
+        }
+
 
         private void btn_salvar_Click(object sender, EventArgs e)
-        {
-            
+        {          
             salvar();
-
         }
 
         private void btn_sair_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private void CadastroPai_Load(object sender, EventArgs e)
         {
             if (altera == -1)
@@ -45,5 +51,36 @@ namespace Hotel_Mod.views
                 txt_dat_ult_alt.Text = DateTime.Now.ToString();
             }
         }
+        private void check_ativo_CheckedChanged(object sender, EventArgs e)
+        {
+
+            ativo  = check_ativo.Checked;
+            if (check_ativo.Checked == true) 
+            {
+                
+                check_inativo.Checked = false;  
+            
+            }
+
+        }
+        private void check_inativo_CheckedChanged(object sender, EventArgs e)
+        {
+            ativo = !check_ativo.Checked;
+
+            if (check_inativo.Checked == true)
+            {
+
+                check_ativo.Checked = false;    
+            }
+        }
+        public virtual void LimparCampos() 
+        {
+            check_ativo.Enabled = false;
+            check_inativo.Enabled = false;
+            status.Enabled = false;
+
+        }
+
+
     }
 }

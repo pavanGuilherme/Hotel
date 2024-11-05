@@ -25,19 +25,11 @@ namespace Hotel_Mod.views.Consultas
             cadastroCondicaoPagamento = new CadastroCondPagamento();
             cadastroCondicaoPagamento.Owner = this;
 
-            // Evento que ocorre quando o formulário é carregado
             this.Load += ConsultaCondPagamento_Load;
 
-            // Adicione os eventos de clique dos botões manualmente no formulário
-            // btn_incluir.Click += btn_incluir_Click;
-            // btn_alterar.Click += btn_alterar_Click;
-            // btn_excluir.Click += btn_excluir_Click;
-            // btn_pesquisar.Click += btn_pesquisar_Click;
-            // btn_sair.Click += btn_sair_Click;
-            // btn_buscainativos.CheckedChanged += btn_buscainativos_CheckedChanged;
         }
 
-        // Método para incluir uma nova condição de pagamento
+
         public override void Incluir()
         {
             ResetCadastro();
@@ -48,7 +40,7 @@ namespace Hotel_Mod.views.Consultas
         {
             if (dataGridViewCondPagamento.SelectedRows.Count > 0)
             {
-                int condPagamentoId = (int)dataGridViewCondPagamento.SelectedRows[0].Cells["Código"].Value;
+                int condPagamentoId = (int)dataGridViewCondPagamento.SelectedRows[0].Cells["codigo"].Value;
                 ResetCadastro(condPagamentoId);
                 cadastroCondicaoPagamento.ShowDialog();
             }
@@ -64,7 +56,7 @@ namespace Hotel_Mod.views.Consultas
             {
                 if (MessageBox.Show("Tem certeza de que deseja excluir esta condição de pagamento?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int condPagamentoId = (int)dataGridViewCondPagamento.SelectedRows[0].Cells["Código"].Value;
+                    int condPagamentoId = (int)dataGridViewCondPagamento.SelectedRows[0].Cells["codigo"].Value;
                     controllerCondicaoPagamento.excluir(condPagamentoId);
                     dataGridViewCondPagamento.DataSource = controllerCondicaoPagamento.GetAll(btn_buscainativos.Checked);
                 }
@@ -158,7 +150,7 @@ namespace Hotel_Mod.views.Consultas
                 if (dataGridViewCondPagamento.SelectedRows.Count > 0)
                 {
                     int condPagamentoId = Convert.ToInt32(dataGridViewCondPagamento.SelectedRows[0].Cells["codigo"].Value);
-                    string condPag = dataGridViewCondPagamento.SelectedRows[0].Cells["cond_Pagamento"].Value.ToString();
+                    string condPag = dataGridViewCondPagamento.SelectedRows[0].Cells["condicao"].Value.ToString();
 
                     this.Tag = new Tuple<int, string>(condPagamentoId, condPag);
                     this.DialogResult = DialogResult.OK;
@@ -192,8 +184,8 @@ namespace Hotel_Mod.views.Consultas
                 cadastroCondicaoPagamento.FormClosed += (s, args) => AtualizarConsultaCondPag(btn_buscainativos.Checked); // Quando aciona o Form Closed chama o AtualizarConsulta
 
                 dataGridViewCondPagamento.AutoGenerateColumns = false;
-                dataGridViewCondPagamento.Columns["codigo"].DataPropertyName = "codigo";
-                dataGridViewCondPagamento.Columns["condicao"].DataPropertyName = "condicao";
+                dataGridViewCondPagamento.Columns["codigo"].DataPropertyName = "CondPagamento_ID";
+                dataGridViewCondPagamento.Columns["condicao"].DataPropertyName = "condicaoPagamento";
 
                 AtualizarConsultaCondPag(btn_buscainativos.Checked);
             }
@@ -202,6 +194,32 @@ namespace Hotel_Mod.views.Consultas
                 MessageBox.Show("Ocorreu um erro ao carregar as condições de pagamento: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void btn_sair_Click(object sender, EventArgs e)
+        {
+            if (btn_sair.Text == "Selecionar")
+            {
+                if (dataGridViewCondPagamento.SelectedRows.Count > 0)
+                {
+ 
+                    int condPag_ID = Convert.ToInt32(dataGridViewCondPagamento.SelectedRows[0].Cells["codigo"].Value);
+                    string condPag = dataGridViewCondPagamento.SelectedRows[0].Cells["condicao"].Value.ToString();
+
+
+                    this.Tag = new Tuple<int, string>(condPag_ID, condPag);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, selecione uma condição.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                Close();
+            }
         }
     }
     

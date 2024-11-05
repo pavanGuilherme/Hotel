@@ -40,10 +40,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuarto)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_buscainativos
-            // 
-            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged_1);
-            // 
             // btn_pesquisar
             // 
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -69,6 +65,10 @@
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click_1);
+            // 
+            // btn_buscainativos
+            // 
+            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged_1);
             // 
             // dataGridViewQuarto
             // 
@@ -112,7 +112,7 @@
             // tipo
             // 
             this.tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tipo.HeaderText = "Tipo";
+            this.tipo.HeaderText = "tipo";
             this.tipo.Name = "tipo";
             // 
             // ativo

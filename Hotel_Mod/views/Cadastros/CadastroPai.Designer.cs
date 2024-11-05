@@ -64,6 +64,7 @@
             this.check_inativo.TabIndex = 60;
             this.check_inativo.Text = "Inativo";
             this.check_inativo.UseVisualStyleBackColor = true;
+            this.check_inativo.CheckedChanged += new System.EventHandler(this.check_inativo_CheckedChanged);
             // 
             // check_ativo
             // 
@@ -77,6 +78,7 @@
             this.check_ativo.TabIndex = 59;
             this.check_ativo.Text = "Ativo";
             this.check_ativo.UseVisualStyleBackColor = true;
+            this.check_ativo.CheckedChanged += new System.EventHandler(this.check_ativo_CheckedChanged);
             // 
             // lbl_codigo
             // 
@@ -92,7 +94,7 @@
             // 
             this.txt_codigo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_codigo.Enabled = false;
-            this.txt_codigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_codigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_codigo.Location = new System.Drawing.Point(32, 43);
             this.txt_codigo.Name = "txt_codigo";
             this.txt_codigo.Size = new System.Drawing.Size(211, 31);

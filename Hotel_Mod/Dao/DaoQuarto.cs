@@ -10,6 +10,26 @@ namespace Hotel_Mod.Class
         {
         }
 
+        public int GetUltimoCodigo()
+        {
+            int proximoCodigo = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT MAX(quarto_ID) FROM quartos";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    proximoCodigo = Convert.ToInt32(result);
+                }
+            }
+            return proximoCodigo;
+        }
+
+       
+
         public override List<T> GetAll(bool incluiInativos)
         {
             List<T> quartos = new List<T>();

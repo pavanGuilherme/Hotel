@@ -19,6 +19,11 @@ namespace Hotel_Mod.Controller
             daoCondicaoPagamento = new DaoCondicaoPagamento();
         }
 
+        public int GetUltimoCodigo()
+        {
+            return daoCondicaoPagamento.GetUltimoCodigo();
+        }
+
         public override void alterar(T obj)
         {
             daoCondicaoPagamento.alterar(obj);
@@ -51,10 +56,7 @@ namespace Hotel_Mod.Controller
             return daoCondicaoPagamento.GetById(idobj) as T;
         }
 
-        public int GetUltimoCodigo()
-        {
-            return daoCondicaoPagamento.GetUltimoCodigo();
-        }
+       
 
 
         public string GetFormaPagByParcelaId(int idParcela)

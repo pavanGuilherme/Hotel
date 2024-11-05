@@ -118,9 +118,10 @@ namespace Hotel_Mod.views
                 if (dataGridViewFornecedor.SelectedRows.Count > 0)
                 {
                     int fornecedor_ID = Convert.ToInt32(dataGridViewFornecedor.SelectedRows[0].Cells["codigo"].Value);
-               
+                    string fornecedor_razao_social= dataGridViewFornecedor.SelectedRows[0].Cells["fornecedor_razao_social"].Value.ToString();
 
-                    this.Tag = new Tuple<int>(fornecedor_ID);
+
+                    this.Tag = new Tuple<int, string>(fornecedor_ID, fornecedor_razao_social);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

@@ -14,19 +14,19 @@ namespace Hotel_Mod.views
     public partial class ConsultaEstado : Hotel_Mod.views.ConsultaPai
     {
         private controllerEstado<Estado> controllerestado;
-        private CadastroEstado Cadastroestado;
+        private CadastroEstado cadastroestado;
         public ConsultaEstado()
         {
             InitializeComponent();
             controllerestado = new controllerEstado<Estado>();
-            Cadastroestado = new CadastroEstado();
-            Cadastroestado.Owner = this;
+            cadastroestado = new CadastroEstado();
+            cadastroestado.Owner = this;
         }
 
         public override void Incluir()
         {
             ResetCadastro();
-            Cadastroestado.ShowDialog();
+            cadastroestado.ShowDialog();
         }
 
 
@@ -114,7 +114,7 @@ namespace Hotel_Mod.views
         }
         private void ResetCadastro()
         {
-            Cadastroestado.LimparCampos();
+            cadastroestado.LimparCampos();
         }
 
         private void btn_sair_Click(object sender, EventArgs e)

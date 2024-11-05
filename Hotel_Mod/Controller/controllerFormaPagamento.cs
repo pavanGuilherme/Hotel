@@ -18,6 +18,11 @@ namespace Hotel_Mod.Controller
             daoFormaPagamento = new DaoFormaPagamento<T>();
         }
 
+
+        public int GetUltimoCodigo()
+        {
+            return daoFormaPagamento.GetUltimoCodigo();
+        }
         public override void alterar(T obj)
         {
             daoFormaPagamento.alterar(obj);

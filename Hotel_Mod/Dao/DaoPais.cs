@@ -16,6 +16,24 @@ namespace Hotel_Mod.Class
         {
         }
 
+        public int GetUltimoCodigo()
+        {
+            int proximoCodigo = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT MAX(pais_ID) FROM paises";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    proximoCodigo = Convert.ToInt32(result);
+                }
+            }
+            return proximoCodigo;
+        }
+
         public override List<T> GetAll(bool incluiInativos)
         {
             List<T> paises = new List<T>();
@@ -70,16 +88,33 @@ namespace Hotel_Mod.Class
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM paises where pais_ID = @pais_ID";
+                string query = "DELETE FROM paises WHERE pais_ID = @pais_ID";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@pais_ID", id);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    //verifica se a exceção está relacionada a uma restrição de chave estrangeira (uso em algum cadastro)
+                    if (ex.Number == 547) //código de erro para conflito de chave estrangeira
+                    {
+                        MessageBox.Show("Não é possível excluir o País, pois ele está sendo utilizado em um cadastro.", "Erro ao deletar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
 
         }
+
+
 
         public override void alterar(T obj)
         {
@@ -106,7 +141,7 @@ namespace Hotel_Mod.Class
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM pais WHERE pais_ID = @id";
+                string query = "SELECT * FROM paises WHERE pais_ID = @pais_id";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@pais_ID", id);
 
@@ -118,10 +153,10 @@ namespace Hotel_Mod.Class
                     {
                         dynamic obj = Activator.CreateInstance(typeof(T));
                         obj.pais_ID = Convert.ToInt32(reader["pais_ID"]);
-                        obj.Pais = reader["pais"].ToString();
-                        obj.Sigla = reader["sigla"].ToString();
-                        obj.DDI = reader["ddi"].ToString();
-                        obj.Ativo = Convert.ToBoolean(reader["ativo"]);
+                        obj.pais = reader["pais"].ToString();
+                        obj.sigla = reader["sigla"].ToString();
+                        obj.ddi = reader["ddi"].ToString();
+                        obj.ativo = Convert.ToBoolean(reader["ativo"]);
                         obj.data_cadastro = DateTime.Parse(reader["data_cadastro"].ToString());
                         obj.data_ult_alt = DateTime.Parse(reader["data_ult_alt"].ToString());
                         return obj;

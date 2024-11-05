@@ -16,6 +16,10 @@ namespace Hotel_Mod.Controller
         {
             daoQuarto = new DaoQuarto<T>();
         }
+        public int GetUltimoCodigo()
+        {
+            return daoQuarto.GetUltimoCodigo();
+        }
 
         public override void alterar(T obj)
         {

@@ -42,19 +42,28 @@ namespace Hotel_Mod.Controller
             return daoCliente.GetById(idObj);
         }
 
+        public List<string> GetCondPagById(int CondPagamento_ID)
+        {
+            return daoCliente.GetCondPagById(CondPagamento_ID);
+        }
+
         public List<string> GetCidadeEstadoEPaisByCidadeId(int cidade_ID)
         {
            return daoCliente.GetCidadeEstadoEPaisByCidadeId(cidade_ID);
         }
 
+        public int GetUltimoCodigo()
+        {
+            return daoCliente.GetUltimoCodigo();
+        }
 
         public bool JaCadastrado(string nome, int idAtual)
         {
             List<T> obj = daoCliente.GetAll(false);
 
-            if (typeof(T) == typeof(Clientes))
+            if (typeof(T) == typeof(Cliente))
             {
-                var Model = obj.Cast<Clientes>().ToList();
+                var Model = obj.Cast<Cliente>().ToList();
 
                 foreach (var cliente in Model)
                 {

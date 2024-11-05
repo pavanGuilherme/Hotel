@@ -1,4 +1,5 @@
-﻿using Hotel_Mod.Controller;
+﻿using Hotel_Mod.Class;
+using Hotel_Mod.Controller;
 using Hotel_Mod.Models;
 using Hotel_Mod.views.Consultas;
 using System;
@@ -47,8 +48,7 @@ namespace Hotel_Mod.views.Cadastros
                     txt_dat_ult_alt.Text = quarto.data_ult_alt.ToString();
                     check_ativo.Checked = quarto.ativo;
                     check_inativo.Checked = !quarto.ativo;
-                    check_disponivel.Checked = quarto.disponivel;
-                    check_indisponivel.Checked = !quarto.disponivel;
+
                 }
                 else
                 {
@@ -166,11 +166,7 @@ namespace Hotel_Mod.views.Cadastros
             ((ConsultaQuarto)this.Owner).AtualizarConsultaQuartos(false);
         }
 
-        private void CadastroQuarto_Load(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void txt_numero_Leave(object sender, EventArgs e)
         {
             if (!validadores.VerificaNumeros(txt_numero.Text))
@@ -186,6 +182,15 @@ namespace Hotel_Mod.views.Cadastros
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_andar.Focus();
+            }
+        }
+
+        private void CadastroQuarto_Load_1(object sender, EventArgs e)
+        {
+            if (altera == -1)
+            {
+                int novoCodigo = controllerQuarto.GetUltimoCodigo() + 1;
+                txt_codigo.Text = novoCodigo.ToString();
             }
         }
     }

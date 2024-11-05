@@ -110,10 +110,6 @@ namespace Hotel_Mod.views
             }
         }
 
-
-    
-             
-
         public void AtualizarConsultaPaises(bool incluirInativos)
         {
             try

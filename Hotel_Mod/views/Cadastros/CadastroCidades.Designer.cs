@@ -32,11 +32,11 @@
             this.txt_ddd = new System.Windows.Forms.RichTextBox();
             this.lbl_cidade = new System.Windows.Forms.Label();
             this.txt_cidade = new System.Windows.Forms.RichTextBox();
-            this.btn_search = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_cod_estado = new System.Windows.Forms.RichTextBox();
             this.txt_estado = new System.Windows.Forms.RichTextBox();
+            this.btn_search = new System.Windows.Forms.Button();
             this.status.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,19 +98,6 @@
             this.txt_cidade.TabIndex = 88;
             this.txt_cidade.Text = "";
             // 
-            // btn_search
-            // 
-            this.btn_search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.btn_search.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_search.Location = new System.Drawing.Point(189, 249);
-            this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(56, 31);
-            this.btn_search.TabIndex = 101;
-            this.btn_search.Text = "Search";
-            this.btn_search.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_search.UseVisualStyleBackColor = false;
-            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -134,6 +121,7 @@
             // txt_cod_estado
             // 
             this.txt_cod_estado.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_cod_estado.Enabled = false;
             this.txt_cod_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_cod_estado.Location = new System.Drawing.Point(36, 249);
             this.txt_cod_estado.Name = "txt_cod_estado";
@@ -145,6 +133,7 @@
             // txt_estado
             // 
             this.txt_estado.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_estado.Enabled = false;
             this.txt_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_estado.Location = new System.Drawing.Point(309, 249);
             this.txt_estado.Name = "txt_estado";
@@ -152,9 +141,20 @@
             this.txt_estado.TabIndex = 97;
             this.txt_estado.Text = "";
             // 
+            // btn_search
+            // 
+            this.btn_search.Location = new System.Drawing.Point(189, 249);
+            this.btn_search.Name = "btn_search";
+            this.btn_search.Size = new System.Drawing.Size(73, 31);
+            this.btn_search.TabIndex = 142;
+            this.btn_search.Text = "search";
+            this.btn_search.UseVisualStyleBackColor = true;
+            this.btn_search.Click += new System.EventHandler(this.btn_search_Click_1);
+            // 
             // CadastroCidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(982, 583);
             this.Controls.Add(this.btn_search);
             this.Controls.Add(this.label2);
@@ -167,6 +167,7 @@
             this.Controls.Add(this.txt_cidade);
             this.Name = "CadastroCidades";
             this.Text = "Cadastro Cidades";
+            this.Load += new System.EventHandler(this.CadastroCidades_Load);
             this.Controls.SetChildIndex(this.txt_dat_cad, 0);
             this.Controls.SetChildIndex(this.lbl_data_cadastro, 0);
             this.Controls.SetChildIndex(this.txt_dat_ult_alt, 0);
@@ -198,10 +199,10 @@
         private System.Windows.Forms.RichTextBox txt_ddd;
         private System.Windows.Forms.Label lbl_cidade;
         private System.Windows.Forms.RichTextBox txt_cidade;
-        private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox txt_cod_estado;
         private System.Windows.Forms.RichTextBox txt_estado;
+        private System.Windows.Forms.Button btn_search;
     }
 }

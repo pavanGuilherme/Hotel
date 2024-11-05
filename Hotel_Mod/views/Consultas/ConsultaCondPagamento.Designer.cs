@@ -59,6 +59,7 @@
             // 
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
             // dataGridViewCondPagamento
             // 
@@ -88,6 +89,7 @@
             this.ClientSize = new System.Drawing.Size(1005, 545);
             this.Controls.Add(this.dataGridViewCondPagamento);
             this.Name = "ConsultaCondPagamento";
+            this.Text = "Consulta Condição de Pagamento";
             this.Load += new System.EventHandler(this.ConsultaCondPagamento_Load);
             this.Controls.SetChildIndex(this.txt_pesquisar, 0);
             this.Controls.SetChildIndex(this.btn_sair, 0);

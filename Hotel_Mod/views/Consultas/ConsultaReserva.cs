@@ -135,7 +135,8 @@ namespace Hotel_Mod.views.Consultas
             }
         }
 
-        // Evento para carregar a consulta de reservas
+   
+
         private void ConsultaReserva_Load(object sender, EventArgs e)
         {
             try
@@ -148,9 +149,9 @@ namespace Hotel_Mod.views.Consultas
                 dataGridViewReserva.Columns["nome"].DataPropertyName = "nome_cliente";
                 dataGridViewReserva.Columns["quarto"].DataPropertyName = "numero_quarto";
                 dataGridViewReserva.Columns["andar"].DataPropertyName = "andar";
-                dataGridViewReserva.Columns["dataCheckin"].DataPropertyName = "data_checkin";
-                dataGridViewReserva.Columns["dataCheckout"].DataPropertyName = "data_checkout";
-                dataGridViewReserva.Columns["telefone"].DataPropertyName = "telefone_cliente";
+                dataGridViewReserva.Columns["checkin"].DataPropertyName = "data_checkin";
+                dataGridViewReserva.Columns["checkout"].DataPropertyName = "data_checkout";
+                dataGridViewReserva.Columns["telefone"].DataPropertyName = "celular_cliente";
 
                 AtualizarConsultaReservas(btn_buscainativos.Checked);
             }
@@ -158,11 +159,6 @@ namespace Hotel_Mod.views.Consultas
             {
                 MessageBox.Show("Ocorreu um erro ao carregar as reservas: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btn_sair_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

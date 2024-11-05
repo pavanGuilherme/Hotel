@@ -49,14 +49,14 @@
             this.txt_forma_pagamento = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView_parcelas = new System.Windows.Forms.DataGridView();
+            this.numeroParcela = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.formaPagamento_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.formaPagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_excluir_parcela = new System.Windows.Forms.Button();
             this.txt_dias = new System.Windows.Forms.RichTextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.numeroParcela = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idFormaPag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.formaPagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_parcelas)).BeginInit();
             this.SuspendLayout();
@@ -139,9 +139,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.label2.Location = new System.Drawing.Point(25, 147);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 24);
+            this.label2.Size = new System.Drawing.Size(124, 24);
             this.label2.TabIndex = 114;
-            this.label2.Text = "N° de Parcelas";
+            this.label2.Text = "N° da Parcela";
             // 
             // txt_parcela
             // 
@@ -285,17 +285,55 @@
             // 
             // dataGridView_parcelas
             // 
+            this.dataGridView_parcelas.AllowUserToAddRows = false;
+            this.dataGridView_parcelas.AllowUserToDeleteRows = false;
             this.dataGridView_parcelas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_parcelas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numeroParcela,
             this.porcentagem,
-            this.idFormaPag,
+            this.formaPagamento_ID,
             this.formaPagamento,
             this.dias});
-            this.dataGridView_parcelas.Location = new System.Drawing.Point(28, 230);
+            this.dataGridView_parcelas.GridColor = System.Drawing.SystemColors.ButtonShadow;
+            this.dataGridView_parcelas.Location = new System.Drawing.Point(29, 230);
             this.dataGridView_parcelas.Name = "dataGridView_parcelas";
+            this.dataGridView_parcelas.ReadOnly = true;
             this.dataGridView_parcelas.Size = new System.Drawing.Size(924, 236);
             this.dataGridView_parcelas.TabIndex = 130;
+            // 
+            // numeroParcela
+            // 
+            this.numeroParcela.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.numeroParcela.HeaderText = "N° de Parcelas";
+            this.numeroParcela.Name = "numeroParcela";
+            this.numeroParcela.ReadOnly = true;
+            // 
+            // porcentagem
+            // 
+            this.porcentagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.porcentagem.HeaderText = "%";
+            this.porcentagem.Name = "porcentagem";
+            this.porcentagem.ReadOnly = true;
+            // 
+            // formaPagamento_ID
+            // 
+            this.formaPagamento_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.formaPagamento_ID.HeaderText = "Cod. Forma Pagamento";
+            this.formaPagamento_ID.Name = "formaPagamento_ID";
+            this.formaPagamento_ID.ReadOnly = true;
+            // 
+            // formaPagamento
+            // 
+            this.formaPagamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.formaPagamento.HeaderText = "Forma de Pagamento";
+            this.formaPagamento.Name = "formaPagamento";
+            this.formaPagamento.ReadOnly = true;
+            // 
+            // dias
+            // 
+            this.dias.HeaderText = "N° de Dias";
+            this.dias.Name = "dias";
+            this.dias.ReadOnly = true;
             // 
             // btn_excluir_parcela
             // 
@@ -327,35 +365,6 @@
             this.label10.TabIndex = 133;
             this.label10.Text = "Dias";
             // 
-            // numeroParcela
-            // 
-            this.numeroParcela.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numeroParcela.HeaderText = "N° de Parcelas";
-            this.numeroParcela.Name = "numeroParcela";
-            // 
-            // porcentagem
-            // 
-            this.porcentagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.porcentagem.HeaderText = "%";
-            this.porcentagem.Name = "porcentagem";
-            // 
-            // idFormaPag
-            // 
-            this.idFormaPag.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idFormaPag.HeaderText = "Cod. Forma Pagamento";
-            this.idFormaPag.Name = "idFormaPag";
-            // 
-            // formaPagamento
-            // 
-            this.formaPagamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.formaPagamento.HeaderText = "Forma de Pagamento";
-            this.formaPagamento.Name = "formaPagamento";
-            // 
-            // dias
-            // 
-            this.dias.HeaderText = "N° de Dias";
-            this.dias.Name = "dias";
-            // 
             // CadastroCondPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,6 +395,7 @@
             this.Controls.Add(this.label4);
             this.Name = "CadastroCondPagamento";
             this.Text = "Cadastro Condição de Pagamento";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroCondPagamento_FormClosed);
             this.Controls.SetChildIndex(this.txt_dat_cad, 0);
             this.Controls.SetChildIndex(this.lbl_data_cadastro, 0);
             this.Controls.SetChildIndex(this.txt_dat_ult_alt, 0);
@@ -455,7 +465,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroParcela;
         private System.Windows.Forms.DataGridViewTextBoxColumn porcentagem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idFormaPag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn formaPagamento_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn formaPagamento;
         private System.Windows.Forms.DataGridViewTextBoxColumn dias;
     }

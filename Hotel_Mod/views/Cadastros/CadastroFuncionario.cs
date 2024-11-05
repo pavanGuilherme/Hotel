@@ -6,6 +6,7 @@ using System.Data;
 using Hotel_Mod.Models;
 using System.Windows.Forms;
 using System.Linq;
+using Hotel_Mod.Class;
 
 
 namespace Hotel_Mod.views.Cadastros
@@ -398,7 +399,7 @@ namespace Hotel_Mod.views.Cadastros
                     txt_cod_cidade.Text = cidade_ID.ToString();
                     txt_cidade.Text = cidadeNome;
 
-                    List<string> cidadeEstadoPais = controllerFornecedor.GetCEPByIdCidade(cidade_ID);
+                    List<string> cidadeEstadoPais = controllerFuncionario.GetCEPByIdCidade(cidade_ID);
 
                     if (cidadeEstadoPais.Count > 0)
                     {
@@ -410,6 +411,15 @@ namespace Hotel_Mod.views.Cadastros
                         }
                     }
                 }
+            }
+        }
+
+        private void CadastroFuncionario_Load(object sender, EventArgs e)
+        {
+            if (altera == -1)
+            {
+                int novoCodigo = controllerFuncionario.GetUltimoCodigo() + 1;
+                txt_codigo.Text = novoCodigo.ToString();
             }
         }
     }

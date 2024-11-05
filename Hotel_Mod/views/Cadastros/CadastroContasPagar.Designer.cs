@@ -78,6 +78,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(982, 1061);
             this.Name = "CadastroContasPagar";
+            this.Load += new System.EventHandler(this.CadastroContasPagar_Load);
             this.status.ResumeLayout(false);
             this.status.PerformLayout();
             this.ResumeLayout(false);

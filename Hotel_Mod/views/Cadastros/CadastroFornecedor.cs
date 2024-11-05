@@ -19,19 +19,77 @@ namespace Hotel_Mod.views.Cadastros
         public bool Fisico = true;
         private ControllerFornecedor<Fornecedor> controllerFornecedor;
         private ConsultaCidades consultaCidades;
+
+
+
+
         public CadastroFornecedor()
         {
             InitializeComponent();
             controllerFornecedor = new ControllerFornecedor<Fornecedor>();
             consultaCidades = new ConsultaCidades();
         }
+
+
         public CadastroFornecedor(int idFornecedor) : this()
         {
-            altera = idFornecedor;
-            check_fisica.Enabled = false;
-            check_juridica.Enabled = false;
-            carrega();
+            // Verifica se há um cliente a ser alterado
+            if (altera != -1)
+            {
+                Fornecedor fornecedor = controllerFornecedor.GetById(altera);
+                if (fornecedor != null)
+                {
+                    PreencherCampos(fornecedor);
+                }
+                else
+                {
+                    MessageBox.Show("Cliente não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
+
+        private Fornecedor PreencherFornecedor()
+        {
+            return new Fornecedor
+            {
+                fornecedor_ID = int.TryParse(txt_codigo.Text, out int id) ? id : 0,
+                fornecedor_razao_social = txt_nome_fantasia.Text,
+                nome_contato = txt_contato.Text,
+                telefone = txt_telefone.Text,
+                email = txt_email.Text,
+                cpf_cnpj = txt_cpf_cnpj.Text,
+                logradouro = txt_logradouro.Text,
+                numero = int.TryParse(txt_numero.Text, out int numero) ? numero: 0 ,
+                bairro = txt_bairro.Text,
+                cidade_ID = int.TryParse(txt_cod_cidade.Text, out int cidadeId) ? cidadeId : 0,
+                cep = txt_cep.Text,
+                Ativo = check_ativo.Checked,
+                dataCadastro = DateTime.TryParse(txt_dat_cad.Text, out DateTime dataCadastro) ? dataCadastro : DateTime.Now,
+                dataUltAlt = DateTime.Now
+            };
+        }
+
+        private void PreencherCampos(Fornecedor fornecedor)
+        {
+            txt_codigo.Text = fornecedor.fornecedor_ID.ToString();
+            txt_nome_fantasia.Text = fornecedor.apelido_nome_fantasia;
+            txt_contato.Text = fornecedor.nome_contato;
+            txt_telefone.Text = fornecedor.telefone;
+            txt_email.Text = fornecedor.email;
+            txt_cpf_cnpj.Text = fornecedor.cpf_cnpj;
+            txt_logradouro.Text = fornecedor.logradouro;
+            txt_numero.Text = fornecedor.numero.ToString();
+            txt_bairro.Text = fornecedor.bairro;
+            txt_cod_cidade.Text = fornecedor.cidade_ID.ToString();
+            txt_cep.Text = fornecedor.cep;
+            txt_dat_cad.Text = fornecedor.dataCadastro.ToString("dd/MM/yyyy HH:mm:ss");
+            txt_dat_ult_alt.Text = fornecedor.dataUltAlt.ToString("dd/MM/yyyy HH:mm:ss");
+
+            // Configuração do status ativo/inativo
+            check_ativo.Checked = fornecedor.Ativo;
+            check_inativo.Checked = !fornecedor.Ativo;
+        }
+
         protected bool VerificaCamposObrigatorios()
         {
             string cpf_cnpj = new string(txt_cpf_cnpj.Text.Where(char.IsDigit).ToArray());
@@ -53,10 +111,10 @@ namespace Hotel_Mod.views.Cadastros
             }
             if (check_juridica.Checked)
             {
-                if (!validadores.CampoObrigatorio(txt_nome_contato.Text))
+                if (!validadores.CampoObrigatorio(txt_contato.Text))
                 {
                     MessageBox.Show("Campo Nome Contato é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txt_nome_contato.Focus();
+                    txt_contato.Focus();
                     return false;
                 }
             }
@@ -128,7 +186,7 @@ namespace Hotel_Mod.views.Cadastros
                 {
                     string fornecedor_razao_social = txt_razao_social.Text;
                     string apelido_nome_fantasia = txt_nome_fantasia.Text;
-                    string endereco = txt_logradouro.Text;
+                    string logradouro = txt_logradouro.Text;
                     string bairro = txt_bairro.Text;
                     int numero = Convert.ToInt32(txt_numero.Text);
                     string cep = new string(txt_cep.Text.Where(char.IsDigit).ToArray());
@@ -136,7 +194,7 @@ namespace Hotel_Mod.views.Cadastros
                     string email = txt_email.Text;
                     string telefone = new string(txt_telefone.Text.Where(char.IsDigit).ToArray());
                     string celular = new string(txt_celular.Text.Where(char.IsDigit).ToArray());
-                    string nome_contato = txt_nome_contato.Text;
+                    string nome_contato = txt_contato.Text;
                     string rg_ie = new string(txt_rg_ie.Text.Where(char.IsDigit).ToArray());
                     int cidade_ID = int.Parse(txt_cod_cidade.Text);
 
@@ -149,7 +207,7 @@ namespace Hotel_Mod.views.Cadastros
                         tipo_pessoa = Fisico,
                         fornecedor_razao_social = fornecedor_razao_social,
                         apelido_nome_fantasia = apelido_nome_fantasia,
-                        endereco = endereco,
+                        logradouro = logradouro,
                         bairro = bairro,
                         numero = numero,
                         cep = cep,
@@ -161,8 +219,8 @@ namespace Hotel_Mod.views.Cadastros
                         cpf_cnpj = cpf_cnpj,
                         rg_ie = rg_ie,
                         Ativo = Ativo,
-                        data_cadastro = dataCadastro,
-                        data_ult_alt = dataUltAlt,
+                        dataCadastro = dataCadastro,
+                        dataUltAlt = dataUltAlt,
                         cidade_ID = cidade_ID
                     };
 
@@ -197,7 +255,7 @@ namespace Hotel_Mod.views.Cadastros
                     check_juridica.Checked = !fornecedor.tipo_pessoa;
                     txt_razao_social.Text = fornecedor.fornecedor_razao_social;
                     txt_nome_fantasia.Text = fornecedor.apelido_nome_fantasia;
-                    txt_logradouro.Text = fornecedor.endereco;
+                    txt_logradouro.Text = fornecedor.logradouro;
                     txt_bairro.Text = fornecedor.bairro;
                     txt_numero.Text = fornecedor.numero.ToString();
                     txt_cep.Text = fornecedor.cep;
@@ -206,15 +264,15 @@ namespace Hotel_Mod.views.Cadastros
                     txt_email.Text = fornecedor.email;
                     txt_telefone.Text = fornecedor.telefone;
                     txt_celular.Text = fornecedor.celular;
-                    txt_nome_contato.Text = fornecedor.nome_contato;
+                    txt_contato.Text = fornecedor.nome_contato;
                     txt_cpf_cnpj.Text = fornecedor.cpf_cnpj;
                     txt_rg_ie.Text = fornecedor.rg_ie;
-                    txt_dat_cad.Text = fornecedor.data_cadastro.ToString();
-                    txt_dat_ult_alt.Text = fornecedor.data_ult_alt.ToString();
+                    txt_dat_cad.Text = fornecedor.dataCadastro.ToString();
+                    txt_dat_ult_alt.Text = fornecedor.dataUltAlt.ToString();
                     check_ativo.Checked = fornecedor.Ativo;
                     check_inativo.Checked = !fornecedor.Ativo;
 
-                    List<string> cidadeEstadoPais = controllerFornecedor.GetCEPByIdCidade(fornecedor.cidade_ID);
+                    List<string> cidadeEstadoPais = controllerFornecedor.GetCidadeEstadoEPaisByCidadeId(fornecedor.cidade_ID);
 
                     if (cidadeEstadoPais.Count > 0)
                     {
@@ -248,13 +306,13 @@ namespace Hotel_Mod.views.Cadastros
 
                 if (cidadeDetalhes != null)
                 {
-                    int cidade_ID = cidadeDetalhes.Item1;
+                    int cidadeID = cidadeDetalhes.Item1;
                     string cidadeNome = cidadeDetalhes.Item2;
 
-                    txt_cod_cidade.Text = cidade_ID.ToString();
+                    txt_cod_cidade.Text = cidadeID.ToString();
                     txt_cidade.Text = cidadeNome;
 
-                    List<string> cidadeEstadoPais = controllerFornecedor.GetCEPByIdCidade(cidade_ID);
+                    List<string> cidadeEstadoPais = controllerFornecedor.GetCidadeEstadoEPaisByCidadeId(cidadeID);
 
                     if (cidadeEstadoPais.Count > 0)
                     {
@@ -272,21 +330,48 @@ namespace Hotel_Mod.views.Cadastros
         private void button2_Click(object sender, EventArgs e)
         {
             
-          
-         
+      
         }
 
         private void check_fisica_CheckedChanged(object sender, EventArgs e)
         {
-            lbl_razao_social.Text = "Fornecedor *";
-            check_juridica.Checked = false;
+           
+            if (check_fisica.Checked == true)
+            {
+                check_juridica.Checked = false;
+            }
+
+            lbl_fornecedor.Text = "Fornecedor *";
+            lbl_cpf.Text = "CPF *";
+            txt_cpf_cnpj.Mask = "000.000.000-00";
+            lbl_rg.Text = "RG";
+            comboBox_sexo.Visible = true;
+            lbl_sexo.Visible = true;
+            lbl_contato.Visible = false;
+            txt_contato.Visible = false;
+            lbl_data_nascimento.Text = "Data Nasc.";
+            txt_cpf_cnpj.Clear();
 
         }
 
         private void check_juridica_CheckedChanged(object sender, EventArgs e)
         {
-            check_fisica.Checked = false;
-            
+            if (check_juridica.Checked == true)
+            {
+                check_fisica.Checked = false;
+            }
+
+            lbl_fornecedor.Text = "Razão Social *";
+            lbl_apelido.Text = "Nome Fantasia";
+            lbl_cpf.Text = "CNPJ *";
+            txt_cpf_cnpj.Mask = "00.000.000/0000-00";
+            lbl_rg.Text = "Inscrição Estadual";
+            comboBox_sexo.Visible = false;
+            lbl_sexo.Visible = false;
+            lbl_contato.Visible = true;
+            txt_contato.Visible = true;
+            lbl_data_nascimento.Text = "Data Fund.";
+            txt_cpf_cnpj.Clear();
         }
 
         private void CadastroFornecedor_Load(object sender, EventArgs e)

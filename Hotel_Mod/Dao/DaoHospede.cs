@@ -11,6 +11,24 @@ namespace Hotel_Mod.Dao
         {
         }
 
+
+        public int GetUltimoCodigo()
+        {
+            int proximoCodigo = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT MAX(hospede_ID) FROM hospede";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                var result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    proximoCodigo = Convert.ToInt32(result);
+                }
+            }
+            return proximoCodigo;
+        }
         public override List<T> GetAll(bool incluiInativos)
         {
             List<T> hospedes = new List<T>();
@@ -37,9 +55,6 @@ namespace Hotel_Mod.Dao
                         obj.complemento = Convert.ToString(reader["complemento"]);
                         obj.bairro = Convert.ToString(reader["bairro"]);
                         obj.cidade_id = Convert.ToInt32(reader["cidade_id"]);
-                        obj.cidade = Convert.ToString(reader["cidade"]);
-                        obj.estado = Convert.ToString(reader["estado"]);
-                        obj.pais = Convert.ToString(reader["pais"]);
                         obj.estrangeiro = Convert.ToBoolean(reader["estrangeiro"]);
                         obj.cpf = Convert.ToString(reader["cpf"]);
                         obj.rg = Convert.ToString(reader["rg"]);
@@ -64,9 +79,9 @@ namespace Hotel_Mod.Dao
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO hospede (nome, sobrenome, sexo, ativo, cep, logradouro, numero, complemento, bairro, cidade_id, cidade, estado, pais, " +
+                string query = "INSERT INTO hospede (nome, sobrenome, sexo, ativo, cep, logradouro, numero, complemento, bairro, cidade_id, " +
                     "estrangeiro, cpf, rg, passaporte, telefone, email, data_nascimento, pcd, observacao, data_cadastro, data_ult_alt) " +
-                    "VALUES (@nome, @sobrenome, @sexo, @ativo, @cep, @logradouro, @numero, @complemento, @bairro, @cidade_id, @cidade, @estado, @pais, " +
+                    "VALUES (@nome, @sobrenome, @sexo, @ativo, @cep, @logradouro, @numero, @complemento, @bairro, @cidade_id, " +
                     "@estrangeiro, @cpf, @rg, @passaporte, @telefone, @email, @data_nascimento, @pcd, @observacao, @data_cadastro, @data_ult_alt)";
 
                 SqlCommand command = new SqlCommand(query, connection);
@@ -81,18 +96,35 @@ namespace Hotel_Mod.Dao
                 command.Parameters.AddWithValue("@complemento", hospede.complemento);
                 command.Parameters.AddWithValue("@bairro", hospede.bairro);
                 command.Parameters.AddWithValue("@cidade_id", hospede.cidade_id);
-                command.Parameters.AddWithValue("@cidade", hospede.cidade);
-                command.Parameters.AddWithValue("@estado", hospede.estado);
-                command.Parameters.AddWithValue("@pais", hospede.pais);
                 command.Parameters.AddWithValue("@estrangeiro", hospede.estrangeiro);
                 command.Parameters.AddWithValue("@cpf", hospede.cpf);
                 command.Parameters.AddWithValue("@rg", hospede.rg);
-                command.Parameters.AddWithValue("@passaporte", hospede.passaporte);
+
+                // Tratamento para passaporte vazio ou nulo
+                if (string.IsNullOrWhiteSpace(hospede.passaporte) || hospede.passaporte == "0000000000000000")
+                {
+                    command.Parameters.AddWithValue("@passaporte", DBNull.Value);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@passaporte", hospede.passaporte);
+                }
+
                 command.Parameters.AddWithValue("@telefone", hospede.telefone);
                 command.Parameters.AddWithValue("@email", hospede.email);
                 command.Parameters.AddWithValue("@data_nascimento", hospede.data_nascimento ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@pcd", hospede.pcd);
-                command.Parameters.AddWithValue("@observacao", hospede.observacao);
+
+                // Tratamento para observação vazio ou nulo
+                if (string.IsNullOrWhiteSpace(hospede.observacao))
+                {
+                    command.Parameters.AddWithValue("@observacao", DBNull.Value);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@observacao", hospede.observacao);
+                }
+
                 command.Parameters.AddWithValue("@data_cadastro", hospede.data_cadastro);
                 command.Parameters.AddWithValue("@data_ult_alt", hospede.data_ult_alt);
 
@@ -100,6 +132,8 @@ namespace Hotel_Mod.Dao
                 command.ExecuteNonQuery();
             }
         }
+
+
 
         public override void excluir(int id)
         {
@@ -122,7 +156,7 @@ namespace Hotel_Mod.Dao
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "UPDATE hospede SET nome = @nome, sobrenome = @sobrenome, sexo = @sexo, ativo = @ativo, cep = @cep, logradouro = @logradouro, numero = @numero, " +
-                    "complemento = @complemento, bairro = @bairro, cidade_id = @cidade_id, cidade = @cidade, estado = @estado, pais = @pais, estrangeiro = @estrangeiro, " +
+                    "complemento = @complemento, bairro = @bairro, cidade_id = @cidade_id, estrangeiro = @estrangeiro, " +
                     "cpf = @cpf, rg = @rg, passaporte = @passaporte, telefone = @telefone, email = @email, data_nascimento = @data_nascimento, pcd = @pcd, observacao = @observacao, " +
                     "data_cadastro = @data_cadastro, data_ult_alt = @data_ult_alt WHERE hospede_id = @hospede_id";
 
@@ -138,9 +172,6 @@ namespace Hotel_Mod.Dao
                 command.Parameters.AddWithValue("@complemento", hospede.complemento);
                 command.Parameters.AddWithValue("@bairro", hospede.bairro);
                 command.Parameters.AddWithValue("@cidade_id", hospede.cidade_id);
-                command.Parameters.AddWithValue("@cidade", hospede.cidade);
-                command.Parameters.AddWithValue("@estado", hospede.estado);
-                command.Parameters.AddWithValue("@pais", hospede.pais);
                 command.Parameters.AddWithValue("@estrangeiro", hospede.estrangeiro);
                 command.Parameters.AddWithValue("@cpf", hospede.cpf);
                 command.Parameters.AddWithValue("@rg", hospede.rg);
@@ -184,9 +215,6 @@ namespace Hotel_Mod.Dao
                         obj.complemento = reader["complemento"].ToString();
                         obj.bairro = reader["bairro"].ToString();
                         obj.cidade_id = Convert.ToInt32(reader["cidade_id"]);
-                        obj.cidade = reader["cidade"].ToString();
-                        obj.estado = reader["estado"].ToString();
-                        obj.pais = reader["pais"].ToString();
                         obj.estrangeiro = Convert.ToBoolean(reader["estrangeiro"]);
                         obj.cpf = reader["cpf"].ToString();
                         obj.rg = reader["rg"].ToString();
@@ -208,7 +236,7 @@ namespace Hotel_Mod.Dao
             }
         }
 
-
+        // Método para obter cidade, estado e país a partir de cidade_id (chave estrangeira)
         public List<string> GetCidadeEstadoEPaisByCidadeId(int cidade_ID)
         {
             List<string> cidadeInfos = new List<string>();
@@ -216,11 +244,11 @@ namespace Hotel_Mod.Dao
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-            SELECT c.cidade AS cidade, e.estado AS estado, p.pais AS pais
-            FROM cidades c
-            INNER JOIN estados e ON c.estado_ID = e.estado_ID
-            INNER JOIN paises p ON e.pais_ID = p.pais_ID
-            WHERE c.cidade_ID = @cidade_ID";
+                SELECT c.cidade AS cidade, e.estado AS estado, p.pais AS pais
+                FROM cidades c
+                INNER JOIN estados e ON c.estado_ID = e.estado_ID
+                INNER JOIN paises p ON e.pais_ID = p.pais_ID
+                WHERE c.cidade_ID = @cidade_ID";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@cidade_ID", cidade_ID);

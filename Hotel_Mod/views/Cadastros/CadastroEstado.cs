@@ -31,15 +31,7 @@ namespace Hotel_Mod.views
             carrega();
         }
 
-        //public override void Bloqueia()
-        //{
-        //    txtEstado.Enabled = false;
-        //    txtUF.Enabled = false;
-        //    txtPais.Enabled = false;
-        //    txtCodPais.Enabled = false;
-        //    btnConsultaPais.Enabled = false;
-        //}
-
+       
         public override void carrega()
         {
             if (altera != -1)
@@ -72,6 +64,9 @@ namespace Hotel_Mod.views
 
         public override void LimparCampos()
         {
+
+            base.LimparCampos();
+
             altera = -1;
             txt_codigo.Clear();
             txt_estado.Clear();
@@ -220,6 +215,15 @@ namespace Hotel_Mod.views
         private void CadastroEstado_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((ConsultaEstado)this.Owner).AtualizarConsultaEstados(false);
+        }
+
+        private void CadastroEstado_Load(object sender, EventArgs e)
+        {
+            if (altera == -1)
+            {
+                int novoCodigo = controllerEstado.GetUltimoCodigo() + 1;
+                txt_codigo.Text = novoCodigo.ToString();
+            }
         }
     }
 }

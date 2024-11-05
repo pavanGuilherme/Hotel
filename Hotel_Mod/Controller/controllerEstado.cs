@@ -17,6 +17,11 @@ namespace Hotel_Mod.Controller
             daoEstado = new DaoEstado<T>();
         }
 
+        public int GetUltimoCodigo()
+        {
+            return daoEstado.GetUltimoCodigo();
+        }
+
         public override void alterar(T obj)
         {
             daoEstado.alterar(obj);

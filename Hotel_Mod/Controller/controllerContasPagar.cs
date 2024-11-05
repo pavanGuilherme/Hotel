@@ -16,6 +16,11 @@ namespace Hotel_Mod.Controller
             contasPagarDAO = new DaoContasPagar();
         }
 
+        public int GetUltimoCodigo()
+        {
+            return contasPagarDAO.GetUltimoCodigo();
+        }
+
         public override void alterar(T obj)
         {
             contasPagarDAO.alterar(obj as ContasPagar);

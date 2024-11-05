@@ -16,6 +16,11 @@ namespace Hotel_Mod.Class
             daoCidade = new DaoCidade<T>();
         }
 
+        public int GetUltimoCodigo()
+        {
+            return daoCidade.GetUltimoCodigo();
+        }
+
         public override void alterar(T obj)
         {
             daoCidade.alterar(obj);

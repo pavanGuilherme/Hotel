@@ -36,7 +36,7 @@ namespace Hotel_Mod.views.Consultas
         {
             if (dataGridView_hospede.SelectedRows.Count > 0)
             {
-                int hospede_ID = (int)dataGridView_hospede.SelectedRows[0].Cells["codigo"].Value;
+                int hospede_ID = (int)dataGridView_hospede.SelectedRows[0].Cells["hospede_ID"].Value;
                 CadastroHospede cadastroHospede = new CadastroHospede(hospede_ID);
                 cadastroHospede.Owner = this;
                 cadastroHospede.ShowDialog();
@@ -53,7 +53,7 @@ namespace Hotel_Mod.views.Consultas
             {
                 if (MessageBox.Show("Tem certeza de que deseja excluir este hospede?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int hospede_ID = (int)dataGridView_hospede.SelectedRows[0].Cells["codigo"].Value;
+                    int hospede_ID = (int)dataGridView_hospede.SelectedRows[0].Cells["hospede_ID"].Value;
                     controllerHospede.excluir(hospede_ID);
                     dataGridView_hospede.DataSource = controllerHospede.GetAll(btn_buscainativos.Checked);
                 }
@@ -85,37 +85,11 @@ namespace Hotel_Mod.views.Consultas
             }
             else
             {
-                AtualizarConsultaPaises(btn_buscainativos.Checked);
+                AtualizarConsultaHospede(btn_buscainativos.Checked);
             }
         }
-        public void AtualizarConsultaEstados(bool incluirInativos)
-        {
-            try
-            {
-                //recarrega os dados dos estados na consulta de estados
-                dataGridView_hospede.DataSource = controllerHospede.GetAll(incluirInativos);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao atualizar a consulta de clientes: " + ex.Message.ToString(), "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        public void AtualizarConsultaPaises(bool incluirInativos)
-        {
-            try
-            {
-                //recarrega os dados dos países na consulta de países
-                dataGridView_hospede.DataSource = controllerHospede.GetAll(incluirInativos);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao atualizar a consulta de clientes: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void AtualizarConsultaClientes(bool incluirInativos)
+      
+        public void AtualizarConsultaHospede(bool incluirInativos)
         {
             try
             {
@@ -132,5 +106,52 @@ namespace Hotel_Mod.views.Consultas
             cadastroHospede.LimparCampos();
         }
 
+        private void ConsultaHospede_Load(object sender, EventArgs e)
+        {
+            try
+            {
+
+                CadastroClientes cadastroCliente = new CadastroClientes();
+                cadastroCliente.FormClosed += (s, args) => AtualizarConsultaHospede(btn_buscainativos.Checked); //quando aciona o Form Closed chama o AtualizarConsulta
+
+                dataGridView_hospede.AutoGenerateColumns = false;
+                dataGridView_hospede.Columns["hospede_ID"].DataPropertyName = "hospede_ID";
+                dataGridView_hospede.Columns["nome"].DataPropertyName = "nome";
+                dataGridView_hospede.Columns["cpf"].DataPropertyName = "cpf";
+                dataGridView_hospede.Columns["email"].DataPropertyName = "email";
+                dataGridView_hospede.Columns["telefone"].DataPropertyName = "telefone";
+
+                AtualizarConsultaHospede(btn_buscainativos.Checked);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro ao carregar os hospedes: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_sair_Click(object sender, EventArgs e)
+        {
+            if (btn_sair.Text == "Selecionar")
+            {
+                if (dataGridView_hospede.SelectedRows.Count > 0)
+                {
+                    int hospede_id = Convert.ToInt32(dataGridView_hospede.SelectedRows[0].Cells["hospede_ID"].Value);
+                    string nome = dataGridView_hospede.SelectedRows[0].Cells["nome"].Value.ToString();
+
+
+                    this.Tag = new Tuple<int, string>(hospede_id, nome);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, selecione um hóspede.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                Close();
+            }
+        }
     }
 }

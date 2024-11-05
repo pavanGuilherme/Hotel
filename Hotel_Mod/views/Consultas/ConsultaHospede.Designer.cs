@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.dataGridView_hospede = new System.Windows.Forms.DataGridView();
+            this.hospede_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.celular = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_hospede)).BeginInit();
             this.SuspendLayout();
@@ -61,19 +62,26 @@
             // 
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
             // dataGridView_hospede
             // 
             this.dataGridView_hospede.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_hospede.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.hospede_ID,
             this.nome,
             this.cpf,
             this.email,
-            this.celular});
+            this.telefone});
             this.dataGridView_hospede.Location = new System.Drawing.Point(13, 63);
             this.dataGridView_hospede.Name = "dataGridView_hospede";
             this.dataGridView_hospede.Size = new System.Drawing.Size(970, 409);
             this.dataGridView_hospede.TabIndex = 69;
+            // 
+            // hospede_ID
+            // 
+            this.hospede_ID.HeaderText = "Código";
+            this.hospede_ID.Name = "hospede_ID";
             // 
             // nome
             // 
@@ -93,11 +101,11 @@
             this.email.HeaderText = "email";
             this.email.Name = "email";
             // 
-            // celular
+            // telefone
             // 
-            this.celular.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.celular.HeaderText = "Celular";
-            this.celular.Name = "celular";
+            this.telefone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.telefone.HeaderText = "Telefone";
+            this.telefone.Name = "telefone";
             // 
             // ConsultaHospede
             // 
@@ -106,6 +114,7 @@
             this.Controls.Add(this.dataGridView_hospede);
             this.Name = "ConsultaHospede";
             this.Text = "Consulta Hospede";
+            this.Load += new System.EventHandler(this.ConsultaHospede_Load);
             this.Controls.SetChildIndex(this.txt_pesquisar, 0);
             this.Controls.SetChildIndex(this.btn_sair, 0);
             this.Controls.SetChildIndex(this.btn_excluir, 0);
@@ -126,9 +135,10 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView_hospede;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hospede_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn cpf;
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn celular;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefone;
     }
 }

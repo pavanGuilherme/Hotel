@@ -29,18 +29,14 @@
         private void InitializeComponent()
         {
             this.dataGridViewProduto = new System.Windows.Forms.DataGridView();
-            this.Código = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Unidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Preço_Venda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.produto_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.produto_unidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nome_produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preco_medio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProduto)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btn_buscainativos
-            // 
-            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged_1);
             // 
             // btn_pesquisar
             // 
@@ -67,43 +63,47 @@
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
             // 
+            // btn_buscainativos
+            // 
+            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged_1);
+            // 
             // dataGridViewProduto
             // 
             this.dataGridViewProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProduto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Código,
-            this.Unidade,
-            this.Produto,
-            this.Preço_Venda,
+            this.produto_ID,
+            this.produto_unidade,
+            this.nome_produto,
+            this.preco_medio,
             this.Ativo});
             this.dataGridViewProduto.Location = new System.Drawing.Point(12, 63);
             this.dataGridViewProduto.Name = "dataGridViewProduto";
             this.dataGridViewProduto.Size = new System.Drawing.Size(971, 405);
             this.dataGridViewProduto.TabIndex = 69;
             // 
-            // Código
+            // produto_ID
             // 
-            this.Código.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Código.HeaderText = "Código";
-            this.Código.Name = "Código";
+            this.produto_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.produto_ID.HeaderText = "Código";
+            this.produto_ID.Name = "produto_ID";
             // 
-            // Unidade
+            // produto_unidade
             // 
-            this.Unidade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Unidade.HeaderText = "Unidade";
-            this.Unidade.Name = "Unidade";
+            this.produto_unidade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.produto_unidade.HeaderText = "Unidade";
+            this.produto_unidade.Name = "produto_unidade";
             // 
-            // Produto
+            // nome_produto
             // 
-            this.Produto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Produto.HeaderText = "Produto";
-            this.Produto.Name = "Produto";
+            this.nome_produto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nome_produto.HeaderText = "Produto";
+            this.nome_produto.Name = "nome_produto";
             // 
-            // Preço_Venda
+            // preco_medio
             // 
-            this.Preço_Venda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Preço_Venda.HeaderText = "Preço Venda";
-            this.Preço_Venda.Name = "Preço_Venda";
+            this.preco_medio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.preco_medio.HeaderText = "Preço Médio";
+            this.preco_medio.Name = "preco_medio";
             // 
             // Ativo
             // 
@@ -117,6 +117,7 @@
             this.Controls.Add(this.dataGridViewProduto);
             this.Name = "ConsultaProduto";
             this.Text = "Consulta Produtos";
+            this.Load += new System.EventHandler(this.ConsultaProduto_Load_1);
             this.Controls.SetChildIndex(this.txt_pesquisar, 0);
             this.Controls.SetChildIndex(this.btn_sair, 0);
             this.Controls.SetChildIndex(this.btn_excluir, 0);
@@ -137,10 +138,10 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewProduto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Código;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Unidade;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Produto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Preço_Venda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn produto_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn produto_unidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nome_produto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preco_medio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ativo;
     }
 }

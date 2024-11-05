@@ -26,7 +26,7 @@ namespace Hotel_Mod.views
 
         public override void carrega()
         {
-            //verifica se há um país a ser alterado
+           
             if (altera != -1)
             {
                 Pais pais = controllerPais.GetById(altera);
@@ -34,9 +34,9 @@ namespace Hotel_Mod.views
                 {
                     //carrega os dados do país nos controles do formulário
                     txt_codigo.Text = pais.pais_ID.ToString();
-                    Txt_pais.Text = pais.pais;
-                    Txt_sigla.Text = pais.sigla;
-                    Txt_ddi.Text = pais.ddi;
+                    txt_pais.Text = pais.pais;
+                    txt_sigla.Text = pais.sigla;
+                    txt_ddi.Text = pais.ddi;
                     txt_dat_cad.Text = pais.data_cadastro.ToString();
                     txt_dat_ult_alt.Text = pais.data_ult_alt.ToString();
                     check_ativo.Checked = pais.ativo;
@@ -50,37 +50,37 @@ namespace Hotel_Mod.views
         }
         public override void salvar()
         {
-            if (!validadores.CampoObrigatorio(Txt_pais.Text))
+            if (!validadores.CampoObrigatorio(txt_pais.Text))
             {
                 MessageBox.Show("Campo País é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Txt_pais.Focus();
+                txt_pais.Focus();
             }
-            else if (!validadores.CampoObrigatorio(Txt_sigla.Text))
+            else if (!validadores.CampoObrigatorio(txt_sigla.Text))
             {
                 MessageBox.Show("Campo Sigla é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Txt_sigla.Focus();
+                txt_sigla.Focus();
             }
-            else if (!validadores.CampoObrigatorio(Txt_ddi.Text))
+            else if (!validadores.CampoObrigatorio(txt_ddi.Text))
             {
                 MessageBox.Show("Campo DDI é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Txt_ddi.Focus();
+                txt_ddi.Focus();
             }
             else
             {
                 int idAtual = altera != -1 ? altera : -1;
 
-                if (controllerPais.JaCadastrado(Txt_pais.Text, idAtual))
+                if (controllerPais.JaCadastrado(txt_pais.Text, idAtual))
                 {
                     MessageBox.Show("País já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Txt_pais.Focus();
+                    txt_pais.Focus();
                 }
                 else
                 {
                     try
                     {
-                        string pais = Txt_pais.Text;
-                        string sigla = Txt_sigla.Text;
-                        string ddi = Txt_ddi.Text;
+                        string pais = txt_pais.Text;
+                        string sigla = txt_sigla.Text;
+                        string ddi = txt_ddi.Text;
 
                         DateTime.TryParse(txt_dat_cad.Text, out DateTime data_cadastro);
                         DateTime data_ult_alt = altera != -1 ? DateTime.Now : DateTime.TryParse(txt_dat_ult_alt.Text, out DateTime result) ? result : DateTime.MinValue;
@@ -116,11 +116,13 @@ namespace Hotel_Mod.views
         }
         public override void LimparCampos()
         {
+            base.LimparCampos();    
+
             altera = -1;
             txt_codigo.Clear();
-            Txt_pais.Clear();
-            Txt_sigla.Clear();
-            Txt_ddi.Clear();
+            txt_pais.Clear();
+            txt_sigla.Clear();
+            txt_ddi.Clear();
             txt_dat_cad.Clear();
             txt_dat_ult_alt.Clear();
             check_ativo.Checked = true;
@@ -137,34 +139,41 @@ namespace Hotel_Mod.views
             ((ConsultaPais)this.Owner).AtualizarConsultaPaises(false);
         }
 
-        private void CadastroPaises_Load(object sender, EventArgs e)
+     
+        private void txt_pais_Leave_1(object sender, EventArgs e)
         {
-
-        }
-        private void Txt_pais_Leave_1(object sender, EventArgs e)
-        {
-            if (!validadores.VerificaLetras(Txt_pais.Text))
+            if (!validadores.VerificaLetras(txt_pais.Text))
             {
                 MessageBox.Show("campo inválido.", "erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Txt_pais.Focus();
+                txt_pais.Focus();
             }
         }
 
-        private void Txt_sigla_Leave(object sender, EventArgs e)
+        private void txt_sigla_Leave(object sender, EventArgs e)
         {
-            if (!validadores.VerificaLetrasSemEspaco(Txt_sigla.Text))
+            if (!validadores.VerificaLetrasSemEspaco(txt_sigla.Text))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Txt_sigla.Focus();
+                txt_sigla.Focus();
             }
         }
 
-        private void Txt_ddi_Leave(object sender, EventArgs e)
+        private void txt_ddi_Leave(object sender, EventArgs e)
         {
-            if (!validadores.VerificaNumeros(Txt_ddi.Text))
+            if (!validadores.VerificaNumeros(txt_ddi.Text))
             {
                 MessageBox.Show("Campo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Txt_ddi.Focus();
+                txt_ddi.Focus();
+            }
+        }
+
+        private void CadastroPais_Load(object sender, EventArgs e)
+        {
+
+            if (altera == -1)
+            {
+                int novoCodigo = controllerPais.GetUltimoCodigo() + 1;
+                txt_codigo.Text = novoCodigo.ToString();
             }
         }
     }

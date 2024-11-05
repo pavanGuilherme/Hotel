@@ -639,6 +639,7 @@
             this.Controls.Add(this.lbl_cpf);
             this.Name = "CadastroFuncionario";
             this.Text = "Cadastro Funcionários";
+            this.Load += new System.EventHandler(this.CadastroFuncionario_Load);
             this.Controls.SetChildIndex(this.lbl_cpf, 0);
             this.Controls.SetChildIndex(this.lbl_rg, 0);
             this.Controls.SetChildIndex(this.lbl_data_nascimento, 0);

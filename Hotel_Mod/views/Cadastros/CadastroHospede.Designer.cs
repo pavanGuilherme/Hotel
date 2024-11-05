@@ -32,8 +32,6 @@
             this.txt_passaporte = new System.Windows.Forms.MaskedTextBox();
             this.comboBox_sexo = new System.Windows.Forms.ComboBox();
             this.lbl_sexo = new System.Windows.Forms.Label();
-            this.lbl_sobrenome = new System.Windows.Forms.Label();
-            this.txt_sobrenome = new System.Windows.Forms.TextBox();
             this.txt_nome = new System.Windows.Forms.TextBox();
             this.lbl_nome = new System.Windows.Forms.Label();
             this.txt_data_nascimento = new System.Windows.Forms.MaskedTextBox();
@@ -70,6 +68,8 @@
             this.lbl_cep = new System.Windows.Forms.Label();
             this.txt_obs = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.txt_sobrenome = new System.Windows.Forms.TextBox();
+            this.lbl_sobrenome = new System.Windows.Forms.Label();
             this.status.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -92,6 +92,7 @@
             this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_salvar.FlatAppearance.BorderSize = 0;
             this.btn_salvar.Location = new System.Drawing.Point(956, 632);
+            this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click);
             // 
             // btn_sair
             // 
@@ -165,25 +166,6 @@
             this.lbl_sexo.Size = new System.Drawing.Size(54, 24);
             this.lbl_sexo.TabIndex = 241;
             this.lbl_sexo.Text = "Sexo";
-            // 
-            // lbl_sobrenome
-            // 
-            this.lbl_sobrenome.AutoSize = true;
-            this.lbl_sobrenome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_sobrenome.Location = new System.Drawing.Point(582, 19);
-            this.lbl_sobrenome.Name = "lbl_sobrenome";
-            this.lbl_sobrenome.Size = new System.Drawing.Size(110, 24);
-            this.lbl_sobrenome.TabIndex = 240;
-            this.lbl_sobrenome.Text = "Sobrenome";
-            // 
-            // txt_sobrenome
-            // 
-            this.txt_sobrenome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txt_sobrenome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_sobrenome.Location = new System.Drawing.Point(584, 51);
-            this.txt_sobrenome.Name = "txt_sobrenome";
-            this.txt_sobrenome.Size = new System.Drawing.Size(236, 29);
-            this.txt_sobrenome.TabIndex = 239;
             // 
             // txt_nome
             // 
@@ -547,6 +529,25 @@
             this.label11.TabIndex = 249;
             this.label11.Text = "Observação";
             // 
+            // txt_sobrenome
+            // 
+            this.txt_sobrenome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_sobrenome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_sobrenome.Location = new System.Drawing.Point(584, 51);
+            this.txt_sobrenome.Name = "txt_sobrenome";
+            this.txt_sobrenome.Size = new System.Drawing.Size(236, 29);
+            this.txt_sobrenome.TabIndex = 239;
+            // 
+            // lbl_sobrenome
+            // 
+            this.lbl_sobrenome.AutoSize = true;
+            this.lbl_sobrenome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_sobrenome.Location = new System.Drawing.Point(582, 19);
+            this.lbl_sobrenome.Name = "lbl_sobrenome";
+            this.lbl_sobrenome.Size = new System.Drawing.Size(110, 24);
+            this.lbl_sobrenome.TabIndex = 240;
+            this.lbl_sobrenome.Text = "Sobrenome";
+            // 
             // CadastroHospede
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -621,8 +622,6 @@
         private System.Windows.Forms.MaskedTextBox txt_passaporte;
         private System.Windows.Forms.ComboBox comboBox_sexo;
         private System.Windows.Forms.Label lbl_sexo;
-        private System.Windows.Forms.Label lbl_sobrenome;
-        private System.Windows.Forms.TextBox txt_sobrenome;
         private System.Windows.Forms.TextBox txt_nome;
         private System.Windows.Forms.Label lbl_nome;
         private System.Windows.Forms.MaskedTextBox txt_data_nascimento;
@@ -659,5 +658,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txt_sobrenome;
+        private System.Windows.Forms.Label lbl_sobrenome;
     }
 }

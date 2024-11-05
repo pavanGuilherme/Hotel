@@ -27,6 +27,11 @@ namespace Hotel_Mod.Controller
             reservasDAO.excluir(idObj);
         }
 
+        public int GetUltimoCodigo()
+        {
+            return reservasDAO.GetUltimoCodigo();
+        }
+
         public override List<T> GetAll(bool incluiInativos)
         {
             List<T> lista = new List<T>();
@@ -37,62 +42,37 @@ namespace Hotel_Mod.Controller
             }
             return lista;
         }
-
         public override T GetById(int idObj)
         {
             return reservasDAO.GetById(idObj) as T;
         }
 
-      
+        public List<DateTime> ObterDatasIndisponiveis(int quartoId, DateTime dataInicio, DateTime dataFim)
+        {
+            return reservasDAO.ObterDatasIndisponiveis(quartoId, dataInicio, dataFim);
+        }
+
+        public bool InserirOcupacao(Ocupacao ocupacao)
+        {
+            return reservasDAO.InserirOcupacao(ocupacao);
+        }
+
         public override void salvar(T obj)
         {
             reservasDAO.Salvar((T)(obj as Reserva));
         }
+
+        public void InserirHospedeNaReserva(int reservaID, int hospedeID)
+        {
+            reservasDAO.InserirHospedeNaReserva(reservaID, hospedeID);
+        }
+
 
         public bool CancelarReserva(int reserva_ID)
         {
             return reservasDAO.CancelarReserva(reserva_ID);
         }
 
-        //public bool VerificarDisponibilidade(int idQuarto, DateTime dataEntrada, DateTime dataSaida)
-        //{
-        //    return reservasDAO.VerificarDisponibilidade(idQuarto, dataEntrada, dataSaida);
-        //}
-
-        public bool JaReservado(int idCliente, DateTime dataEntrada, DateTime dataSaida, bool incluindo)
-        {
-            List<Reserva> reservas = reservasDAO.GetAll(false).Cast<Reserva>().ToList();
-
-            foreach (Reserva reserva in reservas)
-            {
-                if (reserva.cliente_ID == idCliente &&
-                    reserva.data_checkin == dataEntrada &&
-                    reserva.data_checkout == dataSaida)
-                {
-                    if (incluindo)
-                    {
-                        // Se está incluindo e encontrou um registro com a mesma chave, retorna true
-                        return true;
-                    }
-                    else
-                    {
-                        // Se está alterando, verificar se é a mesma reserva que está sendo alterada
-                        if (reserva.cliente_ID == idCliente &&
-                            reserva.data_checkin == dataEntrada &&
-                            reserva.data_checkout == dataSaida)
-                        {
-                            // É a mesma reserva que está sendo alterada, não é duplicada
-                            return false;
-                        }
-                        else
-                        {
-                            // É uma reserva diferente, retorna true
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
+      
     }
 }

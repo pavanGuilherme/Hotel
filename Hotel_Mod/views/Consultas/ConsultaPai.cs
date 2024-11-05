@@ -22,7 +22,7 @@ namespace Hotel_Mod.views
         public virtual void Excluir() { }
         public virtual void Pesquisar() { }
 
-       
+
 
         private void txtPesquisar_KeyDown(object sender, KeyEventArgs e)
         {
@@ -59,6 +59,16 @@ namespace Hotel_Mod.views
         private void btn_pesquisar_Click(object sender, EventArgs e)
         {
             Pesquisar();
+        }
+
+        private void btn_buscainativos_CheckedChanged(object sender, EventArgs e)
+        {
+         
+            if(btn_buscainativos.Checked == false)
+            {
+                btn_buscainativos.Checked = true;  
+            }
+
         }
     }
 }

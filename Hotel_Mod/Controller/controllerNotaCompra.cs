@@ -19,6 +19,11 @@ namespace Hotel_Mod.Class
         {
             daoNotaCompra.alterar(obj);
         }
+        public int GetUltimoCodigo()
+        {
+            return daoNotaCompra.GetUltimoCodigo();
+        }
+
 
         public override void excluir(int idObj)
         {

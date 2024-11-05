@@ -17,6 +17,11 @@ namespace Hotel_Mod.Controller
             daoProduto = new DaoProduto<T>();
         }
 
+        public int GetUltimoCodigo()
+        {
+            return daoProduto.GetUltimoCodigo();
+        }
+
         public override void alterar(T obj)
         {
             daoProduto.alterar(obj);
@@ -37,6 +42,16 @@ namespace Hotel_Mod.Controller
             return daoProduto.GetById(idObj);
         }
 
+         public List<string> GetFornecedorById(int fornecedor_ID)
+        {
+            return daoProduto.GetFornecedorById(fornecedor_ID);
+        }
+
+        public (string Produto, string Unidade, decimal PrecoVenda)? getProduto(int id)
+        {
+            return daoProduto.getProduto(id);
+        }
+
 
         public override List<T> GetAll(bool inativos)
         {
@@ -53,7 +68,7 @@ namespace Hotel_Mod.Controller
                 foreach (var produto in Model)
                 {
                     // Verifica se o nome do produto já existe e não é o produto atual que está sendo alterado
-                    if (produto.produto.Equals(nome, StringComparison.OrdinalIgnoreCase) && produto.produto_ID != idAtual)
+                    if (produto.nome_produto.Equals(nome, StringComparison.OrdinalIgnoreCase) && produto.produto_ID != idAtual)
                     {
                         return true;
                     }

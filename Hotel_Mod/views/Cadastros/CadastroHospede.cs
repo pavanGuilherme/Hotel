@@ -50,11 +50,7 @@ namespace Hotel_Mod.views.Cadastros
                 MessageBox.Show("Campo nome é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_nome.Focus();
             }
-            else if (!validadores.CampoObrigatorio(txt_sobrenome.Text))
-            {
-                MessageBox.Show("Campo apelido é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_sobrenome.Focus();
-            }
+          
             else if (!validadores.CampoObrigatorio(comboBox_sexo.Text))
             {
                 MessageBox.Show("Campo sexo é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -136,7 +132,6 @@ namespace Hotel_Mod.views.Cadastros
             return new Hospede
             {
                 nome = txt_nome.Text,
-                sobrenome = txt_sobrenome.Text,
                 data_nascimento = DateTime.Parse(txt_data_nascimento.Text),
                 telefone = txt_telefone.Text,
                 cpf = txt_cpf.Text,
@@ -157,8 +152,7 @@ namespace Hotel_Mod.views.Cadastros
         private void PreencherCampos(Hospede hospede)
         {
             txt_codigo.Text = hospede.hospede_id.ToString();      
-            txt_nome.Text = hospede.nome;                         
-            txt_sobrenome.Text = hospede.sobrenome;               
+            txt_nome.Text = hospede.nome;                                    
             txt_telefone.Text = hospede.telefone;                
             txt_numero.Text = hospede.numero;                     
             txt_email.Text = hospede.email;                       

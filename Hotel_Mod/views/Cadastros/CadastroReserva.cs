@@ -27,6 +27,8 @@ namespace Hotel_Mod.views.Cadastros
         private ControllerFormaPagamento<FormaPagamento> controllerFormaPagamento;
         private ConsultaFormaPagamento consultaFormaPagamento;
         private controllerQuarto<Quarto> controllerQuarto;
+        private controllerTipoQuarto<tipo_quarto> controllerTipoQuarto;
+        private ConsultaTipoQuarto consultaTipoQuarto;  
 
         private ConsultaHospede consultaHospede;
         private controllerHospede<Hospede> controllerHospede;
@@ -34,24 +36,26 @@ namespace Hotel_Mod.views.Cadastros
         decimal juros;
         decimal descontos;
         decimal multa;
-
+        private bool reservaSalva = false;
+        private int reservaIdAtual;
         string dataPainel;
+        private int tipoQuartoSelecionado;
 
         Int32 mes;
         Int32 diasMes;
 
+        public int? ReservaId { get; set; }
+
         private int quartoId;
-
-
-
-
 
         public CadastroReserva()
         {
             InitializeComponent();
 
-            // Populando o ano e mês na inicialização
-            Populartxt_mesAno();
+            daoReserva = new DaoReserva<Reserva>();
+            reservaIdAtual = daoReserva.ObterProximoReservaId();
+
+
             dtp_checkin.ValueChanged += dtp_checkin_ValueChanged_1;
             dtp_checkout.ValueChanged += dtp_checkout_ValueChanged;
 
@@ -72,6 +76,11 @@ namespace Hotel_Mod.views.Cadastros
             consultaHospede = new ConsultaHospede();
             controllerHospede = new controllerHospede<Hospede>();
 
+            consultaTipoQuarto = new ConsultaTipoQuarto();
+            controllerTipoQuarto = new controllerTipoQuarto<tipo_quarto>();
+
+
+
         }
 
         private void AtualizarNumeroDeDias()
@@ -91,20 +100,17 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
+
         public override void LimparCampos()
         {
             base.LimparCampos();
-            txt_numero.Clear();
+            txt_cod_tipo.Clear();
             txt_num_dias.Clear();
-
-            txt_numero.Clear();
+            txt_tipo_quarto.Clear();    
+            txt_vlr_tarifa.Clear(); 
             txt_nome_cliente.Clear();
             txt_cpf.Clear();
             txt_telefone.Clear();
-            txt_cod_quarto.Clear();
-            txt_numero.Clear();
-            txt_andar.Clear();
-            txt_valor_diaria.Clear();
             txt_num_dias.Clear();
             txt_valor_total.Clear();
             check_ativo.Checked = true;
@@ -143,68 +149,11 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
-        private void btn_busca_cod_quarto_Click(object sender, EventArgs e)
+        public CadastroReserva(int reserva_id) : this()
         {
-            if (txt_num_dias.Text == null)
-            {
-                MessageBox.Show("Escolha uma data para verificar se o quarto está disponivel !");
-            }
-            consultaQuarto.btn_sair.Text = "Selecionar";
-
-            if (consultaQuarto.ShowDialog() == DialogResult.OK)
-            {
-                var quartoDetalhes = consultaQuarto.Tag as Tuple<int, int, int, decimal, string>;
-
-                if (quartoDetalhes != null)
-                {
-                    int quarto_ID = quartoDetalhes.Item1;
-                    int numero = quartoDetalhes.Item2;
-                    int andar = quartoDetalhes.Item3;
-                    decimal valorDiaria = quartoDetalhes.Item4;
-                    string tipo = quartoDetalhes.Item5;
-
-                    txt_cod_quarto.Text = quarto_ID.ToString();
-                    txt_numero.Text = numero.ToString();
-                    txt_andar.Text = andar.ToString();
-                    txt_valor_diaria.Text = valorDiaria.ToString();
-                    txt_tipo_quarto.Text = tipo.ToString();
-
-                    Quarto QuartoDetalhes = controllerQuarto.GetById(quarto_ID);
-                    if (QuartoDetalhes != null)
-                        txt_cod_quarto.Text = QuartoDetalhes.quarto_ID.ToString();
-  
-                }
-            }
+            altera = reserva_id;
+            carrega();
         }
-
-        private void btn_cancelar_reserva_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Tem certeza que deseja cancelar esta reserva?", "Confirmação", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                // Suponha que o ID da reserva seja obtido de algum campo
-                int reservaId = int.Parse(txt_codigo.Text);
-
-                // Chama o método CancelarReserva e verifica o resultado
-                bool sucesso = controllerReservas.CancelarReserva(reservaId);
-
-                if (sucesso)
-                {
-                    MessageBox.Show("Reserva cancelada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-
-                    lbl_cancelada.Visible = true;
-                    lbl_data_cancelamento.Visible = true;
-                    txt_data_cancelamento.Visible = true;
-                }
-                else
-                {
-                    MessageBox.Show("Falha ao cancelar a reserva.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-
         private void dtp_checkout_ValueChanged(object sender, EventArgs e)
         {
             AtualizarNumeroDeDias();
@@ -232,41 +181,7 @@ namespace Hotel_Mod.views.Cadastros
 
             return true;
         }
-
-        //private void ValidarDatas()
-        //{
-        //    DateTime checkinDate = dtp_checkin.Value;
-        //    DateTime checkoutDate = dtp_checkout.Value;
-
-        //    if (checkinDate > checkoutDate)
-        //    {
-        //        MessageBox.Show("A data de check-in não pode ser maior que a data de check-out.", "Erro de validação", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        dtp_checkin.Value = dtp_checkout.Value;
-        //    }
-        //}
-
-        private void CadastroReserva_Load(object sender, EventArgs e)
-        {
-            if (altera == -1)
-            {
-                int novoCodigo = controllerReservas.GetUltimoCodigo() + 1;
-                txt_codigo.Text = novoCodigo.ToString();
-            }
-
-
-            foreach (Control control in this.Controls)
-            {
-                if (control is Label label && label.Tag?.ToString() == "Dia")
-                {
-                    label.Click += lbl_1_Click;
-                }
-            }
-
-
-            dtp_checkout.Value = DateTime.Now.AddDays(7);
-
-            
-        }
+       
 
         private void btn_busca_cond_pagamento_Click(object sender, EventArgs e)
         {
@@ -286,7 +201,7 @@ namespace Hotel_Mod.views.Cadastros
                 }
             }
         }
-        private void exibirParcelasDGV(List<parcela> parcelas)
+        private void exibirParcelasDGV(List<Parcela> parcelas)
         {
             dataGridView_parcelas.Rows.Clear();
 
@@ -341,186 +256,6 @@ namespace Hotel_Mod.views.Cadastros
             exibirParcelasDGV(condPagamento.parcelas);
         }
 
-
-
-
-        private void Populartxt_mesAno()
-        {
-            // Populando o ComboBox de Anos com ano mínimo de 2024
-            comboBox_ano.Items.Clear();
-            int anoAtual = DateTime.Now.Year;
-            int anoMinimo = 2024;
-
-            for (int i = anoMinimo; i <= anoAtual + 5; i++) // Ajuste o intervalo de anos conforme necessário
-            {
-                comboBox_ano.Items.Add(i);
-            }
-
-            // Seleciona o ano atual por padrão, garantindo que há um valor selecionado
-            comboBox_ano.SelectedItem = anoAtual;
-
-            // Atualizar o ComboBox de meses com base no ano selecionado
-            AtualizarMeses();
-
-            // Associar evento de mudança ao ComboBox de ano para atualizar os meses
-            comboBox_ano.SelectedIndexChanged += (sender, e) => AtualizarMeses();
-        }
-
-        private void AtualizarMeses()
-        {
-            comboBox_mes.Items.Clear();
-
-            // Verificar se comboBox_ano.SelectedItem não é nulo
-            if (comboBox_ano.SelectedItem == null)
-            {
-                return; // Se for nulo, sai da função, pois não podemos definir os meses ainda
-            }
-
-            int anoSelecionado = (int)comboBox_ano.SelectedItem;
-
-            // Popula todos os meses de 1 a 12 com números
-            for (int i = 1; i <= 12; i++)
-            {
-                comboBox_mes.Items.Add(i); // Adiciona o número do mês
-            }
-
-            // Selecionar automaticamente o primeiro mês disponível, se houver
-            if (comboBox_mes.Items.Count > 0)
-            {
-                comboBox_mes.SelectedIndex = 0;
-            }
-        }
-
-
-
-
-        private void AtualizarDisponibilidade()
-        {
-            int mes = int.Parse(comboBox_mes.SelectedItem.ToString());
-            int ano = int.Parse(comboBox_ano.SelectedItem.ToString());
-
-            DateTime dataInicio = new DateTime(ano, mes, 1);
-            DateTime dataFim = dataInicio.AddMonths(1).AddDays(-1); // Último dia do mês
-
-            AtualizarDisponibilidadeLabels(quartoId, dataInicio, dataFim);
-        }
-
-        private void lbl_1_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                int dia;
-                if (int.TryParse(label.Text, out dia))
-                {
-                    // Verifica se o controle de ano tem um valor numérico válido
-                    if (int.TryParse(comboBox_ano.Text, out int anoSelecionado) && comboBox_mes.SelectedItem != null)
-                    {
-                        // Garante que o mês é extraído corretamente
-                        int mesSelecionado = comboBox_mes.SelectedIndex + 1; // Índice começa em 0, então somamos 1
-
-                        try
-                        {
-                            // Cria a data com o ano, mês selecionado e o dia do label
-                            DateTime dataSelecionada = new DateTime(anoSelecionado, mesSelecionado, dia);
-                            string numQuarto = txt_numero.Text;
-
-                            if (!string.IsNullOrEmpty(numQuarto))
-                            {
-                                // Verifica se a data já foi adicionada à DataGridView
-                                bool dataJaAdicionada = false;
-                                foreach (DataGridViewRow row in dataGridView_datas.Rows)
-                                {
-                                    if (row.Cells[1].Value?.ToString() == dataSelecionada.ToString("dd/MM/yyyy") &&
-                                        row.Cells[0].Value?.ToString() == numQuarto)
-                                    {
-                                        dataJaAdicionada = true;
-                                        break;
-                                    }
-                                }
-
-                                if (!dataJaAdicionada)
-                                {
-                                    // Verifica se a data está disponível antes de adicioná-la à DataGridView
-                                    if (label.BackColor == Color.Green)
-                                    {
-                                        dataGridView_datas.Rows.Add(numQuarto, dataSelecionada.ToString("dd/MM/yyyy"));
-                                        label.BackColor = Color.Orange; // Marca como selecionada
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Esta data já está ocupada. Escolha uma data disponível.");
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Esta data já foi adicionada.");
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Por favor, insira o número do quarto.");
-                            }
-                        }
-                        catch (ArgumentOutOfRangeException)
-                        {
-                            MessageBox.Show("O dia selecionado é inválido para o mês/ano fornecido.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Por favor, selecione um ano e um mês válidos.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Erro ao converter o dia.");
-                }
-            }
-
-        }
-
-        private void AtualizarDisponibilidadeLabels(int quartoId, DateTime dataInicio, DateTime dataFim)
-        {
-            List<DateTime> datasIndisponiveis = controllerReservas.ObterDatasIndisponiveis(quartoId, dataInicio, dataFim);
-
-            foreach (Control control in GetAllControls(this))
-            {
-                if (control is Label label && label.Tag?.ToString() == "Dia")
-                {
-                    int dia;
-                    if (int.TryParse(label.Text, out dia))
-                    {
-                        DateTime dataLabel = new DateTime(dataInicio.Year, dataInicio.Month, dia);
-
-                        // Encontra o painel pai da label
-                        Panel panel = label.Parent as Panel;
-
-                        if (datasIndisponiveis.Contains(dataLabel))
-                        {
-                            label.BackColor = Color.Red; // Cor para datas ocupadas
-                            label.ForeColor = Color.White;
-
-                            if (panel != null)
-                            {
-                                panel.BackColor = Color.Red; // Cor para o painel ocupado
-                            }
-                        }
-                        else
-                        {
-                            label.BackColor = Color.Green; // Cor para datas disponíveis
-                            label.ForeColor = Color.Black;
-
-                            if (panel != null)
-                            {
-                                panel.BackColor = Color.Green; // Cor para o painel disponível
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
         // Método auxiliar para obter todos os controles recursivamente
         private IEnumerable<Control> GetAllControls(Control control)
         {
@@ -534,137 +269,23 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
-        private void txt_cod_quarto_TextChanged(object sender, EventArgs e)
-        {
-            int quartoId;
-            if (int.TryParse(txt_cod_quarto.Text, out quartoId))
-            {
-                DateTime dataInicio = new DateTime(int.Parse(comboBox_ano.Text), comboBox_mes.SelectedIndex + 1, 1);
-                DateTime dataFim = dataInicio.AddMonths(1).AddDays(-1);
 
-                AtualizarDisponibilidadeLabels(quartoId, dataInicio, dataFim);
-            }
-            else
+
+        private void RemoverDataGridView(DateTime dataReserva)
+        {
+            string dataFormatada = dataReserva.ToString("dd/MM/yyyy");
+
+            foreach (DataGridViewRow row in dataGridView_datas.Rows)
             {
-                MessageBox.Show("Insira um número de quarto válido.");
+                if (row.Cells["Data"].Value.ToString() == dataFormatada)
+                {
+                    dataGridView_datas.Rows.Remove(row);
+                    break;
+                }
             }
         }
 
-        private void AdicionarDataGridView(Label label)
-        {
-            int dia;
-            if (int.TryParse(label.Text, out dia))
-            {
-                // Verifica se o controle de ano tem um valor numérico válido
-                if (int.TryParse(comboBox_ano.Text, out int anoSelecionado) && comboBox_mes.SelectedItem != null)
-                {
-                    // Garante que o mês é extraído corretamente
-                    int mesSelecionado = comboBox_mes.SelectedIndex + 1; // Índice começa em 0, então somamos 1
 
-                    try
-                    {
-                        // Cria a data com o ano, mês selecionado e o dia do label
-                        DateTime dataSelecionada = new DateTime(anoSelecionado, mesSelecionado, dia);
-                        string numQuarto = txt_numero.Text;
-
-                        if (!string.IsNullOrEmpty(numQuarto))
-                        {
-                            // Verifica se a data já foi adicionada à DataGridView
-                            bool dataJaAdicionada = false;
-                            foreach (DataGridViewRow row in dataGridView_datas.Rows)
-                            {
-                                if (row.Cells[1].Value?.ToString() == dataSelecionada.ToString("dd/MM/yyyy") &&
-                                    row.Cells[0].Value?.ToString() == numQuarto)
-                                {
-                                    dataJaAdicionada = true;
-                                    break;
-                                }
-                            }
-
-                            if (!dataJaAdicionada)
-                            {
-                                // Verifica se a data está disponível antes de adicioná-la à DataGridView
-                                if (label.BackColor == Color.Green)
-                                {
-                                    dataGridView_datas.Rows.Add(numQuarto, dataSelecionada.ToString("dd/MM/yyyy"));
-                                    label.BackColor = Color.Orange; // Marca como selecionada
-
-                                    // Muda a cor do panel que contém a label
-                                    if (label.Parent is Panel panel)
-                                    {
-                                        panel.BackColor = Color.Orange;
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Esta data já está ocupada. Escolha uma data disponível.");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Por favor, insira o número do quarto.");
-                        }
-                    }
-                    catch (ArgumentOutOfRangeException)
-                    {
-                        MessageBox.Show("O dia selecionado é inválido para o mês/ano fornecido.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Por favor, selecione um ano e um mês válidos.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Erro ao converter o dia.");
-            }
-
-        }
-
-        private void RemoverDataGridView(Label label)
-        {
-            int dia;
-            if (int.TryParse(label.Text, out dia))
-            {
-                if (int.TryParse(comboBox_ano.Text, out int anoSelecionado) && comboBox_mes.SelectedItem != null)
-                {
-                    int mesSelecionado = comboBox_mes.SelectedIndex + 1; // Índice começa em 0, então somamos 1
-                    DateTime dataSelecionada = new DateTime(anoSelecionado, mesSelecionado, dia);
-                    string dataFormatada = dataSelecionada.ToString("dd/MM/yyyy");
-                    string numQuarto = txt_numero.Text;
-
-                    // Procura a data na DataGridView e remove a linha correspondente
-                    foreach (DataGridViewRow row in dataGridView_datas.Rows)
-                    {
-                        if (row.Cells[1].Value?.ToString() == dataFormatada &&
-                            row.Cells[0].Value?.ToString() == numQuarto)
-                        {
-                            dataGridView_datas.Rows.Remove(row);
-                            label.BackColor = Color.Green; // Marca a data como disponível novamente
-
-                            // Verifica se a label tem um Panel como pai e muda a cor do Panel
-                            if (label.Parent is Panel panel)
-                            {
-                                panel.BackColor = Color.Green; // Marca o Panel como disponível novamente
-                            }
-
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Por favor, selecione um ano e um mês válidos.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Erro ao converter o dia.");
-            }
-
-        }
 
         private void SetCheckInCheckOutDates()
         {
@@ -719,22 +340,45 @@ namespace Hotel_Mod.views.Cadastros
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            // Verifica a capacidade máxima antes de adicionar o hóspede
+            int capacidadeMaxima = int.TryParse(txt_capacidade_max.Text, out int capacidade) ? capacidade : 0;
+            if (dataGridView_hospedes.Rows.Count >= capacidadeMaxima)
+            {
+                MessageBox.Show("Capacidade máxima de hóspedes atingida para este quarto.", "Capacidade Excedida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 int hospedeId = int.Parse(txt_cod_hospede.Text);
                 Hospede hospede = controllerHospede.GetById(hospedeId);
 
-                if (hospede != null)
+                if (hospede != null && hospede.data_nascimento.HasValue)
                 {
+                    // Calcula a idade do hóspede
+                    int idade = DateTime.Now.Year - hospede.data_nascimento.Value.Year;
+                    if (hospede.data_nascimento.Value > DateTime.Now.AddYears(-idade))
+                    {
+                        idade--;
+                    }
+
+                    // Define o status de "Pagante"
+                    string pagante = idade > 5 ? "SIM" : "NÃO";
+
                     // Adiciona o hóspede diretamente à DataGridView sem limpar as linhas existentes
                     dataGridView_hospedes.Rows.Add(
                         hospede.hospede_id,
-                        hospede.nome
+                        hospede.nome,
+                        pagante // Adiciona o valor "Sim" ou "Não" para o campo Pagante
                     );
+                }
+                else if (hospede == null)
+                {
+                    MessageBox.Show("Hóspede não encontrado.");
                 }
                 else
                 {
-                    MessageBox.Show("Hóspede não encontrado.");
+                    MessageBox.Show("Data de nascimento do hóspede inválida.");
                 }
             }
             catch (FormatException)
@@ -749,508 +393,8 @@ namespace Hotel_Mod.views.Cadastros
             txt_cod_hospede.Clear();
             txt_hospede.Clear();
 
+            AtualizarNumeroHospedesEValor();
         }
-
-        private void lbl_1_Click_1(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_2_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-
-        }
-
-        private void lbl_3_Click_1(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_4_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_5_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_6_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_7_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_8_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-
-        }
-
-        private void lbl_9_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_10_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_11_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_12_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_13_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_14_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_15_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_16_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_17_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_18_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_19_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_20_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_21_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_22_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_23_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_24_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_25_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_26_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_27_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_28_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_29_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_30_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_31_Click(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                AdicionarDataGridView(label);
-            }
-        }
-
-        private void lbl_1_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_2_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-
-        }
-
-        private void lbl_3_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_4_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_5_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_6_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_7_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_8_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_9_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_10_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_11_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_12_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_13_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_14_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_15_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_16_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-
-        }
-
-        private void lbl_17_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_18_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_19_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_20_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_21_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_22_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_23_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_24_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_25_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_26_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_27_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_28_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_29_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_30_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
-        private void lbl_31_DoubleClick(object sender, EventArgs e)
-        {
-            if (sender is Label label)
-            {
-                RemoverDataGridView(label);
-            }
-        }
-
         private void SortDatesInDataGridView()
         {
             // Verifica se a coluna de datas existe
@@ -1278,75 +422,12 @@ namespace Hotel_Mod.views.Cadastros
         }
 
 
-        private void SetCheckInCheckOutDatesFromDataGridView()
-        {
-            // Verifica se há linhas na DataGridView
-            if (dataGridView_datas.Rows.Count > 0)
-            {
-                // Inicializa as variáveis para armazenar a menor e a maior data
-                DateTime? minDate = null;
-                DateTime? maxDate = null;
-
-                // Percorre as linhas da DataGridView
-                foreach (DataGridViewRow row in dataGridView_datas.Rows)
-                {
-                    if (row.Cells[1].Value != null && DateTime.TryParse(row.Cells[1].Value.ToString(), out DateTime date)) // Supondo que a coluna de data seja o índice 1
-                    {
-                        if (!minDate.HasValue || date < minDate.Value)
-                        {
-                            minDate = date;
-                        }
-                        if (!maxDate.HasValue || date > maxDate.Value)
-                        {
-                            maxDate = date;
-                        }
-                    }
-                }
-
-                // Define os valores dos DateTimePickers, se as datas foram encontradas
-                if (minDate.HasValue && maxDate.HasValue)
-                {
-                    dtp_checkin.Value = minDate.Value; // Substitua pelo nome correto do seu DateTimePicker de check-in
-                    dtp_checkout.Value = maxDate.Value; // Substitua pelo nome correto do seu DateTimePicker de check-out
-                }
-                else
-                {
-                    MessageBox.Show("Nenhuma data válida encontrada na DataGridView.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("A DataGridView não contém linhas.");
-            }
-        }
-
-        private void ValidateAvailableMonths(ComboBox monthComboBox, int year)
-        {
-            // Obtenha o mês atual
-            int currentMonth = DateTime.Now.Month;
-            int currentYear = DateTime.Now.Year;
-
-            // Itera por todos os itens do ComboBox
-            for (int i = 1; i <= 12; i++)
-            {
-                // Verifica se o ano é o atual e o mês já passou
-                if (year == currentYear && i < currentMonth)
-                {
-                    // Desabilita meses que já passaram
-                    monthComboBox.Items.Remove(i);
-                }
-                else if (!monthComboBox.Items.Contains(i))
-                {
-                    // Adiciona os meses que ainda estão disponíveis
-                    monthComboBox.Items.Add(i);
-                }
-            }
-        }
+      
 
         private void CalcularValorTotal()
         {
             // Verifica se o valor da diária está preenchido e é válido
-            if (decimal.TryParse(txt_valor_diaria.Text, out decimal valorDiaria))
+            if (decimal.TryParse(txt_vlr_tarifa.Text, out decimal valorDiaria))
             {
                 // Calcula o número de dias
                 DateTime checkinDate = dtp_checkin.Value.Date;
@@ -1397,6 +478,9 @@ namespace Hotel_Mod.views.Cadastros
             {
                 MessageBox.Show("Erro ao excluir hóspede: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
+            AtualizarNumeroHospedesEValor();
         }
     
 
@@ -1415,38 +499,27 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
+
+
         private void PreencherMesesDisponiveis(ComboBox comboBoxMes, int anoSelecionado)
         {
-             
-            // Limpa os itens existentes no ComboBox
             comboBoxMes.Items.Clear();
 
-            // Obtem o mês atual e o ano atual
             int mesAtual = DateTime.Now.Month;
             int anoAtual = DateTime.Now.Year;
 
-            // Verifica se o ano selecionado é o ano atual ou um ano futuro
             if (anoSelecionado >= anoAtual)
             {
-                // Itera sobre todos os meses do ano (de 1 a 12)
                 for (int i = 1; i <= 12; i++)
                 {
-                    // Adiciona ao ComboBox apenas meses que não passaram no ano atual
                     if (anoSelecionado > anoAtual || (anoSelecionado == anoAtual && i >= mesAtual))
                     {
                         comboBoxMes.Items.Add(i);
                     }
                 }
 
-                // Seleciona o primeiro item disponível por padrão, se houver
-                if (comboBoxMes.Items.Count > 0)
-                {
-                    comboBoxMes.SelectedIndex = 0;
-                }
-                else
-                {
-                    MessageBox.Show("Não há meses disponíveis para o ano selecionado.");
-                }
+                // Remove a seleção automática do primeiro mês disponível
+                comboBoxMes.SelectedIndex = -1;
             }
             else
             {
@@ -1454,17 +527,16 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
+
+
         private void comboBox_ano_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (int.TryParse(comboBox_ano.SelectedItem.ToString(), out int anoSelecionado))
             {
                 PreencherMesesDisponiveis(comboBox_mes, anoSelecionado);
             }
-
-       
-
+            AtualizarDiasDisponiveis();
         }
-
 
         public override void salvar()
         {
@@ -1475,10 +547,10 @@ namespace Hotel_Mod.views.Cadastros
                 txt_cod_cliente.Focus();
                 return;
             }
-            if (!validadores.CampoObrigatorio(txt_cod_quarto.Text))
+            if (!validadores.CampoObrigatorio(txt_tipo_quarto.Text))
             {
                 MessageBox.Show("Campo Código do Quarto é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_cod_quarto.Focus();
+                txt_tipo_quarto.Focus();
                 return;
             }
             if (!DateTime.TryParse(dtp_checkin.Text, out DateTime dataCheckin))
@@ -1502,10 +574,30 @@ namespace Hotel_Mod.views.Cadastros
 
             try
             {
-                int clienteID = int.Parse(txt_cod_cliente.Text);
-                int quartoID = int.Parse(txt_cod_quarto.Text);
-                decimal valorDiaria = decimal.Parse(txt_valor_diaria.Text.Replace("R$", "").Trim());
-                decimal valorTotal = decimal.Parse(txt_valor_total.Text.Replace("R$", "").Trim());
+                if (!int.TryParse(txt_cod_cliente.Text, out int clienteID))
+                {
+                    MessageBox.Show("Código do Cliente inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!int.TryParse(txt_cod_tipo.Text, out int tipo_quarto_ID))
+                {
+                    MessageBox.Show("Código do Tipo de Quarto inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!decimal.TryParse(txt_vlr_tarifa.Text.Replace("R$", "").Trim(), out decimal valorDiaria))
+                {
+                    MessageBox.Show("Valor da Tarifa inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!decimal.TryParse(txt_valor_total.Text.Replace("R$", "").Trim(), out decimal valorTotal))
+                {
+                    MessageBox.Show("Valor Total inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 int numDias = (dataCheckout - dataCheckin).Days;
 
                 DateTime.TryParse(txt_dat_cad.Text, out DateTime dataCadastro);
@@ -1518,9 +610,7 @@ namespace Hotel_Mod.views.Cadastros
                     nome_cliente = txt_nome_cliente.Text,
                     cpf_cliente = txt_cpf.Text,
                     celular_cliente = txt_telefone.Text,
-                    quarto_ID = quartoID,
-                    numero_quarto = txt_numero.Text,
-                    andar = int.Parse(txt_andar.Text),
+                    tipo_quarto_ID = tipo_quarto_ID,
                     valor_diaria = valorDiaria,
                     valor_total = valorTotal,
                     data_checkin = dataCheckin,
@@ -1534,34 +624,28 @@ namespace Hotel_Mod.views.Cadastros
                     ativo = check_ativo.Checked,
                     data_cadastro = dataCadastro,
                     data_ult_alt = dataUltAlt,
-                    usuario_ult_alt = "UsuárioAtual" // Pode ser substituído pelo usuário logado atual
                 };
 
-                // Associar a lista de hóspedes à reserva (certifique-se de que a lista seja preenchida corretamente)
-                novaReserva.hospedes = ObterListaHospedes(); // Método para obter a lista de hóspedes selecionados no formulário
-
-                // Criar a ocupação correspondente
-                Ocupacao novaOcupacao = new Ocupacao
-                {
-                    quarto_ID = quartoID,
-                    DataEntrada = dataCheckin,
-                    DataSaida = dataCheckout,
-                    cliente_ID = clienteID,
-                    ocupacao = "Reservado"
-                };
+                // Associar a lista de hóspedes à reserva
+                novaReserva.hospedes = ObterListaHospedesDaDataGridView();
 
                 // Inserir reserva, ocupação e hóspedes
                 if (altera == -1)
                 {
-                    controllerReservas.salvar(novaReserva); // Método void para salvar a reserva
-                    controllerReservas.InserirOcupacao(novaOcupacao); // Método void para inserir a ocupação
+                    controllerReservas.salvar(novaReserva);
+
+                    // Obter o último ID de reserva após salvar
+                    int novoReservaId = controllerReservas.GetUltimoCodigo();
+
+                    // Atualizar a tabela de ReservasTemporarias para associar com o novo reserva_id
+                    controllerReservas.AtualizarReservaTemporaria(novoReservaId, tipo_quarto_ID);
 
                     // Salvar lista de hóspedes
                     if (novaReserva.hospedes != null && novaReserva.hospedes.Count > 0)
                     {
                         foreach (var hospede in novaReserva.hospedes)
                         {
-                            controllerReservas.InserirHospedeNaReserva(novaReserva.reserva_ID, hospede.hospede_id);
+                            controllerReservas.InserirHospedeNaReserva(novoReservaId, hospede.hospede_id);
                         }
                     }
 
@@ -1580,56 +664,48 @@ namespace Hotel_Mod.views.Cadastros
             {
                 MessageBox.Show("Ocorreu um erro ao salvar a reserva: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            reservaSalva = true;
         }
-        private List<Hospede> ObterListaHospedes()
-        {
-            List<Hospede> listaHospedes = new List<Hospede>();
 
-            // Percorre a DataGridView ou outro controle onde os hóspedes são listados
+
+
+
+
+        private List<Hospede> ObterListaHospedesDaDataGridView()
+        {
+            List<Hospede> hospedes = new List<Hospede>();
             foreach (DataGridViewRow row in dataGridView_hospedes.Rows)
             {
-                if (row.Cells["CodHospede"].Value != null && row.Cells["NomeHospede"].Value != null)
+                if (row.Cells["codigo_hospede"].Value != null && row.Cells["hospede"].Value != null)
                 {
                     Hospede hospede = new Hospede
                     {
-                        hospede_id = Convert.ToInt32(row.Cells["CodHospede"].Value),
-                        nome = row.Cells["NomeHospede"].Value.ToString()
+                        hospede_id = Convert.ToInt32(row.Cells["codigo_hospede"].Value),
+                        nome = row.Cells["hospede"].Value.ToString()
                     };
-                    listaHospedes.Add(hospede);
+                    hospedes.Add(hospede);
                 }
             }
-
-            return listaHospedes;
+            return hospedes;
         }
+
+     
 
         private void comboBox_mes_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
-        }
-
-
-        private void InativarMesesPassados(int anoSelecionado)
-        {
-            int anoAtual = DateTime.Now.Year;
-            int mesAtual = DateTime.Now.Month;
-
-            // Itera sobre os itens do ComboBox de meses
-            for (int i = 0; i < comboBox_mes.Items.Count; i++)
+            if (this.tipoQuartoSelecionado != 0 && comboBox_ano.SelectedItem != null && comboBox_mes.SelectedItem != null)
             {
-                // Verifica se o ano selecionado é o ano atual
-                if (anoSelecionado == anoAtual && (i + 1) < mesAtual)
-                {
-                    // Desabilita o mês se já tiver passado
-                    comboBox_mes.Items[i] = new ComboBoxItem(comboBox_mes.Items[i].ToString(), false);
-                }
-                else
-                {
-                    // Ativa o mês se não tiver passado
-                    comboBox_mes.Items[i] = new ComboBoxItem(comboBox_mes.Items[i].ToString(), true);
-                }
-            }
-        }
+                int mes = int.Parse(comboBox_mes.SelectedItem.ToString());
+                int ano = int.Parse(comboBox_ano.SelectedItem.ToString());
+                DateTime dataInicio = new DateTime(ano, mes, 1);
+                DateTime dataFim = dataInicio.AddMonths(1).AddDays(-1);
 
+                // Chama a função para atualizar os dias disponíveis
+           
+            }
+
+            AtualizarDiasDisponiveis();
+        }
         public class ComboBoxItem
         {
             public string Text { get; }
@@ -1646,6 +722,735 @@ namespace Hotel_Mod.views.Cadastros
                 return Text;
             }
         }
+
+        private void btn_busca_cod_tipo_Click(object sender, EventArgs e)
+        {
+            consultaTipoQuarto.btn_sair.Text = "Selecionar";
+
+            if (consultaTipoQuarto.ShowDialog() == DialogResult.OK)
+            {
+                // Receber os detalhes do país selecionado
+                var tipoDetalhes = consultaTipoQuarto.Tag as Tuple<int, string, string,  decimal, int>;
+                if (tipoDetalhes != null)
+                {
+                    int tipo_quarto_ID = tipoDetalhes.Item1;
+                    string tipo = tipoDetalhes.Item2;
+                    string descricao = tipoDetalhes.Item3;  
+                    decimal valor_diaria = tipoDetalhes.Item4;
+                    int capacidade_maxima = tipoDetalhes.Item5; 
+
+
+       
+                    txt_cod_tipo.Text = tipo_quarto_ID.ToString();
+                    txt_tipo_quarto.Text = tipo.ToString();
+                    txt_vlr_tarifa.Text = valor_diaria.ToString();
+                    txt_capacidade_max.Text = capacidade_maxima.ToString();
+                }
+            }
+            if (int.TryParse(txt_cod_tipo.Text, out int tipoQuartoId))
+            {
+                // Armazene o tipo de quarto selecionado para uso posterior
+                this.tipoQuartoSelecionado = tipoQuartoId;
+
+                MessageBox.Show("Tipo de quarto selecionado. Agora, selecione o mês e o ano.", "Tipo Selecionado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Código do tipo de quarto inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
+        private void AtualizarNumeroHospedesEValor()
+        {
+            // Obtém a capacidade máxima do quarto
+            int capacidadeMaxima = int.TryParse(txt_capacidade_max.Text, out int capacidade) ? capacidade : 0;
+
+            // Atualiza o número de hóspedes no campo apropriado
+            int numeroHospedes = dataGridView_hospedes.Rows.Count;
+            txt_num_hospedes.Text = numeroHospedes.ToString();
+
+            // Habilita ou desabilita o botão "ADD" com base na capacidade máxima
+            button1.Enabled = numeroHospedes < capacidadeMaxima;
+
+            // Conta o número de hóspedes pagantes
+            int numeroPagantes = 0;
+            foreach (DataGridViewRow row in dataGridView_hospedes.Rows)
+            {
+                if (row.Cells["Pagante"].Value != null && row.Cells["Pagante"].Value.ToString().ToUpper() == "SIM")
+                {
+                    numeroPagantes++;
+                }
+            }
+
+            // Obtém o número de dias da reserva e o valor da tarifa
+            if (int.TryParse(txt_num_dias.Text, out int numDias) && decimal.TryParse(txt_vlr_tarifa.Text, out decimal valorTarifa))
+            {
+                // Calcula o valor total com base no número de dias e apenas os hóspedes pagantes
+                decimal valorTotal = numDias * valorTarifa * numeroPagantes;
+
+                // Atualiza o campo "Valor Total"
+                txt_valor_total.Text = valorTotal.ToString("F2"); // Formatação para duas casas decimais
+            }
+            else
+            {
+                MessageBox.Show("Erro ao calcular o valor total. Verifique os valores de diária e número de dias.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CadastroReserva_Load(object sender, EventArgs e)
+        {
+            if (lbl_cancelada.Enabled = false)
+            {
+                BloquearTodosOsCampos();
+            }
+            if (altera == -1) // Verifica se é uma inclusão
+            {
+                int novoCodigo = controllerReservas.GetUltimoCodigo() + 1;
+                txt_codigo.Text = novoCodigo.ToString();
+
+                comboBox_mes.Items.Clear();
+                comboBox_mes.SelectedIndex = -1;
+                comboBox_mes.Text = "";
+            }
+
+            dtp_checkout.Value = DateTime.Now.AddDays(1);
+
+            int anoAtual = DateTime.Now.Year;
+            comboBox_ano.Items.Clear();
+            for (int i = anoAtual; i <= anoAtual + 5; i++)
+            {
+                comboBox_ano.Items.Add(i);
+            }
+            comboBox_ano.SelectedItem = anoAtual;
+
+
+            for (int i = 1; i <= 31; i++)
+            {
+                Label label = this.Controls.Find("lbl_" + i, true).FirstOrDefault() as Label;
+                if (label != null)
+                {
+                    label.Click += Label_Click;
+                }
+            }
+
+            foreach (Control control in panel_dias.Controls)
+            {
+                if (control is Label label)
+                {
+                    // Associa o evento de DoubleClick para cada label de dia
+                    label.DoubleClick += Label_DoubleClick;
+                }
+            }
+        }
+
+        
+        private void BloquearTodosOsCampos()
+        {
+            foreach (Control control in this.Controls)
+            {
+                // Verifica o tipo de controle e desativa adequadamente
+                if (control is TextBox textBox)
+                {
+                    textBox.Enabled = false;
+                }
+                else if (control is ComboBox comboBox)
+                {
+                    comboBox.Enabled = false;
+                }
+                else if (control is DateTimePicker dateTimePicker)
+                {
+                    dateTimePicker.Enabled = false;
+                }
+                else if (control is CheckBox checkBox)
+                {
+                    checkBox.Enabled = false;
+                }
+                else if (control is DataGridView dataGridView)
+                {
+                    dataGridView.Enabled = false;
+                }
+                else if (control is Button button && button.Name != "btn_sair") // Mantém o botão "Sair" ativo
+                {
+                    button.Enabled = false;
+                }
+            }
+        }
+
+
+
+
+        private void Label_DoubleClick(object sender, EventArgs e)
+        {
+            if (sender is Label label && int.TryParse(label.Text, out int dia))
+            {
+                if (comboBox_ano.SelectedItem != null && comboBox_mes.SelectedItem != null &&
+                    int.TryParse(comboBox_ano.SelectedItem.ToString(), out int anoSelecionado) &&
+                    int.TryParse(comboBox_mes.SelectedItem.ToString(), out int mesSelecionado))
+                {
+                    int tipoQuartoId = int.Parse(txt_cod_tipo.Text);
+                    DateTime dataReserva = new DateTime(anoSelecionado, mesSelecionado, dia);
+
+                    // Excluir a reserva temporária
+                    bool sucesso = controllerReservas.ExcluirReservaTemporaria(tipoQuartoId, dataReserva);
+
+                    if (sucesso)
+                    {
+                        // Atualiza a cor da label e do panel para indicar que a data está disponível
+                        label.BackColor = Color.Green;
+                        label.ForeColor = Color.Black;
+                        if (label.Parent is Panel panel)
+                        {
+                            panel.BackColor = Color.Green;
+                        }
+                        MessageBox.Show("Reserva temporária removida com sucesso!", "Reserva Temporária", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao remover a reserva temporária.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+
+        }
+
+        private DateTime? dataInicio = null;
+        private DateTime? dataFim = null;
+
+        private void Label_Click(object sender, EventArgs e)
+        {
+            if (sender is Label label && int.TryParse(label.Text, out int dia))
+            {
+                if (comboBox_ano.SelectedItem != null && comboBox_mes.SelectedItem != null &&
+                    int.TryParse(comboBox_ano.SelectedItem.ToString(), out int anoSelecionado) &&
+                    int.TryParse(comboBox_mes.SelectedItem.ToString(), out int mesSelecionado))
+                {
+                    DateTime dataSelecionada = new DateTime(anoSelecionado, mesSelecionado, dia);
+
+                    if (dataInicio == null)
+                    {
+                        // Define a data inicial
+                        dataInicio = dataSelecionada;
+                        label.BackColor = Color.Blue; // Indica que esta é a data inicial
+                        label.ForeColor = Color.White;
+                    }
+                    else if (dataFim == null)
+                    {
+                        // Define a data final
+                        dataFim = dataSelecionada;
+                        label.BackColor = Color.Blue; // Indica que esta é a data final
+                        label.ForeColor = Color.White;
+
+                        // Chama o método para preencher as datas entre a inicial e a final
+                        PreencherDatasEntre(dataInicio.Value, dataFim.Value);
+                    }
+                    else
+                    {
+                        // Reinicia as seleções se ambas as datas já estão definidas
+                        LimparSelecao();
+                        dataInicio = dataSelecionada;
+                        label.BackColor = Color.Blue;
+                        label.ForeColor = Color.White;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, selecione um mês e ano válidos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void PreencherDatasEntre(DateTime inicio, DateTime fim)
+        {
+            if (inicio > fim)
+            {
+                // Troca as datas se a data inicial for maior que a final
+                DateTime temp = inicio;
+                inicio = fim;
+                fim = temp;
+            }
+
+            DateTime dataAtual = inicio;
+            while (dataAtual <= fim)
+            {
+                // Chama o método de inserção para cada data no intervalo, com reserva_id nulo
+                bool sucesso = controllerReservas.InserirReservaTemporaria(int.Parse(txt_cod_tipo.Text), dataAtual);
+
+                if (sucesso)
+                {
+                    // Adiciona a data na DataGridView para visualização
+                    dataGridView_datas.Rows.Add(txt_cod_tipo.Text, dataAtual.ToString("dd/MM/yyyy"));
+
+                    // Atualiza a cor no calendário para indicar que a data foi reservada temporariamente
+                    foreach (Control panel in panel_dias.Controls)
+                    {
+                        if (panel is Panel dayPanel && dayPanel.Controls.Count > 0 && dayPanel.Controls[0] is Label dayLabel &&
+                            int.TryParse(dayLabel.Text, out int dia) && dataAtual.Day == dia)
+                        {
+                            dayLabel.BackColor = Color.Orange;
+                            dayLabel.ForeColor = Color.White;
+                            dayPanel.BackColor = Color.Orange;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    // Exibir um erro caso a inserção falhe para uma data específica
+                    MessageBox.Show($"Erro ao reservar a data {dataAtual.ToString("dd/MM/yyyy")} no banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                dataAtual = dataAtual.AddDays(1);
+            }
+
+            // Limpa as variáveis de data para permitir uma nova seleção
+            dataInicio = null;
+            dataFim = null;
+        }
+
+
+
+        private void LimparSelecao()
+        {
+            dataInicio = null;
+            dataFim = null;
+
+            // Restaura as cores originais das labels no calendário
+            foreach (Control panel in panel_dias.Controls)
+            {
+                if (panel is Panel dayPanel && dayPanel.Controls.Count > 0 && dayPanel.Controls[0] is Label dayLabel)
+                {
+                    dayLabel.BackColor = Color.Green; // Dia disponível padrão
+                    dayLabel.ForeColor = Color.Black;
+                    dayPanel.BackColor = Color.Green;
+                }
+            }
+
+            // Limpa a DataGridView
+            dataGridView_datas.Rows.Clear();
+        }
+
+
+        private void AtualizarDiasDisponiveis()
+        {
+            // Verificar se todos os campos de seleção estão preenchidos
+            if (string.IsNullOrWhiteSpace(txt_cod_tipo.Text) || comboBox_mes.SelectedItem == null || comboBox_ano.SelectedItem == null)
+                return;
+
+            // Obter o valor do tipo de quarto, mês e ano
+            string tipoQuarto = txt_cod_tipo.Text;
+            int mes = int.Parse(comboBox_mes.SelectedItem.ToString());
+            int ano = int.Parse(comboBox_ano.SelectedItem.ToString());
+
+            // Obter a data atual
+            DateTime hoje = DateTime.Today;
+
+            // Chamar o método da Controller para obter os dias indisponíveis
+            List<DateTime> diasIndisponiveis = controllerReservas.BuscarDiasIndisponiveis(tipoQuarto, mes, ano);
+
+            // Iterar sobre os Panels individuais dentro do panel maior
+            foreach (Control panel in panel_dias.Controls)
+            {
+                if (panel is Panel dayPanel && dayPanel.Controls.Count > 0 && dayPanel.Controls[0] is Label dayLabel)
+                {
+                    // Tenta converter o texto do Label para obter o dia
+                    if (int.TryParse(dayLabel.Text, out int dia))
+                    {
+                        // Verifica se a data é válida para o mês e ano selecionados
+                        if (dia >= 1 && dia <= DateTime.DaysInMonth(ano, mes))
+                        {
+                            DateTime data = new DateTime(ano, mes, dia);
+
+                            // Define a cor com base na disponibilidade e se o dia já passou
+                            if (data < hoje && mes == hoje.Month && ano == hoje.Year)
+                            {
+                                // Dias que já passaram no mês atual ficam em cinza
+                                dayLabel.BackColor = Color.Gray;
+                                dayLabel.ForeColor = Color.White;
+                                dayPanel.BackColor = Color.Gray;
+                            }
+                            else if (diasIndisponiveis.Contains(data))
+                            {
+                                // Dias reservados ficam em vermelho
+                                dayLabel.BackColor = Color.Red;
+                                dayLabel.ForeColor = Color.White;
+                                dayPanel.BackColor = Color.Red;
+                            }
+                            else
+                            {
+                                // Dias disponíveis ficam em verde
+                                dayLabel.BackColor = Color.Green;
+                                dayLabel.ForeColor = Color.Black;
+                                dayPanel.BackColor = Color.Green;
+                            }
+                        }
+                        else
+                        {
+                            // Se o dia não é válido para o mês e ano, deixa o dia em branco ou em uma cor neutra
+                            dayLabel.BackColor = Color.LightGray;
+                            dayLabel.ForeColor = Color.DarkGray;
+                            dayPanel.BackColor = Color.LightGray;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        private void txt_cod_tipo_TextChanged(object sender, EventArgs e)
+        {
+            AtualizarDiasDisponiveis();
+        }
+
+        private void CadastroReserva_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!reservaSalva)
+            {
+                //int reservaId;
+                //if (int.TryParse(txt_codigo.Text, out reservaId))
+                //{
+                //    // Executa a lógica com o reservaId válido
+                //    controllerReservas.ExcluirReservasTemporariasPorReservaId(reservaId);
+                //}
+                //else
+                //{
+                //    MessageBox.Show("O código da reserva não está em um formato válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+                controllerReservas.ExcluirReservasTemporariasNaoSalvas();
+            }
+
+        }
+
+        private void btn_sair_Click(object sender, EventArgs e)
+        {
+            if (!reservaSalva)
+            {
+                int reservaId;
+                if (int.TryParse(txt_codigo.Text, out reservaId))
+                {
+                    // Executa a lógica com o reservaId válido
+                    controllerReservas.ExcluirReservasTemporariasPorReservaId(reservaId);
+                }
+                else
+                {
+                    MessageBox.Show("O código da reserva não está em um formato válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+      
+
+        public Reserva ObterReservaAtualizada()
+        {
+            try
+            {
+                // Cria um novo objeto de reserva com os valores atualizados no formulário
+                Reserva reserva = new Reserva
+                {
+                    reserva_ID = int.TryParse(txt_codigo.Text, out int reservaId) ? reservaId : 0,
+                    cliente_ID = int.TryParse(txt_cod_cliente.Text, out int clienteId) ? clienteId : 0,
+                    nome_cliente = txt_nome_cliente.Text,
+                    cpf_cliente = txt_cpf.Text,
+                    celular_cliente = txt_telefone.Text,
+                    tipo_quarto_ID = int.TryParse(txt_cod_tipo.Text, out int tipoQuartoId) ? tipoQuartoId : (int?)null,
+                    tipo_quarto = txt_tipo_quarto.Text,
+                    data_checkin = DateTime.TryParse(dtp_checkin.Text, out DateTime checkin) ? checkin : DateTime.MinValue,
+                    data_checkout = DateTime.TryParse(dtp_checkout.Text, out DateTime checkout) ? checkout : (DateTime?)null,
+                    valor_diaria = decimal.TryParse(txt_vlr_tarifa.Text, out decimal valorTarifa) ? valorTarifa : (decimal?)null,
+                    valor_total = decimal.TryParse(txt_valor_total.Text, out decimal valorTotal) ? valorTotal : (decimal?)null,
+                    observacao = txt_obs.Text,
+                    condPagamento_ID = int.TryParse(txt_cod_cond_pagamento.Text, out int condPagId) ? condPagId : (int?)null,
+                    condicao_pagamento = txt_cond_pagamento.Text,
+                    hospedes = dataGridView_hospedes.DataSource as List<Hospede> ?? new List<Hospede>(), // Recupera os hóspedes
+                    parcelas = dataGridView_parcelas.DataSource as List<Parcela> ?? new List<Parcela>(), // Recupera as parcelas
+                    motivo_checkout = !string.IsNullOrEmpty(txt_motivo_checkout.Text) ? txt_motivo_checkout.Text : null, // Motivo do checkout antecipado
+                    ativo = true,
+                    data_ult_alt = DateTime.Now
+                };
+
+                return reserva;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao obter a reserva atualizada: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+      
+
+        private void CadastroReserva_FormClosed(object sender, FormClosedEventArgs e)
+        {
+         
+        }
+
+        private void RecalcularValores()
+        {
+            // Calcula a diferença em dias entre check-in e checkout
+            int numDias = (dtp_checkout.Value - dtp_checkin.Value).Days;
+
+            // Atualiza os campos de valores
+            txt_num_dias.Text = numDias.ToString();
+            txt_valor_total.Text = (numDias * Convert.ToDecimal(txt_vlr_tarifa.Text)).ToString("F2");
+        }
+
+        public void AjustarDataCheckout(DateTime novaDataCheckout)
+        {
+            dtp_checkout.Value = novaDataCheckout;
+            RecalcularValores(); // Atualiza o valor total com base na nova data
+        }
+
+
+        private bool CalcularSeHospedeEPagante(DateTime? dataNascimento)
+        {
+            if (!dataNascimento.HasValue)
+                return false; // Sem data de nascimento, não é possível calcular
+
+            int idade = DateTime.Now.Year - dataNascimento.Value.Year;
+
+            // Verifica se ainda não completou aniversário no ano atual
+            if (dataNascimento.Value.Date > DateTime.Now.AddYears(-idade))
+            {
+                idade--;
+            }
+
+            // Considera pagante se a idade for maior ou igual a 5
+            return idade >= 5;
+        }
+
+
+
+        public void CarregarReserva(int reservaId)
+        {
+            try
+            {
+                // Busca a reserva pelo ID
+                var reserva = controllerReservas.GetById(reservaId);
+
+                if (reserva != null)
+                {
+                    // Preenche os campos gerais da reserva
+                    txt_codigo.Text = reserva.reserva_ID.ToString();
+                    txt_cod_cliente.Text = reserva.cliente_ID.ToString();
+                    txt_nome_cliente.Text = reserva.nome_cliente ?? string.Empty;
+                    txt_cpf.Text = reserva.cpf_cliente ?? string.Empty;
+                    txt_telefone.Text = reserva.celular_cliente ?? string.Empty;
+                    txt_cod_tipo.Text = reserva.tipo_quarto_ID?.ToString() ?? string.Empty;
+                    txt_tipo_quarto.Text = reserva.tipo_quarto ?? string.Empty;
+                    txt_vlr_tarifa.Text = reserva.valor_diaria?.ToString("F2") ?? string.Empty;
+                    txt_valor_total.Text = reserva.valor_total?.ToString("F2") ?? string.Empty;
+                    txt_obs.Text = reserva.observacao ?? string.Empty;
+
+                    // Preenche as datas de check-in e check-out
+                    dtp_checkin.Value = reserva.data_checkin != DateTime.MinValue ? reserva.data_checkin : DateTime.Now;
+                    dtp_checkout.Value = reserva.data_checkout.HasValue && reserva.data_checkout.Value != DateTime.MinValue
+                        ? reserva.data_checkout.Value
+                        : DateTime.Now;
+
+                    // Preenche o status da reserva
+                    check_ativo.Checked = reserva.ativo;
+                    check_inativo.Checked = !reserva.ativo;
+
+                    // Preenche o número de dias
+                    txt_num_dias.Text = reserva.num_dias.ToString();
+
+                    // Preenche a condição de pagamento
+                    if (reserva.condPagamento_ID.HasValue)
+                    {
+                        txt_cod_cond_pagamento.Text = reserva.condPagamento_ID.Value.ToString();
+                        txt_cond_pagamento.Text = reserva.condicao_pagamento ?? string.Empty;
+                    }
+                    else
+                    {
+                        txt_cod_cond_pagamento.Clear();
+                        txt_cond_pagamento.Clear();
+                    }
+
+                    // Preenche as datas de cadastro e última alteração
+                    txt_dat_cad.Text = reserva.data_cadastro != DateTime.MinValue
+                        ? reserva.data_cadastro.ToString("dd/MM/yyyy HH:mm:ss")
+                        : string.Empty;
+                    txt_dat_ult_alt.Text = reserva.data_ult_alt != DateTime.MinValue
+                        ? reserva.data_ult_alt.ToString("dd/MM/yyyy HH:mm:ss")
+                        : string.Empty;
+
+                    // Exibe os hóspedes associados à reserva
+                    var hospedes = controllerReservas.ObterHospedesPorReserva(reservaId);
+                    ExibirHospedesDGV(hospedes);
+
+                    // Exibe as parcelas associadas à condição de pagamento
+                    ExibirParcelasDGV(reserva.parcelas ?? new List<Parcela>());
+
+                    // Carrega informações adicionais, como o calendário
+        
+                }
+                else
+                {
+                    MessageBox.Show("Reserva não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar a reserva: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+     
+
+
+        public override void carrega()
+        {
+            // Desabilita os controles de status ativo/inativo
+            check_ativo.Enabled = false;
+            check_inativo.Enabled = false;
+
+            if (altera != -1) // Verifica se estamos em modo de edição
+            {
+                // Busca a reserva pelo ID
+                var reserva = controllerReservas.GetById(altera);
+
+                if (reserva != null)
+                {
+                    try
+                    {
+                        // Carrega os dados principais da reserva
+                        txt_codigo.Text = reserva.reserva_ID.ToString();
+                        txt_cod_cliente.Text = reserva.cliente_ID.ToString();
+                        txt_nome_cliente.Text = reserva.nome_cliente ?? string.Empty;
+                        txt_cpf.Text = reserva.cpf_cliente ?? string.Empty;
+                        txt_telefone.Text = reserva.celular_cliente ?? string.Empty;
+                        txt_cod_tipo.Text = reserva.tipo_quarto_ID?.ToString() ?? string.Empty;
+                        txt_tipo_quarto.Text = reserva.tipo_quarto ?? string.Empty;
+                        txt_vlr_tarifa.Text = reserva.valor_diaria?.ToString("F2") ?? string.Empty;
+                        txt_valor_total.Text = reserva.valor_total?.ToString("F2") ?? string.Empty;
+                        txt_obs.Text = reserva.observacao ?? string.Empty;
+
+                        // Configura as datas de check-in e check-out
+                        dtp_checkin.Value = ParseDate(reserva.data_checkin, DateTime.Now);
+                        dtp_checkout.Value = ParseDate(reserva.data_checkout, DateTime.Now);
+
+                        // Carrega os hóspedes associados à reserva
+                        ExibirHospedesDGV(reserva.hospedes ?? new List<Hospede>());
+
+                        // Carrega as parcelas associadas à reserva
+                        ExibirParcelasDGV(reserva.parcelas ?? new List<Parcela>());
+
+                        // Configura a condição de pagamento
+                        if (reserva.condPagamento_ID.HasValue)
+                        {
+                            txt_cod_cond_pagamento.Text = reserva.condPagamento_ID.Value.ToString();
+                            txt_cond_pagamento.Text = reserva.condicao_pagamento ?? string.Empty;
+                        }
+                        else
+                        {
+                            txt_cod_cond_pagamento.Clear();
+                            txt_cond_pagamento.Clear();
+                        }
+
+                        // Configura os campos de data de cadastro e última alteração
+                        txt_dat_cad.Text = reserva.data_cadastro != DateTime.MinValue
+                            ? reserva.data_cadastro.ToString("dd/MM/yyyy HH:mm:ss")
+                            : string.Empty;
+
+                        txt_dat_ult_alt.Text = reserva.data_ult_alt != DateTime.MinValue
+                            ? reserva.data_ult_alt.ToString("dd/MM/yyyy HH:mm:ss")
+                            : string.Empty;
+
+                        // Configura os campos de status ativo/inativo
+                        check_ativo.Checked = reserva.ativo;
+                        check_inativo.Checked = !reserva.ativo;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao carregar os dados da reserva: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        LimparCampos();
+                    }
+                }
+                else
+                {
+                    // Exibe uma mensagem de erro caso a reserva não seja encontrada
+                    MessageBox.Show("Reserva não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    // Limpa os campos para evitar informações residuais
+                    LimparCampos();
+                }
+            }
+            else
+            {
+                // Caso não esteja em modo de edição, limpa os campos
+                LimparCampos();
+            }
+        }
+
+        // Método auxiliar para converter as datas
+        private DateTime ParseDate(object dateValue, DateTime defaultValue)
+        {
+            if (dateValue == null || dateValue == DBNull.Value)
+                return defaultValue;
+
+            if (DateTime.TryParse(dateValue.ToString(), out DateTime parsedDate))
+                return parsedDate;
+
+            // Tenta interpretar o formato yyyy-MM-dd explicitamente
+            try
+            {
+                return DateTime.ParseExact(dateValue.ToString(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                return defaultValue; // Retorna o valor padrão em caso de erro
+            }
+        }
+
+      
+
+
+        private void ExibirHospedesDGV(List<Hospede> hospedes)
+        {
+            dataGridView_hospedes.Rows.Clear(); // Limpa o DataGridView
+
+            var hospedesUnicos = hospedes.GroupBy(h => h.hospede_id).Select(g => g.First()).ToList(); // Evita duplicados
+
+            foreach (var hospede in hospedesUnicos)
+            {
+                // Verifica se a data de nascimento é válida
+                bool isPagante = hospede.data_nascimento.HasValue && CalcularSeHospedeEPagante(hospede.data_nascimento.Value);
+
+                dataGridView_hospedes.Rows.Add(
+                    hospede.hospede_id,
+                    hospede.nome ?? "Não informado", // Nome padrão para casos nulos
+                    isPagante ? "Sim" : "Não"
+                );
+            }
+        }
+
+        private void ExibirParcelasDGV(List<Parcela> parcelas)
+        {
+            dataGridView_parcelas.Rows.Clear(); // Limpa o DataGridView
+
+            var parcelasUnicas = parcelas.GroupBy(p => new { p.numeroParcela, p.FormaPagamento_ID })
+                               .Select(g => g.First())
+                               .ToList();
+
+            foreach (var parcela in parcelasUnicas)
+            {
+                string formaPagamento = controllerFormaPagamento.ObterDescricaoFormaPagamento(parcela.FormaPagamento_ID);
+
+                dataGridView_parcelas.Rows.Add(
+                    parcela.numeroParcela,
+                    parcela.dias,
+                    parcela.porcentagem,
+                    parcela.FormaPagamento_ID,
+                    formaPagamento
+                );
+            }
+        }
+
+
 
     }
 }    

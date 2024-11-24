@@ -36,10 +36,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCidades)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_buscainativos
-            // 
-            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged_1);
-            // 
             // btn_pesquisar
             // 
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -66,13 +62,19 @@
             this.btn_sair.FlatAppearance.BorderSize = 0;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click_1);
             // 
+            // btn_buscainativos
+            // 
+            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged_1);
+            // 
             // DataGridViewCidades
             // 
+            this.DataGridViewCidades.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.DataGridViewCidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridViewCidades.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,
             this.Cidade,
             this.DDD});
+            this.DataGridViewCidades.GridColor = System.Drawing.Color.Honeydew;
             this.DataGridViewCidades.Location = new System.Drawing.Point(12, 72);
             this.DataGridViewCidades.Name = "DataGridViewCidades";
             this.DataGridViewCidades.Size = new System.Drawing.Size(971, 379);

@@ -39,6 +39,7 @@ namespace Hotel_Mod.views
                 Estado estado = controllerEstado.GetById(altera);
                 if (estado != null)
                 {
+                    
                     txt_codigo.Text = estado.estado_ID.ToString();
                     txt_estado.Text = estado.estado;
                     txt_uf.Text = estado.uf;

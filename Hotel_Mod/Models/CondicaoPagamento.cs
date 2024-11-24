@@ -14,7 +14,7 @@ namespace Hotel_Mod.Models
         public decimal juros { get; set; }
         public decimal multa { get; set; }
         public bool Ativo { get; set; }
-        public List<parcela> parcelas { get; set; }
+        public List<Parcela> parcelas { get; set; }
         public DateTime data_cadastro { get; set; }
         public DateTime data_ult_alt { get; set; }
     }

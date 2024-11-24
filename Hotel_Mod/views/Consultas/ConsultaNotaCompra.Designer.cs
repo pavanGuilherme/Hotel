@@ -30,10 +30,10 @@
         {
             this.dataGridViewNFCompra = new System.Windows.Forms.DataGridView();
             this.numeroNota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data_emissao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idFornecedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fornecedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataChegada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataCancelamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
@@ -44,6 +44,15 @@
             // 
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_pesquisar.FlatAppearance.BorderSize = 0;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(780, 12);
+            // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
             // 
             // btn_incluir
             // 
@@ -60,29 +69,20 @@
             this.btn_excluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_excluir.FlatAppearance.BorderSize = 0;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Location = new System.Drawing.Point(780, 12);
-            // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            // 
             // dataGridViewNFCompra
             // 
             this.dataGridViewNFCompra.AllowUserToAddRows = false;
             this.dataGridViewNFCompra.AllowUserToDeleteRows = false;
             this.dataGridViewNFCompra.AllowUserToResizeColumns = false;
             this.dataGridViewNFCompra.AllowUserToResizeRows = false;
-            this.dataGridViewNFCompra.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
+            this.dataGridViewNFCompra.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewNFCompra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewNFCompra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numeroNota,
+            this.data_emissao,
             this.modelo,
             this.serie,
             this.idFornecedor,
-            this.fornecedor,
             this.dataChegada,
             this.dataCancelamento});
             this.dataGridViewNFCompra.GridColor = System.Drawing.SystemColors.ControlLight;
@@ -98,6 +98,12 @@
             this.numeroNota.HeaderText = "Número";
             this.numeroNota.Name = "numeroNota";
             this.numeroNota.ReadOnly = true;
+            // 
+            // data_emissao
+            // 
+            this.data_emissao.HeaderText = "Data de Emissão";
+            this.data_emissao.Name = "data_emissao";
+            this.data_emissao.ReadOnly = true;
             // 
             // modelo
             // 
@@ -119,13 +125,6 @@
             this.idFornecedor.HeaderText = "Código Fornecedor";
             this.idFornecedor.Name = "idFornecedor";
             this.idFornecedor.ReadOnly = true;
-            // 
-            // fornecedor
-            // 
-            this.fornecedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fornecedor.HeaderText = "Fornecedor";
-            this.fornecedor.Name = "fornecedor";
-            this.fornecedor.ReadOnly = true;
             // 
             // dataChegada
             // 
@@ -168,10 +167,10 @@
 
         private System.Windows.Forms.DataGridView dataGridViewNFCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroNota;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data_emissao;
         private System.Windows.Forms.DataGridViewTextBoxColumn modelo;
         private System.Windows.Forms.DataGridViewTextBoxColumn serie;
         private System.Windows.Forms.DataGridViewTextBoxColumn idFornecedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fornecedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataChegada;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataCancelamento;
     }

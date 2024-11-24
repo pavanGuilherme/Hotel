@@ -35,26 +35,14 @@
             this.btn_busca_cod_cliente = new System.Windows.Forms.Button();
             this.lbl_cpf = new System.Windows.Forms.Label();
             this.lbl_telefone = new System.Windows.Forms.Label();
-            this.txt_andar = new System.Windows.Forms.RichTextBox();
-            this.lbl_andar = new System.Windows.Forms.Label();
-            this.txt_numero = new System.Windows.Forms.RichTextBox();
-            this.lbl_numero_quarto = new System.Windows.Forms.Label();
-            this.txt_cod_quarto = new System.Windows.Forms.RichTextBox();
             this.lbl_quarto_id = new System.Windows.Forms.Label();
-            this.btn_busca_cod_quarto = new System.Windows.Forms.Button();
-            this.txt_valor_diaria = new System.Windows.Forms.RichTextBox();
-            this.lbl_vlr_diaria = new System.Windows.Forms.Label();
+            this.btn_busca_cod_tipo = new System.Windows.Forms.Button();
             this.lbl_checkout = new System.Windows.Forms.Label();
             this.lbl_checkin = new System.Windows.Forms.Label();
             this.dtp_checkin = new System.Windows.Forms.DateTimePicker();
             this.dtp_checkout = new System.Windows.Forms.DateTimePicker();
-            this.btn_cancelar_reserva = new System.Windows.Forms.Button();
             this.lbl_data_cancelamento = new System.Windows.Forms.Label();
             this.lbl_cancelada = new System.Windows.Forms.Label();
-            this.txt_valor_total = new System.Windows.Forms.RichTextBox();
-            this.lbl_valor_total = new System.Windows.Forms.Label();
-            this.txt_num_dias = new System.Windows.Forms.RichTextBox();
-            this.lbl_num_dias = new System.Windows.Forms.Label();
             this.dataGridView_parcelas = new System.Windows.Forms.DataGridView();
             this.numeroParcela = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idFormaPagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +58,7 @@
             this.dataGridView_hospedes = new System.Windows.Forms.DataGridView();
             this.codigo_hospede = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hospede = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pagante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_cod_hospede = new System.Windows.Forms.RichTextBox();
             this.txt_hospede = new System.Windows.Forms.RichTextBox();
             this.txt_data_cancelamento = new System.Windows.Forms.RichTextBox();
@@ -154,11 +143,25 @@
             this.panel33 = new System.Windows.Forms.Panel();
             this.panel32 = new System.Windows.Forms.Panel();
             this.dataGridView_datas = new System.Windows.Forms.DataGridView();
-            this.quarto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button3 = new System.Windows.Forms.Button();
-            this.txt_obs = new System.Windows.Forms.RichTextBox();
+            this.txt_cod_tipo = new System.Windows.Forms.RichTextBox();
+            this.txt_vlr_tarifa = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txt_num_hospedes = new System.Windows.Forms.RichTextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txt_num_dias = new System.Windows.Forms.RichTextBox();
+            this.lbl_num_dias = new System.Windows.Forms.Label();
+            this.txt_valor_total = new System.Windows.Forms.RichTextBox();
+            this.lbl_valor_total = new System.Windows.Forms.Label();
             this.lbl_obs = new System.Windows.Forms.Label();
+            this.txt_obs = new System.Windows.Forms.RichTextBox();
+            this.txt_capacidade_max = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel_dias = new System.Windows.Forms.Panel();
+            this.lbl_motivo = new System.Windows.Forms.Label();
+            this.txt_motivo_checkout = new System.Windows.Forms.RichTextBox();
             this.status.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_parcelas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_hospedes)).BeginInit();
@@ -194,11 +197,12 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_datas)).BeginInit();
+            this.panel_dias.SuspendLayout();
             this.SuspendLayout();
             // 
             // status
             // 
-            this.status.Location = new System.Drawing.Point(988, 12);
+            this.status.Location = new System.Drawing.Point(1084, 12);
             this.status.Size = new System.Drawing.Size(161, 60);
             // 
             // lbl_codigo
@@ -207,38 +211,40 @@
             // 
             // txt_codigo
             // 
-            this.txt_codigo.Location = new System.Drawing.Point(12, 33);
+            this.txt_codigo.Location = new System.Drawing.Point(10, 33);
             this.txt_codigo.Size = new System.Drawing.Size(79, 31);
             // 
             // btn_salvar
             // 
             this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_salvar.FlatAppearance.BorderSize = 0;
-            this.btn_salvar.Location = new System.Drawing.Point(926, 803);
+            this.btn_salvar.Location = new System.Drawing.Point(982, 856);
+            this.btn_salvar.Size = new System.Drawing.Size(110, 31);
             // 
             // btn_sair
             // 
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Location = new System.Drawing.Point(1042, 803);
+            this.btn_sair.Location = new System.Drawing.Point(1111, 856);
+            this.btn_sair.Size = new System.Drawing.Size(106, 31);
             // 
             // lbl_dat_ult_alt
             // 
-            this.lbl_dat_ult_alt.Location = new System.Drawing.Point(201, 776);
+            this.lbl_dat_ult_alt.Location = new System.Drawing.Point(195, 827);
             // 
             // txt_dat_ult_alt
             // 
-            this.txt_dat_ult_alt.Location = new System.Drawing.Point(205, 803);
+            this.txt_dat_ult_alt.Location = new System.Drawing.Point(199, 854);
             this.txt_dat_ult_alt.Size = new System.Drawing.Size(178, 31);
             this.txt_dat_ult_alt.Text = "04/10/2024 10:18:51";
             // 
             // lbl_data_cadastro
             // 
-            this.lbl_data_cadastro.Location = new System.Drawing.Point(15, 776);
+            this.lbl_data_cadastro.Location = new System.Drawing.Point(8, 827);
             // 
             // txt_dat_cad
             // 
-            this.txt_dat_cad.Location = new System.Drawing.Point(15, 803);
+            this.txt_dat_cad.Location = new System.Drawing.Point(9, 854);
             this.txt_dat_cad.Size = new System.Drawing.Size(178, 31);
             this.txt_dat_cad.Text = "04/10/2024 10:18:51";
             // 
@@ -257,9 +263,9 @@
             this.txt_nome_cliente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_nome_cliente.Enabled = false;
             this.txt_nome_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_nome_cliente.Location = new System.Drawing.Point(251, 37);
+            this.txt_nome_cliente.Location = new System.Drawing.Point(246, 30);
             this.txt_nome_cliente.Name = "txt_nome_cliente";
-            this.txt_nome_cliente.Size = new System.Drawing.Size(324, 31);
+            this.txt_nome_cliente.Size = new System.Drawing.Size(479, 31);
             this.txt_nome_cliente.TabIndex = 110;
             this.txt_nome_cliente.Text = "";
             // 
@@ -276,19 +282,18 @@
             // txt_cod_cliente
             // 
             this.txt_cod_cliente.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_cod_cliente.Enabled = false;
             this.txt_cod_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cod_cliente.Location = new System.Drawing.Point(106, 36);
+            this.txt_cod_cliente.Location = new System.Drawing.Point(106, 33);
             this.txt_cod_cliente.Name = "txt_cod_cliente";
-            this.txt_cod_cliente.Size = new System.Drawing.Size(82, 31);
+            this.txt_cod_cliente.Size = new System.Drawing.Size(77, 31);
             this.txt_cod_cliente.TabIndex = 112;
             this.txt_cod_cliente.Text = "";
             // 
             // btn_busca_cod_cliente
             // 
-            this.btn_busca_cod_cliente.Location = new System.Drawing.Point(197, 37);
+            this.btn_busca_cod_cliente.Location = new System.Drawing.Point(184, 33);
             this.btn_busca_cod_cliente.Name = "btn_busca_cod_cliente";
-            this.btn_busca_cod_cliente.Size = new System.Drawing.Size(48, 29);
+            this.btn_busca_cod_cliente.Size = new System.Drawing.Size(48, 30);
             this.btn_busca_cod_cliente.TabIndex = 187;
             this.btn_busca_cod_cliente.Text = "search";
             this.btn_busca_cod_cliente.UseVisualStyleBackColor = true;
@@ -298,7 +303,7 @@
             // 
             this.lbl_cpf.AutoSize = true;
             this.lbl_cpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_cpf.Location = new System.Drawing.Point(578, 5);
+            this.lbl_cpf.Location = new System.Drawing.Point(731, 9);
             this.lbl_cpf.Name = "lbl_cpf";
             this.lbl_cpf.Size = new System.Drawing.Size(47, 24);
             this.lbl_cpf.TabIndex = 204;
@@ -308,65 +313,11 @@
             // 
             this.lbl_telefone.AutoSize = true;
             this.lbl_telefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_telefone.Location = new System.Drawing.Point(769, 5);
+            this.lbl_telefone.Location = new System.Drawing.Point(906, 5);
             this.lbl_telefone.Name = "lbl_telefone";
             this.lbl_telefone.Size = new System.Drawing.Size(159, 24);
             this.lbl_telefone.TabIndex = 207;
             this.lbl_telefone.Text = "Telefone / Celular";
-            // 
-            // txt_andar
-            // 
-            this.txt_andar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_andar.Enabled = false;
-            this.txt_andar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_andar.Location = new System.Drawing.Point(280, 110);
-            this.txt_andar.Name = "txt_andar";
-            this.txt_andar.Size = new System.Drawing.Size(93, 31);
-            this.txt_andar.TabIndex = 211;
-            this.txt_andar.Text = "";
-            // 
-            // lbl_andar
-            // 
-            this.lbl_andar.AutoSize = true;
-            this.lbl_andar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_andar.Location = new System.Drawing.Point(276, 87);
-            this.lbl_andar.Name = "lbl_andar";
-            this.lbl_andar.Size = new System.Drawing.Size(61, 24);
-            this.lbl_andar.TabIndex = 210;
-            this.lbl_andar.Text = "Andar";
-            // 
-            // txt_numero
-            // 
-            this.txt_numero.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_numero.Enabled = false;
-            this.txt_numero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_numero.Location = new System.Drawing.Point(149, 110);
-            this.txt_numero.Name = "txt_numero";
-            this.txt_numero.Size = new System.Drawing.Size(107, 31);
-            this.txt_numero.TabIndex = 209;
-            this.txt_numero.Text = "";
-            // 
-            // lbl_numero_quarto
-            // 
-            this.lbl_numero_quarto.AutoSize = true;
-            this.lbl_numero_quarto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_numero_quarto.Location = new System.Drawing.Point(145, 84);
-            this.lbl_numero_quarto.Name = "lbl_numero_quarto";
-            this.lbl_numero_quarto.Size = new System.Drawing.Size(113, 24);
-            this.lbl_numero_quarto.TabIndex = 208;
-            this.lbl_numero_quarto.Text = "Num Quarto";
-            // 
-            // txt_cod_quarto
-            // 
-            this.txt_cod_quarto.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_cod_quarto.Enabled = false;
-            this.txt_cod_quarto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cod_quarto.Location = new System.Drawing.Point(12, 114);
-            this.txt_cod_quarto.Name = "txt_cod_quarto";
-            this.txt_cod_quarto.Size = new System.Drawing.Size(79, 31);
-            this.txt_cod_quarto.TabIndex = 213;
-            this.txt_cod_quarto.Text = "";
-            this.txt_cod_quarto.TextChanged += new System.EventHandler(this.txt_cod_quarto_TextChanged);
             // 
             // lbl_quarto_id
             // 
@@ -374,40 +325,19 @@
             this.lbl_quarto_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_quarto_id.Location = new System.Drawing.Point(5, 87);
             this.lbl_quarto_id.Name = "lbl_quarto_id";
-            this.lbl_quarto_id.Size = new System.Drawing.Size(107, 24);
+            this.lbl_quarto_id.Size = new System.Drawing.Size(127, 24);
             this.lbl_quarto_id.TabIndex = 212;
-            this.lbl_quarto_id.Text = "Cód Quarto";
+            this.lbl_quarto_id.Text = "Cód do Tipo *";
             // 
-            // btn_busca_cod_quarto
+            // btn_busca_cod_tipo
             // 
-            this.btn_busca_cod_quarto.Location = new System.Drawing.Point(92, 113);
-            this.btn_busca_cod_quarto.Name = "btn_busca_cod_quarto";
-            this.btn_busca_cod_quarto.Size = new System.Drawing.Size(51, 29);
-            this.btn_busca_cod_quarto.TabIndex = 214;
-            this.btn_busca_cod_quarto.Text = "search";
-            this.btn_busca_cod_quarto.UseVisualStyleBackColor = true;
-            this.btn_busca_cod_quarto.Click += new System.EventHandler(this.btn_busca_cod_quarto_Click);
-            // 
-            // txt_valor_diaria
-            // 
-            this.txt_valor_diaria.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_valor_diaria.Enabled = false;
-            this.txt_valor_diaria.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_valor_diaria.Location = new System.Drawing.Point(395, 110);
-            this.txt_valor_diaria.Name = "txt_valor_diaria";
-            this.txt_valor_diaria.Size = new System.Drawing.Size(128, 31);
-            this.txt_valor_diaria.TabIndex = 216;
-            this.txt_valor_diaria.Text = "";
-            // 
-            // lbl_vlr_diaria
-            // 
-            this.lbl_vlr_diaria.AutoSize = true;
-            this.lbl_vlr_diaria.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_vlr_diaria.Location = new System.Drawing.Point(391, 87);
-            this.lbl_vlr_diaria.Name = "lbl_vlr_diaria";
-            this.lbl_vlr_diaria.Size = new System.Drawing.Size(106, 24);
-            this.lbl_vlr_diaria.TabIndex = 215;
-            this.lbl_vlr_diaria.Text = "Valor Diária";
+            this.btn_busca_cod_tipo.Location = new System.Drawing.Point(92, 113);
+            this.btn_busca_cod_tipo.Name = "btn_busca_cod_tipo";
+            this.btn_busca_cod_tipo.Size = new System.Drawing.Size(51, 29);
+            this.btn_busca_cod_tipo.TabIndex = 214;
+            this.btn_busca_cod_tipo.Text = "search";
+            this.btn_busca_cod_tipo.UseVisualStyleBackColor = true;
+            this.btn_busca_cod_tipo.Click += new System.EventHandler(this.btn_busca_cod_tipo_Click);
             // 
             // lbl_checkout
             // 
@@ -451,24 +381,12 @@
             this.dtp_checkout.TabIndex = 222;
             this.dtp_checkout.ValueChanged += new System.EventHandler(this.dtp_checkout_ValueChanged);
             // 
-            // btn_cancelar_reserva
-            // 
-            this.btn_cancelar_reserva.BackColor = System.Drawing.Color.Red;
-            this.btn_cancelar_reserva.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_cancelar_reserva.Location = new System.Drawing.Point(812, 803);
-            this.btn_cancelar_reserva.Name = "btn_cancelar_reserva";
-            this.btn_cancelar_reserva.Size = new System.Drawing.Size(105, 33);
-            this.btn_cancelar_reserva.TabIndex = 243;
-            this.btn_cancelar_reserva.Text = "Cancelar Reserva";
-            this.btn_cancelar_reserva.UseVisualStyleBackColor = false;
-            this.btn_cancelar_reserva.Click += new System.EventHandler(this.btn_cancelar_reserva_Click);
-            // 
             // lbl_data_cancelamento
             // 
             this.lbl_data_cancelamento.AutoSize = true;
             this.lbl_data_cancelamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_data_cancelamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lbl_data_cancelamento.Location = new System.Drawing.Point(391, 780);
+            this.lbl_data_cancelamento.Location = new System.Drawing.Point(388, 831);
             this.lbl_data_cancelamento.Name = "lbl_data_cancelamento";
             this.lbl_data_cancelamento.Size = new System.Drawing.Size(214, 20);
             this.lbl_data_cancelamento.TabIndex = 245;
@@ -478,56 +396,14 @@
             // lbl_cancelada
             // 
             this.lbl_cancelada.AutoSize = true;
-            this.lbl_cancelada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_cancelada.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_cancelada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lbl_cancelada.Location = new System.Drawing.Point(956, 90);
+            this.lbl_cancelada.Location = new System.Drawing.Point(1087, 84);
             this.lbl_cancelada.Name = "lbl_cancelada";
-            this.lbl_cancelada.Size = new System.Drawing.Size(196, 20);
+            this.lbl_cancelada.Size = new System.Drawing.Size(161, 16);
             this.lbl_cancelada.TabIndex = 246;
             this.lbl_cancelada.Text = "RESERVA CANCELADA*";
             this.lbl_cancelada.Visible = false;
-            // 
-            // txt_valor_total
-            // 
-            this.txt_valor_total.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_valor_total.Enabled = false;
-            this.txt_valor_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_valor_total.Location = new System.Drawing.Point(1007, 176);
-            this.txt_valor_total.Name = "txt_valor_total";
-            this.txt_valor_total.Size = new System.Drawing.Size(128, 31);
-            this.txt_valor_total.TabIndex = 255;
-            this.txt_valor_total.Text = "";
-            // 
-            // lbl_valor_total
-            // 
-            this.lbl_valor_total.AutoSize = true;
-            this.lbl_valor_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_valor_total.Location = new System.Drawing.Point(1003, 149);
-            this.lbl_valor_total.Name = "lbl_valor_total";
-            this.lbl_valor_total.Size = new System.Drawing.Size(100, 24);
-            this.lbl_valor_total.TabIndex = 254;
-            this.lbl_valor_total.Text = "Valor Total";
-            // 
-            // txt_num_dias
-            // 
-            this.txt_num_dias.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_num_dias.Enabled = false;
-            this.txt_num_dias.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_num_dias.Location = new System.Drawing.Point(895, 176);
-            this.txt_num_dias.Name = "txt_num_dias";
-            this.txt_num_dias.Size = new System.Drawing.Size(76, 31);
-            this.txt_num_dias.TabIndex = 257;
-            this.txt_num_dias.Text = "";
-            // 
-            // lbl_num_dias
-            // 
-            this.lbl_num_dias.AutoSize = true;
-            this.lbl_num_dias.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_num_dias.Location = new System.Drawing.Point(891, 150);
-            this.lbl_num_dias.Name = "lbl_num_dias";
-            this.lbl_num_dias.Size = new System.Drawing.Size(97, 24);
-            this.lbl_num_dias.TabIndex = 256;
-            this.lbl_num_dias.Text = "Num. Dias";
             // 
             // dataGridView_parcelas
             // 
@@ -545,7 +421,7 @@
             this.valorParcela});
             this.dataGridView_parcelas.Enabled = false;
             this.dataGridView_parcelas.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView_parcelas.Location = new System.Drawing.Point(19, 596);
+            this.dataGridView_parcelas.Location = new System.Drawing.Point(666, 659);
             this.dataGridView_parcelas.Name = "dataGridView_parcelas";
             this.dataGridView_parcelas.ReadOnly = true;
             this.dataGridView_parcelas.Size = new System.Drawing.Size(555, 114);
@@ -588,7 +464,7 @@
             // 
             // btn_add_cond_pag
             // 
-            this.btn_add_cond_pag.Location = new System.Drawing.Point(533, 559);
+            this.btn_add_cond_pag.Location = new System.Drawing.Point(1179, 624);
             this.btn_add_cond_pag.Name = "btn_add_cond_pag";
             this.btn_add_cond_pag.Size = new System.Drawing.Size(45, 29);
             this.btn_add_cond_pag.TabIndex = 269;
@@ -598,7 +474,7 @@
             // 
             // btn_busca_cond_pagamento
             // 
-            this.btn_busca_cond_pagamento.Location = new System.Drawing.Point(123, 556);
+            this.btn_busca_cond_pagamento.Location = new System.Drawing.Point(768, 621);
             this.btn_busca_cond_pagamento.Name = "btn_busca_cond_pagamento";
             this.btn_busca_cond_pagamento.Size = new System.Drawing.Size(62, 29);
             this.btn_busca_cond_pagamento.TabIndex = 268;
@@ -610,7 +486,7 @@
             // 
             this.lbl_cod_cond_pagamento.AutoSize = true;
             this.lbl_cod_cond_pagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_cod_cond_pagamento.Location = new System.Drawing.Point(19, 529);
+            this.lbl_cod_cond_pagamento.Location = new System.Drawing.Point(664, 594);
             this.lbl_cod_cond_pagamento.Name = "lbl_cod_cond_pagamento";
             this.lbl_cod_cond_pagamento.Size = new System.Drawing.Size(197, 24);
             this.lbl_cod_cond_pagamento.TabIndex = 267;
@@ -620,7 +496,7 @@
             // 
             this.txt_cod_cond_pagamento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_cod_cond_pagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cod_cond_pagamento.Location = new System.Drawing.Point(19, 559);
+            this.txt_cod_cond_pagamento.Location = new System.Drawing.Point(670, 618);
             this.txt_cod_cond_pagamento.Name = "txt_cod_cond_pagamento";
             this.txt_cod_cond_pagamento.Size = new System.Drawing.Size(92, 31);
             this.txt_cod_cond_pagamento.TabIndex = 266;
@@ -630,7 +506,7 @@
             // 
             this.lbl_cond_pagamento.AutoSize = true;
             this.lbl_cond_pagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_cond_pagamento.Location = new System.Drawing.Point(227, 529);
+            this.lbl_cond_pagamento.Location = new System.Drawing.Point(873, 594);
             this.lbl_cond_pagamento.Name = "lbl_cond_pagamento";
             this.lbl_cond_pagamento.Size = new System.Drawing.Size(219, 24);
             this.lbl_cond_pagamento.TabIndex = 265;
@@ -640,7 +516,7 @@
             // 
             this.txt_cond_pagamento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_cond_pagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cond_pagamento.Location = new System.Drawing.Point(230, 556);
+            this.txt_cond_pagamento.Location = new System.Drawing.Point(877, 619);
             this.txt_cond_pagamento.Name = "txt_cond_pagamento";
             this.txt_cond_pagamento.Size = new System.Drawing.Size(296, 31);
             this.txt_cond_pagamento.TabIndex = 264;
@@ -654,12 +530,13 @@
             this.dataGridView_hospedes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_hospedes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo_hospede,
-            this.hospede});
+            this.hospede,
+            this.Pagante});
             this.dataGridView_hospedes.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView_hospedes.Location = new System.Drawing.Point(669, 292);
+            this.dataGridView_hospedes.Location = new System.Drawing.Point(759, 292);
             this.dataGridView_hospedes.Name = "dataGridView_hospedes";
             this.dataGridView_hospedes.ReadOnly = true;
-            this.dataGridView_hospedes.Size = new System.Drawing.Size(444, 169);
+            this.dataGridView_hospedes.Size = new System.Drawing.Size(460, 169);
             this.dataGridView_hospedes.TabIndex = 273;
             // 
             // codigo_hospede
@@ -676,10 +553,16 @@
             this.hospede.Name = "hospede";
             this.hospede.ReadOnly = true;
             // 
+            // Pagante
+            // 
+            this.Pagante.HeaderText = "Pagante";
+            this.Pagante.Name = "Pagante";
+            this.Pagante.ReadOnly = true;
+            // 
             // txt_cod_hospede
             // 
             this.txt_cod_hospede.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_cod_hospede.Location = new System.Drawing.Point(669, 255);
+            this.txt_cod_hospede.Location = new System.Drawing.Point(756, 255);
             this.txt_cod_hospede.Name = "txt_cod_hospede";
             this.txt_cod_hospede.Size = new System.Drawing.Size(65, 31);
             this.txt_cod_hospede.TabIndex = 274;
@@ -688,15 +571,15 @@
             // txt_hospede
             // 
             this.txt_hospede.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_hospede.Location = new System.Drawing.Point(799, 255);
+            this.txt_hospede.Location = new System.Drawing.Point(905, 255);
             this.txt_hospede.Name = "txt_hospede";
-            this.txt_hospede.Size = new System.Drawing.Size(265, 29);
+            this.txt_hospede.Size = new System.Drawing.Size(263, 29);
             this.txt_hospede.TabIndex = 275;
             this.txt_hospede.Text = "";
             // 
             // txt_data_cancelamento
             // 
-            this.txt_data_cancelamento.Location = new System.Drawing.Point(395, 803);
+            this.txt_data_cancelamento.Location = new System.Drawing.Point(392, 854);
             this.txt_data_cancelamento.Name = "txt_data_cancelamento";
             this.txt_data_cancelamento.Size = new System.Drawing.Size(210, 31);
             this.txt_data_cancelamento.TabIndex = 276;
@@ -705,7 +588,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1070, 254);
+            this.button1.Location = new System.Drawing.Point(1174, 254);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(45, 29);
             this.button1.TabIndex = 277;
@@ -715,7 +598,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(735, 255);
+            this.button2.Location = new System.Drawing.Point(822, 255);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(54, 29);
             this.button2.TabIndex = 278;
@@ -727,7 +610,7 @@
             // 
             this.cod_hospede.AutoSize = true;
             this.cod_hospede.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.cod_hospede.Location = new System.Drawing.Point(665, 228);
+            this.cod_hospede.Location = new System.Drawing.Point(755, 228);
             this.cod_hospede.Name = "cod_hospede";
             this.cod_hospede.Size = new System.Drawing.Size(128, 24);
             this.cod_hospede.TabIndex = 279;
@@ -737,7 +620,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label2.Location = new System.Drawing.Point(795, 227);
+            this.label2.Location = new System.Drawing.Point(901, 227);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 24);
             this.label2.TabIndex = 280;
@@ -745,7 +628,7 @@
             // 
             // btn_excluir_cond_pagamento
             // 
-            this.btn_excluir_cond_pagamento.Location = new System.Drawing.Point(495, 716);
+            this.btn_excluir_cond_pagamento.Location = new System.Drawing.Point(1142, 779);
             this.btn_excluir_cond_pagamento.Name = "btn_excluir_cond_pagamento";
             this.btn_excluir_cond_pagamento.Size = new System.Drawing.Size(79, 29);
             this.btn_excluir_cond_pagamento.TabIndex = 281;
@@ -755,7 +638,7 @@
             // 
             // btn_excluir_hospede
             // 
-            this.btn_excluir_hospede.Location = new System.Drawing.Point(1033, 467);
+            this.btn_excluir_hospede.Location = new System.Drawing.Point(1139, 467);
             this.btn_excluir_hospede.Name = "btn_excluir_hospede";
             this.btn_excluir_hospede.Size = new System.Drawing.Size(80, 29);
             this.btn_excluir_hospede.TabIndex = 282;
@@ -768,9 +651,9 @@
             this.txt_cpf.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_cpf.Enabled = false;
             this.txt_cpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cpf.Location = new System.Drawing.Point(582, 34);
+            this.txt_cpf.Location = new System.Drawing.Point(735, 30);
             this.txt_cpf.Name = "txt_cpf";
-            this.txt_cpf.Size = new System.Drawing.Size(185, 31);
+            this.txt_cpf.Size = new System.Drawing.Size(159, 31);
             this.txt_cpf.TabIndex = 284;
             this.txt_cpf.Text = "";
             // 
@@ -779,9 +662,9 @@
             this.txt_telefone.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_telefone.Enabled = false;
             this.txt_telefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_telefone.Location = new System.Drawing.Point(773, 32);
+            this.txt_telefone.Location = new System.Drawing.Point(910, 30);
             this.txt_telefone.Name = "txt_telefone";
-            this.txt_telefone.Size = new System.Drawing.Size(187, 31);
+            this.txt_telefone.Size = new System.Drawing.Size(168, 31);
             this.txt_telefone.TabIndex = 285;
             this.txt_telefone.Text = "";
             // 
@@ -828,10 +711,11 @@
             // txt_tipo_quarto
             // 
             this.txt_tipo_quarto.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_tipo_quarto.Enabled = false;
             this.txt_tipo_quarto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_tipo_quarto.Location = new System.Drawing.Point(538, 110);
+            this.txt_tipo_quarto.Location = new System.Drawing.Point(165, 110);
             this.txt_tipo_quarto.Name = "txt_tipo_quarto";
-            this.txt_tipo_quarto.Size = new System.Drawing.Size(196, 31);
+            this.txt_tipo_quarto.Size = new System.Drawing.Size(321, 31);
             this.txt_tipo_quarto.TabIndex = 292;
             this.txt_tipo_quarto.Text = "";
             // 
@@ -839,11 +723,11 @@
             // 
             this.lbl_tipoquarto.AutoSize = true;
             this.lbl_tipoquarto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_tipoquarto.Location = new System.Drawing.Point(534, 86);
+            this.lbl_tipoquarto.Location = new System.Drawing.Point(160, 86);
             this.lbl_tipoquarto.Name = "lbl_tipoquarto";
-            this.lbl_tipoquarto.Size = new System.Drawing.Size(137, 24);
+            this.lbl_tipoquarto.Size = new System.Drawing.Size(142, 24);
             this.lbl_tipoquarto.TabIndex = 291;
-            this.lbl_tipoquarto.Text = "Tipo do Quarto";
+            this.lbl_tipoquarto.Text = "Tipo do Quarto ";
             // 
             // panel31
             // 
@@ -852,7 +736,7 @@
             this.panel31.Controls.Add(this.lbl_31);
             this.panel31.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel31.Location = new System.Drawing.Point(81, 375);
+            this.panel31.Location = new System.Drawing.Point(80, 161);
             this.panel31.Name = "panel31";
             this.panel31.Size = new System.Drawing.Size(31, 33);
             this.panel31.TabIndex = 323;
@@ -862,14 +746,12 @@
             // 
             this.lbl_31.AutoSize = true;
             this.lbl_31.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_31.Location = new System.Drawing.Point(-1, 6);
+            this.lbl_31.Location = new System.Drawing.Point(3, 7);
             this.lbl_31.Name = "lbl_31";
             this.lbl_31.Size = new System.Drawing.Size(25, 20);
             this.lbl_31.TabIndex = 169;
             this.lbl_31.Tag = "Dia";
             this.lbl_31.Text = "31";
-            this.lbl_31.Click += new System.EventHandler(this.lbl_31_Click);
-            this.lbl_31.DoubleClick += new System.EventHandler(this.lbl_31_DoubleClick);
             // 
             // panel30
             // 
@@ -878,7 +760,7 @@
             this.panel30.Controls.Add(this.lbl_30);
             this.panel30.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel30.Location = new System.Drawing.Point(50, 375);
+            this.panel30.Location = new System.Drawing.Point(43, 161);
             this.panel30.Name = "panel30";
             this.panel30.Size = new System.Drawing.Size(31, 33);
             this.panel30.TabIndex = 322;
@@ -894,8 +776,6 @@
             this.lbl_30.TabIndex = 169;
             this.lbl_30.Tag = "Dia";
             this.lbl_30.Text = "30";
-            this.lbl_30.Click += new System.EventHandler(this.lbl_30_Click);
-            this.lbl_30.DoubleClick += new System.EventHandler(this.lbl_30_DoubleClick);
             // 
             // panel29
             // 
@@ -904,7 +784,7 @@
             this.panel29.Controls.Add(this.lbl_29);
             this.panel29.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel29.Location = new System.Drawing.Point(19, 375);
+            this.panel29.Location = new System.Drawing.Point(7, 161);
             this.panel29.Name = "panel29";
             this.panel29.Size = new System.Drawing.Size(31, 33);
             this.panel29.TabIndex = 321;
@@ -920,8 +800,6 @@
             this.lbl_29.TabIndex = 169;
             this.lbl_29.Tag = "Dia";
             this.lbl_29.Text = "29";
-            this.lbl_29.Click += new System.EventHandler(this.lbl_29_Click);
-            this.lbl_29.DoubleClick += new System.EventHandler(this.lbl_29_DoubleClick);
             // 
             // panel28
             // 
@@ -930,7 +808,7 @@
             this.panel28.Controls.Add(this.lbl_28);
             this.panel28.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel28.Location = new System.Drawing.Point(205, 343);
+            this.panel28.Location = new System.Drawing.Point(227, 122);
             this.panel28.Name = "panel28";
             this.panel28.Size = new System.Drawing.Size(31, 33);
             this.panel28.TabIndex = 320;
@@ -946,8 +824,6 @@
             this.lbl_28.TabIndex = 169;
             this.lbl_28.Tag = "Dia";
             this.lbl_28.Text = "28";
-            this.lbl_28.Click += new System.EventHandler(this.lbl_28_Click);
-            this.lbl_28.DoubleClick += new System.EventHandler(this.lbl_28_DoubleClick);
             // 
             // panel27
             // 
@@ -956,7 +832,7 @@
             this.panel27.Controls.Add(this.lbl_27);
             this.panel27.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel27.Location = new System.Drawing.Point(174, 343);
+            this.panel27.Location = new System.Drawing.Point(190, 122);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(31, 33);
             this.panel27.TabIndex = 319;
@@ -972,8 +848,6 @@
             this.lbl_27.TabIndex = 169;
             this.lbl_27.Tag = "Dia";
             this.lbl_27.Text = "27";
-            this.lbl_27.Click += new System.EventHandler(this.lbl_27_Click);
-            this.lbl_27.DoubleClick += new System.EventHandler(this.lbl_27_DoubleClick);
             // 
             // panel26
             // 
@@ -982,7 +856,7 @@
             this.panel26.Controls.Add(this.lbl_26);
             this.panel26.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel26.Location = new System.Drawing.Point(143, 343);
+            this.panel26.Location = new System.Drawing.Point(153, 122);
             this.panel26.Name = "panel26";
             this.panel26.Size = new System.Drawing.Size(31, 33);
             this.panel26.TabIndex = 318;
@@ -998,8 +872,6 @@
             this.lbl_26.TabIndex = 169;
             this.lbl_26.Tag = "Dia";
             this.lbl_26.Text = "26";
-            this.lbl_26.Click += new System.EventHandler(this.lbl_26_Click);
-            this.lbl_26.DoubleClick += new System.EventHandler(this.lbl_26_DoubleClick);
             // 
             // panel25
             // 
@@ -1008,7 +880,7 @@
             this.panel25.Controls.Add(this.lbl_25);
             this.panel25.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel25.Location = new System.Drawing.Point(112, 343);
+            this.panel25.Location = new System.Drawing.Point(116, 122);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(31, 33);
             this.panel25.TabIndex = 315;
@@ -1024,8 +896,6 @@
             this.lbl_25.TabIndex = 169;
             this.lbl_25.Tag = "Dia";
             this.lbl_25.Text = "25";
-            this.lbl_25.Click += new System.EventHandler(this.lbl_25_Click);
-            this.lbl_25.DoubleClick += new System.EventHandler(this.lbl_25_DoubleClick);
             // 
             // panel24
             // 
@@ -1034,7 +904,7 @@
             this.panel24.Controls.Add(this.lbl_24);
             this.panel24.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel24.Location = new System.Drawing.Point(81, 343);
+            this.panel24.Location = new System.Drawing.Point(79, 122);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(31, 33);
             this.panel24.TabIndex = 314;
@@ -1050,8 +920,6 @@
             this.lbl_24.TabIndex = 169;
             this.lbl_24.Tag = "Dia";
             this.lbl_24.Text = "24";
-            this.lbl_24.Click += new System.EventHandler(this.lbl_24_Click);
-            this.lbl_24.DoubleClick += new System.EventHandler(this.lbl_24_DoubleClick);
             // 
             // panel23
             // 
@@ -1060,7 +928,7 @@
             this.panel23.Controls.Add(this.lbl_23);
             this.panel23.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel23.Location = new System.Drawing.Point(50, 343);
+            this.panel23.Location = new System.Drawing.Point(43, 122);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(31, 33);
             this.panel23.TabIndex = 311;
@@ -1076,8 +944,6 @@
             this.lbl_23.TabIndex = 169;
             this.lbl_23.Tag = "Dia";
             this.lbl_23.Text = "23";
-            this.lbl_23.Click += new System.EventHandler(this.lbl_23_Click);
-            this.lbl_23.DoubleClick += new System.EventHandler(this.lbl_23_DoubleClick);
             // 
             // panel22
             // 
@@ -1086,7 +952,7 @@
             this.panel22.Controls.Add(this.lbl_22);
             this.panel22.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel22.Location = new System.Drawing.Point(19, 343);
+            this.panel22.Location = new System.Drawing.Point(7, 122);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(31, 33);
             this.panel22.TabIndex = 309;
@@ -1102,8 +968,6 @@
             this.lbl_22.TabIndex = 169;
             this.lbl_22.Tag = "Dia";
             this.lbl_22.Text = "22";
-            this.lbl_22.Click += new System.EventHandler(this.lbl_22_Click);
-            this.lbl_22.DoubleClick += new System.EventHandler(this.lbl_22_DoubleClick);
             // 
             // panel21
             // 
@@ -1112,7 +976,7 @@
             this.panel21.Controls.Add(this.lbl_21);
             this.panel21.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel21.Location = new System.Drawing.Point(205, 312);
+            this.panel21.Location = new System.Drawing.Point(227, 83);
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(31, 33);
             this.panel21.TabIndex = 307;
@@ -1128,8 +992,6 @@
             this.lbl_21.TabIndex = 169;
             this.lbl_21.Tag = "Dia";
             this.lbl_21.Text = "21";
-            this.lbl_21.Click += new System.EventHandler(this.lbl_21_Click);
-            this.lbl_21.DoubleClick += new System.EventHandler(this.lbl_21_DoubleClick);
             // 
             // panel20
             // 
@@ -1138,7 +1000,7 @@
             this.panel20.Controls.Add(this.lbl_20);
             this.panel20.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel20.Location = new System.Drawing.Point(174, 312);
+            this.panel20.Location = new System.Drawing.Point(190, 83);
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(31, 33);
             this.panel20.TabIndex = 306;
@@ -1154,8 +1016,6 @@
             this.lbl_20.TabIndex = 169;
             this.lbl_20.Tag = "Dia";
             this.lbl_20.Text = "20";
-            this.lbl_20.Click += new System.EventHandler(this.lbl_20_Click);
-            this.lbl_20.DoubleClick += new System.EventHandler(this.lbl_20_DoubleClick);
             // 
             // panel19
             // 
@@ -1164,7 +1024,7 @@
             this.panel19.Controls.Add(this.lbl_19);
             this.panel19.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel19.Location = new System.Drawing.Point(143, 312);
+            this.panel19.Location = new System.Drawing.Point(153, 83);
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(31, 33);
             this.panel19.TabIndex = 308;
@@ -1180,8 +1040,6 @@
             this.lbl_19.TabIndex = 169;
             this.lbl_19.Tag = "Dia";
             this.lbl_19.Text = "19";
-            this.lbl_19.Click += new System.EventHandler(this.lbl_19_Click);
-            this.lbl_19.DoubleClick += new System.EventHandler(this.lbl_19_DoubleClick);
             // 
             // panel18
             // 
@@ -1190,7 +1048,7 @@
             this.panel18.Controls.Add(this.lbl_18);
             this.panel18.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel18.Location = new System.Drawing.Point(112, 312);
+            this.panel18.Location = new System.Drawing.Point(116, 83);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(31, 33);
             this.panel18.TabIndex = 304;
@@ -1206,8 +1064,6 @@
             this.lbl_18.TabIndex = 169;
             this.lbl_18.Tag = "Dia";
             this.lbl_18.Text = "18";
-            this.lbl_18.Click += new System.EventHandler(this.lbl_18_Click);
-            this.lbl_18.DoubleClick += new System.EventHandler(this.lbl_18_DoubleClick);
             // 
             // panel17
             // 
@@ -1216,7 +1072,7 @@
             this.panel17.Controls.Add(this.lbl_17);
             this.panel17.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel17.Location = new System.Drawing.Point(81, 312);
+            this.panel17.Location = new System.Drawing.Point(79, 83);
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(31, 33);
             this.panel17.TabIndex = 303;
@@ -1232,8 +1088,6 @@
             this.lbl_17.TabIndex = 169;
             this.lbl_17.Tag = "Dia";
             this.lbl_17.Text = "17";
-            this.lbl_17.Click += new System.EventHandler(this.lbl_17_Click);
-            this.lbl_17.DoubleClick += new System.EventHandler(this.lbl_17_DoubleClick);
             // 
             // panel16
             // 
@@ -1242,7 +1096,7 @@
             this.panel16.Controls.Add(this.lbl_16);
             this.panel16.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel16.Location = new System.Drawing.Point(50, 312);
+            this.panel16.Location = new System.Drawing.Point(43, 83);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(31, 33);
             this.panel16.TabIndex = 305;
@@ -1258,8 +1112,6 @@
             this.lbl_16.TabIndex = 169;
             this.lbl_16.Tag = "Dia";
             this.lbl_16.Text = "16";
-            this.lbl_16.Click += new System.EventHandler(this.lbl_16_Click);
-            this.lbl_16.DoubleClick += new System.EventHandler(this.lbl_16_DoubleClick);
             // 
             // panel15
             // 
@@ -1268,7 +1120,7 @@
             this.panel15.Controls.Add(this.lbl_15);
             this.panel15.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel15.Location = new System.Drawing.Point(19, 312);
+            this.panel15.Location = new System.Drawing.Point(7, 83);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(31, 33);
             this.panel15.TabIndex = 317;
@@ -1284,8 +1136,6 @@
             this.lbl_15.TabIndex = 169;
             this.lbl_15.Tag = "Dia";
             this.lbl_15.Text = "15";
-            this.lbl_15.Click += new System.EventHandler(this.lbl_15_Click);
-            this.lbl_15.DoubleClick += new System.EventHandler(this.lbl_15_DoubleClick);
             // 
             // panel14
             // 
@@ -1294,7 +1144,7 @@
             this.panel14.Controls.Add(this.lbl_14);
             this.panel14.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel14.Location = new System.Drawing.Point(205, 281);
+            this.panel14.Location = new System.Drawing.Point(226, 43);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(31, 33);
             this.panel14.TabIndex = 302;
@@ -1310,8 +1160,6 @@
             this.lbl_14.TabIndex = 169;
             this.lbl_14.Tag = "Dia";
             this.lbl_14.Text = "14";
-            this.lbl_14.Click += new System.EventHandler(this.lbl_14_Click);
-            this.lbl_14.DoubleClick += new System.EventHandler(this.lbl_14_DoubleClick);
             // 
             // panel13
             // 
@@ -1320,7 +1168,7 @@
             this.panel13.Controls.Add(this.lbl_13);
             this.panel13.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel13.Location = new System.Drawing.Point(174, 281);
+            this.panel13.Location = new System.Drawing.Point(189, 43);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(31, 33);
             this.panel13.TabIndex = 316;
@@ -1336,8 +1184,6 @@
             this.lbl_13.TabIndex = 169;
             this.lbl_13.Tag = "Dia";
             this.lbl_13.Text = "13";
-            this.lbl_13.Click += new System.EventHandler(this.lbl_13_Click);
-            this.lbl_13.DoubleClick += new System.EventHandler(this.lbl_13_DoubleClick);
             // 
             // panel12
             // 
@@ -1346,7 +1192,7 @@
             this.panel12.Controls.Add(this.lbl_12);
             this.panel12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel12.Location = new System.Drawing.Point(143, 281);
+            this.panel12.Location = new System.Drawing.Point(152, 43);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(31, 33);
             this.panel12.TabIndex = 313;
@@ -1362,8 +1208,6 @@
             this.lbl_12.TabIndex = 169;
             this.lbl_12.Tag = "Dia";
             this.lbl_12.Text = "12";
-            this.lbl_12.Click += new System.EventHandler(this.lbl_12_Click);
-            this.lbl_12.DoubleClick += new System.EventHandler(this.lbl_12_DoubleClick);
             // 
             // panel11
             // 
@@ -1372,7 +1216,7 @@
             this.panel11.Controls.Add(this.lbl_11);
             this.panel11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel11.Location = new System.Drawing.Point(112, 281);
+            this.panel11.Location = new System.Drawing.Point(115, 43);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(31, 33);
             this.panel11.TabIndex = 301;
@@ -1388,8 +1232,6 @@
             this.lbl_11.TabIndex = 169;
             this.lbl_11.Tag = "Dia";
             this.lbl_11.Text = "11";
-            this.lbl_11.Click += new System.EventHandler(this.lbl_11_Click);
-            this.lbl_11.DoubleClick += new System.EventHandler(this.lbl_11_DoubleClick);
             // 
             // panel10
             // 
@@ -1398,7 +1240,7 @@
             this.panel10.Controls.Add(this.lbl_10);
             this.panel10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel10.Location = new System.Drawing.Point(81, 281);
+            this.panel10.Location = new System.Drawing.Point(78, 43);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(31, 33);
             this.panel10.TabIndex = 299;
@@ -1414,8 +1256,6 @@
             this.lbl_10.TabIndex = 169;
             this.lbl_10.Tag = "Dia";
             this.lbl_10.Text = "10";
-            this.lbl_10.Click += new System.EventHandler(this.lbl_10_Click);
-            this.lbl_10.DoubleClick += new System.EventHandler(this.lbl_10_DoubleClick);
             // 
             // panel9
             // 
@@ -1424,7 +1264,7 @@
             this.panel9.Controls.Add(this.lbl_9);
             this.panel9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel9.Location = new System.Drawing.Point(50, 281);
+            this.panel9.Location = new System.Drawing.Point(42, 43);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(31, 33);
             this.panel9.TabIndex = 297;
@@ -1440,8 +1280,6 @@
             this.lbl_9.TabIndex = 169;
             this.lbl_9.Tag = "Dia";
             this.lbl_9.Text = "9";
-            this.lbl_9.Click += new System.EventHandler(this.lbl_9_Click);
-            this.lbl_9.DoubleClick += new System.EventHandler(this.lbl_9_DoubleClick);
             // 
             // panel8
             // 
@@ -1450,7 +1288,7 @@
             this.panel8.Controls.Add(this.lbl_8);
             this.panel8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel8.Location = new System.Drawing.Point(19, 281);
+            this.panel8.Location = new System.Drawing.Point(6, 43);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(31, 33);
             this.panel8.TabIndex = 294;
@@ -1466,8 +1304,6 @@
             this.lbl_8.TabIndex = 169;
             this.lbl_8.Tag = "Dia";
             this.lbl_8.Text = "8";
-            this.lbl_8.Click += new System.EventHandler(this.lbl_8_Click);
-            this.lbl_8.DoubleClick += new System.EventHandler(this.lbl_8_DoubleClick);
             // 
             // panel7
             // 
@@ -1476,7 +1312,7 @@
             this.panel7.Controls.Add(this.lbl_7);
             this.panel7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel7.Location = new System.Drawing.Point(205, 250);
+            this.panel7.Location = new System.Drawing.Point(226, 4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(31, 33);
             this.panel7.TabIndex = 312;
@@ -1492,8 +1328,6 @@
             this.lbl_7.TabIndex = 169;
             this.lbl_7.Tag = "Dia";
             this.lbl_7.Text = "7";
-            this.lbl_7.Click += new System.EventHandler(this.lbl_7_Click);
-            this.lbl_7.DoubleClick += new System.EventHandler(this.lbl_7_DoubleClick);
             // 
             // panel6
             // 
@@ -1502,7 +1336,7 @@
             this.panel6.Controls.Add(this.lbl_6);
             this.panel6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel6.Location = new System.Drawing.Point(174, 250);
+            this.panel6.Location = new System.Drawing.Point(189, 4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(31, 33);
             this.panel6.TabIndex = 310;
@@ -1518,8 +1352,6 @@
             this.lbl_6.TabIndex = 169;
             this.lbl_6.Tag = "Dia";
             this.lbl_6.Text = "6";
-            this.lbl_6.Click += new System.EventHandler(this.lbl_6_Click);
-            this.lbl_6.DoubleClick += new System.EventHandler(this.lbl_6_DoubleClick);
             // 
             // panel5
             // 
@@ -1528,7 +1360,7 @@
             this.panel5.Controls.Add(this.lbl_5);
             this.panel5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel5.Location = new System.Drawing.Point(143, 250);
+            this.panel5.Location = new System.Drawing.Point(152, 4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(31, 33);
             this.panel5.TabIndex = 300;
@@ -1544,8 +1376,6 @@
             this.lbl_5.TabIndex = 169;
             this.lbl_5.Tag = "Dia";
             this.lbl_5.Text = "5";
-            this.lbl_5.Click += new System.EventHandler(this.lbl_5_Click);
-            this.lbl_5.DoubleClick += new System.EventHandler(this.lbl_5_DoubleClick);
             // 
             // panel4
             // 
@@ -1554,7 +1384,7 @@
             this.panel4.Controls.Add(this.lbl_4);
             this.panel4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel4.Location = new System.Drawing.Point(112, 250);
+            this.panel4.Location = new System.Drawing.Point(115, 4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(31, 33);
             this.panel4.TabIndex = 298;
@@ -1570,8 +1400,6 @@
             this.lbl_4.TabIndex = 169;
             this.lbl_4.Tag = "Dia";
             this.lbl_4.Text = "4";
-            this.lbl_4.Click += new System.EventHandler(this.lbl_4_Click);
-            this.lbl_4.DoubleClick += new System.EventHandler(this.lbl_4_DoubleClick);
             // 
             // panel3
             // 
@@ -1580,7 +1408,7 @@
             this.panel3.Controls.Add(this.lbl_3);
             this.panel3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(81, 250);
+            this.panel3.Location = new System.Drawing.Point(78, 4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(31, 33);
             this.panel3.TabIndex = 296;
@@ -1596,8 +1424,6 @@
             this.lbl_3.TabIndex = 169;
             this.lbl_3.Tag = "Dia";
             this.lbl_3.Text = "3";
-            this.lbl_3.Click += new System.EventHandler(this.lbl_3_Click_1);
-            this.lbl_3.DoubleClick += new System.EventHandler(this.lbl_3_DoubleClick);
             // 
             // panel2
             // 
@@ -1606,7 +1432,7 @@
             this.panel2.Controls.Add(this.lbl_2);
             this.panel2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel2.Location = new System.Drawing.Point(50, 250);
+            this.panel2.Location = new System.Drawing.Point(42, 4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(31, 33);
             this.panel2.TabIndex = 295;
@@ -1622,8 +1448,6 @@
             this.lbl_2.TabIndex = 169;
             this.lbl_2.Tag = "Dia";
             this.lbl_2.Text = "2";
-            this.lbl_2.Click += new System.EventHandler(this.lbl_2_Click);
-            this.lbl_2.DoubleClick += new System.EventHandler(this.lbl_2_DoubleClick);
             // 
             // panel1
             // 
@@ -1632,7 +1456,7 @@
             this.panel1.Controls.Add(this.lbl_1);
             this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(19, 250);
+            this.panel1.Location = new System.Drawing.Point(6, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(31, 33);
             this.panel1.TabIndex = 293;
@@ -1649,14 +1473,12 @@
             this.lbl_1.TabIndex = 169;
             this.lbl_1.Tag = "Dia";
             this.lbl_1.Text = "1";
-            this.lbl_1.Click += new System.EventHandler(this.lbl_1_Click_1);
-            this.lbl_1.DoubleClick += new System.EventHandler(this.lbl_1_DoubleClick);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(56, 448);
+            this.label9.Location = new System.Drawing.Point(39, 486);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(134, 20);
             this.label9.TabIndex = 327;
@@ -1666,7 +1488,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(56, 427);
+            this.label7.Location = new System.Drawing.Point(40, 466);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(133, 20);
             this.label7.TabIndex = 326;
@@ -1676,7 +1498,7 @@
             // 
             this.panel33.BackColor = System.Drawing.Color.LightGreen;
             this.panel33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel33.Location = new System.Drawing.Point(35, 425);
+            this.panel33.Location = new System.Drawing.Point(19, 464);
             this.panel33.Name = "panel33";
             this.panel33.Size = new System.Drawing.Size(15, 15);
             this.panel33.TabIndex = 325;
@@ -1685,7 +1507,7 @@
             // 
             this.panel32.BackColor = System.Drawing.Color.Tomato;
             this.panel32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel32.Location = new System.Drawing.Point(35, 446);
+            this.panel32.Location = new System.Drawing.Point(18, 484);
             this.panel32.Name = "panel32";
             this.panel32.Size = new System.Drawing.Size(15, 15);
             this.panel32.TabIndex = 324;
@@ -1696,17 +1518,17 @@
             this.dataGridView_datas.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView_datas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_datas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.quarto,
+            this.Tipo,
             this.data});
-            this.dataGridView_datas.Location = new System.Drawing.Point(258, 228);
+            this.dataGridView_datas.Location = new System.Drawing.Point(324, 254);
             this.dataGridView_datas.Name = "dataGridView_datas";
-            this.dataGridView_datas.Size = new System.Drawing.Size(381, 233);
+            this.dataGridView_datas.Size = new System.Drawing.Size(401, 207);
             this.dataGridView_datas.TabIndex = 328;
             // 
-            // quarto
+            // Tipo
             // 
-            this.quarto.HeaderText = "quarto";
-            this.quarto.Name = "quarto";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
             // 
             // data
             // 
@@ -1716,7 +1538,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(174, 383);
+            this.button3.Location = new System.Drawing.Point(190, 165);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(66, 29);
             this.button3.TabIndex = 329;
@@ -1724,67 +1546,225 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // txt_obs
+            // txt_cod_tipo
             // 
-            this.txt_obs.Location = new System.Drawing.Point(669, 596);
-            this.txt_obs.Name = "txt_obs";
-            this.txt_obs.Size = new System.Drawing.Size(444, 127);
-            this.txt_obs.TabIndex = 330;
-            this.txt_obs.Text = "";
+            this.txt_cod_tipo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_cod_tipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_cod_tipo.Location = new System.Drawing.Point(9, 113);
+            this.txt_cod_tipo.Name = "txt_cod_tipo";
+            this.txt_cod_tipo.Size = new System.Drawing.Size(83, 31);
+            this.txt_cod_tipo.TabIndex = 336;
+            this.txt_cod_tipo.Text = "";
+            this.txt_cod_tipo.TextChanged += new System.EventHandler(this.txt_cod_tipo_TextChanged);
+            // 
+            // txt_vlr_tarifa
+            // 
+            this.txt_vlr_tarifa.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_vlr_tarifa.Enabled = false;
+            this.txt_vlr_tarifa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_vlr_tarifa.Location = new System.Drawing.Point(775, 550);
+            this.txt_vlr_tarifa.Name = "txt_vlr_tarifa";
+            this.txt_vlr_tarifa.Size = new System.Drawing.Size(127, 31);
+            this.txt_vlr_tarifa.TabIndex = 346;
+            this.txt_vlr_tarifa.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.label4.Location = new System.Drawing.Point(768, 524);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(131, 24);
+            this.label4.TabIndex = 345;
+            this.label4.Text = "Valor da Tarifa";
+            // 
+            // txt_num_hospedes
+            // 
+            this.txt_num_hospedes.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_num_hospedes.Enabled = false;
+            this.txt_num_hospedes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_num_hospedes.Location = new System.Drawing.Point(922, 550);
+            this.txt_num_hospedes.Name = "txt_num_hospedes";
+            this.txt_num_hospedes.Size = new System.Drawing.Size(114, 31);
+            this.txt_num_hospedes.TabIndex = 344;
+            this.txt_num_hospedes.Text = "";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.label3.Location = new System.Drawing.Point(916, 524);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(143, 24);
+            this.label3.TabIndex = 343;
+            this.label3.Text = "Núm Hóspedes";
+            // 
+            // txt_num_dias
+            // 
+            this.txt_num_dias.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_num_dias.Enabled = false;
+            this.txt_num_dias.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_num_dias.Location = new System.Drawing.Point(666, 550);
+            this.txt_num_dias.Name = "txt_num_dias";
+            this.txt_num_dias.Size = new System.Drawing.Size(93, 31);
+            this.txt_num_dias.TabIndex = 342;
+            this.txt_num_dias.Text = "";
+            // 
+            // lbl_num_dias
+            // 
+            this.lbl_num_dias.AutoSize = true;
+            this.lbl_num_dias.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lbl_num_dias.Location = new System.Drawing.Point(660, 522);
+            this.lbl_num_dias.Name = "lbl_num_dias";
+            this.lbl_num_dias.Size = new System.Drawing.Size(97, 24);
+            this.lbl_num_dias.TabIndex = 341;
+            this.lbl_num_dias.Text = "Num. Dias";
+            // 
+            // txt_valor_total
+            // 
+            this.txt_valor_total.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_valor_total.Enabled = false;
+            this.txt_valor_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_valor_total.Location = new System.Drawing.Point(1069, 550);
+            this.txt_valor_total.Name = "txt_valor_total";
+            this.txt_valor_total.Size = new System.Drawing.Size(150, 31);
+            this.txt_valor_total.TabIndex = 340;
+            this.txt_valor_total.Text = "";
+            // 
+            // lbl_valor_total
+            // 
+            this.lbl_valor_total.AutoSize = true;
+            this.lbl_valor_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lbl_valor_total.ForeColor = System.Drawing.Color.Green;
+            this.lbl_valor_total.Location = new System.Drawing.Point(1063, 526);
+            this.lbl_valor_total.Name = "lbl_valor_total";
+            this.lbl_valor_total.Size = new System.Drawing.Size(100, 24);
+            this.lbl_valor_total.TabIndex = 339;
+            this.lbl_valor_total.Text = "Valor Total";
             // 
             // lbl_obs
             // 
             this.lbl_obs.AutoSize = true;
             this.lbl_obs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_obs.Location = new System.Drawing.Point(670, 559);
+            this.lbl_obs.Location = new System.Drawing.Point(14, 523);
             this.lbl_obs.Name = "lbl_obs";
             this.lbl_obs.Size = new System.Drawing.Size(112, 24);
-            this.lbl_obs.TabIndex = 331;
+            this.lbl_obs.TabIndex = 348;
             this.lbl_obs.Text = "Observação";
+            // 
+            // txt_obs
+            // 
+            this.txt_obs.Location = new System.Drawing.Point(12, 550);
+            this.txt_obs.Name = "txt_obs";
+            this.txt_obs.Size = new System.Drawing.Size(615, 105);
+            this.txt_obs.TabIndex = 347;
+            this.txt_obs.Text = "";
+            // 
+            // txt_capacidade_max
+            // 
+            this.txt_capacidade_max.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_capacidade_max.Enabled = false;
+            this.txt_capacidade_max.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_capacidade_max.Location = new System.Drawing.Point(504, 110);
+            this.txt_capacidade_max.Name = "txt_capacidade_max";
+            this.txt_capacidade_max.Size = new System.Drawing.Size(145, 31);
+            this.txt_capacidade_max.TabIndex = 350;
+            this.txt_capacidade_max.Text = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.label1.Location = new System.Drawing.Point(500, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 24);
+            this.label1.TabIndex = 349;
+            this.label1.Text = "Capacidade Máx";
+            // 
+            // panel_dias
+            // 
+            this.panel_dias.Controls.Add(this.panel1);
+            this.panel_dias.Controls.Add(this.panel2);
+            this.panel_dias.Controls.Add(this.panel3);
+            this.panel_dias.Controls.Add(this.panel4);
+            this.panel_dias.Controls.Add(this.panel5);
+            this.panel_dias.Controls.Add(this.panel6);
+            this.panel_dias.Controls.Add(this.panel7);
+            this.panel_dias.Controls.Add(this.panel8);
+            this.panel_dias.Controls.Add(this.panel9);
+            this.panel_dias.Controls.Add(this.panel10);
+            this.panel_dias.Controls.Add(this.panel11);
+            this.panel_dias.Controls.Add(this.panel12);
+            this.panel_dias.Controls.Add(this.panel13);
+            this.panel_dias.Controls.Add(this.panel14);
+            this.panel_dias.Controls.Add(this.panel15);
+            this.panel_dias.Controls.Add(this.panel16);
+            this.panel_dias.Controls.Add(this.panel17);
+            this.panel_dias.Controls.Add(this.panel18);
+            this.panel_dias.Controls.Add(this.panel19);
+            this.panel_dias.Controls.Add(this.panel20);
+            this.panel_dias.Controls.Add(this.panel21);
+            this.panel_dias.Controls.Add(this.panel22);
+            this.panel_dias.Controls.Add(this.panel23);
+            this.panel_dias.Controls.Add(this.button3);
+            this.panel_dias.Controls.Add(this.panel24);
+            this.panel_dias.Controls.Add(this.panel25);
+            this.panel_dias.Controls.Add(this.panel26);
+            this.panel_dias.Controls.Add(this.panel27);
+            this.panel_dias.Controls.Add(this.panel28);
+            this.panel_dias.Controls.Add(this.panel29);
+            this.panel_dias.Controls.Add(this.panel31);
+            this.panel_dias.Controls.Add(this.panel30);
+            this.panel_dias.Location = new System.Drawing.Point(12, 255);
+            this.panel_dias.Name = "panel_dias";
+            this.panel_dias.Size = new System.Drawing.Size(263, 197);
+            this.panel_dias.TabIndex = 351;
+            // 
+            // lbl_motivo
+            // 
+            this.lbl_motivo.AutoSize = true;
+            this.lbl_motivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lbl_motivo.Location = new System.Drawing.Point(14, 657);
+            this.lbl_motivo.Name = "lbl_motivo";
+            this.lbl_motivo.Size = new System.Drawing.Size(281, 24);
+            this.lbl_motivo.TabIndex = 353;
+            this.lbl_motivo.Text = "Motivo do Check-out antecipado";
+            this.lbl_motivo.Visible = false;
+            // 
+            // txt_motivo_checkout
+            // 
+            this.txt_motivo_checkout.Location = new System.Drawing.Point(12, 684);
+            this.txt_motivo_checkout.Name = "txt_motivo_checkout";
+            this.txt_motivo_checkout.Size = new System.Drawing.Size(615, 89);
+            this.txt_motivo_checkout.TabIndex = 352;
+            this.txt_motivo_checkout.Text = "";
+            this.txt_motivo_checkout.Visible = false;
             // 
             // CadastroReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1161, 846);
+            this.ClientSize = new System.Drawing.Size(1254, 898);
+            this.Controls.Add(this.lbl_motivo);
+            this.Controls.Add(this.txt_motivo_checkout);
+            this.Controls.Add(this.panel_dias);
+            this.Controls.Add(this.txt_capacidade_max);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_obs);
             this.Controls.Add(this.txt_obs);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.txt_vlr_tarifa);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txt_num_hospedes);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txt_num_dias);
+            this.Controls.Add(this.lbl_num_dias);
+            this.Controls.Add(this.txt_valor_total);
+            this.Controls.Add(this.lbl_valor_total);
+            this.Controls.Add(this.txt_cod_tipo);
             this.Controls.Add(this.dataGridView_datas);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panel33);
             this.Controls.Add(this.panel32);
-            this.Controls.Add(this.panel31);
-            this.Controls.Add(this.panel30);
-            this.Controls.Add(this.panel29);
-            this.Controls.Add(this.panel28);
-            this.Controls.Add(this.panel27);
-            this.Controls.Add(this.panel26);
-            this.Controls.Add(this.panel25);
-            this.Controls.Add(this.panel24);
-            this.Controls.Add(this.panel23);
-            this.Controls.Add(this.panel22);
-            this.Controls.Add(this.panel21);
-            this.Controls.Add(this.panel20);
-            this.Controls.Add(this.panel19);
-            this.Controls.Add(this.panel18);
-            this.Controls.Add(this.panel17);
-            this.Controls.Add(this.panel16);
-            this.Controls.Add(this.panel15);
-            this.Controls.Add(this.panel14);
-            this.Controls.Add(this.panel13);
-            this.Controls.Add(this.panel12);
-            this.Controls.Add(this.panel11);
-            this.Controls.Add(this.panel10);
-            this.Controls.Add(this.panel9);
-            this.Controls.Add(this.panel8);
-            this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.txt_tipo_quarto);
             this.Controls.Add(this.lbl_tipoquarto);
             this.Controls.Add(this.lbl_ano);
@@ -1810,26 +1790,14 @@
             this.Controls.Add(this.txt_cod_cond_pagamento);
             this.Controls.Add(this.lbl_cond_pagamento);
             this.Controls.Add(this.txt_cond_pagamento);
-            this.Controls.Add(this.txt_num_dias);
-            this.Controls.Add(this.lbl_num_dias);
-            this.Controls.Add(this.txt_valor_total);
-            this.Controls.Add(this.lbl_valor_total);
             this.Controls.Add(this.lbl_cancelada);
             this.Controls.Add(this.lbl_data_cancelamento);
-            this.Controls.Add(this.btn_cancelar_reserva);
             this.Controls.Add(this.dtp_checkout);
             this.Controls.Add(this.dtp_checkin);
             this.Controls.Add(this.lbl_checkout);
             this.Controls.Add(this.lbl_checkin);
-            this.Controls.Add(this.txt_valor_diaria);
-            this.Controls.Add(this.lbl_vlr_diaria);
-            this.Controls.Add(this.btn_busca_cod_quarto);
-            this.Controls.Add(this.txt_cod_quarto);
+            this.Controls.Add(this.btn_busca_cod_tipo);
             this.Controls.Add(this.lbl_quarto_id);
-            this.Controls.Add(this.txt_andar);
-            this.Controls.Add(this.lbl_andar);
-            this.Controls.Add(this.txt_numero);
-            this.Controls.Add(this.lbl_numero_quarto);
             this.Controls.Add(this.lbl_telefone);
             this.Controls.Add(this.lbl_cpf);
             this.Controls.Add(this.btn_busca_cod_cliente);
@@ -1839,6 +1807,8 @@
             this.Controls.Add(this.txt_nome_cliente);
             this.Name = "CadastroReserva";
             this.Text = "Cadastro Reserva";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CadastroReserva_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CadastroReserva_FormClosed);
             this.Load += new System.EventHandler(this.CadastroReserva_Load);
             this.Controls.SetChildIndex(this.txt_nome_cliente, 0);
             this.Controls.SetChildIndex(this.lbl_nome, 0);
@@ -1847,26 +1817,14 @@
             this.Controls.SetChildIndex(this.btn_busca_cod_cliente, 0);
             this.Controls.SetChildIndex(this.lbl_cpf, 0);
             this.Controls.SetChildIndex(this.lbl_telefone, 0);
-            this.Controls.SetChildIndex(this.lbl_numero_quarto, 0);
-            this.Controls.SetChildIndex(this.txt_numero, 0);
-            this.Controls.SetChildIndex(this.lbl_andar, 0);
-            this.Controls.SetChildIndex(this.txt_andar, 0);
             this.Controls.SetChildIndex(this.lbl_quarto_id, 0);
-            this.Controls.SetChildIndex(this.txt_cod_quarto, 0);
-            this.Controls.SetChildIndex(this.btn_busca_cod_quarto, 0);
-            this.Controls.SetChildIndex(this.lbl_vlr_diaria, 0);
-            this.Controls.SetChildIndex(this.txt_valor_diaria, 0);
+            this.Controls.SetChildIndex(this.btn_busca_cod_tipo, 0);
             this.Controls.SetChildIndex(this.lbl_checkin, 0);
             this.Controls.SetChildIndex(this.lbl_checkout, 0);
             this.Controls.SetChildIndex(this.dtp_checkin, 0);
             this.Controls.SetChildIndex(this.dtp_checkout, 0);
-            this.Controls.SetChildIndex(this.btn_cancelar_reserva, 0);
             this.Controls.SetChildIndex(this.lbl_data_cancelamento, 0);
             this.Controls.SetChildIndex(this.lbl_cancelada, 0);
-            this.Controls.SetChildIndex(this.lbl_valor_total, 0);
-            this.Controls.SetChildIndex(this.txt_valor_total, 0);
-            this.Controls.SetChildIndex(this.lbl_num_dias, 0);
-            this.Controls.SetChildIndex(this.txt_num_dias, 0);
             this.Controls.SetChildIndex(this.txt_cond_pagamento, 0);
             this.Controls.SetChildIndex(this.lbl_cond_pagamento, 0);
             this.Controls.SetChildIndex(this.txt_cod_cond_pagamento, 0);
@@ -1892,37 +1850,6 @@
             this.Controls.SetChildIndex(this.lbl_ano, 0);
             this.Controls.SetChildIndex(this.lbl_tipoquarto, 0);
             this.Controls.SetChildIndex(this.txt_tipo_quarto, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.panel2, 0);
-            this.Controls.SetChildIndex(this.panel3, 0);
-            this.Controls.SetChildIndex(this.panel4, 0);
-            this.Controls.SetChildIndex(this.panel5, 0);
-            this.Controls.SetChildIndex(this.panel6, 0);
-            this.Controls.SetChildIndex(this.panel7, 0);
-            this.Controls.SetChildIndex(this.panel8, 0);
-            this.Controls.SetChildIndex(this.panel9, 0);
-            this.Controls.SetChildIndex(this.panel10, 0);
-            this.Controls.SetChildIndex(this.panel11, 0);
-            this.Controls.SetChildIndex(this.panel12, 0);
-            this.Controls.SetChildIndex(this.panel13, 0);
-            this.Controls.SetChildIndex(this.panel14, 0);
-            this.Controls.SetChildIndex(this.panel15, 0);
-            this.Controls.SetChildIndex(this.panel16, 0);
-            this.Controls.SetChildIndex(this.panel17, 0);
-            this.Controls.SetChildIndex(this.panel18, 0);
-            this.Controls.SetChildIndex(this.panel19, 0);
-            this.Controls.SetChildIndex(this.panel20, 0);
-            this.Controls.SetChildIndex(this.panel21, 0);
-            this.Controls.SetChildIndex(this.panel22, 0);
-            this.Controls.SetChildIndex(this.panel23, 0);
-            this.Controls.SetChildIndex(this.panel24, 0);
-            this.Controls.SetChildIndex(this.panel25, 0);
-            this.Controls.SetChildIndex(this.panel26, 0);
-            this.Controls.SetChildIndex(this.panel27, 0);
-            this.Controls.SetChildIndex(this.panel28, 0);
-            this.Controls.SetChildIndex(this.panel29, 0);
-            this.Controls.SetChildIndex(this.panel30, 0);
-            this.Controls.SetChildIndex(this.panel31, 0);
             this.Controls.SetChildIndex(this.panel32, 0);
             this.Controls.SetChildIndex(this.panel33, 0);
             this.Controls.SetChildIndex(this.label7, 0);
@@ -1937,9 +1864,22 @@
             this.Controls.SetChildIndex(this.txt_codigo, 0);
             this.Controls.SetChildIndex(this.lbl_codigo, 0);
             this.Controls.SetChildIndex(this.status, 0);
-            this.Controls.SetChildIndex(this.button3, 0);
+            this.Controls.SetChildIndex(this.txt_cod_tipo, 0);
+            this.Controls.SetChildIndex(this.lbl_valor_total, 0);
+            this.Controls.SetChildIndex(this.txt_valor_total, 0);
+            this.Controls.SetChildIndex(this.lbl_num_dias, 0);
+            this.Controls.SetChildIndex(this.txt_num_dias, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.txt_num_hospedes, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.txt_vlr_tarifa, 0);
             this.Controls.SetChildIndex(this.txt_obs, 0);
             this.Controls.SetChildIndex(this.lbl_obs, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.txt_capacidade_max, 0);
+            this.Controls.SetChildIndex(this.panel_dias, 0);
+            this.Controls.SetChildIndex(this.txt_motivo_checkout, 0);
+            this.Controls.SetChildIndex(this.lbl_motivo, 0);
             this.status.ResumeLayout(false);
             this.status.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_parcelas)).EndInit();
@@ -2007,6 +1947,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_datas)).EndInit();
+            this.panel_dias.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2021,26 +1962,14 @@
         private System.Windows.Forms.Button btn_busca_cod_cliente;
         private System.Windows.Forms.Label lbl_cpf;
         private System.Windows.Forms.Label lbl_telefone;
-        private System.Windows.Forms.RichTextBox txt_andar;
-        private System.Windows.Forms.Label lbl_andar;
-        private System.Windows.Forms.RichTextBox txt_numero;
-        private System.Windows.Forms.Label lbl_numero_quarto;
-        private System.Windows.Forms.RichTextBox txt_cod_quarto;
         private System.Windows.Forms.Label lbl_quarto_id;
-        private System.Windows.Forms.Button btn_busca_cod_quarto;
-        private System.Windows.Forms.RichTextBox txt_valor_diaria;
-        private System.Windows.Forms.Label lbl_vlr_diaria;
+        private System.Windows.Forms.Button btn_busca_cod_tipo;
         protected System.Windows.Forms.Label lbl_checkout;
         protected System.Windows.Forms.Label lbl_checkin;
         private System.Windows.Forms.DateTimePicker dtp_checkin;
         private System.Windows.Forms.DateTimePicker dtp_checkout;
-        private System.Windows.Forms.Button btn_cancelar_reserva;
         public System.Windows.Forms.Label lbl_data_cancelamento;
         public System.Windows.Forms.Label lbl_cancelada;
-        private System.Windows.Forms.RichTextBox txt_valor_total;
-        private System.Windows.Forms.Label lbl_valor_total;
-        private System.Windows.Forms.RichTextBox txt_num_dias;
-        private System.Windows.Forms.Label lbl_num_dias;
         private System.Windows.Forms.DataGridView dataGridView_parcelas;
         private System.Windows.Forms.Button btn_add_cond_pag;
         private System.Windows.Forms.Button btn_busca_cond_pagamento;
@@ -2057,8 +1986,6 @@
         private System.Windows.Forms.RichTextBox txt_cod_hospede;
         private System.Windows.Forms.RichTextBox txt_hospede;
         private System.Windows.Forms.RichTextBox txt_data_cancelamento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigo_hospede;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hospede;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label cod_hospede;
@@ -2141,9 +2068,26 @@
         private System.Windows.Forms.Panel panel32;
         private System.Windows.Forms.DataGridView dataGridView_datas;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quarto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn data;
-        private System.Windows.Forms.RichTextBox txt_obs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo_hospede;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hospede;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pagante;
+        private System.Windows.Forms.RichTextBox txt_cod_tipo;
+        private System.Windows.Forms.RichTextBox txt_vlr_tarifa;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RichTextBox txt_num_hospedes;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox txt_num_dias;
+        private System.Windows.Forms.Label lbl_num_dias;
+        private System.Windows.Forms.RichTextBox txt_valor_total;
+        private System.Windows.Forms.Label lbl_valor_total;
         private System.Windows.Forms.Label lbl_obs;
+        private System.Windows.Forms.RichTextBox txt_obs;
+        private System.Windows.Forms.RichTextBox txt_capacidade_max;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data;
+        private System.Windows.Forms.Panel panel_dias;
+        private System.Windows.Forms.Label lbl_motivo;
+        private System.Windows.Forms.RichTextBox txt_motivo_checkout;
     }
 }

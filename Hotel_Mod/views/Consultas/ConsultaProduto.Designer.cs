@@ -69,6 +69,7 @@
             // 
             // dataGridViewProduto
             // 
+            this.dataGridViewProduto.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProduto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.produto_ID,

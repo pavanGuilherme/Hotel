@@ -146,13 +146,13 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
-        private List<parcela> obtemparcela()
+        private List<Parcela> obtemparcela()
         {
-            List<parcela> parcela = new List<parcela>(); // Lista para armazenar as parcela
+            List<Parcela> parcela = new List<Parcela>(); // Lista para armazenar as parcela
 
             foreach (DataGridViewRow row in dataGridView_parcelas.Rows) // Percorre o DataGridView
             {
-                parcela parcelas = new parcela
+                Parcela parcelas = new Parcela
                 {
                     numeroParcela = Convert.ToInt32(row.Cells["numeroParcela"].Value),
                     dias = Convert.ToInt32(row.Cells["dias"].Value),
@@ -165,7 +165,7 @@ namespace Hotel_Mod.views.Cadastros
             return parcela;
         }
 
-        private void exibirparcelaDGV(List<parcela> parcela)
+        private void exibirparcelaDGV(List<Parcela> parcela)
         {
             dataGridView_parcelas.Rows.Clear(); // Limpa o DataGridView
 

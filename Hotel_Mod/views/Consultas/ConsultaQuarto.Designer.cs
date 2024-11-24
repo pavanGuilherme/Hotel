@@ -30,12 +30,11 @@
         {
             this.dataGridViewQuarto = new System.Windows.Forms.DataGridView();
             this.quarto_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipo_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.andar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.disponivel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuarto)).BeginInit();
             this.SuspendLayout();
@@ -72,15 +71,15 @@
             // 
             // dataGridViewQuarto
             // 
+            this.dataGridViewQuarto.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewQuarto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewQuarto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.quarto_ID,
+            this.tipo_id,
             this.valor,
             this.numero,
             this.andar,
-            this.tipo,
-            this.ativo,
-            this.disponivel});
+            this.tipo});
             this.dataGridViewQuarto.Location = new System.Drawing.Point(13, 72);
             this.dataGridViewQuarto.Name = "dataGridViewQuarto";
             this.dataGridViewQuarto.Size = new System.Drawing.Size(970, 411);
@@ -91,6 +90,11 @@
             this.quarto_ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.quarto_ID.HeaderText = "Código";
             this.quarto_ID.Name = "quarto_ID";
+            // 
+            // tipo_id
+            // 
+            this.tipo_id.HeaderText = "Tipo Quarto ID";
+            this.tipo_id.Name = "tipo_id";
             // 
             // valor
             // 
@@ -112,20 +116,8 @@
             // tipo
             // 
             this.tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tipo.HeaderText = "tipo";
+            this.tipo.HeaderText = "Tipo";
             this.tipo.Name = "tipo";
-            // 
-            // ativo
-            // 
-            this.ativo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ativo.HeaderText = "Ativo";
-            this.ativo.Name = "ativo";
-            // 
-            // disponivel
-            // 
-            this.disponivel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.disponivel.HeaderText = "Disponível";
-            this.disponivel.Name = "disponivel";
             // 
             // ConsultaQuarto
             // 
@@ -156,11 +148,10 @@
 
         private System.Windows.Forms.DataGridView dataGridViewQuarto;
         private System.Windows.Forms.DataGridViewTextBoxColumn quarto_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipo_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn valor;
         private System.Windows.Forms.DataGridViewTextBoxColumn numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn andar;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ativo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn disponivel;
     }
 }

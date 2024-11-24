@@ -11,11 +11,14 @@ namespace Hotel_Mod.Models
         public int quarto_ID { get; set; }
         public int numero { get; set; }
         public int andar { get; set; }
+        public int? tipo_id { get; set; }    
         public string tipo { get; set; }
-        public decimal valor { get; set; }
+        public decimal valor_diaria { get; set; }
         public string descricao { get; set; }
         public string status { get; set; }
-        public int ocupacaoMax { get; set; }    
+        public int capacidade_maxima { get; set; }
+        public string observacao { get; set; }  
+        public string situacao { get; set; } 
         public bool ativo { get; set; }
         public DateTime data_cadastro { get; set; }
         public DateTime data_ult_alt { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Hotel_Mod.views.Consultas
 {
-    partial class newConsultaQuartos
+    partial class ConsultaOcupacao
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.check_preparacao = new System.Windows.Forms.CheckBox();
             this.check_reservado = new System.Windows.Forms.CheckBox();
             this.check_livre = new System.Windows.Forms.CheckBox();
             this.check_ocupado = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxAndar = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanelQuartos = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -55,6 +54,8 @@
             this.panel16 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.btn_checkout = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanelQuartos.SuspendLayout();
@@ -65,29 +66,9 @@
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_pesquisar.FlatAppearance.BorderSize = 0;
             this.btn_pesquisar.Location = new System.Drawing.Point(299, 33);
-            this.btn_pesquisar.Size = new System.Drawing.Size(110, 30);
+            this.btn_pesquisar.Size = new System.Drawing.Size(107, 30);
             this.btn_pesquisar.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            // 
-            // btn_incluir
-            // 
-            this.btn_incluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_incluir.FlatAppearance.BorderSize = 0;
-            this.btn_incluir.Location = new System.Drawing.Point(703, 527);
-            this.btn_incluir.Size = new System.Drawing.Size(105, 34);
-            // 
-            // btn_alterar
-            // 
-            this.btn_alterar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_alterar.FlatAppearance.BorderSize = 0;
-            this.btn_alterar.Location = new System.Drawing.Point(814, 527);
-            this.btn_alterar.Size = new System.Drawing.Size(105, 34);
-            // 
-            // btn_excluir
-            // 
-            this.btn_excluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_excluir.FlatAppearance.BorderSize = 0;
-            this.btn_excluir.Location = new System.Drawing.Point(925, 527);
-            this.btn_excluir.Size = new System.Drawing.Size(105, 34);
+            this.btn_pesquisar.Click += new System.EventHandler(this.btn_pesquisar_Click);
             // 
             // txt_pesquisar
             // 
@@ -96,7 +77,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(44, 530);
+            this.groupBox2.Location = new System.Drawing.Point(512, 516);
             this.groupBox2.Size = new System.Drawing.Size(137, 45);
             this.groupBox2.Visible = false;
             // 
@@ -104,29 +85,61 @@
             // 
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Location = new System.Drawing.Point(1036, 527);
+            this.btn_sair.Location = new System.Drawing.Point(1036, 520);
             this.btn_sair.Size = new System.Drawing.Size(105, 34);
             // 
             // btn_buscainativos
             // 
             this.btn_buscainativos.Location = new System.Drawing.Point(1009, 44);
             // 
+            // btn_incluir
+            // 
+            this.btn_incluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_incluir.FlatAppearance.BorderSize = 0;
+            this.btn_incluir.Location = new System.Drawing.Point(703, 520);
+            this.btn_incluir.Size = new System.Drawing.Size(105, 34);
+            // 
+            // btn_alterar
+            // 
+            this.btn_alterar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_alterar.FlatAppearance.BorderSize = 0;
+            this.btn_alterar.Location = new System.Drawing.Point(814, 520);
+            this.btn_alterar.Size = new System.Drawing.Size(105, 34);
+            // 
+            // btn_excluir
+            // 
+            this.btn_excluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_excluir.FlatAppearance.BorderSize = 0;
+            this.btn_excluir.Location = new System.Drawing.Point(925, 520);
+            this.btn_excluir.Size = new System.Drawing.Size(105, 34);
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.check_preparacao);
             this.groupBox1.Controls.Add(this.check_reservado);
             this.groupBox1.Controls.Add(this.check_livre);
             this.groupBox1.Controls.Add(this.check_ocupado);
-            this.groupBox1.Location = new System.Drawing.Point(527, 23);
+            this.groupBox1.Location = new System.Drawing.Point(425, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(281, 45);
+            this.groupBox1.Size = new System.Drawing.Size(403, 45);
             this.groupBox1.TabIndex = 70;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Status";
             // 
+            // check_preparacao
+            // 
+            this.check_preparacao.AutoSize = true;
+            this.check_preparacao.Location = new System.Drawing.Point(260, 15);
+            this.check_preparacao.Name = "check_preparacao";
+            this.check_preparacao.Size = new System.Drawing.Size(98, 17);
+            this.check_preparacao.TabIndex = 74;
+            this.check_preparacao.Text = "Em preparação";
+            this.check_preparacao.UseVisualStyleBackColor = true;
+            // 
             // check_reservado
             // 
             this.check_reservado.AutoSize = true;
-            this.check_reservado.Location = new System.Drawing.Point(176, 15);
+            this.check_reservado.Location = new System.Drawing.Point(159, 15);
             this.check_reservado.Name = "check_reservado";
             this.check_reservado.Size = new System.Drawing.Size(78, 17);
             this.check_reservado.TabIndex = 73;
@@ -142,51 +155,34 @@
             this.check_livre.TabIndex = 71;
             this.check_livre.Text = "Livre";
             this.check_livre.UseVisualStyleBackColor = true;
-            this.check_livre.CheckedChanged += new System.EventHandler(this.check_livre_CheckedChanged);
             // 
             // check_ocupado
             // 
             this.check_ocupado.AutoSize = true;
-            this.check_ocupado.Location = new System.Drawing.Point(89, 15);
+            this.check_ocupado.Location = new System.Drawing.Point(72, 15);
             this.check_ocupado.Name = "check_ocupado";
             this.check_ocupado.Size = new System.Drawing.Size(70, 17);
             this.check_ocupado.TabIndex = 72;
             this.check_ocupado.Text = "Ocupado";
             this.check_ocupado.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // comboBoxAndar
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(834, 44);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(65, 21);
-            this.comboBox1.TabIndex = 71;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(905, 44);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(88, 21);
-            this.comboBox2.TabIndex = 72;
+            this.comboBoxAndar.FormattingEnabled = true;
+            this.comboBoxAndar.Location = new System.Drawing.Point(896, 44);
+            this.comboBoxAndar.Name = "comboBoxAndar";
+            this.comboBoxAndar.Size = new System.Drawing.Size(85, 21);
+            this.comboBoxAndar.TabIndex = 71;
+            this.comboBoxAndar.SelectedIndexChanged += new System.EventHandler(this.comboBoxAndar_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(834, 27);
+            this.label1.Location = new System.Drawing.Point(896, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 73;
-            this.label1.Text = "Linhas";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(905, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
-            this.label2.TabIndex = 74;
-            this.label2.Text = "Colunas";
+            this.label1.Text = "Andar";
             // 
             // flowLayoutPanelQuartos
             // 
@@ -376,24 +372,45 @@
             this.panel18.TabIndex = 5;
             this.panel18.Tag = "quarto_ID";
             // 
-            // newConsultaQuartos
+            // btn_checkout
+            // 
+            this.btn_checkout.BackColor = System.Drawing.Color.Red;
+            this.btn_checkout.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_checkout.Location = new System.Drawing.Point(25, 515);
+            this.btn_checkout.Name = "btn_checkout";
+            this.btn_checkout.Size = new System.Drawing.Size(122, 36);
+            this.btn_checkout.TabIndex = 336;
+            this.btn_checkout.Text = "Checkout";
+            this.btn_checkout.UseVisualStyleBackColor = false;
+            this.btn_checkout.Click += new System.EventHandler(this.btn_checkout_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Green;
+            this.button1.ForeColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(153, 515);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(122, 36);
+            this.button1.TabIndex = 337;
+            this.button1.Text = "Limpo";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // ConsultaOcupacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(1170, 608);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_checkout);
             this.Controls.Add(this.flowLayoutPanelQuartos);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxAndar);
             this.Controls.Add(this.groupBox1);
-            this.Name = "newConsultaQuartos";
+            this.Name = "ConsultaOcupacao";
             this.Text = "Consulta Ocupações";
             this.Load += new System.EventHandler(this.newConsultaQuartos_Load_1);
             this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.comboBox1, 0);
-            this.Controls.SetChildIndex(this.comboBox2, 0);
+            this.Controls.SetChildIndex(this.comboBoxAndar, 0);
             this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.flowLayoutPanelQuartos, 0);
             this.Controls.SetChildIndex(this.txt_pesquisar, 0);
             this.Controls.SetChildIndex(this.btn_sair, 0);
@@ -403,6 +420,8 @@
             this.Controls.SetChildIndex(this.btn_pesquisar, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.btn_buscainativos, 0);
+            this.Controls.SetChildIndex(this.btn_checkout, 0);
+            this.Controls.SetChildIndex(this.button1, 0);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -419,10 +438,8 @@
         private System.Windows.Forms.CheckBox check_reservado;
         private System.Windows.Forms.CheckBox check_livre;
         private System.Windows.Forms.CheckBox check_ocupado;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxAndar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelQuartos;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -442,5 +459,8 @@
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.CheckBox check_preparacao;
+        private System.Windows.Forms.Button btn_checkout;
+        private System.Windows.Forms.Button button1;
     }
 }

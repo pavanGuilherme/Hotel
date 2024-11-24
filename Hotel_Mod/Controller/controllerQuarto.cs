@@ -45,6 +45,22 @@ namespace Hotel_Mod.Controller
             return daoQuarto.GetById(id);
         }
 
+      
+
+
+        public tipo_quarto ObterTipoQuartoPorId(int tipoId)
+        {
+            try
+            {
+                return daoQuarto.ObterTipoQuartoPorId(tipoId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao obter tipo de quarto por ID: " + ex.Message);
+                return null;
+            }
+        }
+
 
         public bool JaCadastrado(int numero, int idAtual)
         {
@@ -70,5 +86,26 @@ namespace Hotel_Mod.Controller
 
             return false;
         }
+
+
+        public List<Quarto> BuscarQuartosDisponiveis(int tipoQuarto_id)
+        {
+            try
+            {
+                return daoQuarto.BuscarQuartosDisponiveis(tipoQuarto_id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro na Controller ao buscar quartos disponíveis: " + ex.Message);
+            }
+        }
+
+        public void AtualizarStatusQuarto(int quartoId, string status)
+        {
+            daoQuarto.AtualizarStatusQuarto(quartoId, status);
+        }
+
+
+
     }
 }

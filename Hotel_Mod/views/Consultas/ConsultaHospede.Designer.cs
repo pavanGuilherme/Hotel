@@ -43,6 +43,12 @@
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_pesquisar.FlatAppearance.BorderSize = 0;
             // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
+            // 
             // btn_incluir
             // 
             this.btn_incluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -58,14 +64,9 @@
             this.btn_excluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_excluir.FlatAppearance.BorderSize = 0;
             // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
-            // 
             // dataGridView_hospede
             // 
+            this.dataGridView_hospede.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView_hospede.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_hospede.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.hospede_ID,

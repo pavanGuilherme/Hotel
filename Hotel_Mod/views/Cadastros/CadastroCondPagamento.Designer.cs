@@ -287,6 +287,7 @@
             // 
             this.dataGridView_parcelas.AllowUserToAddRows = false;
             this.dataGridView_parcelas.AllowUserToDeleteRows = false;
+            this.dataGridView_parcelas.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView_parcelas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_parcelas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numeroParcela,
@@ -294,7 +295,7 @@
             this.formaPagamento_ID,
             this.formaPagamento,
             this.dias});
-            this.dataGridView_parcelas.GridColor = System.Drawing.SystemColors.ButtonShadow;
+            this.dataGridView_parcelas.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView_parcelas.Location = new System.Drawing.Point(29, 230);
             this.dataGridView_parcelas.Name = "dataGridView_parcelas";
             this.dataGridView_parcelas.ReadOnly = true;

@@ -46,7 +46,6 @@ namespace Hotel_Mod.Dao
                         dynamic obj = Activator.CreateInstance(typeof(T));
                         obj.hospede_id = Convert.ToInt32(reader["hospede_id"]);
                         obj.nome = Convert.ToString(reader["nome"]);
-                        obj.sobrenome = Convert.ToString(reader["sobrenome"]);
                         obj.sexo = Convert.ToChar(reader["sexo"]);
                         obj.ativo = Convert.ToBoolean(reader["ativo"]);
                         obj.cep = Convert.ToString(reader["cep"]);
@@ -79,15 +78,14 @@ namespace Hotel_Mod.Dao
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO hospede (nome, sobrenome, sexo, ativo, cep, logradouro, numero, complemento, bairro, cidade_id, " +
+                string query = "INSERT INTO hospede (nome, sexo, ativo, cep, logradouro, numero, complemento, bairro, cidade_id, " +
                     "estrangeiro, cpf, rg, passaporte, telefone, email, data_nascimento, pcd, observacao, data_cadastro, data_ult_alt) " +
-                    "VALUES (@nome, @sobrenome, @sexo, @ativo, @cep, @logradouro, @numero, @complemento, @bairro, @cidade_id, " +
+                    "VALUES (@nome, @sexo, @ativo, @cep, @logradouro, @numero, @complemento, @bairro, @cidade_id, " +
                     "@estrangeiro, @cpf, @rg, @passaporte, @telefone, @email, @data_nascimento, @pcd, @observacao, @data_cadastro, @data_ult_alt)";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@nome", hospede.nome);
-                command.Parameters.AddWithValue("@sobrenome", hospede.sobrenome);
                 command.Parameters.AddWithValue("@sexo", hospede.sexo);
                 command.Parameters.AddWithValue("@ativo", hospede.ativo);
                 command.Parameters.AddWithValue("@cep", hospede.cep);
@@ -155,7 +153,7 @@ namespace Hotel_Mod.Dao
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "UPDATE hospede SET nome = @nome, sobrenome = @sobrenome, sexo = @sexo, ativo = @ativo, cep = @cep, logradouro = @logradouro, numero = @numero, " +
+                string query = "UPDATE hospede SET nome = @nome, sexo = @sexo, ativo = @ativo, cep = @cep, logradouro = @logradouro, numero = @numero, " +
                     "complemento = @complemento, bairro = @bairro, cidade_id = @cidade_id, estrangeiro = @estrangeiro, " +
                     "cpf = @cpf, rg = @rg, passaporte = @passaporte, telefone = @telefone, email = @email, data_nascimento = @data_nascimento, pcd = @pcd, observacao = @observacao, " +
                     "data_cadastro = @data_cadastro, data_ult_alt = @data_ult_alt WHERE hospede_id = @hospede_id";
@@ -163,7 +161,6 @@ namespace Hotel_Mod.Dao
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@nome", hospede.nome);
-                command.Parameters.AddWithValue("@sobrenome", hospede.sobrenome);
                 command.Parameters.AddWithValue("@sexo", hospede.sexo);
                 command.Parameters.AddWithValue("@ativo", hospede.ativo);
                 command.Parameters.AddWithValue("@cep", hospede.cep);
@@ -206,7 +203,6 @@ namespace Hotel_Mod.Dao
                         dynamic obj = Activator.CreateInstance(typeof(T));
                         obj.hospede_id = Convert.ToInt32(reader["hospede_id"]);
                         obj.nome = reader["nome"].ToString();
-                        obj.sobrenome = reader["sobrenome"].ToString();
                         obj.sexo = reader["sexo"].ToString()[0];
                         obj.ativo = Convert.ToBoolean(reader["ativo"]);
                         obj.cep = reader["cep"].ToString();

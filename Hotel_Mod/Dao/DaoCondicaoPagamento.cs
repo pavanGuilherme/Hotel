@@ -247,9 +247,9 @@ namespace Hotel_Mod.Dao
             return condicaoPagamento;
         }
 
-        private List<parcela> GetParcelasByCondicaoPagamentoId(int idCondPagamento)
+        private List<Parcela> GetParcelasByCondicaoPagamentoId(int idCondPagamento)
         {
-            List<parcela> parcelas = new List<parcela>();
+            List<Parcela> parcelas = new List<Parcela>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -263,7 +263,7 @@ namespace Hotel_Mod.Dao
                 {
                     while (reader.Read())
                     {
-                        parcela parcelaItem = new parcela();
+                        Parcela parcelaItem = new Parcela();
                         parcelaItem.numeroParcela = Convert.ToInt32(reader["numeroParcela"]);
                         parcelaItem.dias = Convert.ToInt32(reader["dias"]);
                         parcelaItem.porcentagem = Convert.ToDecimal(reader["porcentagem"]);

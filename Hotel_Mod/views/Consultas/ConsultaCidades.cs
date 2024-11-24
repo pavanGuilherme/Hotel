@@ -114,6 +114,7 @@ namespace Hotel_Mod.views
                     // Capturar o ID e o nome do país selecionado
                     int cidadeID = Convert.ToInt32(DataGridViewCidades.SelectedRows[0].Cells["Código"].Value);
                     string cidadeNome = DataGridViewCidades.SelectedRows[0].Cells["Cidade"].Value.ToString();
+                 
 
                     // Passar os detalhes do país selecionado de volta para a tela principal
                     this.Tag = new Tuple<int, string>(cidadeID, cidadeNome);

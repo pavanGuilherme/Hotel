@@ -37,27 +37,49 @@
             this.status.SuspendLayout();
             this.SuspendLayout();
             // 
+            // status
+            // 
+            this.status.Location = new System.Drawing.Point(398, 23);
+            // 
             // txt_codigo
             // 
+            this.txt_codigo.Location = new System.Drawing.Point(31, 39);
             this.txt_codigo.Size = new System.Drawing.Size(106, 31);
             // 
             // btn_salvar
             // 
+            this.btn_salvar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_salvar.FlatAppearance.BorderSize = 0;
+            this.btn_salvar.Location = new System.Drawing.Point(420, 539);
+            this.btn_salvar.Size = new System.Drawing.Size(103, 30);
             // 
             // btn_sair
             // 
+            this.btn_sair.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Location = new System.Drawing.Point(540, 539);
+            this.btn_sair.Size = new System.Drawing.Size(94, 30);
+            // 
+            // lbl_dat_ult_alt
+            // 
+            this.lbl_dat_ult_alt.Location = new System.Drawing.Point(196, 513);
             // 
             // txt_dat_ult_alt
             // 
+            this.txt_dat_ult_alt.Location = new System.Drawing.Point(200, 540);
             this.txt_dat_ult_alt.Size = new System.Drawing.Size(192, 31);
             this.txt_dat_ult_alt.Text = "19/06/2024 08:18:08";
             // 
+            // lbl_data_cadastro
+            // 
+            this.lbl_data_cadastro.Location = new System.Drawing.Point(12, 513);
+            // 
             // txt_dat_cad
             // 
+            this.txt_dat_cad.Location = new System.Drawing.Point(12, 539);
+            this.txt_dat_cad.Size = new System.Drawing.Size(178, 31);
             this.txt_dat_cad.Text = "19/06/2024 08:18:08";
             // 
             // lbl_pais
@@ -120,7 +142,7 @@
             // CadastroPais
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(982, 583);
+            this.ClientSize = new System.Drawing.Size(646, 583);
             this.Controls.Add(this.txt_ddi);
             this.Controls.Add(this.txt_pais);
             this.Controls.Add(this.txt_sigla);

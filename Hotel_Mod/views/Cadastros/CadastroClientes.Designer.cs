@@ -134,7 +134,7 @@
             this.txt_data_nascimento.Mask = "00/00/0000";
             this.txt_data_nascimento.Name = "txt_data_nascimento";
             this.txt_data_nascimento.Size = new System.Drawing.Size(146, 31);
-            this.txt_data_nascimento.TabIndex = 212;
+            this.txt_data_nascimento.TabIndex = 15;
             // 
             // groupBox2
             // 
@@ -150,6 +150,7 @@
             this.groupBox2.TabIndex = 211;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pagamento";
+            this.groupBox2.Visible = false;
             // 
             // label12
             // 
@@ -160,6 +161,7 @@
             this.label12.Size = new System.Drawing.Size(219, 24);
             this.label12.TabIndex = 187;
             this.label12.Text = "Condição de Pagamento";
+            this.label12.Visible = false;
             // 
             // btn_busca_condicao
             // 
@@ -169,6 +171,7 @@
             this.btn_busca_condicao.TabIndex = 187;
             this.btn_busca_condicao.Text = "search";
             this.btn_busca_condicao.UseVisualStyleBackColor = true;
+            this.btn_busca_condicao.Visible = false;
             this.btn_busca_condicao.Click += new System.EventHandler(this.Btn_busca_condicao_Click);
             // 
             // label11
@@ -189,6 +192,7 @@
             this.txt_condicao_pagamento.Name = "txt_condicao_pagamento";
             this.txt_condicao_pagamento.Size = new System.Drawing.Size(335, 29);
             this.txt_condicao_pagamento.TabIndex = 187;
+            this.txt_condicao_pagamento.Visible = false;
             // 
             // txt_cod_cond_pagamento
             // 
@@ -196,7 +200,8 @@
             this.txt_cod_cond_pagamento.Location = new System.Drawing.Point(18, 58);
             this.txt_cod_cond_pagamento.Name = "txt_cod_cond_pagamento";
             this.txt_cod_cond_pagamento.Size = new System.Drawing.Size(110, 29);
-            this.txt_cod_cond_pagamento.TabIndex = 186;
+            this.txt_cod_cond_pagamento.TabIndex = 16;
+            this.txt_cod_cond_pagamento.Visible = false;
             // 
             // txt_rg
             // 
@@ -204,7 +209,7 @@
             this.txt_rg.Location = new System.Drawing.Point(205, 470);
             this.txt_rg.Name = "txt_rg";
             this.txt_rg.Size = new System.Drawing.Size(158, 29);
-            this.txt_rg.TabIndex = 209;
+            this.txt_rg.TabIndex = 14;
             // 
             // txt_cpf
             // 
@@ -212,7 +217,7 @@
             this.txt_cpf.Location = new System.Drawing.Point(22, 470);
             this.txt_cpf.Name = "txt_cpf";
             this.txt_cpf.Size = new System.Drawing.Size(158, 29);
-            this.txt_cpf.TabIndex = 208;
+            this.txt_cpf.TabIndex = 13;
             // 
             // groupBox1
             // 
@@ -246,6 +251,7 @@
             // txt_pais
             // 
             this.txt_pais.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_pais.Enabled = false;
             this.txt_pais.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_pais.Location = new System.Drawing.Point(704, 120);
             this.txt_pais.Name = "txt_pais";
@@ -255,6 +261,7 @@
             // txt_estado
             // 
             this.txt_estado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_estado.Enabled = false;
             this.txt_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_estado.Location = new System.Drawing.Point(482, 122);
             this.txt_estado.Name = "txt_estado";
@@ -264,6 +271,7 @@
             // txt_cidade
             // 
             this.txt_cidade.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_cidade.Enabled = false;
             this.txt_cidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_cidade.Location = new System.Drawing.Point(227, 124);
             this.txt_cidade.Name = "txt_cidade";
@@ -287,7 +295,7 @@
             this.txt_cod_cidade.Location = new System.Drawing.Point(7, 124);
             this.txt_cod_cidade.Name = "txt_cod_cidade";
             this.txt_cod_cidade.Size = new System.Drawing.Size(115, 29);
-            this.txt_cod_cidade.TabIndex = 185;
+            this.txt_cod_cidade.TabIndex = 12;
             // 
             // txt_logradouro
             // 
@@ -296,7 +304,7 @@
             this.txt_logradouro.Location = new System.Drawing.Point(218, 57);
             this.txt_logradouro.Name = "txt_logradouro";
             this.txt_logradouro.Size = new System.Drawing.Size(374, 29);
-            this.txt_logradouro.TabIndex = 162;
+            this.txt_logradouro.TabIndex = 8;
             // 
             // txt_complemento
             // 
@@ -305,7 +313,7 @@
             this.txt_complemento.Location = new System.Drawing.Point(704, 54);
             this.txt_complemento.Name = "txt_complemento";
             this.txt_complemento.Size = new System.Drawing.Size(190, 29);
-            this.txt_complemento.TabIndex = 163;
+            this.txt_complemento.TabIndex = 10;
             // 
             // txt_numero
             // 
@@ -314,7 +322,7 @@
             this.txt_numero.Location = new System.Drawing.Point(608, 54);
             this.txt_numero.Name = "txt_numero";
             this.txt_numero.Size = new System.Drawing.Size(90, 29);
-            this.txt_numero.TabIndex = 164;
+            this.txt_numero.TabIndex = 9;
             // 
             // label10
             // 
@@ -353,7 +361,7 @@
             this.txt_bairro.Location = new System.Drawing.Point(917, 54);
             this.txt_bairro.Name = "txt_bairro";
             this.txt_bairro.Size = new System.Drawing.Size(223, 29);
-            this.txt_bairro.TabIndex = 170;
+            this.txt_bairro.TabIndex = 11;
             // 
             // label5
             // 
@@ -372,7 +380,7 @@
             this.txt_cep.Location = new System.Drawing.Point(8, 57);
             this.txt_cep.Name = "txt_cep";
             this.txt_cep.Size = new System.Drawing.Size(188, 29);
-            this.txt_cep.TabIndex = 165;
+            this.txt_cep.TabIndex = 7;
             // 
             // lbl_cep
             // 
@@ -441,7 +449,7 @@
             this.txt_email.Location = new System.Drawing.Point(32, 199);
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(462, 29);
-            this.txt_email.TabIndex = 202;
+            this.txt_email.TabIndex = 4;
             // 
             // lbl_data_nascimento
             // 
@@ -490,7 +498,7 @@
             this.txt_telefone.Location = new System.Drawing.Point(514, 199);
             this.txt_telefone.Name = "txt_telefone";
             this.txt_telefone.Size = new System.Drawing.Size(222, 29);
-            this.txt_telefone.TabIndex = 193;
+            this.txt_telefone.TabIndex = 5;
             // 
             // txt_nome
             // 
@@ -499,7 +507,7 @@
             this.txt_nome.Location = new System.Drawing.Point(33, 121);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(503, 29);
-            this.txt_nome.TabIndex = 222;
+            this.txt_nome.TabIndex = 2;
             // 
             // groupBox_pessoa
             // 
@@ -563,7 +571,7 @@
             this.txt_apelido.Location = new System.Drawing.Point(565, 124);
             this.txt_apelido.Name = "txt_apelido";
             this.txt_apelido.Size = new System.Drawing.Size(288, 29);
-            this.txt_apelido.TabIndex = 225;
+            this.txt_apelido.TabIndex = 3;
             // 
             // txt_sexo
             // 
@@ -606,7 +614,7 @@
             this.txt_nome_contato.Location = new System.Drawing.Point(764, 199);
             this.txt_nome_contato.Name = "txt_nome_contato";
             this.txt_nome_contato.Size = new System.Drawing.Size(296, 29);
-            this.txt_nome_contato.TabIndex = 231;
+            this.txt_nome_contato.TabIndex = 6;
             // 
             // CadastroClientes
             // 

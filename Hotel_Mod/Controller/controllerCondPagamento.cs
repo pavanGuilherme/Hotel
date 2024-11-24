@@ -56,9 +56,6 @@ namespace Hotel_Mod.Controller
             return daoCondicaoPagamento.GetById(idobj) as T;
         }
 
-       
-
-
         public string GetFormaPagByParcelaId(int idParcela)
         {
             return daoCondicaoPagamento.GetFormaPagByParcelaId(idParcela);

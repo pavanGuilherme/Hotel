@@ -113,35 +113,7 @@ namespace Hotel_Mod.views.Consultas
             }
         }
 
-        private void ConsultaFuncionarios_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                cadastroFuncionario.FormClosed += (s, args) => AtualizarConsultaFuncionarios(btn_buscainativos.Checked);
-
-                dataGridViewFuncionario.AutoGenerateColumns = false;
-                dataGridViewFuncionario.Columns["Código"].DataPropertyName = "idFuncionario";
-                dataGridViewFuncionario.Columns["Funcionário"].DataPropertyName = "funcionario";
-                dataGridViewFuncionario.Columns["Cargo"].DataPropertyName = "cargo";
-                dataGridViewFuncionario.Columns["Celular"].DataPropertyName = "celular";
-
-                AtualizarConsultaFuncionarios(btn_buscainativos.Checked);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocorreu um erro ao carregar funcionários: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dataGridViewFuncionarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                int idFuncionario = (int)dataGridViewFuncionario.Rows[e.RowIndex].Cells["Código"].Value;
-                ResetCadastro(idFuncionario);
-                cadastroFuncionario.ShowDialog();
-            }
-        }
+        
 
         private void ResetCadastro()
         {
@@ -160,9 +132,32 @@ namespace Hotel_Mod.views.Consultas
             AtualizarConsultaFuncionarios(incluirInativos);
         }
 
-        private void dataGridViewFuncionarios_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+       
+        private void ConsultaFuncionario_Load(object sender, EventArgs e)
         {
-            if (e.ColumnIndex == dataGridViewFuncionario.Columns["Celular"].Index && e.Value != null)
+            try
+            {
+                cadastroFuncionario.FormClosed += (s, args) => AtualizarConsultaFuncionarios(btn_buscainativos.Checked);
+
+                dataGridViewFuncionario.AutoGenerateColumns = false;
+                dataGridViewFuncionario.Columns["funcionario_ID"].DataPropertyName = "funcionario_ID";
+                dataGridViewFuncionario.Columns["nome"].DataPropertyName = "nome";
+                dataGridViewFuncionario.Columns["apelido"].DataPropertyName = "apelido";
+                dataGridViewFuncionario.Columns["telefone"].DataPropertyName = "celular";
+                dataGridViewFuncionario.Columns["Cargo"].DataPropertyName = "cargo";
+                dataGridViewFuncionario.Columns["cpf"].DataPropertyName = "cpf";
+
+                AtualizarConsultaFuncionarios(btn_buscainativos.Checked);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro ao carregar funcionários: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dataGridViewFuncionario_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewFuncionario.Columns["Telefone"].Index && e.Value != null)
             {
                 //formata o número de celular
                 string celular = e.Value.ToString();
@@ -174,5 +169,14 @@ namespace Hotel_Mod.views.Consultas
             }
         }
 
+        private void dataGridViewFuncionario_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                int idFuncionario = (int)dataGridViewFuncionario.Rows[e.RowIndex].Cells["Código"].Value;
+                ResetCadastro(idFuncionario);
+                cadastroFuncionario.ShowDialog();
+            }
+        }
     }
 }

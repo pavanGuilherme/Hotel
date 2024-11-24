@@ -44,12 +44,12 @@
             // btn_pesquisar
             // 
             this.btn_pesquisar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_pesquisar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_pesquisar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_pesquisar.FlatAppearance.BorderSize = 0;
             this.btn_pesquisar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_pesquisar.Font = new System.Drawing.Font("Segoe UI", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_pesquisar.ForeColor = System.Drawing.Color.White;
+            this.btn_pesquisar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_pesquisar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_pesquisar.Location = new System.Drawing.Point(430, 19);
             this.btn_pesquisar.Name = "btn_pesquisar";
@@ -65,12 +65,12 @@
             // btn_incluir
             // 
             this.btn_incluir.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_incluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_incluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
             this.btn_incluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_incluir.FlatAppearance.BorderSize = 0;
             this.btn_incluir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_incluir.Font = new System.Drawing.Font("Segoe UI", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_incluir.ForeColor = System.Drawing.Color.White;
+            this.btn_incluir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_incluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_incluir.Location = new System.Drawing.Point(525, 499);
             this.btn_incluir.Name = "btn_incluir";
@@ -86,12 +86,12 @@
             // btn_alterar
             // 
             this.btn_alterar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_alterar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_alterar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
             this.btn_alterar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_alterar.FlatAppearance.BorderSize = 0;
             this.btn_alterar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_alterar.Font = new System.Drawing.Font("Segoe UI", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_alterar.ForeColor = System.Drawing.Color.White;
+            this.btn_alterar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_alterar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_alterar.Location = new System.Drawing.Point(641, 499);
             this.btn_alterar.Name = "btn_alterar";
@@ -107,12 +107,12 @@
             // btn_excluir
             // 
             this.btn_excluir.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_excluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_excluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
             this.btn_excluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_excluir.FlatAppearance.BorderSize = 0;
             this.btn_excluir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_excluir.Font = new System.Drawing.Font("Segoe UI", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_excluir.ForeColor = System.Drawing.Color.White;
+            this.btn_excluir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_excluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_excluir.Location = new System.Drawing.Point(757, 499);
             this.btn_excluir.Name = "btn_excluir";
@@ -128,12 +128,12 @@
             // btn_sair
             // 
             this.btn_sair.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_sair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.btn_sair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
             this.btn_sair.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_sair.Font = new System.Drawing.Font("Segoe UI", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_sair.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_sair.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_sair.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_sair.Location = new System.Drawing.Point(873, 499);
             this.btn_sair.Name = "btn_sair";
@@ -204,6 +204,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1005, 545);
             this.Controls.Add(this.btn_buscainativos);
             this.Controls.Add(this.groupBox2);
@@ -213,6 +214,7 @@
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.txt_pesquisar);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "ConsultaPai";
             this.Text = "ConsultaPai";
             this.Load += new System.EventHandler(this.ConsultaPai_Load);
@@ -225,14 +227,14 @@
 
         #endregion
         protected System.Windows.Forms.Button btn_pesquisar;
-        protected System.Windows.Forms.Button btn_incluir;
-        protected System.Windows.Forms.Button btn_alterar;
-        protected System.Windows.Forms.Button btn_excluir;
         protected System.Windows.Forms.RichTextBox txt_pesquisar;
         protected System.Windows.Forms.GroupBox groupBox2;
         protected System.Windows.Forms.RadioButton btn_Codigo;
         protected System.Windows.Forms.RadioButton btn_nome;
         public System.Windows.Forms.Button btn_sair;
         public System.Windows.Forms.CheckBox btn_buscainativos;
+        public System.Windows.Forms.Button btn_incluir;
+        public System.Windows.Forms.Button btn_alterar;
+        public System.Windows.Forms.Button btn_excluir;
     }
 }

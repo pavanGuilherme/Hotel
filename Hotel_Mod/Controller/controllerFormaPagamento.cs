@@ -73,5 +73,10 @@ namespace Hotel_Mod.Controller
 
             return false;
         }
+
+        public string ObterDescricaoFormaPagamento(int formaPagamentoId)
+        {
+            return daoFormaPagamento.ObterDescricaoFormaPagamento(formaPagamentoId);
+        }
     }
 }

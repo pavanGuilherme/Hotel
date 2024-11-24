@@ -81,7 +81,7 @@ namespace Hotel_Mod.Dao
                         obj.apelido_nome_fantasia = reader["apelido_nome_fantasia"].ToString();
                         obj.logradouro = reader["logradouro"].ToString();
                         obj.bairro = reader["bairro"].ToString();
-                        obj.numero = reader["numero"].ToString();
+                        obj.numero = Convert.ToInt32(reader["numero"]);
                         obj.cep = reader["cep"].ToString();
                         obj.complemento = reader["complemento"].ToString();
                         obj.sexo = reader["sexo"].ToString();

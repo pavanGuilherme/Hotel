@@ -37,12 +37,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPais)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_buscainativos
-            // 
-            this.btn_buscainativos.Location = new System.Drawing.Point(583, 21);
-            this.btn_buscainativos.TabStop = false;
-            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged);
-            // 
             // btn_pesquisar
             // 
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -77,9 +71,16 @@
             this.btn_sair.FlatAppearance.BorderSize = 0;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
+            // btn_buscainativos
+            // 
+            this.btn_buscainativos.Location = new System.Drawing.Point(583, 21);
+            this.btn_buscainativos.TabStop = false;
+            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged);
+            // 
             // dataGridViewPais
             // 
             this.dataGridViewPais.AllowUserToOrderColumns = true;
+            this.dataGridViewPais.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewPais.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPais.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Código,

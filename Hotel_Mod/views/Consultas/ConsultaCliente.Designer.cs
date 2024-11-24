@@ -71,6 +71,7 @@
             // 
             // dataGridViewCliente
             // 
+            this.dataGridViewCliente.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,
@@ -79,6 +80,7 @@
             this.cpf_cnpj,
             this.email,
             this.telefone});
+            this.dataGridViewCliente.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewCliente.Location = new System.Drawing.Point(12, 63);
             this.dataGridViewCliente.Name = "dataGridViewCliente";
             this.dataGridViewCliente.Size = new System.Drawing.Size(970, 399);

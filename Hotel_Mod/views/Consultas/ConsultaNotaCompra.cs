@@ -83,21 +83,34 @@ namespace Hotel_Mod.views.Consultas
         {
             try
             {
-                cadastroNotaCompra.FormClosed += (s, args) => AtualizarConsultaNotaCompra(btn_buscainativos.Checked); //quando aciona o Form Closed chama o AtualizarConsulta
-                dataGridViewNFCompra.Columns["num_Nota"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dataGridViewNFCompra.Columns["modelo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dataGridViewNFCompra.Columns["serie"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dataGridViewNFCompra.Columns["fornecedor_ID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dataGridViewNFCompra.AutoGenerateColumns = false;
-                dataGridViewNFCompra.Columns["num_Nota"].DataPropertyName = "num_Nota";
-                dataGridViewNFCompra.Columns["modelo"].DataPropertyName = "modelo";
-                dataGridViewNFCompra.Columns["serie"].DataPropertyName = "serie";
-                dataGridViewNFCompra.Columns["fornecedor_ID"].DataPropertyName = "fornecedor_ID";
-                dataGridViewNFCompra.Columns["data_chegada"].DataPropertyName = "data_chegada";
-                dataGridViewNFCompra.Columns["data_chegada"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                dataGridViewNFCompra.Columns["data_cancelamento"].DataPropertyName = "data_cancelamento";
-                dataGridViewNFCompra.Columns["data_cancelamento"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                // Evento para atualizar a consulta quando o formulário de cadastro é fechado
+                cadastroNotaCompra.FormClosed += (s, args) => AtualizarConsultaNotaCompra(btn_buscainativos.Checked);
 
+                // Configuração das colunas visíveis no DataGridView
+                dataGridViewNFCompra.AutoGenerateColumns = false;
+
+                dataGridViewNFCompra.Columns["Numero"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dataGridViewNFCompra.Columns["Numero"].DataPropertyName = "Numero";
+
+                dataGridViewNFCompra.Columns["Data de Emissão"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridViewNFCompra.Columns["Data de Emissão"].DataPropertyName = "DataEmissao";
+
+                dataGridViewNFCompra.Columns["Modelo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dataGridViewNFCompra.Columns["Modelo"].DataPropertyName = "Modelo";
+
+                dataGridViewNFCompra.Columns["Série"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dataGridViewNFCompra.Columns["Série"].DataPropertyName = "Serie";
+
+                dataGridViewNFCompra.Columns["Código Fornecedor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dataGridViewNFCompra.Columns["Código Fornecedor"].DataPropertyName = "CodigoFornecedor";
+
+                dataGridViewNFCompra.Columns["Data Chegada"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridViewNFCompra.Columns["Data Chegada"].DataPropertyName = "DataChegada";
+
+                dataGridViewNFCompra.Columns["Data Cancelamento"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridViewNFCompra.Columns["Data Cancelamento"].DataPropertyName = "DataCancelamento";
+
+                // Atualiza os dados do DataGridView com base na busca de inativos
                 AtualizarConsultaNotaCompra(btn_buscainativos.Checked);
             }
             catch (Exception ex)

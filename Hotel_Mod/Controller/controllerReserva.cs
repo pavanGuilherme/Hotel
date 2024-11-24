@@ -47,10 +47,6 @@ namespace Hotel_Mod.Controller
             return reservasDAO.GetById(idObj) as T;
         }
 
-        public List<DateTime> ObterDatasIndisponiveis(int quartoId, DateTime dataInicio, DateTime dataFim)
-        {
-            return reservasDAO.ObterDatasIndisponiveis(quartoId, dataInicio, dataFim);
-        }
 
         public bool InserirOcupacao(Ocupacao ocupacao)
         {
@@ -62,17 +58,91 @@ namespace Hotel_Mod.Controller
             reservasDAO.Salvar((T)(obj as Reserva));
         }
 
+
+        public List<DateTime> BuscarDiasIndisponiveis(string tipoQuarto, int mes, int ano)
+        {
+            return reservasDAO.BuscarDiasIndisponiveis(tipoQuarto, mes, ano);
+        }
+
+
         public void InserirHospedeNaReserva(int reservaID, int hospedeID)
         {
             reservasDAO.InserirHospedeNaReserva(reservaID, hospedeID);
         }
 
-
-        public bool CancelarReserva(int reserva_ID)
+        public bool ExcluirReservasTemporariasPorReservaId(int reservaId)
         {
-            return reservasDAO.CancelarReserva(reserva_ID);
+            return reservasDAO.ExcluirReservasTemporariasPorReservaId(reservaId);
         }
 
-      
+        public void CancelarReserva(int reservaId)
+        {
+            try
+            {
+                // Chama o método correspondente no DAO para atualizar o status
+    
+                reservasDAO.CancelarReserva(reservaId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao cancelar a reserva: " + ex.Message);
+            }
+        }
+
+        public bool ExcluirReservaTemporaria(int tipoQuartoId, DateTime dataReserva)
+        {
+            return reservasDAO.ExcluirReservaTemporaria(tipoQuartoId, dataReserva);
+        }
+
+        public bool InserirReservaTemporaria(int tipoQuartoId, DateTime dataReserva)
+        {
+            return reservasDAO.InserirReservaTemporaria(tipoQuartoId, dataReserva);
+        }
+
+        public bool AtualizarReservaTemporaria(int reservaId, int tipoQuartoId)
+        {
+            return reservasDAO.AtualizarReservaTemporaria(reservaId, tipoQuartoId);
+        }
+
+        public bool ExcluirReservasTemporariasNaoSalvas()
+        {
+            return reservasDAO.ExcluirReservasTemporariasNaoSalvas();
+        }
+        public void AtualizarReservaComQuarto(int reservaID, int quartoID, int numero, int andar)
+        {
+            reservasDAO.AtualizarReservaComQuarto(reservaID, quartoID, numero, andar);
+        }
+
+        public Reserva ObterReservaPorQuarto(int quartoId)
+        {
+            return reservasDAO.ObterReservaPorQuarto(quartoId);
+        }
+        public void AtualizarStatusReserva(int reservaId, string status)
+        {
+            reservasDAO.AtualizarStatusReserva(reservaId, status);
+        }
+
+        public Reserva ObterReservaDetalhadaPorQuarto(int quartoId)
+        {
+            return reservasDAO.ObterReservaDetalhadaPorQuarto(quartoId);
+        }
+
+        public List<Hospede> ObterHospedesPorReserva(int reservaId)
+        {
+          
+            return reservasDAO.ObterHospedesPorReserva(reservaId);
+        }
+        
+
+        public List<DateTime> GetDatasReservadasPorReserva(int reservaId)
+        {
+     
+            return reservasDAO.ObterDatasReservadasPorReserva(reservaId);
+        }
+
+        public (DateTime checkIn, DateTime checkOut)? ObterIntervaloReserva(int reservaId)
+        {
+            return reservasDAO.ObterIntervaloReserva(reservaId);
+        }
     }
 }

@@ -65,6 +65,7 @@
     <Compile Include="Controller\controllerProduto.cs" />
     <Compile Include="Controller\controllerQuarto.cs" />
     <Compile Include="Controller\controllerReserva.cs" />
+    <Compile Include="Controller\controllerTipoQuarto.cs" />
     <Compile Include="Dao\DaoCliente.cs" />
     <Compile Include="Dao\DaoCondicaoPagamento.cs" />
     <Compile Include="Dao\DaoContasPagar.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Dao\DaoProduto.cs" />
     <Compile Include="Dao\DaoQuarto.cs" />
     <Compile Include="Dao\DaoReserva.cs" />
+    <Compile Include="Dao\DaoTipoQuarto.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +99,7 @@
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Quarto.cs" />
     <Compile Include="Models\Reserva.cs" />
+    <Compile Include="Models\tipo_quarto.cs" />
     <Compile Include="views\Cadastros\CadastroCondPagamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +188,12 @@
     </Compile>
     <Compile Include="views\Cadastros\CadastroReserva.Designer.cs">
       <DependentUpon>CadastroReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroTipoQuarto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroTipoQuarto.Designer.cs">
+      <DependentUpon>CadastroTipoQuarto.cs</DependentUpon>
     </Compile>
     <Compile Include="views\Consultas\ConsultaCondPagamento.cs">
       <SubType>Form</SubType>
@@ -291,11 +300,17 @@
     <Compile Include="views\Consultas\ConsultaReserva.Designer.cs">
       <DependentUpon>ConsultaReserva.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Consultas\newConsultaQuartos.cs">
+    <Compile Include="views\Consultas\ConsultaTipoQuarto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Consultas\newConsultaQuartos.Designer.cs">
-      <DependentUpon>newConsultaQuartos.cs</DependentUpon>
+    <Compile Include="views\Consultas\ConsultaTipoQuarto.Designer.cs">
+      <DependentUpon>ConsultaTipoQuarto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaOcupacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaOcupacao.Designer.cs">
+      <DependentUpon>ConsultaOcupacao.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -338,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\Cadastros\CadastroReserva.resx">
       <DependentUpon>CadastroReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Cadastros\CadastroTipoQuarto.resx">
+      <DependentUpon>CadastroTipoQuarto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Consultas\ConsultaCidades.resx">
       <DependentUpon>ConsultaCidades.cs</DependentUpon>
@@ -400,8 +418,11 @@
     <EmbeddedResource Include="views\Consultas\ConsultaReserva.resx">
       <DependentUpon>ConsultaReserva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Consultas\newConsultaQuartos.resx">
-      <DependentUpon>newConsultaQuartos.cs</DependentUpon>
+    <EmbeddedResource Include="views\Consultas\ConsultaTipoQuarto.resx">
+      <DependentUpon>ConsultaTipoQuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Consultas\ConsultaOcupacao.resx">
+      <DependentUpon>ConsultaOcupacao.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

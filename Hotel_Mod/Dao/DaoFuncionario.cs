@@ -51,6 +51,7 @@ namespace Hotel_Mod.Dao
                         dynamic obj = Activator.CreateInstance(typeof(T));
                         obj.funcionario_ID = Convert.ToInt32(reader["funcionario_ID"]);
                         obj.nome = reader["nome"].ToString();
+                        obj.apelido = reader["apelido"].ToString(); 
                         obj.celular = reader["celular"].ToString();
                         obj.cpf = reader["cpf"].ToString();
                         obj.cargo = reader["cargo"].ToString();
@@ -65,16 +66,13 @@ namespace Hotel_Mod.Dao
             return funcionarios;
         }
 
-
-
-
         public override void Salvar(T obj)
         {
             dynamic funcionario = obj;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO funcionario (nome, sobrenome, endereco, bairro, numero, cep, complemento, sexo, email, telefone, celular, data_nascimento, cpf, rg, cargo, salario, pis, data_admissao, data_demissao, ativo, data_cadastro, data_ult_alt, cidade_id) " +
+                string query = "INSERT INTO funcionarios (nome, sobrenome, endereco, bairro, numero, cep, complemento, sexo, email, telefone, celular, data_nascimento, cpf, rg, cargo, salario, pis, data_admissao, data_demissao, ativo, data_cadastro, data_ult_alt, cidade_id) " +
                 "VALUES (@nome, @sobrenome, @endereco, @bairro, @numero, @cep, @complemento, @sexo, @email, @telefone, @celular, @data_nascimento, @cpf, @rg, @cargo, @salario, @pis, @data_admissao, @data_demissao, @ativo, @data_cadastro, @data_ult_alt, @cidade_id)";
 
                 SqlCommand command = new SqlCommand(query, connection);
@@ -97,7 +95,7 @@ namespace Hotel_Mod.Dao
                 command.Parameters.AddWithValue("@salario", funcionario.salario);
                 command.Parameters.AddWithValue("@pis", funcionario.pis);
                 command.Parameters.AddWithValue("@data_admissao", funcionario.data_admissao);
-                command.Parameters.AddWithValue("@data_demissao", funcionario.data_demissao.HasValue ? (object)funcionario.data_demissao.Value : DBNull.Value);
+                command.Parameters.AddWithValue("@data_demissao", funcionario.data_demissao != null ? (object)funcionario.data_demissao : DBNull.Value);
                 command.Parameters.AddWithValue("@ativo", funcionario.ativo);
                 command.Parameters.AddWithValue("@data_cadastro", funcionario.data_cadastro);
                 command.Parameters.AddWithValue("@data_ult_alt", funcionario.data_ult_alt);
@@ -114,7 +112,7 @@ namespace Hotel_Mod.Dao
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM funcionario WHERE idFuncionario = @id";
+                string query = "SELECT * FROM funcionario WHERE funcionario_ID = @id";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
 
@@ -125,8 +123,8 @@ namespace Hotel_Mod.Dao
                     if (reader.Read())
                     {
                         dynamic obj = Activator.CreateInstance(typeof(T));
-                        obj.idFuncionario = Convert.ToInt32(reader["idFuncionario"]);
-                        obj.funcionario = reader["funcionario"].ToString();
+                        obj.funcionario_ID = Convert.ToInt32(reader["funcionario_ID"]);
+                        obj.nome = reader["nome"].ToString();
                         obj.apelido = reader["apelido"].ToString();
                         obj.endereco = reader["endereco"].ToString();
                         obj.bairro = reader["bairro"].ToString();
@@ -215,7 +213,7 @@ namespace Hotel_Mod.Dao
             }
         }
 
-        public List<string> GetCEPByIdCidade(int cidade_ID)
+        public List<string> GetCEPByIdCidade(int idCidade)
         {
             List<string> cidadeInfos = new List<string>();
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -228,13 +226,13 @@ namespace Hotel_Mod.Dao
                 FROM 
                     cidades
                 JOIN 
-                    estado ON cidades.estado_ID = estads.estado_ID
+                    estados ON cidades.estado_ID = estados.estado_ID
                 JOIN 
-                    pais ON estados.pais_ID = paises.pais_ID
+                    paises ON estados.pais_ID = paises.pais_ID
                 WHERE 
-                    cidades.cidade_ID = @cidade_ID";
+                    cidades.cidade_ID = @idCidade AND cidades.Ativo = 1";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@cidade_ID", cidade_ID);
+                command.Parameters.AddWithValue("@idCidade", idCidade);
 
                 try
                 {

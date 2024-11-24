@@ -139,7 +139,24 @@ namespace Hotel_Mod.Class
             }
         }
 
-        
-        
+        public string ObterDescricaoFormaPagamento(int formaPagamentoId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Corrige o nome do campo para "formaPagamento"
+                string query = "SELECT formaPagamento FROM formaPagamento WHERE formaPagamento_ID = @FormaPagamento_ID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@FormaPagamento_ID", formaPagamentoId);
+                    connection.Open();
+
+                    // Retorna a descrição da forma de pagamento ou "N/A" caso não encontre
+                    return command.ExecuteScalar()?.ToString() ?? "N/A";
+                }
+            }
+        }
+
+
     }
 }

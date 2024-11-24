@@ -11,7 +11,6 @@ namespace Hotel_Mod.Models
 
         public int hospede_id { get; set; }      // Identificador único do hóspede (ID)
         public string nome { get; set; }         // Nome do hóspede
-        public string sobrenome { get; set; }    // Sobrenome do hóspede
         public char sexo { get; set; }           // Sexo do hóspede (M/F)
         public bool ativo { get; set; }          // Status ativo/inativo
         public string cep { get; set; }          // CEP

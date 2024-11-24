@@ -1,7 +1,7 @@
 ﻿
 namespace Hotel_Mod.Models
 {
-    public class parcela
+    public class Parcela
     {
         public int parcela_ID { get; set; }
         public int numeroParcela { get; set; }

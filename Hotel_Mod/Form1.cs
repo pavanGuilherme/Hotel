@@ -168,7 +168,12 @@ namespace Hotel_Mod
 
         private void btn_quartos_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new newConsultaQuartos());
+            OpenChildForm(new ConsultaOcupacao());
+        }
+
+        private void tipoDeQuartoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ConsultaTipoQuarto());    
         }
     }
 }

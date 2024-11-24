@@ -15,9 +15,13 @@ namespace Hotel_Mod.views.Cadastros
     public partial class CadastroQuarto : Hotel_Mod.views.CadastroPai
     {
         private controllerQuarto<Quarto> controllerQuarto;
+        private ConsultaTipoQuarto consultaTipoQuarto;
+
 
         public CadastroQuarto()
         {
+
+            consultaTipoQuarto = new ConsultaTipoQuarto();
             controllerQuarto = new controllerQuarto<Quarto>();
             InitializeComponent();
         }
@@ -38,12 +42,15 @@ namespace Hotel_Mod.views.Cadastros
                 if (quarto != null)
                 {
                     // Carrega os dados do quarto nos controles do formulário
+                    txt_capacidade.Text = quarto.capacidade_maxima.ToString();
                     txt_codigo.Text = quarto.quarto_ID.ToString();
                     txt_numero.Text = quarto.numero.ToString();
                     txt_andar.Text = quarto.andar.ToString();
-                    cmb_tipo.SelectedItem = quarto.tipo;
-                    txt_descricao.Text = quarto.descricao;
-                    txt_valor.Text = quarto.valor.ToString("F2"); // Mostra o valor com duas casas decimais
+                    txt_tipo_id.Text = quarto.tipo_id.ToString();
+                    txt_tipo.Text = quarto.tipo.ToString();
+                    cmb_situacao.Text = quarto.situacao.ToString();
+                    txt_descricao.Text = quarto.descricao.ToString();
+                    txt_valor.Text = quarto.valor_diaria.ToString("F2"); // Mostra o valor com duas casas decimais
                     txt_dat_cad.Text = quarto.data_cadastro.ToString();
                     txt_dat_ult_alt.Text = quarto.data_ult_alt.ToString();
                     check_ativo.Checked = quarto.ativo;
@@ -59,6 +66,7 @@ namespace Hotel_Mod.views.Cadastros
 
         public override void salvar()
         {
+            // Validações dos campos obrigatórios
             if (!validadores.CampoObrigatorio(txt_numero.Text))
             {
                 MessageBox.Show("Campo Número é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -69,21 +77,31 @@ namespace Hotel_Mod.views.Cadastros
                 MessageBox.Show("Campo Andar é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_andar.Focus();
             }
-            else if (!validadores.CampoObrigatorio(cmb_tipo.SelectedItem.ToString()))
+            else if (string.IsNullOrEmpty(txt_tipo_id.Text) || !int.TryParse(txt_tipo_id.Text, out int tipoId))
             {
-                MessageBox.Show("Campo Tipo é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cmb_tipo.Focus();
+                MessageBox.Show("Campo Tipo é obrigatório e deve ser um número válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_tipo_id.Focus();
             }
             else if (!validadores.CampoObrigatorio(txt_valor.Text) || !decimal.TryParse(txt_valor.Text.Replace("R$", "").Trim(), out decimal valor))
             {
                 MessageBox.Show("Campo Valor é obrigatório e deve ser um número válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_valor.Focus();
             }
+            else if (!validadores.CampoObrigatorio(txt_capacidade.Text) || !int.TryParse(txt_capacidade.Text, out int capacidadeMaxima))
+            {
+                MessageBox.Show("Campo Capacidade Máxima é obrigatório e deve ser um número válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_capacidade.Focus();
+            }
+            else if (cmb_situacao.Text == null || !validadores.CampoObrigatorio(cmb_situacao.Text.ToString()))
+            {
+                MessageBox.Show("Campo Situação é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cmb_situacao.Focus();
+            }
             else
             {
                 int idAtual = altera != -1 ? altera : -1;
 
-                if (int.TryParse(txt_numero.Text, out int numero))  // Convertendo o valor de txt_numero para int
+                if (int.TryParse(txt_numero.Text, out int numero))
                 {
                     if (controllerQuarto.JaCadastrado(numero, idAtual))
                     {
@@ -94,24 +112,29 @@ namespace Hotel_Mod.views.Cadastros
                     {
                         try
                         {
-                            int andar = int.Parse(txt_andar.Text); // Convertendo o valor de txt_andar para int
-                            string tipo = cmb_tipo.SelectedItem.ToString(); 
+                            int andar = int.Parse(txt_andar.Text);
+                            string situacao = cmb_situacao.Text;
                             string descricao = txt_descricao.Text;
+                            string observacao = txt_obs.Text;
+
 
                             DateTime.TryParse(txt_dat_cad.Text, out DateTime data_cadastro);
                             DateTime data_ult_alt = altera != -1 ? DateTime.Now : DateTime.TryParse(txt_dat_ult_alt.Text, out DateTime result) ? result : DateTime.MinValue;
 
                             Quarto novoQuarto = new Quarto
                             {
-                                numero = numero,   // Usando o número já convertido para int
+                                numero = numero,
                                 andar = andar,
-                                tipo = tipo,
-                                valor = valor,
+                                tipo_id = tipoId,
+                                tipo = txt_tipo.Text,
+                                valor_diaria = valor,
+                                capacidade_maxima = capacidadeMaxima,
+                                situacao = situacao,
                                 descricao = descricao,
+                                observacao = observacao,
                                 data_cadastro = data_cadastro,
                                 data_ult_alt = data_ult_alt,
-                                ativo = check_ativo.Checked,
-                                disponivel = check_disponivel.Checked
+                                ativo = ativo
                             };
 
                             if (altera == -1)
@@ -120,7 +143,7 @@ namespace Hotel_Mod.views.Cadastros
                             }
                             else
                             {
-                                novoQuarto.quarto_ID = altera; // ID do quarto alterado
+                                novoQuarto.quarto_ID = altera;
                                 controllerQuarto.alterar(novoQuarto);
                             }
 
@@ -140,19 +163,20 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
+
         public override void LimparCampos()
         {
             altera = -1;
             txt_codigo.Clear();
             txt_numero.Clear();
             txt_andar.Clear();
-            cmb_tipo.SelectedIndex = -1;
+            txt_tipo_id.Clear();
             txt_valor.Clear();
             txt_descricao.Clear();
             txt_dat_cad.Clear();
             txt_dat_ult_alt.Clear();
             check_ativo.Checked = true;
-            check_disponivel.Checked = true;
+
         }
 
         public void SetID(int id)
@@ -166,7 +190,7 @@ namespace Hotel_Mod.views.Cadastros
             ((ConsultaQuarto)this.Owner).AtualizarConsultaQuartos(false);
         }
 
-      
+
         private void txt_numero_Leave(object sender, EventArgs e)
         {
             if (!validadores.VerificaNumeros(txt_numero.Text))
@@ -187,11 +211,90 @@ namespace Hotel_Mod.views.Cadastros
 
         private void CadastroQuarto_Load_1(object sender, EventArgs e)
         {
+
+
             if (altera == -1)
             {
                 int novoCodigo = controllerQuarto.GetUltimoCodigo() + 1;
                 txt_codigo.Text = novoCodigo.ToString();
             }
+
+            // Configuração do ComboBox de Situação no Load do formulário
+            cmb_situacao.Items.Add("ocupado");
+            cmb_situacao.Items.Add("reservado");
+            cmb_situacao.Items.Add("livre");
+            cmb_situacao.Items.Add("em preparação");
+            
+
+        }
+
+
+
+        private void btn_busca_tipo_Click(object sender, EventArgs e)
+        {
+            consultaTipoQuarto.btn_sair.Text = "Selecionar";
+
+            if (consultaTipoQuarto.ShowDialog() == DialogResult.OK)
+            {
+                // Receber os detalhes do país selecionado
+                var tipoDetalhes = consultaTipoQuarto.Tag as Tuple<int, string, string, decimal, int>;
+                if (tipoDetalhes != null)
+                {
+                    int tipo_ID = tipoDetalhes.Item1;
+                    string tipo = tipoDetalhes.Item2;
+                    string descricao = tipoDetalhes.Item3;
+                    decimal valor_diaria = tipoDetalhes.Item4;
+                    int capacidade_maxima = tipoDetalhes.Item5;
+
+                    // Atualizar o campo txtPais com o nome do país selecionado
+                    txt_tipo_id.Text = tipo_ID.ToString();
+                    txt_tipo.Text = tipo.ToString();
+                    txt_descricao.Text = descricao;
+                    txt_valor.Text = valor_diaria.ToString();
+                    txt_capacidade.Text = capacidade_maxima.ToString(); 
+                }
+            }
+        }
+
+
+        private void txt_tipo_id_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txt_tipo_id.Text))
+            {
+                int tipoId;
+                if (int.TryParse(txt_tipo_id.Text, out tipoId))
+                {
+                    // Busca o tipo de quarto com base no ID fornecido
+                    tipo_quarto tipoInfo = controllerQuarto.ObterTipoQuartoPorId(tipoId);
+
+                    if (tipoInfo != null)
+                    {
+                        txt_tipo.Text = tipoInfo.tipo;           // Tipo
+                        txt_descricao.Text = tipoInfo.descricao; // Descrição
+                        txt_valor.Text = tipoInfo.valor_diaria.ToString("F2"); // Formats to two decimal places
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Código de Tipo de Quarto não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txt_tipo_id.Focus();
+                        txt_tipo_id.Clear();
+                        txt_tipo.Clear();
+                        txt_descricao.Clear();
+                        txt_valor.Clear();  
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Código de Tipo de Quarto inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txt_tipo_id.Focus();
+                    txt_tipo_id.Clear();
+                    txt_tipo.Clear();
+                    txt_descricao.Clear();
+                    txt_valor.Clear();  
+                }
+            }
         }
     }
 }
+

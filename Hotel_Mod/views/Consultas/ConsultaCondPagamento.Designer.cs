@@ -63,6 +63,7 @@
             // 
             // dataGridViewCondPagamento
             // 
+            this.dataGridViewCondPagamento.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewCondPagamento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCondPagamento.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigo,

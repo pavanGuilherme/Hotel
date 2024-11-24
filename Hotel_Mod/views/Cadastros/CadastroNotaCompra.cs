@@ -464,7 +464,7 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
-        private void exibirParcelasDGV(List<parcela> parcelas)
+        private void exibirParcelasDGV(List<Parcela> parcelas)
         {
             dataGridView_parcelas.Rows.Clear();
 

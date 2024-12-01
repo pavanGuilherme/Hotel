@@ -63,19 +63,6 @@
             this.txt_codigo.Location = new System.Drawing.Point(33, 33);
             this.txt_codigo.Size = new System.Drawing.Size(104, 31);
             // 
-            // btn_salvar
-            // 
-            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_salvar.FlatAppearance.BorderSize = 0;
-            this.btn_salvar.Location = new System.Drawing.Point(681, 595);
-            this.btn_salvar.Size = new System.Drawing.Size(113, 30);
-            // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Location = new System.Drawing.Point(800, 596);
-            // 
             // lbl_dat_ult_alt
             // 
             this.lbl_dat_ult_alt.Location = new System.Drawing.Point(305, 567);
@@ -93,6 +80,27 @@
             // 
             this.txt_dat_cad.Location = new System.Drawing.Point(33, 596);
             this.txt_dat_cad.Text = "14/08/2024 21:08:22";
+            // 
+            // check_inativo
+            // 
+            this.check_inativo.Enabled = false;
+            // 
+            // check_ativo
+            // 
+            this.check_ativo.Enabled = false;
+            // 
+            // btn_salvar
+            // 
+            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_salvar.FlatAppearance.BorderSize = 0;
+            this.btn_salvar.Location = new System.Drawing.Point(681, 595);
+            this.btn_salvar.Size = new System.Drawing.Size(113, 30);
+            // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Location = new System.Drawing.Point(800, 596);
             // 
             // lbl_tipo
             // 
@@ -165,6 +173,7 @@
             this.txt_valor.Size = new System.Drawing.Size(183, 31);
             this.txt_valor.TabIndex = 134;
             this.txt_valor.Text = "";
+            this.txt_valor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_valor_KeyPress);
             // 
             // label4
             // 
@@ -233,6 +242,7 @@
             // 
             // cmb_situacao
             // 
+            this.cmb_situacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_situacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_situacao.FormattingEnabled = true;
             this.cmb_situacao.Location = new System.Drawing.Point(377, 182);
@@ -281,6 +291,7 @@
             this.txt_numero.Size = new System.Drawing.Size(166, 31);
             this.txt_numero.TabIndex = 102;
             this.txt_numero.Text = "";
+            this.txt_numero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_numero_KeyPress);
             // 
             // lbl_numero
             // 

@@ -58,6 +58,18 @@ namespace Hotel_Mod.views.Cadastros
             }
         }
 
+        public override void LimparCampos()
+        {
+            altera = -1;
+            txt_codigo.Clear();
+            txt_dat_cad.Clear();
+            txt_dat_ult_alt.Clear();
+            check_ativo.Checked = true;
+            check_ativo.Enabled = false;    
+            check_inativo.Enabled = false;  
+        }
+
+
         private Cliente PreencherCliente()
         {
             return new Cliente
@@ -111,6 +123,7 @@ namespace Hotel_Mod.views.Cadastros
             txt_cod_cidade.Text = clientes.cidade_id.ToString();
             txt_dat_cad.Text = clientes.data_cadastro.ToString("dd/MM/yyyy HH:mm:ss");
             txt_dat_ult_alt.Text = clientes.data_ult_alt.ToString("dd/MM/yyyy HH:mm:ss");
+            txt_sexo.SelectedItem = clientes.sexo;
 
             // Configuração do status ativo/inativo
             check_ativo.Checked = clientes.ativo;
@@ -172,6 +185,19 @@ namespace Hotel_Mod.views.Cadastros
                 MessageBox.Show("PREENCHA OS CAMPOS DE ENDEREÇO.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 groupBox1.Focus();
             }
+            else if (!validadores.ValidaCPF(txt_cpf.Text))
+            {
+                MessageBox.Show("cpf inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_cpf.Focus();
+            }
+            else if (!validadores.ValidaEmail(txt_cpf.Text))
+            {
+                MessageBox.Show("email inválido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_email.Focus();
+            }
+            
+
+
             else
             {
                 int idAtual = altera != -1 ? altera : 0;
@@ -257,9 +283,9 @@ namespace Hotel_Mod.views.Cadastros
                 check_juridica.Checked = false;
             }
        
-            lbl_apelido.Text = "Apelido";
-            lbl_cpf.Text = "CPF";
-            lbl_rg.Text = "RG";
+            lbl_apelido.Text = "Apelido*";
+            lbl_cpf.Text = "CPF*";
+            lbl_rg.Text = "RG*";
         }
 
         private void check_juridica_CheckedChanged(object sender, EventArgs e)
@@ -269,9 +295,9 @@ namespace Hotel_Mod.views.Cadastros
                 check_fisica.Checked = false;
             }
           
-            lbl_apelido.Text = "Apelido";
-            lbl_cpf.Text = "CNPJ";
-            lbl_rg.Text = "IE";
+            lbl_apelido.Text = "Apelido*";
+            lbl_cpf.Text = "CNPJ*";
+            lbl_rg.Text = "IE*";
         }
 
         private void CadastroClientes_Load(object sender, EventArgs e)
@@ -310,6 +336,52 @@ namespace Hotel_Mod.views.Cadastros
         private void CadastroClientes_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((ConsultaCliente)this.Owner).AtualizarConsultaClientes(false);
+        }
+
+        private void txt_cod_cidade_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_numero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void txt_data_nascimento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_rg_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_cpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_cep_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
         }
     }
 }

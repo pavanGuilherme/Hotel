@@ -50,7 +50,7 @@ namespace Hotel_Mod.views.Consultas
             {
                 if (MessageBox.Show("Tem certeza de que deseja excluir este funcionário?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int idFuncinario = (int)dataGridViewFuncionario.SelectedRows[0].Cells["Código"].Value;
+                    int idFuncinario = (int)dataGridViewFuncionario.SelectedRows[0].Cells["funcionario_ID"].Value;
                     controllerFuncionario.excluir(idFuncinario);
                     dataGridViewFuncionario.DataSource = controllerFuncionario.GetAll(btn_buscainativos.Checked);
                 }

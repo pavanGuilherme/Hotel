@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using Hotel_Mod.Class;
 
 namespace Hotel_Mod.Dao
@@ -142,8 +143,23 @@ namespace Hotel_Mod.Dao
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@hospede_id", id);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    //verifica se a exceção está relacionada a uma restrição de chave estrangeira (uso em algum cadastro)
+                    if (ex.Number == 547) //código de erro para conflito de chave estrangeira
+                    {
+                        MessageBox.Show("Não é possível excluir o hóspede, pois ele está sendo utilizado em um cadastro.", "Erro ao deletar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 

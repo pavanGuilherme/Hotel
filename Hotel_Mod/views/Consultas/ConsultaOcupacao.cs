@@ -16,13 +16,15 @@ namespace Hotel_Mod.views.Consultas
         private List<Quarto> listaDeQuartos; // Full list of all rooms
         private readonly controllerQuarto<Quarto> controllerQuarto;
         private readonly CadastroQuarto cadastroQuarto;
+        private readonly controllerReservas<Reserva> controllerReservas;
 
         public ConsultaOcupacao()
         {
             InitializeComponent();
-            controllerQuarto = new controllerQuarto<Quarto>();
-            cadastroQuarto = new CadastroQuarto { Owner = this };
-            listaDeQuartos = new List<Quarto>(); // Initialize list to avoid null reference
+            this.controllerQuarto = new controllerQuarto<Quarto>();
+            this.cadastroQuarto = new CadastroQuarto { Owner = this };
+            this.listaDeQuartos = new List<Quarto>(); // Initialize list to avoid null reference
+            this.controllerReservas = new controllerReservas<Reserva>();
             InitializeDefaultStatus(); // Set default status checkboxes
         }
 
@@ -33,12 +35,14 @@ namespace Hotel_Mod.views.Consultas
             check_ocupado.Checked = true;
             check_reservado.Checked = true;
             check_preparacao.Checked = true;
+            checkBox1.Checked = true;   
         }
 
         private void newConsultaQuartos_Load(object sender, EventArgs e)
         {
             AtualizarConsultaQuartos(btn_buscainativos.Checked);
             FiltrarQuartos(); // Automatically display rooms on load
+            FiltrarQuartosPorAndar();
         }
 
         public override void Incluir()
@@ -338,6 +342,7 @@ namespace Hotel_Mod.views.Consultas
             check_reservado.Checked = true;
             check_preparacao.Checked = true;
 
+
             PopulateFloorComboBox();
 
             // Load all rooms, including active and inactive if specified
@@ -386,25 +391,74 @@ namespace Hotel_Mod.views.Consultas
                         return;
                     }
 
+                    // Variável local para guardar o reservaId
+                    int reservaId = reserva.reserva_ID;
+
                     using (var cadastroReserva = new CadastroReserva())
                     {
-                        cadastroReserva.CarregarReserva(reserva.reserva_ID);
+                        cadastroReserva.CarregarReserva(reservaId);
 
-                        // Verifica se é um checkout antecipado
+
+                        // Verifica se é necessário ajustar a data de checkout
                         if (DateTime.Now.Date < reserva.data_checkout.Value.Date)
                         {
-                            MessageBox.Show("Checkout antecipado detectado. Ajuste a data de checkout no formulário.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Checkout antecipado detectado. Ajustando a data de checkout para o dia atual.");
                             cadastroReserva.AjustarDataCheckout(DateTime.Now.Date);
-                        }
 
-                        var result = cadastroReserva.ShowDialog();
-                        if (result == DialogResult.OK)
-                        {
-                            AtualizarQuartoParaLivre(quartoId);
-                            AtualizarReservaParaCheckout(reserva.reserva_ID);
-                            AtualizarConsultaQuartos(btn_buscainativos.Checked);
+                            // Valida e recalcula os dias hospedados
+                            if (reserva.data_checkin == DateTime.MinValue)
+                            {
+                                MessageBox.Show("A data de check-in não está definida ou é inválida.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
 
-                            MessageBox.Show("Checkout realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (reserva.data_checkin.Date > DateTime.Now.Date)
+                            {
+                                MessageBox.Show("A data de check-in é maior que a data atual. Verifique os dados da reserva.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+
+                            int diasHospedados = (DateTime.Now.Date - reserva.data_checkin.Date).Days + 1; // Inclui o dia de check-in
+                            if (diasHospedados <= 0)
+                            {
+                                diasHospedados = 1; // Garante pelo menos 1 dia
+                            }
+
+                            reserva.num_dias = diasHospedados;
+                            reserva.valor_total = diasHospedados * (reserva.valor_diaria ?? 0);
+
+                            MessageBox.Show($"Dias hospedados: {diasHospedados}, Valor total: {reserva.valor_total}");
+
+                            // Atualiza os campos no formulário
+                            cadastroReserva.AtualizarCamposReserva(reserva.num_dias, (decimal)reserva.valor_total);
+                            cadastroReserva.btn_salvar.Visible = false;
+                            cadastroReserva.btn_sair.BackColor = Color.Red;
+                            cadastroReserva.btn_sair.Text = "CHECKOUT";
+                            List<Parcela> parcelas = controllerReservas.GetById(reservaId).parcelas;
+                            reserva.parcelas = parcelas;
+                            cadastroReserva.ExibirParcelasDGV(parcelas);
+                            var result = cadastroReserva.ShowDialog();
+
+                            if (result == DialogResult.Cancel)
+                            {
+                                // Tenta gerar a conta a receber
+                                bool contaGerada = GerarContaAReceber(reserva);
+
+                                if (!contaGerada)
+                                {
+                                    MessageBox.Show("Erro ao gerar a conta a receber. O checkout foi cancelado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return; // Interrompe o processo de checkout
+                                }
+
+                                // Continua o checkout se a conta foi gerada com sucesso
+                                AtualizarQuartoParaLivre(quartoId);
+                                AtualizarReservaParaCheckout(reservaId);
+                                AtualizarConsultaQuartos(btn_buscainativos.Checked);
+
+                                reservasController.ExcluirReservasTemporariasPorReservaId(reservaId);
+
+                                MessageBox.Show("Checkout realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
                         }
                     }
                 }
@@ -417,6 +471,127 @@ namespace Hotel_Mod.views.Consultas
             {
                 MessageBox.Show("Selecione um quarto para realizar o checkout.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+       
+        private bool GerarContaAReceber(Reserva reserva)
+        {
+            try
+            {
+                List<ContasReceber> contasReceber = new List<ContasReceber>();
+                int count = 1;
+                foreach (Parcela parcela in reserva.parcelas)
+                {
+                    contasReceber.Add(new ContasReceber
+                    {
+                        reserva_ID = reserva.reserva_ID,
+                        cliente_ID = reserva.cliente_ID,
+                        formaPagamento_ID = parcela.FormaPagamento_ID,
+                        num_parcela = count,
+                        valor_total = 0,
+                        valor_parcela = Convert.ToDecimal(reserva.valor_total * (parcela.porcentagem / 100)),
+                        data_emissao = DateTime.Now,
+                        data_vencimento = new DateTime(reserva.data_checkout.Value.Year, reserva.data_checkout.Value.Month, reserva.data_checkout.Value.Day).AddDays(parcela.dias),
+                        observacao = "Conta gerada automaticamente no checkout.",
+                        data_cadastro = DateTime.Now,
+                        data_ult_alt = DateTime.Now,
+                    });
+                    count++;
+                }
+                //ContasReceber contaReceber = new ContasReceber
+                //{
+                //    reserva_ID = reserva.reserva_ID,
+                //    cliente_ID = reserva.cliente_ID,
+                //    formaPagamento_ID = reserva.condPagamento_ID ?? 0, 
+                //    num_parcela = 1, 
+                //    valor_total = reserva.valor_total ?? 0, 
+                //    data_emissao = DateTime.Now,
+                //    data_vencimento = DateTime.Now.AddDays(7), 
+                //    observacao = "Conta gerada automaticamente no checkout.",
+                //    data_cadastro = DateTime.Now,
+                //    data_ult_alt = DateTime.Now,
+                
+                //};
+
+                var contasReceberController = new controllerContasReceber<ContasReceber>();
+                contasReceberController.Salvar(contasReceber);
+
+                return true; 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao gerar a conta a receber: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false; 
+            }
+        }
+
+
+        private void btn_limpo_Click(object sender, EventArgs e)
+        {
+            // Obtém o painel do quarto selecionado
+            var selectedPanel = GetSelectedPanel();
+
+            if (selectedPanel?.Tag is int quartoId)
+            {
+                try
+                {
+                    // Obter o status do quarto
+                    var quartoController = new controllerQuarto<Quarto>();
+                    var quarto = quartoController.GetById(quartoId);
+
+                    if (quarto == null)
+                    {
+                        MessageBox.Show("Quarto não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // Verifica se o status atual é "Em Preparação"
+                    if (quarto.situacao == "Em preparação")
+                    {
+                        // Atualiza o status para "Livre"
+                        quarto.situacao = "Livre";
+                        quartoController.AtualizarSituacaoQuarto(quarto);
+
+                        // Atualiza a interface do painel
+                        AtualizarConsultaQuartos(btn_buscainativos.Checked);
+
+                        MessageBox.Show("QUARTO LIBERADO !.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("O quarto selecionado não está 'Em Preparação'.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao atualizar o status do quarto: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione um quarto para marcar como 'Livre'.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+           
+            if (checkBox1.Checked == true)
+            {
+                check_livre.Checked = true;
+                check_ocupado.Checked = true;
+                check_preparacao.Checked = true;
+                check_reservado.Checked = true;
+
+            }
+            else
+            {
+                check_livre.Checked = false;
+                check_ocupado.Checked = false;
+                check_preparacao.Checked = false;
+                check_reservado.Checked = false;
+            }
+
         }
     }
 }

@@ -76,6 +76,12 @@ namespace Hotel_Mod.views.Cadastros
                 MessageBox.Show("PREENCHA OS CAMPOS DE ENDEREÇO.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 groupBox1.Focus();
             }
+
+            else if (!validadores.ValidaCPF(txt_cpf.Text))
+            {
+                MessageBox.Show("cpf inválido !", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                groupBox1.Focus();
+            }
             else
             {
                 int idAtual = altera != -1 ? altera : 0;
@@ -168,6 +174,7 @@ namespace Hotel_Mod.views.Cadastros
             txt_dat_ult_alt.Text = hospede.data_ult_alt.ToString(); 
             check_ativo.Checked = hospede.ativo;             
             check_inativo.Checked = !hospede.ativo;
+            comboBox_sexo.SelectedIndex = hospede.sexo; 
 
         }
         private void btn_busca_cidade_Click_1(object sender, EventArgs e)
@@ -227,6 +234,78 @@ namespace Hotel_Mod.views.Cadastros
         private void btn_salvar_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void txt_cpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_rg_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_telefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_data_nascimento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_cep_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_cod_cidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_passaporte_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_numero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
         }
     }
 }

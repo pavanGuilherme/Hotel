@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using Hotel_Mod.Models;
 
 namespace Hotel_Mod.Class
@@ -56,6 +57,30 @@ namespace Hotel_Mod.Class
             return proximoCodigo;
         }
 
+        public string getFormaPag(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT formaPagamento FROM formaPagamento WHERE formaPagamento_ID = @id AND Ativo = 1";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader["formaPagamento"].ToString();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+
         public override void Salvar(T obj)
         {
             dynamic formaPagamento = obj;
@@ -84,10 +109,26 @@ namespace Hotel_Mod.Class
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    //verifica se a exceção está relacionada a uma restrição de chave estrangeira (uso em algum cadastro)
+                    if (ex.Number == 547) //código de erro para conflito de chave estrangeira
+                    {
+                        MessageBox.Show("Não é possível excluir a forma de pagamento, pois ela está associada a um cadastro.", "Erro ao deletar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
+ 
 
         public override T GetById(int id)
         {

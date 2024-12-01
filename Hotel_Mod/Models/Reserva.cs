@@ -35,6 +35,7 @@ namespace Hotel_Mod.Models
         public bool ativo { get; set; }
         public DateTime data_cadastro { get; set; }
         public DateTime data_ult_alt { get; set; }
+        public int? numHosp { get; set; }
 
         // Adicionando a lista de hóspedes
         public List<Hospede> hospedes { get; set; }

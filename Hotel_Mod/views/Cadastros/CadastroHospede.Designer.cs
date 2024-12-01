@@ -85,19 +85,6 @@
             // 
             this.txt_codigo.Location = new System.Drawing.Point(18, 52);
             // 
-            // btn_salvar
-            // 
-            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_salvar.FlatAppearance.BorderSize = 0;
-            this.btn_salvar.Location = new System.Drawing.Point(956, 632);
-            this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click);
-            // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Location = new System.Drawing.Point(1072, 632);
-            // 
             // lbl_dat_ult_alt
             // 
             this.lbl_dat_ult_alt.Location = new System.Drawing.Point(237, 606);
@@ -124,6 +111,19 @@
             // 
             this.check_ativo.CheckedChanged += new System.EventHandler(this.check_ativo_CheckedChanged);
             // 
+            // btn_salvar
+            // 
+            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_salvar.FlatAppearance.BorderSize = 0;
+            this.btn_salvar.Location = new System.Drawing.Point(956, 632);
+            this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click);
+            // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Location = new System.Drawing.Point(1072, 632);
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -140,10 +140,12 @@
             this.txt_passaporte.Location = new System.Drawing.Point(410, 345);
             this.txt_passaporte.Name = "txt_passaporte";
             this.txt_passaporte.Size = new System.Drawing.Size(173, 29);
-            this.txt_passaporte.TabIndex = 244;
+            this.txt_passaporte.TabIndex = 10;
+            this.txt_passaporte.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_passaporte_KeyPress);
             // 
             // comboBox_sexo
             // 
+            this.comboBox_sexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_sexo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_sexo.FormattingEnabled = true;
             this.comboBox_sexo.Items.AddRange(new object[] {
@@ -172,7 +174,7 @@
             this.txt_nome.Location = new System.Drawing.Point(238, 52);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(582, 29);
-            this.txt_nome.TabIndex = 238;
+            this.txt_nome.TabIndex = 1;
             // 
             // lbl_nome
             // 
@@ -191,7 +193,8 @@
             this.txt_data_nascimento.Mask = "00/00/0000";
             this.txt_data_nascimento.Name = "txt_data_nascimento";
             this.txt_data_nascimento.Size = new System.Drawing.Size(153, 35);
-            this.txt_data_nascimento.TabIndex = 236;
+            this.txt_data_nascimento.TabIndex = 13;
+            this.txt_data_nascimento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_data_nascimento_KeyPress);
             // 
             // check_pcd
             // 
@@ -210,7 +213,8 @@
             this.txt_rg.Location = new System.Drawing.Point(218, 345);
             this.txt_rg.Name = "txt_rg";
             this.txt_rg.Size = new System.Drawing.Size(171, 29);
-            this.txt_rg.TabIndex = 234;
+            this.txt_rg.TabIndex = 9;
+            this.txt_rg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_rg_KeyPress);
             // 
             // txt_cpf
             // 
@@ -218,7 +222,8 @@
             this.txt_cpf.Location = new System.Drawing.Point(21, 345);
             this.txt_cpf.Name = "txt_cpf";
             this.txt_cpf.Size = new System.Drawing.Size(158, 29);
-            this.txt_cpf.TabIndex = 233;
+            this.txt_cpf.TabIndex = 8;
+            this.txt_cpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cpf_KeyPress);
             // 
             // label8
             // 
@@ -236,8 +241,8 @@
             this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_email.Location = new System.Drawing.Point(18, 422);
             this.txt_email.Name = "txt_email";
-            this.txt_email.Size = new System.Drawing.Size(304, 29);
-            this.txt_email.TabIndex = 231;
+            this.txt_email.Size = new System.Drawing.Size(565, 29);
+            this.txt_email.TabIndex = 14;
             // 
             // lbl_data_nascimento
             // 
@@ -285,7 +290,8 @@
             this.txt_telefone.Location = new System.Drawing.Point(630, 345);
             this.txt_telefone.Name = "txt_telefone";
             this.txt_telefone.Size = new System.Drawing.Size(189, 29);
-            this.txt_telefone.TabIndex = 222;
+            this.txt_telefone.TabIndex = 11;
+            this.txt_telefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_telefone_KeyPress);
             // 
             // groupBox1
             // 
@@ -320,6 +326,7 @@
             // txt_pais
             // 
             this.txt_pais.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_pais.Enabled = false;
             this.txt_pais.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_pais.Location = new System.Drawing.Point(781, 48);
             this.txt_pais.Name = "txt_pais";
@@ -329,6 +336,7 @@
             // txt_estado
             // 
             this.txt_estado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_estado.Enabled = false;
             this.txt_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_estado.Location = new System.Drawing.Point(548, 52);
             this.txt_estado.Name = "txt_estado";
@@ -338,6 +346,7 @@
             // txt_cidade
             // 
             this.txt_cidade.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_cidade.Enabled = false;
             this.txt_cidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_cidade.Location = new System.Drawing.Point(315, 52);
             this.txt_cidade.Name = "txt_cidade";
@@ -361,7 +370,8 @@
             this.txt_cod_cidade.Location = new System.Drawing.Point(11, 52);
             this.txt_cod_cidade.Name = "txt_cod_cidade";
             this.txt_cod_cidade.Size = new System.Drawing.Size(172, 29);
-            this.txt_cod_cidade.TabIndex = 235;
+            this.txt_cod_cidade.TabIndex = 2;
+            this.txt_cod_cidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cod_cidade_KeyPress);
             // 
             // label1
             // 
@@ -421,7 +431,7 @@
             this.txt_logradouro.Location = new System.Drawing.Point(216, 130);
             this.txt_logradouro.Name = "txt_logradouro";
             this.txt_logradouro.Size = new System.Drawing.Size(266, 29);
-            this.txt_logradouro.TabIndex = 162;
+            this.txt_logradouro.TabIndex = 4;
             // 
             // txt_complemento
             // 
@@ -430,7 +440,7 @@
             this.txt_complemento.Location = new System.Drawing.Point(657, 127);
             this.txt_complemento.Name = "txt_complemento";
             this.txt_complemento.Size = new System.Drawing.Size(172, 29);
-            this.txt_complemento.TabIndex = 163;
+            this.txt_complemento.TabIndex = 6;
             // 
             // txt_numero
             // 
@@ -439,7 +449,8 @@
             this.txt_numero.Location = new System.Drawing.Point(525, 127);
             this.txt_numero.Name = "txt_numero";
             this.txt_numero.Size = new System.Drawing.Size(91, 29);
-            this.txt_numero.TabIndex = 164;
+            this.txt_numero.TabIndex = 5;
+            this.txt_numero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_numero_KeyPress);
             // 
             // label10
             // 
@@ -478,7 +489,7 @@
             this.txt_bairro.Location = new System.Drawing.Point(885, 127);
             this.txt_bairro.Name = "txt_bairro";
             this.txt_bairro.Size = new System.Drawing.Size(177, 29);
-            this.txt_bairro.TabIndex = 170;
+            this.txt_bairro.TabIndex = 7;
             // 
             // label5
             // 
@@ -497,7 +508,8 @@
             this.txt_cep.Location = new System.Drawing.Point(6, 130);
             this.txt_cep.Name = "txt_cep";
             this.txt_cep.Size = new System.Drawing.Size(188, 29);
-            this.txt_cep.TabIndex = 165;
+            this.txt_cep.TabIndex = 3;
+            this.txt_cep.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cep_KeyPress);
             // 
             // lbl_cep
             // 
@@ -514,7 +526,7 @@
             this.txt_obs.Location = new System.Drawing.Point(18, 497);
             this.txt_obs.Name = "txt_obs";
             this.txt_obs.Size = new System.Drawing.Size(1134, 106);
-            this.txt_obs.TabIndex = 248;
+            this.txt_obs.TabIndex = 15;
             this.txt_obs.Text = "";
             // 
             // label11
@@ -552,6 +564,7 @@
             this.Controls.Add(this.lbl_cpf);
             this.Controls.Add(this.txt_telefone);
             this.Name = "CadastroHospede";
+            this.Text = "Cadastro Hóspede";
             this.Load += new System.EventHandler(this.CadastroHospede_Load);
             this.Controls.SetChildIndex(this.txt_telefone, 0);
             this.Controls.SetChildIndex(this.lbl_cpf, 0);

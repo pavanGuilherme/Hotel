@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Hotel_Mod.Class
 {
@@ -88,9 +89,9 @@ namespace Hotel_Mod.Class
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM paises WHERE pais_ID = @pais_ID";
+                string query = "SELECT * FROM cidades WHERE cidade_ID = @cidade_ID";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@pais_ID", id);
+                command.Parameters.AddWithValue("@cidade_ID", id);
 
                 connection.Open();
 
@@ -99,10 +100,10 @@ namespace Hotel_Mod.Class
                     if (reader.Read())
                     {
                         dynamic obj = Activator.CreateInstance(typeof(T));
-                        obj.pais_ID = Convert.ToInt32(reader["pais_ID"]);
-                        obj.pais = reader["pais"].ToString();
-                        obj.sigla = reader["sigla"].ToString();
-                        obj.ddi = reader["ddi"].ToString();
+                        obj.cidade_ID = Convert.ToInt32(reader["cidade_ID"]);
+                        obj.cidade = reader["cidade"].ToString();
+                        obj.ddd = reader["ddd"].ToString();
+                        obj.estado_ID = Convert.ToInt32(reader["estado_ID"]); 
                         obj.ativo = Convert.ToBoolean(reader["Ativo"]);
                         obj.data_cadastro = DateTime.Parse(reader["data_cadastro"].ToString());
                         obj.data_ult_alt = DateTime.Parse(reader["data_ult_alt"].ToString());
@@ -116,19 +117,34 @@ namespace Hotel_Mod.Class
             }
         }
 
-        public override void excluir(int cidade_ID)
+        public override void excluir(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM cidades where cidade_ID = @cidade_ID";
+                string query = "DELETE FROM cidades WHERE cidade_ID = @cidade_ID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@cidade_ID", cidade_ID);
+                command.Parameters.AddWithValue("cidade_ID", id);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    //verifica se a exceção está relacionada a uma restrição de chave estrangeira (uso em algum cadastro)
+                    if (ex.Number == 547) //código de erro para conflito de chave estrangeira
+                    {
+                        MessageBox.Show("Não é possível excluir a cidade, pois ele está sendo utilizado em um cadastro.", "Erro ao deletar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
             }
-
         }
 
         public override void alterar(T obj)

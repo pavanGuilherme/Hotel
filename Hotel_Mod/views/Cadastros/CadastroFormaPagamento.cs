@@ -135,7 +135,15 @@ namespace Hotel_Mod.views.Cadastros
             {
                 int novoCodigo = controllerFormaPagamento.GetUltimoCodigo() + 1;
                 txt_codigo.Text = novoCodigo.ToString();
+                check_ativo.Visible = false;
+                check_inativo.Visible = false;  
+                status.Visible = false;
             }
+        }
+
+        private void CadastroFormaPagamento_FormClosed_1(object sender, FormClosedEventArgs e)
+        {
+            ((ConsultaFormaPagamento)this.Owner).AtualizarConsultaFormaPagamentos(false);
         }
     }
 }

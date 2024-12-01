@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.DataGridViewCidades = new System.Windows.Forms.DataGridView();
-            this.Código = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DDD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
@@ -40,6 +40,16 @@
             // 
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_pesquisar.FlatAppearance.BorderSize = 0;
+            // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click_1);
+            // 
+            // btn_buscainativos
+            // 
+            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged_1);
             // 
             // btn_incluir
             // 
@@ -56,22 +66,12 @@
             this.btn_excluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_excluir.FlatAppearance.BorderSize = 0;
             // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click_1);
-            // 
-            // btn_buscainativos
-            // 
-            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged_1);
-            // 
             // DataGridViewCidades
             // 
             this.DataGridViewCidades.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.DataGridViewCidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridViewCidades.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Código,
+            this.codigo,
             this.Cidade,
             this.DDD});
             this.DataGridViewCidades.GridColor = System.Drawing.Color.Honeydew;
@@ -80,11 +80,11 @@
             this.DataGridViewCidades.Size = new System.Drawing.Size(971, 379);
             this.DataGridViewCidades.TabIndex = 69;
             // 
-            // Código
+            // codigo
             // 
-            this.Código.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Código.HeaderText = "Código";
-            this.Código.Name = "Código";
+            this.codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.codigo.HeaderText = "Código";
+            this.codigo.Name = "codigo";
             // 
             // Cidade
             // 
@@ -126,7 +126,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DataGridViewCidades;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Código;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn DDD;
     }

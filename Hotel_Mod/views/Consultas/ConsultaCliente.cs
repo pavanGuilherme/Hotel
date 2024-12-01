@@ -107,6 +107,8 @@ namespace Hotel_Mod.views
                 MessageBox.Show("Ocorreu um erro ao atualizar a consulta de clientes: " + ex.Message.ToString(), "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
         private void ResetCadastro()
         {
             cadastroCliente.LimparCampos();

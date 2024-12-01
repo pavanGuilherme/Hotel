@@ -62,18 +62,6 @@
             // 
             this.txt_codigo.Location = new System.Drawing.Point(31, 41);
             // 
-            // btn_salvar
-            // 
-            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_salvar.FlatAppearance.BorderSize = 0;
-            this.btn_salvar.Location = new System.Drawing.Point(738, 499);
-            // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Location = new System.Drawing.Point(854, 499);
-            // 
             // lbl_dat_ult_alt
             // 
             this.lbl_dat_ult_alt.Location = new System.Drawing.Point(302, 472);
@@ -91,6 +79,18 @@
             // 
             this.txt_dat_cad.Location = new System.Drawing.Point(32, 499);
             this.txt_dat_cad.Text = "26/06/2024 10:47:29";
+            // 
+            // btn_salvar
+            // 
+            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_salvar.FlatAppearance.BorderSize = 0;
+            this.btn_salvar.Location = new System.Drawing.Point(738, 499);
+            // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Location = new System.Drawing.Point(854, 499);
             // 
             // lbl_produto
             // 
@@ -218,6 +218,7 @@
             this.txt_data_ultcompra.Name = "txt_data_ultcompra";
             this.txt_data_ultcompra.Size = new System.Drawing.Size(143, 31);
             this.txt_data_ultcompra.TabIndex = 127;
+            this.txt_data_ultcompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_data_ultcompra_KeyPress);
             // 
             // label10
             // 
@@ -236,6 +237,7 @@
             this.txt_fornecedor_ID.Name = "txt_fornecedor_ID";
             this.txt_fornecedor_ID.Size = new System.Drawing.Size(75, 29);
             this.txt_fornecedor_ID.TabIndex = 131;
+            this.txt_fornecedor_ID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_fornecedor_ID_KeyPress);
             // 
             // txt_fornecedor
             // 
@@ -280,6 +282,7 @@
             this.txt_saldo.Name = "txt_saldo";
             this.txt_saldo.Size = new System.Drawing.Size(149, 29);
             this.txt_saldo.TabIndex = 136;
+            this.txt_saldo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_saldo_KeyPress);
             // 
             // txt_custo_medio
             // 
@@ -291,11 +294,13 @@
             // 
             // txt_preco_medio
             // 
+            this.txt_preco_medio.Enabled = false;
             this.txt_preco_medio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_preco_medio.Location = new System.Drawing.Point(466, 221);
             this.txt_preco_medio.Name = "txt_preco_medio";
             this.txt_preco_medio.Size = new System.Drawing.Size(127, 29);
             this.txt_preco_medio.TabIndex = 138;
+            this.txt_preco_medio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_preco_medio_KeyPress);
             // 
             // txt_preco_ult_compra
             // 
@@ -304,6 +309,7 @@
             this.txt_preco_ult_compra.Name = "txt_preco_ult_compra";
             this.txt_preco_ult_compra.Size = new System.Drawing.Size(149, 29);
             this.txt_preco_ult_compra.TabIndex = 139;
+            this.txt_preco_ult_compra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_preco_ult_compra_KeyPress);
             // 
             // CadastroProduto
             // 

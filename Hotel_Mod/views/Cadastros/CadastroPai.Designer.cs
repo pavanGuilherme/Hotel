@@ -220,13 +220,13 @@
         protected System.Windows.Forms.GroupBox status;
         protected System.Windows.Forms.Label lbl_codigo;
         protected System.Windows.Forms.RichTextBox txt_codigo;
-        protected System.Windows.Forms.Button btn_salvar;
-        protected System.Windows.Forms.Button btn_sair;
         protected System.Windows.Forms.Label lbl_dat_ult_alt;
         protected System.Windows.Forms.RichTextBox txt_dat_ult_alt;
         protected System.Windows.Forms.Label lbl_data_cadastro;
         protected System.Windows.Forms.RichTextBox txt_dat_cad;
         protected System.Windows.Forms.CheckBox check_inativo;
         protected System.Windows.Forms.CheckBox check_ativo;
+        public System.Windows.Forms.Button btn_salvar;
+        public System.Windows.Forms.Button btn_sair;
     }
 }

@@ -162,9 +162,23 @@ namespace Hotel_Mod.views.Cadastros
             {
                 int novoCodigo = controllerTipoQuarto.GetUltimoCodigo() + 1;
                 txt_codigo.Text = novoCodigo.ToString();
+
+
+                ToolTip toolTip = new ToolTip();
+
+                // Configurações opcionais para o ToolTip
+                toolTip.AutoPopDelay = 5000; // Quanto tempo o ToolTip ficará visível (em milissegundos)
+                toolTip.InitialDelay = 100; // Tempo antes de aparecer o ToolTip (em milissegundos)
+                toolTip.ReshowDelay = 500;  // Tempo entre ToolTips consecutivos
+                toolTip.ShowAlways = true;  // Exibir mesmo se o controle não estiver em foco
+
+                // Associa o ToolTip ao campo
+                toolTip.SetToolTip(txt_lotacao_maxima, "Informe a quantidade máxima de quartos que serão disponíveis para esse tipo");
             }
 
         }
+
+    
 
         private void txt_valor_Leave(object sender, EventArgs e)
         {
@@ -173,6 +187,33 @@ namespace Hotel_Mod.views.Cadastros
                 MessageBox.Show(" Valor ínvalido ", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txt_valor.Focus();
              
+            }
+        }
+
+        private void txt_valor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_capacidade_max_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_lotacao_maxima_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
             }
         }
     }

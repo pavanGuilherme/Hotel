@@ -46,3 +46,5 @@ C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Consultas.ConsultaHospede
 C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Cadastros.CadastroTipoQuarto.resources
 C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Consultas.ConsultaTipoQuarto.resources
 C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Consultas.ConsultaOcupacao.resources
+C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Cadastros.CadastroContaReceber.resources
+C:\Hotel\Hotel_Mod\Hotel_Mod\obj\Debug\Hotel_Mod.views.Consultas.ConsultaContasReceber.resources

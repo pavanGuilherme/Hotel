@@ -206,6 +206,51 @@ namespace Hotel_Mod.views.Cadastros
                 txt_codigo.Text = novoCodigo.ToString();
             }
         }
+
+        private void txt_fornecedor_ID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_saldo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_preco_medio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_preco_ult_compra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_data_ultcompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
     }
 }
 

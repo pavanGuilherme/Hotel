@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows.Forms;
 using System.Windows.Input;
 using Hotel_Mod.Class;
 using Hotel_Mod.Models;
@@ -238,14 +239,30 @@ namespace Hotel_Mod.DAO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-                    DELETE FROM reserva_hospede WHERE reserva_ID = @id;
+                    DELETE FROM contasReceber WHERE reserva_id = @id;
                     DELETE FROM ReservasTemporarias WHERE reserva_id = @id;
+                    DELETE FROM reserva_hospede WHERE reserva_ID = @id;
                     DELETE FROM reserva WHERE reserva_ID = @id;";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    //verifica se a exceção está relacionada a uma restrição de chave estrangeira (uso em algum cadastro)
+                    if (ex.Number == 547) //código de erro para conflito de chave estrangeira
+                    {
+                        MessageBox.Show("Não é possível excluir a reserva, pois ele está sendo utilizado em um cadastro.", "Erro ao deletar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
@@ -336,19 +353,26 @@ namespace Hotel_Mod.DAO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-            SELECT 
-                r.*, 
-                h.hospede_ID, h.nome, h.cpf, h.telefone,
-                cp.CondPagamento_ID, cp.condicaoPagamento,
-                p.parcela_ID, p.numeroParcela, p.dias, p.porcentagem, p.CondPagamento_ID, p.FormaPagamento_ID,
-                tq.tipo_quarto_ID, tq.tipo, tq.descricao, tq.valor_diaria AS valor_quarto, tq.capacidade_maxima, tq.lotacaoMaxima
-            FROM reserva r
-            LEFT JOIN reserva_hospede rh ON r.reserva_ID = rh.reserva_ID
-            LEFT JOIN hospede h ON rh.hospede_ID = h.hospede_ID
-            LEFT JOIN condicaoPagamento cp ON r.condPagamento_ID = cp.CondPagamento_ID
-            LEFT JOIN parcelas p ON cp.CondPagamento_ID = p.CondPagamento_ID
-            LEFT JOIN tipo_quarto tq ON r.tipo_quarto_ID = tq.tipo_quarto_ID
-            WHERE r.reserva_ID = @reserva_ID";
+        SELECT 
+            r.reserva_ID, r.cliente_ID, r.nome_cliente, r.cpf_cliente, r.celular_cliente,
+            r.tipo_quarto_ID, r.data_checkin, r.data_checkout, r.status_reserva, r.num_dias, 
+            r.valor_total, r.condPagamento_ID, r.data_cancelamento, r.observacao, r.motivo_checkout,
+            r.ativo, r.data_cadastro, r.data_ult_alt, 
+            tq.tipo_quarto_ID, tq.tipo, tq.descricao, tq.valor_diaria AS valor_diaria, 
+            tq.capacidade_maxima, tq.lotacaoMaxima,
+            h.hospede_ID, h.nome AS nome_hospede, h.cpf, h.telefone,
+            cp.condicaoPagamento,
+            p.parcela_ID, p.numeroParcela, p.dias, p.porcentagem, p.CondPagamento_ID, p.FormaPagamento_ID,
+	        (SELECT COUNT(*)
+	         FROM reserva_hospede rh_sub
+	         WHERE rh_sub.reserva_ID = r.reserva_ID) as 'NumHosp'
+        FROM reserva r
+        LEFT JOIN reserva_hospede rh ON r.reserva_ID = rh.reserva_ID
+        LEFT JOIN hospede h ON rh.hospede_ID = h.hospede_ID
+        LEFT JOIN condicaoPagamento cp ON r.condPagamento_ID = cp.CondPagamento_ID
+        LEFT JOIN parcelas p ON cp.CondPagamento_ID = p.CondPagamento_ID
+        LEFT JOIN tipo_quarto tq ON r.tipo_quarto_ID = tq.tipo_quarto_ID
+        WHERE r.reserva_ID = @reserva_ID";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@reserva_ID", id);
@@ -376,22 +400,20 @@ namespace Hotel_Mod.DAO
                                 tipo_quarto_ID = reader["tipo_quarto_ID"] != DBNull.Value ? Convert.ToInt32(reader["tipo_quarto_ID"]) : (int?)null,
                                 tipo_quarto = reader["tipo"]?.ToString(),
                                 valor_diaria = reader["valor_diaria"] != DBNull.Value ? Convert.ToDecimal(reader["valor_diaria"]) : (decimal?)null,
-                                quarto_ID = reader["quarto_ID"] != DBNull.Value ? Convert.ToInt32(reader["quarto_ID"]) : (int?)null,
-                                numero_quarto = reader["numero_quarto"]?.ToString(),
-                                andar = reader["andar"] != DBNull.Value ? Convert.ToInt32(reader["andar"]) : (int?)null,
                                 valor_total = reader["valor_total"] != DBNull.Value ? Convert.ToDecimal(reader["valor_total"]) : (decimal?)null,
                                 data_checkin = reader["data_checkin"] != DBNull.Value ? Convert.ToDateTime(reader["data_checkin"]) : DateTime.MinValue,
                                 data_checkout = reader["data_checkout"] != DBNull.Value ? Convert.ToDateTime(reader["data_checkout"]) : DateTime.MinValue,
                                 num_dias = reader["num_dias"] != DBNull.Value ? Convert.ToInt32(reader["num_dias"]) : 0,
-                                condPagamento_ID = reader["CondPagamento_ID"] != DBNull.Value ? Convert.ToInt32(reader["CondPagamento_ID"]) : (int?)null,
+                                condPagamento_ID = reader["condPagamento_ID"] != DBNull.Value ? Convert.ToInt32(reader["condPagamento_ID"]) : (int?)null,
                                 condicao_pagamento = reader["condicaoPagamento"]?.ToString(),
                                 status_reserva = reader["status_reserva"]?.ToString(),
                                 data_cancelamento = reader["data_cancelamento"] != DBNull.Value ? Convert.ToDateTime(reader["data_cancelamento"]) : (DateTime?)null,
                                 observacao = reader["observacao"]?.ToString(),
-                                motivo_checkout = reader["motivo_checkout"] != DBNull.Value ? reader["motivo_checkout"].ToString() : null,  // Novo campo
-                                ativo = reader["ativo"] != DBNull.Value ? Convert.ToBoolean(reader["ativo"]) : false,
+                                motivo_checkout = reader["motivo_checkout"]?.ToString(),
+                                ativo = reader["ativo"] != DBNull.Value && Convert.ToBoolean(reader["ativo"]),
                                 data_cadastro = reader["data_cadastro"] != DBNull.Value ? Convert.ToDateTime(reader["data_cadastro"]) : DateTime.MinValue,
                                 data_ult_alt = reader["data_ult_alt"] != DBNull.Value ? Convert.ToDateTime(reader["data_ult_alt"]) : DateTime.MinValue,
+                                numHosp = Convert.ToInt32(reader["NumHosp"])
                             };
                         }
 
@@ -401,7 +423,7 @@ namespace Hotel_Mod.DAO
                             hospedes.Add(new Hospede
                             {
                                 hospede_id = Convert.ToInt32(reader["hospede_ID"]),
-                                nome = reader["nome"]?.ToString(),
+                                nome = reader["nome_hospede"]?.ToString(),
                                 cpf = reader["cpf"]?.ToString(),
                                 telefone = reader["telefone"]?.ToString()
                             });
@@ -715,9 +737,11 @@ namespace Hotel_Mod.DAO
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-                  SELECT r.reserva_ID, r.cliente_ID, r.data_checkout, r.status_reserva
+                    SELECT r.reserva_ID, r.cliente_ID, r.data_checkout, r.data_checkin, r.status_reserva, r.valor_diaria, COUNT(rh.hospede_ID) as 'NumHosp'
                     FROM reserva r
-                    WHERE r.quarto_ID = @quartoId AND r.status_reserva = 'Check-in'";
+                    INNER JOIN reserva_hospede rh ON rh.reserva_ID = r.reserva_ID
+                    WHERE r.quarto_ID = @quartoId AND r.status_reserva = 'Check-in'
+                    GROUP BY r.reserva_ID, r.cliente_ID, r.data_checkout, r.data_checkin, r.status_reserva, r.valor_diaria;";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -732,10 +756,13 @@ namespace Hotel_Mod.DAO
                             {
                                 reserva_ID = Convert.ToInt32(reader["reserva_ID"]),
                                 cliente_ID = Convert.ToInt32(reader["cliente_ID"]),
+                                data_checkin = Convert.ToDateTime(reader["data_checkin"]),
                                 data_checkout = reader["data_checkout"] != DBNull.Value
                                     ? Convert.ToDateTime(reader["data_checkout"])
                                     : (DateTime?)null,
-                                status_reserva = reader["status_reserva"].ToString()
+                                status_reserva = reader["status_reserva"].ToString(),
+                                valor_diaria = Convert.ToDecimal(reader["valor_diaria"]),
+                                numHosp = Convert.ToInt32(reader["NumHosp"])
                             };
                         }
                     }
@@ -894,7 +921,7 @@ namespace Hotel_Mod.DAO
                             {
                                 hospede_id = Convert.ToInt32(reader["hospede_id"]),
                                 nome = reader["nome"].ToString(),
-                                data_nascimento = reader["data_nascimento"] as DateTime?
+                                data_nascimento = reader.GetDateTime(reader.GetOrdinal("data_nascimento"))
                             });
                         }
                     }

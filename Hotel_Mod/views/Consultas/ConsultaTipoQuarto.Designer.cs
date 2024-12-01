@@ -43,6 +43,16 @@
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_pesquisar.FlatAppearance.BorderSize = 0;
             // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
+            // 
+            // btn_buscainativos
+            // 
+            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged);
+            // 
             // btn_incluir
             // 
             this.btn_incluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -57,16 +67,6 @@
             // 
             this.btn_excluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_excluir.FlatAppearance.BorderSize = 0;
-            // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
-            // 
-            // btn_buscainativos
-            // 
-            this.btn_buscainativos.CheckedChanged += new System.EventHandler(this.btn_buscainativos_CheckedChanged);
             // 
             // dataGridView_tipo_quarto
             // 
@@ -118,6 +118,7 @@
             this.ClientSize = new System.Drawing.Size(1005, 545);
             this.Controls.Add(this.dataGridView_tipo_quarto);
             this.Name = "ConsultaTipoQuarto";
+            this.Text = "Consulta Tipo de Quarto";
             this.Load += new System.EventHandler(this.ConsultaTipoQuarto_Load);
             this.Controls.SetChildIndex(this.txt_pesquisar, 0);
             this.Controls.SetChildIndex(this.btn_sair, 0);

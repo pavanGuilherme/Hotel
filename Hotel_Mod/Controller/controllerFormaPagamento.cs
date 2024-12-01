@@ -48,7 +48,12 @@ namespace Hotel_Mod.Controller
             return daoFormaPagamento.GetAll(inativos);
         }
 
-      
+        public string getFormaPag(int id)
+        {
+            return daoFormaPagamento.getFormaPag(id);
+        }
+
+
 
         public bool JaCadastrado(string nome, int idAtual)
         {

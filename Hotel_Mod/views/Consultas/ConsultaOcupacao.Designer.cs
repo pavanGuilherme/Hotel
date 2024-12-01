@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.check_preparacao = new System.Windows.Forms.CheckBox();
             this.check_reservado = new System.Windows.Forms.CheckBox();
             this.check_livre = new System.Windows.Forms.CheckBox();
@@ -55,7 +56,7 @@
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.btn_checkout = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_limpo = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanelQuartos.SuspendLayout();
@@ -98,6 +99,7 @@
             this.btn_incluir.FlatAppearance.BorderSize = 0;
             this.btn_incluir.Location = new System.Drawing.Point(703, 520);
             this.btn_incluir.Size = new System.Drawing.Size(105, 34);
+            this.btn_incluir.Visible = false;
             // 
             // btn_alterar
             // 
@@ -105,6 +107,7 @@
             this.btn_alterar.FlatAppearance.BorderSize = 0;
             this.btn_alterar.Location = new System.Drawing.Point(814, 520);
             this.btn_alterar.Size = new System.Drawing.Size(105, 34);
+            this.btn_alterar.Visible = false;
             // 
             // btn_excluir
             // 
@@ -112,24 +115,38 @@
             this.btn_excluir.FlatAppearance.BorderSize = 0;
             this.btn_excluir.Location = new System.Drawing.Point(925, 520);
             this.btn_excluir.Size = new System.Drawing.Size(105, 34);
+            this.btn_excluir.Visible = false;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.check_preparacao);
             this.groupBox1.Controls.Add(this.check_reservado);
             this.groupBox1.Controls.Add(this.check_livre);
             this.groupBox1.Controls.Add(this.check_ocupado);
             this.groupBox1.Location = new System.Drawing.Point(425, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(403, 45);
+            this.groupBox1.Size = new System.Drawing.Size(475, 45);
             this.groupBox1.TabIndex = 70;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Status";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(370, 16);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(99, 17);
+            this.checkBox1.TabIndex = 75;
+            this.checkBox1.Text = "SELECT ALL";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // check_preparacao
             // 
             this.check_preparacao.AutoSize = true;
-            this.check_preparacao.Location = new System.Drawing.Point(260, 15);
+            this.check_preparacao.Location = new System.Drawing.Point(252, 15);
             this.check_preparacao.Name = "check_preparacao";
             this.check_preparacao.Size = new System.Drawing.Size(98, 17);
             this.check_preparacao.TabIndex = 74;
@@ -169,7 +186,7 @@
             // comboBoxAndar
             // 
             this.comboBoxAndar.FormattingEnabled = true;
-            this.comboBoxAndar.Location = new System.Drawing.Point(896, 44);
+            this.comboBoxAndar.Location = new System.Drawing.Point(906, 44);
             this.comboBoxAndar.Name = "comboBoxAndar";
             this.comboBoxAndar.Size = new System.Drawing.Size(85, 21);
             this.comboBoxAndar.TabIndex = 71;
@@ -178,7 +195,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(896, 27);
+            this.label1.Location = new System.Drawing.Point(906, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 73;
@@ -384,22 +401,23 @@
             this.btn_checkout.UseVisualStyleBackColor = false;
             this.btn_checkout.Click += new System.EventHandler(this.btn_checkout_Click);
             // 
-            // button1
+            // btn_limpo
             // 
-            this.button1.BackColor = System.Drawing.Color.Green;
-            this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(153, 515);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 36);
-            this.button1.TabIndex = 337;
-            this.button1.Text = "Limpo";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btn_limpo.BackColor = System.Drawing.Color.Green;
+            this.btn_limpo.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_limpo.Location = new System.Drawing.Point(153, 515);
+            this.btn_limpo.Name = "btn_limpo";
+            this.btn_limpo.Size = new System.Drawing.Size(122, 36);
+            this.btn_limpo.TabIndex = 337;
+            this.btn_limpo.Text = "Limpo";
+            this.btn_limpo.UseVisualStyleBackColor = false;
+            this.btn_limpo.Click += new System.EventHandler(this.btn_limpo_Click);
             // 
             // ConsultaOcupacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(1170, 608);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_limpo);
             this.Controls.Add(this.btn_checkout);
             this.Controls.Add(this.flowLayoutPanelQuartos);
             this.Controls.Add(this.label1);
@@ -421,7 +439,7 @@
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.btn_buscainativos, 0);
             this.Controls.SetChildIndex(this.btn_checkout, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
+            this.Controls.SetChildIndex(this.btn_limpo, 0);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -461,6 +479,7 @@
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.CheckBox check_preparacao;
         private System.Windows.Forms.Button btn_checkout;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_limpo;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

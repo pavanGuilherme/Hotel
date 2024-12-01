@@ -38,6 +38,11 @@ namespace Hotel_Mod.views.Cadastros
             {
                 return;
             }
+            if (!validadores.ValidaCPF(txt_cpf.Text))
+            {
+                MessageBox.Show("Campo cpf inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_nome.Focus();
+            }
             int idAtual = altera != -1 ? altera : -1;
             string cpf = new string(txt_cpf.Text.Where(char.IsDigit).ToArray());
 

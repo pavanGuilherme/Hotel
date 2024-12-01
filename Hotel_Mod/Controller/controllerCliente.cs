@@ -52,6 +52,11 @@ namespace Hotel_Mod.Controller
            return daoCliente.GetCidadeEstadoEPaisByCidadeId(cidade_ID);
         }
 
+        public string getCliente(int id)
+        {
+            return daoCliente.getCliente(id);
+        }
+
         public int GetUltimoCodigo()
         {
             return daoCliente.GetUltimoCodigo();

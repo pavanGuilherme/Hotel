@@ -54,18 +54,6 @@
             this.txt_codigo.Location = new System.Drawing.Point(15, 49);
             this.txt_codigo.Size = new System.Drawing.Size(104, 31);
             // 
-            // btn_salvar
-            // 
-            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_salvar.FlatAppearance.BorderSize = 0;
-            this.btn_salvar.Location = new System.Drawing.Point(445, 465);
-            // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Location = new System.Drawing.Point(558, 465);
-            // 
             // lbl_dat_ult_alt
             // 
             this.lbl_dat_ult_alt.Location = new System.Drawing.Point(204, 437);
@@ -85,6 +73,26 @@
             this.txt_dat_cad.Location = new System.Drawing.Point(11, 464);
             this.txt_dat_cad.Size = new System.Drawing.Size(177, 31);
             this.txt_dat_cad.Text = "07/11/2024 15:08:42";
+            // 
+            // check_inativo
+            // 
+            this.check_inativo.Enabled = false;
+            // 
+            // check_ativo
+            // 
+            this.check_ativo.Enabled = false;
+            // 
+            // btn_salvar
+            // 
+            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_salvar.FlatAppearance.BorderSize = 0;
+            this.btn_salvar.Location = new System.Drawing.Point(445, 465);
+            // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Location = new System.Drawing.Point(558, 465);
             // 
             // lbl_ddd
             // 
@@ -137,6 +145,7 @@
             this.txt_valor.Size = new System.Drawing.Size(156, 31);
             this.txt_valor.TabIndex = 136;
             this.txt_valor.Text = "";
+            this.txt_valor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_valor_KeyPress);
             this.txt_valor.Leave += new System.EventHandler(this.txt_valor_Leave);
             // 
             // label2
@@ -159,6 +168,7 @@
             this.txt_capacidade_max.Size = new System.Drawing.Size(101, 31);
             this.txt_capacidade_max.TabIndex = 140;
             this.txt_capacidade_max.Text = "";
+            this.txt_capacidade_max.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_capacidade_max_KeyPress);
             // 
             // label1
             // 
@@ -180,6 +190,7 @@
             this.txt_lotacao_maxima.Size = new System.Drawing.Size(81, 31);
             this.txt_lotacao_maxima.TabIndex = 143;
             this.txt_lotacao_maxima.Text = "";
+            this.txt_lotacao_maxima.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_lotacao_maxima_KeyPress);
             // 
             // label3
             // 

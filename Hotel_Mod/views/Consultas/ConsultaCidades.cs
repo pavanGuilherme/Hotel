@@ -33,14 +33,14 @@ namespace Hotel_Mod.views
         {
             if (DataGridViewCidades.SelectedRows.Count > 0)
             {
-                int cidade_ID = (int)DataGridViewCidades.SelectedRows[0].Cells["Código"].Value;
-                CadastroCidades cadastroCidades = new CadastroCidades(cidade_ID);
+                int cidade_ID = (int)DataGridViewCidades.SelectedRows[0].Cells["codigo"].Value;
+                CadastroCidades CadastroCidades = new CadastroCidades(cidade_ID);
                 CadastroCidades.Owner = this;
                 CadastroCidades.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Selecione um país para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione uma cidade para alterar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -112,7 +112,7 @@ namespace Hotel_Mod.views
                 if (DataGridViewCidades.SelectedRows.Count > 0)
                 {
                     // Capturar o ID e o nome do país selecionado
-                    int cidadeID = Convert.ToInt32(DataGridViewCidades.SelectedRows[0].Cells["Código"].Value);
+                    int cidadeID = Convert.ToInt32(DataGridViewCidades.SelectedRows[0].Cells["codigo"].Value);
                     string cidadeNome = DataGridViewCidades.SelectedRows[0].Cells["Cidade"].Value.ToString();
                  
 
@@ -140,7 +140,7 @@ namespace Hotel_Mod.views
                 cadastroEstado.FormClosed += (s, args) => AtualizarConsultaCidades(btn_buscainativos.Checked); //quando aciona o Form Closed chama o AtualizarConsulta
 
                 DataGridViewCidades.AutoGenerateColumns = false;
-                DataGridViewCidades.Columns["Código"].DataPropertyName = "cidade_ID";
+                DataGridViewCidades.Columns["codigo"].DataPropertyName = "cidade_ID";
                 DataGridViewCidades.Columns["Cidade"].DataPropertyName = "cidade";
                 DataGridViewCidades.Columns["DDD"].DataPropertyName = "ddd";
          

@@ -56,6 +56,7 @@
     <Compile Include="Controller\controllerCliente.cs" />
     <Compile Include="Controller\controllerCondPagamento.cs" />
     <Compile Include="Controller\controllerContasPagar.cs" />
+    <Compile Include="Controller\controllerContasReceber.cs" />
     <Compile Include="Controller\controllerEstado.cs" />
     <Compile Include="Controller\controllerFormaPagamento.cs" />
     <Compile Include="Controller\controllerFornecedor.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Dao\DaoCliente.cs" />
     <Compile Include="Dao\DaoCondicaoPagamento.cs" />
     <Compile Include="Dao\DaoContasPagar.cs" />
+    <Compile Include="Dao\DaoContasReceber.cs" />
     <Compile Include="Dao\DaoFormaPagamento.cs" />
     <Compile Include="Dao\DaoFornecedor.cs" />
     <Compile Include="Dao\DaoFuncionario.cs" />
@@ -105,6 +107,12 @@
     </Compile>
     <Compile Include="views\Cadastros\CadastroCondPagamento.Designer.cs">
       <DependentUpon>CadastroCondPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroContaReceber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Cadastros\CadastroContaReceber.Designer.cs">
+      <DependentUpon>CadastroContaReceber.cs</DependentUpon>
     </Compile>
     <Compile Include="views\Cadastros\CadastroContasPagar.cs">
       <SubType>Form</SubType>
@@ -200,6 +208,12 @@
     </Compile>
     <Compile Include="views\Consultas\ConsultaCondPagamento.Designer.cs">
       <DependentUpon>ConsultaCondPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaContasReceber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Consultas\ConsultaContasReceber.Designer.cs">
+      <DependentUpon>ConsultaContasReceber.cs</DependentUpon>
     </Compile>
     <Compile Include="views\Consultas\ConsultaFormaPagamento.cs">
       <SubType>Form</SubType>
@@ -318,6 +332,9 @@
     <EmbeddedResource Include="views\Cadastros\CadastroCondPagamento.resx">
       <DependentUpon>CadastroCondPagamento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\Cadastros\CadastroContaReceber.resx">
+      <DependentUpon>CadastroContaReceber.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\Cadastros\CadastroContasPagar.resx">
       <DependentUpon>CadastroContasPagar.cs</DependentUpon>
     </EmbeddedResource>
@@ -365,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\Consultas\ConsultaCondPagamento.resx">
       <DependentUpon>ConsultaCondPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Consultas\ConsultaContasReceber.resx">
+      <DependentUpon>ConsultaContasReceber.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Consultas\ConsultaEstado.resx">
       <DependentUpon>ConsultaEstado.cs</DependentUpon>

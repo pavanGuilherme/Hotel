@@ -175,5 +175,16 @@ namespace Hotel_Mod
         {
             OpenChildForm(new ConsultaTipoQuarto());    
         }
+
+        private void contasAreceberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ConsultaContasReceber());
+        }
+
+        private void Hotel_Resize(object sender, EventArgs e)
+        {
+            panel2.Width = this.ClientSize.Width - panel2.Left; // Ajustar largura
+            panel2.Height = this.ClientSize.Height - panel2.Top; // Ajustar altura
+        }
     }
 }

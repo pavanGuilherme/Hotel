@@ -45,8 +45,7 @@
             this.fornecedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.produtosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.faturamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contasAPagarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contasAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contasAreceberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_quartos = new System.Windows.Forms.Button();
@@ -67,7 +66,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panelTitleBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -199,8 +197,7 @@
             // faturamentoToolStripMenuItem
             // 
             this.faturamentoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contasAPagarToolStripMenuItem,
-            this.contasAToolStripMenuItem});
+            this.contasAreceberToolStripMenuItem});
             this.faturamentoToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.faturamentoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control;
             this.faturamentoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("faturamentoToolStripMenuItem.Image")));
@@ -208,17 +205,12 @@
             this.faturamentoToolStripMenuItem.Size = new System.Drawing.Size(126, 25);
             this.faturamentoToolStripMenuItem.Text = "Faturamento";
             // 
-            // contasAPagarToolStripMenuItem
+            // contasAreceberToolStripMenuItem
             // 
-            this.contasAPagarToolStripMenuItem.Name = "contasAPagarToolStripMenuItem";
-            this.contasAPagarToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
-            this.contasAPagarToolStripMenuItem.Text = "Contas a Pagar";
-            // 
-            // contasAToolStripMenuItem
-            // 
-            this.contasAToolStripMenuItem.Name = "contasAToolStripMenuItem";
-            this.contasAToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
-            this.contasAToolStripMenuItem.Text = "Contas a Receber";
+            this.contasAreceberToolStripMenuItem.Name = "contasAreceberToolStripMenuItem";
+            this.contasAreceberToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
+            this.contasAreceberToolStripMenuItem.Text = "Contas a Receber";
+            this.contasAreceberToolStripMenuItem.Click += new System.EventHandler(this.contasAreceberToolStripMenuItem_Click);
             // 
             // menuToolStripMenuItem
             // 
@@ -427,8 +419,8 @@
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel2.Controls.Add(this.lbl_title);
             this.panel2.Controls.Add(this.panelTitleBar);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(244, 29);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1220, 720);
@@ -436,23 +428,23 @@
             // 
             // panelTitleBar
             // 
+            this.panelTitleBar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelTitleBar.AutoSize = true;
             this.panelTitleBar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(45)))), ((int)(((byte)(66)))));
-            this.panelTitleBar.Controls.Add(this.lbl_title);
-            this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(0, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(1220, 28);
+            this.panelTitleBar.Size = new System.Drawing.Size(0, 0);
             this.panelTitleBar.TabIndex = 2;
             // 
             // lbl_title
             // 
             this.lbl_title.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_title.AutoSize = true;
+            this.lbl_title.BackColor = System.Drawing.Color.White;
             this.lbl_title.Font = new System.Drawing.Font("Nirmala UI", 15.70909F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_title.ForeColor = System.Drawing.Color.White;
-            this.lbl_title.Location = new System.Drawing.Point(573, -2);
+            this.lbl_title.ForeColor = System.Drawing.Color.Black;
+            this.lbl_title.Location = new System.Drawing.Point(561, 0);
             this.lbl_title.Name = "lbl_title";
             this.lbl_title.Size = new System.Drawing.Size(74, 30);
             this.lbl_title.TabIndex = 0;
@@ -470,10 +462,12 @@
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Hotel";
             this.Text = "Hotel";
             this.Load += new System.EventHandler(this.Hotel_Load);
+            this.Resize += new System.EventHandler(this.Hotel_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -481,8 +475,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panelTitleBar.ResumeLayout(false);
-            this.panelTitleBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -517,8 +509,7 @@
         private System.Windows.Forms.Panel panelTitleBar;
         private System.Windows.Forms.Label lbl_title;
         private System.Windows.Forms.ToolStripMenuItem faturamentoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem contasAPagarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem contasAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem contasAreceberToolStripMenuItem;
         private System.Windows.Forms.Button btn_Home;
         private System.Windows.Forms.Button btn_hospede;
         private System.Windows.Forms.Button btn_quartos;

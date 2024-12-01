@@ -34,7 +34,7 @@ namespace Hotel_Mod.views
         }
 
 
-        private void btn_salvar_Click(object sender, EventArgs e)
+        public void btn_salvar_Click(object sender, EventArgs e)
         {          
             salvar();
         }

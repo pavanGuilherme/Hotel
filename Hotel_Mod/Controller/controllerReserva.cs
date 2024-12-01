@@ -136,7 +136,6 @@ namespace Hotel_Mod.Controller
 
         public List<DateTime> GetDatasReservadasPorReserva(int reservaId)
         {
-     
             return reservasDAO.ObterDatasReservadasPorReserva(reservaId);
         }
 

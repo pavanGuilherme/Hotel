@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Hotel_Mod.Dao
 {
@@ -161,15 +162,30 @@ namespace Hotel_Mod.Dao
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "DELETE  * FROM funcionarios where funcionario_ID = @funcionario_ID";
+                string query = "DELETE  FROM funcionarios where funcionario_ID = @funcionario_ID";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@funcionario_ID", id);
 
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    //verifica se a exceção está relacionada a uma restrição de chave estrangeira (uso em algum cadastro)
+                    if (ex.Number == 547) //código de erro para conflito de chave estrangeira
+                    {
+                        MessageBox.Show("Não é possível excluir o Funcionário, pois ele está sendo utilizado em um cadastro.", "Erro ao deletar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
 
+            }
         }
 
         public override void alterar(T obj)

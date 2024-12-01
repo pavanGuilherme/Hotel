@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using Hotel_Mod.Class;
 
 namespace Hotel_Mod.Dao
@@ -48,6 +49,30 @@ namespace Hotel_Mod.Dao
                 }
             }
             return clientes;
+        }
+
+        public string getCliente(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT nome FROM cliente WHERE cliente_ID = @id AND Ativo = 1";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader["nome"].ToString();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
         }
 
         public int GetUltimoCodigo()
@@ -149,18 +174,33 @@ namespace Hotel_Mod.Dao
 
 
 
-
         public override void excluir(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM cliente WHERE cliente_id = @cliente_id";
+                string query = "DELETE FROM cliente WHERE cliente_ID = @cliente_ID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@cliente_id", id);
+                command.Parameters.AddWithValue("cliente_ID", id);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    //verifica se a exceção está relacionada a uma restrição de chave estrangeira (uso em algum cadastro)
+                    if (ex.Number == 547) //código de erro para conflito de chave estrangeira
+                    {
+                        MessageBox.Show("Não é possível excluir o cliente, pois ele está associado em um cadastro.", "Erro ao deletar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
             }
         }
 
@@ -170,7 +210,7 @@ namespace Hotel_Mod.Dao
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "UPDATE cliente SET nome = @nome, apelido = @apelido, data_nascimento = @data_nascimento, telefone = @telefone, " +
-                    "cpf = @cpf, email = @email, rg = @rg, cep = @cep, logradouro = @logradouro, " +
+                    "cpf = @cpf, email = @email, rg = @rg, cep = @cep, logradouro = @logradouro, sexo = @sexo " +
                     "numero = @numero, bairro = @bairro, complemento = @complemento, cidade_id = @cidade_id, ativo = @ativo, " +
                     "data_cadastro = @data_cadastro, data_ult_alt = @data_ult_alt WHERE cliente_id = @cliente_id";
 
@@ -182,6 +222,7 @@ namespace Hotel_Mod.Dao
                 command.Parameters.AddWithValue("@cpf", cliente.cpf);
                 command.Parameters.AddWithValue("@email", cliente.email);
                 command.Parameters.AddWithValue("@rg", cliente.rg);
+                command.Parameters.AddWithValue("@sexo", cliente.sexo);
                 command.Parameters.AddWithValue("@cep", cliente.cep);
                 command.Parameters.AddWithValue("@logradouro", cliente.logradouro);
                 command.Parameters.AddWithValue("@numero", cliente.numero);
@@ -222,6 +263,7 @@ namespace Hotel_Mod.Dao
                         obj.email = reader["email"].ToString();
                         obj.rg = reader["rg"].ToString();
                         obj.cep = reader["cep"].ToString();
+                        obj.cep = reader["sexo"].ToString();
                         obj.logradouro = reader["logradouro"].ToString();
                         obj.numero = reader["numero"].ToString();
                         obj.bairro = reader["bairro"].ToString();

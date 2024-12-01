@@ -226,6 +226,15 @@ namespace Hotel_Mod.views
                 txt_codigo.Text = novoCodigo.ToString();
             }
         }
+
+        private void txt_uf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas letras, espaço e teclas de controle (ex.: Backspace)
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
     }
 }
 

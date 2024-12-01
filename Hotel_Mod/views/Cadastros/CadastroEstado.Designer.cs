@@ -40,16 +40,6 @@
             this.status.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btn_salvar
-            // 
-            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_salvar.FlatAppearance.BorderSize = 0;
-            // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            // 
             // txt_dat_ult_alt
             // 
             this.txt_dat_ult_alt.Text = "19/06/2024 10:04:11";
@@ -65,6 +55,16 @@
             // check_ativo
             // 
             this.check_ativo.CheckedChanged += new System.EventHandler(this.check_ativo_CheckedChanged);
+            // 
+            // btn_salvar
+            // 
+            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_salvar.FlatAppearance.BorderSize = 0;
+            // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
             // 
             // btn_cod_pais
             // 
@@ -133,6 +133,7 @@
             this.txt_uf.Name = "txt_uf";
             this.txt_uf.Size = new System.Drawing.Size(138, 29);
             this.txt_uf.TabIndex = 139;
+            this.txt_uf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_uf_KeyPress);
             // 
             // txt_cod_pais
             // 

@@ -38,7 +38,7 @@ namespace Hotel_Mod.views
                 {
                     //carrega os dados do país nos controles do formulário
                     txt_codigo.Text = cidade.cidade_ID.ToString();
-                    txt_cidade.Text = cidade.cidade;
+                    txt_city.Text = cidade.cidade;
                     txt_ddd.Text = cidade.ddd;
                     txt_cod_estado.Text = cidade.estado_ID.ToString();
                     txt_dat_cad.Text = cidade.data_cadastro.ToString();
@@ -62,10 +62,10 @@ namespace Hotel_Mod.views
 
         public override void salvar()
         {
-            if (!validadores.CampoObrigatorio(txt_cidade.Text))
+            if (!validadores.CampoObrigatorio(txt_city.Text))
             {
                 MessageBox.Show("Campo cidade é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_cidade.Focus();
+                txt_city.Focus();
             }
             else if (!validadores.CampoObrigatorio(txt_ddd.Text))
             {
@@ -76,16 +76,16 @@ namespace Hotel_Mod.views
             {
                 int idAtual = altera != -1 ? altera : -1;
 
-                if (controllerCidade.JaCadastrado(txt_cidade.Text, idAtual))
+                if (controllerCidade.JaCadastrado(txt_city.Text, idAtual))
                 {
                     MessageBox.Show("Cidade já cadastrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txt_cidade.Focus();
+                    txt_city.Focus();
                 }
                 else
                 {
                     try
                     {
-                        string cidade = txt_cidade.Text;
+                        string cidade = txt_city.Text;
                         string ddd = txt_ddd.Text;
                         int estado_ID = int.Parse(txt_cod_estado.Text);
 
@@ -125,10 +125,10 @@ namespace Hotel_Mod.views
 
         private void txt_pais_Leave(object sender, EventArgs e)
         {
-            if (!validadores.VerificaLetras(txt_cidade.Text))
+            if (!validadores.VerificaLetras(txt_city.Text))
             {
                 MessageBox.Show("O campo cidade é inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt_cidade.Focus();
+                txt_city.Focus();
             }
 
         }
@@ -163,7 +163,7 @@ namespace Hotel_Mod.views
         {
             altera = -1;
             txt_codigo.Clear();
-            txt_cidade.Clear();
+            txt_city.Clear();
             txt_ddd.Clear();
             txt_cod_estado.Clear(); 
             txt_dat_cad.Clear();
@@ -225,6 +225,15 @@ namespace Hotel_Mod.views
                     txt_cod_estado.Text = estado_ID.ToString();
                     txt_estado.Text = estado;
                 }
+            }
+        }
+
+        private void txt_ddd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
             }
         }
     }

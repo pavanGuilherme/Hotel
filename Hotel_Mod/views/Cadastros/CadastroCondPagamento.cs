@@ -438,6 +438,69 @@ namespace Hotel_Mod.views.Cadastros
             ((ConsultaCondPagamento)this.Owner).AtualizarConsultaCondPag(false);
 
         }
+
+        private void txt_juros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_multa_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_desconto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_parcela_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_dias_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_porcentagem_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_cod_forma_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            // Permitir números, ponto, vírgula e teclas de controle
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
     }
 }
 

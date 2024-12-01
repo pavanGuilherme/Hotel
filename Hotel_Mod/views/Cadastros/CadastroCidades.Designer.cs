@@ -31,14 +31,22 @@
             this.lbl_ddd = new System.Windows.Forms.Label();
             this.txt_ddd = new System.Windows.Forms.RichTextBox();
             this.lbl_cidade = new System.Windows.Forms.Label();
-            this.txt_cidade = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_cod_estado = new System.Windows.Forms.RichTextBox();
             this.txt_estado = new System.Windows.Forms.RichTextBox();
             this.btn_search = new System.Windows.Forms.Button();
+            this.txt_city = new System.Windows.Forms.TextBox();
             this.status.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // txt_dat_ult_alt
+            // 
+            this.txt_dat_ult_alt.Text = "17/06/2024 23:09:54";
+            // 
+            // txt_dat_cad
+            // 
+            this.txt_dat_cad.Text = "17/06/2024 23:09:54";
             // 
             // btn_salvar
             // 
@@ -50,33 +58,26 @@
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
             // 
-            // txt_dat_ult_alt
-            // 
-            this.txt_dat_ult_alt.Text = "17/06/2024 23:09:54";
-            // 
-            // txt_dat_cad
-            // 
-            this.txt_dat_cad.Text = "17/06/2024 23:09:54";
-            // 
             // lbl_ddd
             // 
             this.lbl_ddd.AutoSize = true;
             this.lbl_ddd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_ddd.Location = new System.Drawing.Point(299, 121);
+            this.lbl_ddd.Location = new System.Drawing.Point(454, 121);
             this.lbl_ddd.Name = "lbl_ddd";
-            this.lbl_ddd.Size = new System.Drawing.Size(49, 24);
+            this.lbl_ddd.Size = new System.Drawing.Size(61, 24);
             this.lbl_ddd.TabIndex = 91;
-            this.lbl_ddd.Text = "DDD";
+            this.lbl_ddd.Text = "DDD *";
             // 
             // txt_ddd
             // 
             this.txt_ddd.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_ddd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_ddd.Location = new System.Drawing.Point(303, 148);
+            this.txt_ddd.Location = new System.Drawing.Point(457, 148);
             this.txt_ddd.Name = "txt_ddd";
             this.txt_ddd.Size = new System.Drawing.Size(137, 31);
             this.txt_ddd.TabIndex = 90;
             this.txt_ddd.Text = "";
+            this.txt_ddd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ddd_KeyPress);
             // 
             // lbl_cidade
             // 
@@ -84,25 +85,15 @@
             this.lbl_cidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_cidade.Location = new System.Drawing.Point(32, 121);
             this.lbl_cidade.Name = "lbl_cidade";
-            this.lbl_cidade.Size = new System.Drawing.Size(70, 24);
+            this.lbl_cidade.Size = new System.Drawing.Size(82, 24);
             this.lbl_cidade.TabIndex = 89;
-            this.lbl_cidade.Text = "Cidade";
-            // 
-            // txt_cidade
-            // 
-            this.txt_cidade.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_cidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cidade.Location = new System.Drawing.Point(32, 148);
-            this.txt_cidade.Name = "txt_cidade";
-            this.txt_cidade.Size = new System.Drawing.Size(211, 31);
-            this.txt_cidade.TabIndex = 88;
-            this.txt_cidade.Text = "";
+            this.lbl_cidade.Text = "Cidade *";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.label2.Location = new System.Drawing.Point(310, 222);
+            this.label2.Location = new System.Drawing.Point(307, 222);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 24);
             this.label2.TabIndex = 100;
@@ -114,9 +105,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.label1.Location = new System.Drawing.Point(33, 222);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 24);
+            this.label1.Size = new System.Drawing.Size(173, 24);
             this.label1.TabIndex = 99;
-            this.label1.Text = "Código do Estado";
+            this.label1.Text = "Código do Estado *";
             // 
             // txt_cod_estado
             // 
@@ -135,7 +126,7 @@
             this.txt_estado.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_estado.Enabled = false;
             this.txt_estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_estado.Location = new System.Drawing.Point(309, 249);
+            this.txt_estado.Location = new System.Drawing.Point(306, 249);
             this.txt_estado.Name = "txt_estado";
             this.txt_estado.Size = new System.Drawing.Size(211, 31);
             this.txt_estado.TabIndex = 97;
@@ -151,11 +142,21 @@
             this.btn_search.UseVisualStyleBackColor = true;
             this.btn_search.Click += new System.EventHandler(this.btn_search_Click_1);
             // 
+            // txt_city
+            // 
+            this.txt_city.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.txt_city.Location = new System.Drawing.Point(37, 148);
+            this.txt_city.Name = "txt_city";
+            this.txt_city.Size = new System.Drawing.Size(376, 29);
+            this.txt_city.TabIndex = 143;
+            // 
             // CadastroCidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(982, 583);
+            this.Controls.Add(this.txt_city);
             this.Controls.Add(this.btn_search);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -164,10 +165,17 @@
             this.Controls.Add(this.lbl_ddd);
             this.Controls.Add(this.txt_ddd);
             this.Controls.Add(this.lbl_cidade);
-            this.Controls.Add(this.txt_cidade);
             this.Name = "CadastroCidades";
             this.Text = "Cadastro Cidades";
             this.Load += new System.EventHandler(this.CadastroCidades_Load);
+            this.Controls.SetChildIndex(this.lbl_cidade, 0);
+            this.Controls.SetChildIndex(this.txt_ddd, 0);
+            this.Controls.SetChildIndex(this.lbl_ddd, 0);
+            this.Controls.SetChildIndex(this.txt_estado, 0);
+            this.Controls.SetChildIndex(this.txt_cod_estado, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.btn_search, 0);
             this.Controls.SetChildIndex(this.txt_dat_cad, 0);
             this.Controls.SetChildIndex(this.lbl_data_cadastro, 0);
             this.Controls.SetChildIndex(this.txt_dat_ult_alt, 0);
@@ -177,15 +185,7 @@
             this.Controls.SetChildIndex(this.txt_codigo, 0);
             this.Controls.SetChildIndex(this.lbl_codigo, 0);
             this.Controls.SetChildIndex(this.status, 0);
-            this.Controls.SetChildIndex(this.txt_cidade, 0);
-            this.Controls.SetChildIndex(this.lbl_cidade, 0);
-            this.Controls.SetChildIndex(this.txt_ddd, 0);
-            this.Controls.SetChildIndex(this.lbl_ddd, 0);
-            this.Controls.SetChildIndex(this.txt_estado, 0);
-            this.Controls.SetChildIndex(this.txt_cod_estado, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.btn_search, 0);
+            this.Controls.SetChildIndex(this.txt_city, 0);
             this.status.ResumeLayout(false);
             this.status.PerformLayout();
             this.ResumeLayout(false);
@@ -198,11 +198,12 @@
         private System.Windows.Forms.Label lbl_ddd;
         private System.Windows.Forms.RichTextBox txt_ddd;
         private System.Windows.Forms.Label lbl_cidade;
-        private System.Windows.Forms.RichTextBox txt_cidade;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox txt_cod_estado;
         private System.Windows.Forms.RichTextBox txt_estado;
         private System.Windows.Forms.Button btn_search;
+        private System.Windows.Forms.RichTextBox txt_cidade;
+        private System.Windows.Forms.TextBox txt_city;
     }
 }

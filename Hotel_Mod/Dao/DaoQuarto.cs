@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Hotel_Mod.Class
 {
@@ -113,8 +114,23 @@ namespace Hotel_Mod.Class
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@quarto_ID", quarto_ID);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    //verifica se a exceção está relacionada a uma restrição de chave estrangeira (uso em algum cadastro)
+                    if (ex.Number == 547) //código de erro para conflito de chave estrangeira
+                    {
+                        MessageBox.Show("Não é possível excluir o quarto, pois ele está sendo utilizado em um cadastro.", "Erro ao deletar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
@@ -281,6 +297,21 @@ namespace Hotel_Mod.Class
                 connection.Close();
             }
         }
+
+        public void AtualizarSituacao(Quarto quarto)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE quartos SET situacao = @situacao WHERE quarto_ID = @quarto_ID";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@situacao", quarto.situacao);
+                command.Parameters.AddWithValue("@quarto_ID", quarto.quarto_ID);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
 
     }
 }

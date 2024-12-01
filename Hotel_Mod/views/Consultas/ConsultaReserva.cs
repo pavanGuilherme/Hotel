@@ -6,6 +6,7 @@ using Hotel_Mod.views.Cadastros;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -46,7 +47,7 @@ namespace Hotel_Mod.views.Consultas
 
                 using (var cadastroReserva = new CadastroReserva(reserva_id))
                 {
-                    cadastroReserva.Owner = this;
+                    //cadastroReserva.Owner = this;
                     cadastroReserva.ShowDialog();
                 }
             }
@@ -187,17 +188,38 @@ namespace Hotel_Mod.views.Consultas
             foreach (DataGridViewRow row in dataGridViewReserva.Rows)
             {
                 var statusValue = row.Cells["status_reserva"].Value;
+
                 // Verifica se a célula 'status_reserva' contém o valor 'Check-in'
-                if (statusValue != null &&
-                    statusValue.ToString() == "Check-in")
+                if (statusValue != null && statusValue.ToString() == "Check-in")
                 {
                     // Pinta a célula 'checkin' de verde
                     row.Cells["checkin"].Style.ForeColor = Color.Green;
+
                     // Pinta a célula 'status_reserva' de verde
                     row.Cells["status_reserva"].Style.ForeColor = Color.Green;
                 }
+                // Verifica se a célula 'status_reserva' contém o valor 'Check-out'
+                else if (statusValue != null && statusValue.ToString() == "Checkout")
+                {
+                    // Pinta a célula 'checkout' de vermelho
+                    row.Cells["checkout"].Style.ForeColor = Color.Red;
+
+                    // Pinta a célula 'status_reserva' de vermelho
+                    row.Cells["status_reserva"].Style.ForeColor = Color.Red;
+                }
+                else if (statusValue != null && statusValue.ToString() == "Reservado")
+                {
+               
+                    // Pinta a célula 'status_reserva' de vermelho
+                    row.Cells["status_reserva"].Style.ForeColor = Color.Blue;
+                }
+
             }
         }
+
+
+
+
         private void btn_checkin_Click(object sender, EventArgs e)
         {
             // Verifica se uma reserva está selecionada no DataGridView

@@ -106,6 +106,14 @@ namespace Hotel_Mod.Controller
         }
 
 
+        public void AtualizarSituacaoQuarto(Quarto quarto)
+        {
+
+            
+                daoQuarto.AtualizarSituacao(quarto);
+            
+        }
+
 
     }
 }

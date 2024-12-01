@@ -202,54 +202,74 @@
             // 
             // status
             // 
-            this.status.Location = new System.Drawing.Point(1084, 12);
-            this.status.Size = new System.Drawing.Size(161, 60);
+            this.status.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.status.Location = new System.Drawing.Point(1118, 15);
+            this.status.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.status.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.status.Size = new System.Drawing.Size(158, 60);
             // 
             // lbl_codigo
             // 
-            this.lbl_codigo.Location = new System.Drawing.Point(8, 9);
+            this.lbl_codigo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_codigo.Location = new System.Drawing.Point(14, 6);
+            this.lbl_codigo.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             // 
             // txt_codigo
             // 
-            this.txt_codigo.Location = new System.Drawing.Point(10, 33);
+            this.txt_codigo.Location = new System.Drawing.Point(15, 32);
+            this.txt_codigo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.txt_codigo.Size = new System.Drawing.Size(79, 31);
-            // 
-            // btn_salvar
-            // 
-            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_salvar.FlatAppearance.BorderSize = 0;
-            this.btn_salvar.Location = new System.Drawing.Point(982, 856);
-            this.btn_salvar.Size = new System.Drawing.Size(110, 31);
-            // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Location = new System.Drawing.Point(1111, 856);
-            this.btn_sair.Size = new System.Drawing.Size(106, 31);
             // 
             // lbl_dat_ult_alt
             // 
-            this.lbl_dat_ult_alt.Location = new System.Drawing.Point(195, 827);
+            this.lbl_dat_ult_alt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_dat_ult_alt.Location = new System.Drawing.Point(240, 847);
+            this.lbl_dat_ult_alt.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             // 
             // txt_dat_ult_alt
             // 
-            this.txt_dat_ult_alt.Location = new System.Drawing.Point(199, 854);
-            this.txt_dat_ult_alt.Size = new System.Drawing.Size(178, 31);
+            this.txt_dat_ult_alt.Location = new System.Drawing.Point(244, 878);
+            this.txt_dat_ult_alt.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txt_dat_ult_alt.Size = new System.Drawing.Size(213, 31);
             this.txt_dat_ult_alt.Text = "04/10/2024 10:18:51";
             // 
             // lbl_data_cadastro
             // 
-            this.lbl_data_cadastro.Location = new System.Drawing.Point(8, 827);
+            this.lbl_data_cadastro.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_data_cadastro.Location = new System.Drawing.Point(17, 848);
+            this.lbl_data_cadastro.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             // 
             // txt_dat_cad
             // 
-            this.txt_dat_cad.Location = new System.Drawing.Point(9, 854);
-            this.txt_dat_cad.Size = new System.Drawing.Size(178, 31);
+            this.txt_dat_cad.Location = new System.Drawing.Point(15, 878);
+            this.txt_dat_cad.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txt_dat_cad.Size = new System.Drawing.Size(214, 31);
             this.txt_dat_cad.Text = "04/10/2024 10:18:51";
+            // 
+            // btn_salvar
+            // 
+            this.btn_salvar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_salvar.FlatAppearance.BorderSize = 0;
+            this.btn_salvar.Location = new System.Drawing.Point(955, 874);
+            this.btn_salvar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_salvar.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_salvar.Size = new System.Drawing.Size(141, 30);
+            // 
+            // btn_sair
+            // 
+            this.btn_sair.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Location = new System.Drawing.Point(1108, 873);
+            this.btn_sair.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_sair.Padding = new System.Windows.Forms.Padding(46, 0, 0, 0);
+            this.btn_sair.Size = new System.Drawing.Size(132, 31);
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click_1);
             // 
             // lbl_nome
             // 
+            this.lbl_nome.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_nome.AutoSize = true;
             this.lbl_nome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_nome.Location = new System.Drawing.Point(244, 5);
@@ -263,7 +283,7 @@
             this.txt_nome_cliente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_nome_cliente.Enabled = false;
             this.txt_nome_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_nome_cliente.Location = new System.Drawing.Point(246, 30);
+            this.txt_nome_cliente.Location = new System.Drawing.Point(244, 31);
             this.txt_nome_cliente.Name = "txt_nome_cliente";
             this.txt_nome_cliente.Size = new System.Drawing.Size(479, 31);
             this.txt_nome_cliente.TabIndex = 110;
@@ -271,9 +291,10 @@
             // 
             // lbl_cod_cliente
             // 
+            this.lbl_cod_cliente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_cod_cliente.AutoSize = true;
             this.lbl_cod_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_cod_cliente.Location = new System.Drawing.Point(102, 6);
+            this.lbl_cod_cliente.Location = new System.Drawing.Point(106, 6);
             this.lbl_cod_cliente.Name = "lbl_cod_cliente";
             this.lbl_cod_cliente.Size = new System.Drawing.Size(120, 24);
             this.lbl_cod_cliente.TabIndex = 113;
@@ -283,7 +304,7 @@
             // 
             this.txt_cod_cliente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_cod_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cod_cliente.Location = new System.Drawing.Point(106, 33);
+            this.txt_cod_cliente.Location = new System.Drawing.Point(103, 31);
             this.txt_cod_cliente.Name = "txt_cod_cliente";
             this.txt_cod_cliente.Size = new System.Drawing.Size(77, 31);
             this.txt_cod_cliente.TabIndex = 112;
@@ -291,7 +312,8 @@
             // 
             // btn_busca_cod_cliente
             // 
-            this.btn_busca_cod_cliente.Location = new System.Drawing.Point(184, 33);
+            this.btn_busca_cod_cliente.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_busca_cod_cliente.Location = new System.Drawing.Point(183, 33);
             this.btn_busca_cod_cliente.Name = "btn_busca_cod_cliente";
             this.btn_busca_cod_cliente.Size = new System.Drawing.Size(48, 30);
             this.btn_busca_cod_cliente.TabIndex = 187;
@@ -301,9 +323,10 @@
             // 
             // lbl_cpf
             // 
+            this.lbl_cpf.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_cpf.AutoSize = true;
             this.lbl_cpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_cpf.Location = new System.Drawing.Point(731, 9);
+            this.lbl_cpf.Location = new System.Drawing.Point(731, 5);
             this.lbl_cpf.Name = "lbl_cpf";
             this.lbl_cpf.Size = new System.Drawing.Size(47, 24);
             this.lbl_cpf.TabIndex = 204;
@@ -311,6 +334,7 @@
             // 
             // lbl_telefone
             // 
+            this.lbl_telefone.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_telefone.AutoSize = true;
             this.lbl_telefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_telefone.Location = new System.Drawing.Point(906, 5);
@@ -321,6 +345,7 @@
             // 
             // lbl_quarto_id
             // 
+            this.lbl_quarto_id.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_quarto_id.AutoSize = true;
             this.lbl_quarto_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_quarto_id.Location = new System.Drawing.Point(5, 87);
@@ -331,6 +356,7 @@
             // 
             // btn_busca_cod_tipo
             // 
+            this.btn_busca_cod_tipo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_busca_cod_tipo.Location = new System.Drawing.Point(92, 113);
             this.btn_busca_cod_tipo.Name = "btn_busca_cod_tipo";
             this.btn_busca_cod_tipo.Size = new System.Drawing.Size(51, 29);
@@ -341,6 +367,7 @@
             // 
             // lbl_checkout
             // 
+            this.lbl_checkout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_checkout.AutoSize = true;
             this.lbl_checkout.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_checkout.Location = new System.Drawing.Point(602, 158);
@@ -351,6 +378,7 @@
             // 
             // lbl_checkin
             // 
+            this.lbl_checkin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_checkin.AutoSize = true;
             this.lbl_checkin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_checkin.Location = new System.Drawing.Point(320, 159);
@@ -361,6 +389,7 @@
             // 
             // dtp_checkin
             // 
+            this.dtp_checkin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtp_checkin.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_checkin.Enabled = false;
             this.dtp_checkin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -372,6 +401,7 @@
             // 
             // dtp_checkout
             // 
+            this.dtp_checkout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtp_checkout.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_checkout.Enabled = false;
             this.dtp_checkout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -383,10 +413,11 @@
             // 
             // lbl_data_cancelamento
             // 
+            this.lbl_data_cancelamento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_data_cancelamento.AutoSize = true;
             this.lbl_data_cancelamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_data_cancelamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lbl_data_cancelamento.Location = new System.Drawing.Point(388, 831);
+            this.lbl_data_cancelamento.Location = new System.Drawing.Point(481, 851);
             this.lbl_data_cancelamento.Name = "lbl_data_cancelamento";
             this.lbl_data_cancelamento.Size = new System.Drawing.Size(214, 20);
             this.lbl_data_cancelamento.TabIndex = 245;
@@ -395,10 +426,11 @@
             // 
             // lbl_cancelada
             // 
+            this.lbl_cancelada.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_cancelada.AutoSize = true;
             this.lbl_cancelada.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_cancelada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lbl_cancelada.Location = new System.Drawing.Point(1087, 84);
+            this.lbl_cancelada.Location = new System.Drawing.Point(1115, 93);
             this.lbl_cancelada.Name = "lbl_cancelada";
             this.lbl_cancelada.Size = new System.Drawing.Size(161, 16);
             this.lbl_cancelada.TabIndex = 246;
@@ -411,6 +443,7 @@
             this.dataGridView_parcelas.AllowUserToDeleteRows = false;
             this.dataGridView_parcelas.AllowUserToResizeColumns = false;
             this.dataGridView_parcelas.AllowUserToResizeRows = false;
+            this.dataGridView_parcelas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dataGridView_parcelas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
             this.dataGridView_parcelas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_parcelas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -421,9 +454,10 @@
             this.valorParcela});
             this.dataGridView_parcelas.Enabled = false;
             this.dataGridView_parcelas.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView_parcelas.Location = new System.Drawing.Point(666, 659);
+            this.dataGridView_parcelas.Location = new System.Drawing.Point(679, 691);
             this.dataGridView_parcelas.Name = "dataGridView_parcelas";
             this.dataGridView_parcelas.ReadOnly = true;
+            this.dataGridView_parcelas.RowHeadersWidth = 72;
             this.dataGridView_parcelas.Size = new System.Drawing.Size(555, 114);
             this.dataGridView_parcelas.TabIndex = 270;
             // 
@@ -431,12 +465,14 @@
             // 
             this.numeroParcela.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.numeroParcela.HeaderText = "Parcela";
+            this.numeroParcela.MinimumWidth = 9;
             this.numeroParcela.Name = "numeroParcela";
             this.numeroParcela.ReadOnly = true;
             // 
             // idFormaPagamento
             // 
             this.idFormaPagamento.HeaderText = "Cód. Forma Pagamento";
+            this.idFormaPagamento.MinimumWidth = 9;
             this.idFormaPagamento.Name = "idFormaPagamento";
             this.idFormaPagamento.ReadOnly = true;
             this.idFormaPagamento.Width = 80;
@@ -445,6 +481,7 @@
             // 
             this.FormaPagamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.FormaPagamento.HeaderText = "Forma de Pagamento";
+            this.FormaPagamento.MinimumWidth = 9;
             this.FormaPagamento.Name = "FormaPagamento";
             this.FormaPagamento.ReadOnly = true;
             // 
@@ -452,19 +489,22 @@
             // 
             this.dataVencimento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataVencimento.HeaderText = "Data Vencimento";
+            this.dataVencimento.MinimumWidth = 9;
             this.dataVencimento.Name = "dataVencimento";
             this.dataVencimento.ReadOnly = true;
             // 
             // valorParcela
             // 
             this.valorParcela.HeaderText = "Valor Parcela";
+            this.valorParcela.MinimumWidth = 9;
             this.valorParcela.Name = "valorParcela";
             this.valorParcela.ReadOnly = true;
             this.valorParcela.Width = 153;
             // 
             // btn_add_cond_pag
             // 
-            this.btn_add_cond_pag.Location = new System.Drawing.Point(1179, 624);
+            this.btn_add_cond_pag.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_add_cond_pag.Location = new System.Drawing.Point(1189, 660);
             this.btn_add_cond_pag.Name = "btn_add_cond_pag";
             this.btn_add_cond_pag.Size = new System.Drawing.Size(45, 29);
             this.btn_add_cond_pag.TabIndex = 269;
@@ -474,7 +514,8 @@
             // 
             // btn_busca_cond_pagamento
             // 
-            this.btn_busca_cond_pagamento.Location = new System.Drawing.Point(768, 621);
+            this.btn_busca_cond_pagamento.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_busca_cond_pagamento.Location = new System.Drawing.Point(772, 657);
             this.btn_busca_cond_pagamento.Name = "btn_busca_cond_pagamento";
             this.btn_busca_cond_pagamento.Size = new System.Drawing.Size(62, 29);
             this.btn_busca_cond_pagamento.TabIndex = 268;
@@ -484,9 +525,10 @@
             // 
             // lbl_cod_cond_pagamento
             // 
+            this.lbl_cod_cond_pagamento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_cod_cond_pagamento.AutoSize = true;
             this.lbl_cod_cond_pagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_cod_cond_pagamento.Location = new System.Drawing.Point(664, 594);
+            this.lbl_cod_cond_pagamento.Location = new System.Drawing.Point(670, 631);
             this.lbl_cod_cond_pagamento.Name = "lbl_cod_cond_pagamento";
             this.lbl_cod_cond_pagamento.Size = new System.Drawing.Size(197, 24);
             this.lbl_cod_cond_pagamento.TabIndex = 267;
@@ -496,7 +538,7 @@
             // 
             this.txt_cod_cond_pagamento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_cod_cond_pagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cod_cond_pagamento.Location = new System.Drawing.Point(670, 618);
+            this.txt_cod_cond_pagamento.Location = new System.Drawing.Point(679, 657);
             this.txt_cod_cond_pagamento.Name = "txt_cod_cond_pagamento";
             this.txt_cod_cond_pagamento.Size = new System.Drawing.Size(92, 31);
             this.txt_cod_cond_pagamento.TabIndex = 266;
@@ -504,9 +546,10 @@
             // 
             // lbl_cond_pagamento
             // 
+            this.lbl_cond_pagamento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_cond_pagamento.AutoSize = true;
             this.lbl_cond_pagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lbl_cond_pagamento.Location = new System.Drawing.Point(873, 594);
+            this.lbl_cond_pagamento.Location = new System.Drawing.Point(883, 631);
             this.lbl_cond_pagamento.Name = "lbl_cond_pagamento";
             this.lbl_cond_pagamento.Size = new System.Drawing.Size(219, 24);
             this.lbl_cond_pagamento.TabIndex = 265;
@@ -516,7 +559,7 @@
             // 
             this.txt_cond_pagamento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_cond_pagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cond_pagamento.Location = new System.Drawing.Point(877, 619);
+            this.txt_cond_pagamento.Location = new System.Drawing.Point(887, 657);
             this.txt_cond_pagamento.Name = "txt_cond_pagamento";
             this.txt_cond_pagamento.Size = new System.Drawing.Size(296, 31);
             this.txt_cond_pagamento.TabIndex = 264;
@@ -526,6 +569,7 @@
             // 
             this.dataGridView_hospedes.AllowUserToAddRows = false;
             this.dataGridView_hospedes.AllowUserToDeleteRows = false;
+            this.dataGridView_hospedes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dataGridView_hospedes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView_hospedes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_hospedes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -536,6 +580,7 @@
             this.dataGridView_hospedes.Location = new System.Drawing.Point(759, 292);
             this.dataGridView_hospedes.Name = "dataGridView_hospedes";
             this.dataGridView_hospedes.ReadOnly = true;
+            this.dataGridView_hospedes.RowHeadersWidth = 72;
             this.dataGridView_hospedes.Size = new System.Drawing.Size(460, 169);
             this.dataGridView_hospedes.TabIndex = 273;
             // 
@@ -543,24 +588,30 @@
             // 
             this.codigo_hospede.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.codigo_hospede.HeaderText = "Cód Hóspede";
+            this.codigo_hospede.MinimumWidth = 9;
             this.codigo_hospede.Name = "codigo_hospede";
             this.codigo_hospede.ReadOnly = true;
+            this.codigo_hospede.Width = 175;
             // 
             // hospede
             // 
             this.hospede.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.hospede.HeaderText = "Hóspede";
+            this.hospede.MinimumWidth = 9;
             this.hospede.Name = "hospede";
             this.hospede.ReadOnly = true;
             // 
             // Pagante
             // 
             this.Pagante.HeaderText = "Pagante";
+            this.Pagante.MinimumWidth = 9;
             this.Pagante.Name = "Pagante";
             this.Pagante.ReadOnly = true;
+            this.Pagante.Width = 175;
             // 
             // txt_cod_hospede
             // 
+            this.txt_cod_hospede.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_cod_hospede.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_cod_hospede.Location = new System.Drawing.Point(756, 255);
             this.txt_cod_hospede.Name = "txt_cod_hospede";
@@ -570,6 +621,7 @@
             // 
             // txt_hospede
             // 
+            this.txt_hospede.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_hospede.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_hospede.Location = new System.Drawing.Point(905, 255);
             this.txt_hospede.Name = "txt_hospede";
@@ -579,7 +631,8 @@
             // 
             // txt_data_cancelamento
             // 
-            this.txt_data_cancelamento.Location = new System.Drawing.Point(392, 854);
+            this.txt_data_cancelamento.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_data_cancelamento.Location = new System.Drawing.Point(488, 874);
             this.txt_data_cancelamento.Name = "txt_data_cancelamento";
             this.txt_data_cancelamento.Size = new System.Drawing.Size(210, 31);
             this.txt_data_cancelamento.TabIndex = 276;
@@ -588,6 +641,7 @@
             // 
             // button1
             // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Location = new System.Drawing.Point(1174, 254);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(45, 29);
@@ -598,6 +652,7 @@
             // 
             // button2
             // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button2.Location = new System.Drawing.Point(822, 255);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(54, 29);
@@ -608,6 +663,7 @@
             // 
             // cod_hospede
             // 
+            this.cod_hospede.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cod_hospede.AutoSize = true;
             this.cod_hospede.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.cod_hospede.Location = new System.Drawing.Point(755, 228);
@@ -618,6 +674,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.label2.Location = new System.Drawing.Point(901, 227);
@@ -628,7 +685,8 @@
             // 
             // btn_excluir_cond_pagamento
             // 
-            this.btn_excluir_cond_pagamento.Location = new System.Drawing.Point(1142, 779);
+            this.btn_excluir_cond_pagamento.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_excluir_cond_pagamento.Location = new System.Drawing.Point(1155, 811);
             this.btn_excluir_cond_pagamento.Name = "btn_excluir_cond_pagamento";
             this.btn_excluir_cond_pagamento.Size = new System.Drawing.Size(79, 29);
             this.btn_excluir_cond_pagamento.TabIndex = 281;
@@ -638,6 +696,7 @@
             // 
             // btn_excluir_hospede
             // 
+            this.btn_excluir_hospede.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_excluir_hospede.Location = new System.Drawing.Point(1139, 467);
             this.btn_excluir_hospede.Name = "btn_excluir_hospede";
             this.btn_excluir_hospede.Size = new System.Drawing.Size(80, 29);
@@ -651,7 +710,7 @@
             this.txt_cpf.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_cpf.Enabled = false;
             this.txt_cpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cpf.Location = new System.Drawing.Point(735, 30);
+            this.txt_cpf.Location = new System.Drawing.Point(735, 29);
             this.txt_cpf.Name = "txt_cpf";
             this.txt_cpf.Size = new System.Drawing.Size(159, 31);
             this.txt_cpf.TabIndex = 284;
@@ -662,7 +721,7 @@
             this.txt_telefone.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_telefone.Enabled = false;
             this.txt_telefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_telefone.Location = new System.Drawing.Point(910, 30);
+            this.txt_telefone.Location = new System.Drawing.Point(910, 29);
             this.txt_telefone.Name = "txt_telefone";
             this.txt_telefone.Size = new System.Drawing.Size(168, 31);
             this.txt_telefone.TabIndex = 285;
@@ -670,6 +729,7 @@
             // 
             // comboBox_mes
             // 
+            this.comboBox_mes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBox_mes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_mes.FormattingEnabled = true;
             this.comboBox_mes.Location = new System.Drawing.Point(10, 185);
@@ -680,6 +740,7 @@
             // 
             // lbl_mes
             // 
+            this.lbl_mes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_mes.AutoSize = true;
             this.lbl_mes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_mes.Location = new System.Drawing.Point(6, 158);
@@ -690,6 +751,7 @@
             // 
             // lbl_ano
             // 
+            this.lbl_ano.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_ano.AutoSize = true;
             this.lbl_ano.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_ano.Location = new System.Drawing.Point(160, 157);
@@ -700,6 +762,7 @@
             // 
             // comboBox_ano
             // 
+            this.comboBox_ano.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBox_ano.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_ano.FormattingEnabled = true;
             this.comboBox_ano.Location = new System.Drawing.Point(164, 184);
@@ -713,7 +776,7 @@
             this.txt_tipo_quarto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_tipo_quarto.Enabled = false;
             this.txt_tipo_quarto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_tipo_quarto.Location = new System.Drawing.Point(165, 110);
+            this.txt_tipo_quarto.Location = new System.Drawing.Point(164, 111);
             this.txt_tipo_quarto.Name = "txt_tipo_quarto";
             this.txt_tipo_quarto.Size = new System.Drawing.Size(321, 31);
             this.txt_tipo_quarto.TabIndex = 292;
@@ -721,6 +784,7 @@
             // 
             // lbl_tipoquarto
             // 
+            this.lbl_tipoquarto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_tipoquarto.AutoSize = true;
             this.lbl_tipoquarto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_tipoquarto.Location = new System.Drawing.Point(160, 86);
@@ -794,7 +858,7 @@
             // 
             this.lbl_29.AutoSize = true;
             this.lbl_29.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_29.Location = new System.Drawing.Point(3, 6);
+            this.lbl_29.Location = new System.Drawing.Point(3, 5);
             this.lbl_29.Name = "lbl_29";
             this.lbl_29.Size = new System.Drawing.Size(25, 20);
             this.lbl_29.TabIndex = 169;
@@ -1476,6 +1540,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(39, 486);
@@ -1486,6 +1551,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(40, 466);
@@ -1496,6 +1562,7 @@
             // 
             // panel33
             // 
+            this.panel33.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel33.BackColor = System.Drawing.Color.LightGreen;
             this.panel33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel33.Location = new System.Drawing.Point(19, 464);
@@ -1505,6 +1572,7 @@
             // 
             // panel32
             // 
+            this.panel32.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel32.BackColor = System.Drawing.Color.Tomato;
             this.panel32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel32.Location = new System.Drawing.Point(18, 484);
@@ -1515,6 +1583,7 @@
             // dataGridView_datas
             // 
             this.dataGridView_datas.AllowUserToOrderColumns = true;
+            this.dataGridView_datas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dataGridView_datas.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView_datas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_datas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1522,18 +1591,22 @@
             this.data});
             this.dataGridView_datas.Location = new System.Drawing.Point(324, 254);
             this.dataGridView_datas.Name = "dataGridView_datas";
+            this.dataGridView_datas.RowHeadersWidth = 72;
             this.dataGridView_datas.Size = new System.Drawing.Size(401, 207);
             this.dataGridView_datas.TabIndex = 328;
             // 
             // Tipo
             // 
             this.Tipo.HeaderText = "Tipo";
+            this.Tipo.MinimumWidth = 9;
             this.Tipo.Name = "Tipo";
+            this.Tipo.Width = 175;
             // 
             // data
             // 
             this.data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.data.HeaderText = "Data";
+            this.data.MinimumWidth = 9;
             this.data.Name = "data";
             // 
             // button3
@@ -1550,9 +1623,9 @@
             // 
             this.txt_cod_tipo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_cod_tipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_cod_tipo.Location = new System.Drawing.Point(9, 113);
+            this.txt_cod_tipo.Location = new System.Drawing.Point(9, 114);
             this.txt_cod_tipo.Name = "txt_cod_tipo";
-            this.txt_cod_tipo.Size = new System.Drawing.Size(83, 31);
+            this.txt_cod_tipo.Size = new System.Drawing.Size(83, 28);
             this.txt_cod_tipo.TabIndex = 336;
             this.txt_cod_tipo.Text = "";
             this.txt_cod_tipo.TextChanged += new System.EventHandler(this.txt_cod_tipo_TextChanged);
@@ -1562,7 +1635,7 @@
             this.txt_vlr_tarifa.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_vlr_tarifa.Enabled = false;
             this.txt_vlr_tarifa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_vlr_tarifa.Location = new System.Drawing.Point(775, 550);
+            this.txt_vlr_tarifa.Location = new System.Drawing.Point(772, 551);
             this.txt_vlr_tarifa.Name = "txt_vlr_tarifa";
             this.txt_vlr_tarifa.Size = new System.Drawing.Size(127, 31);
             this.txt_vlr_tarifa.TabIndex = 346;
@@ -1570,6 +1643,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.label4.Location = new System.Drawing.Point(768, 524);
@@ -1583,7 +1657,7 @@
             this.txt_num_hospedes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_num_hospedes.Enabled = false;
             this.txt_num_hospedes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_num_hospedes.Location = new System.Drawing.Point(922, 550);
+            this.txt_num_hospedes.Location = new System.Drawing.Point(920, 550);
             this.txt_num_hospedes.Name = "txt_num_hospedes";
             this.txt_num_hospedes.Size = new System.Drawing.Size(114, 31);
             this.txt_num_hospedes.TabIndex = 344;
@@ -1591,6 +1665,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.label3.Location = new System.Drawing.Point(916, 524);
@@ -1604,7 +1679,7 @@
             this.txt_num_dias.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_num_dias.Enabled = false;
             this.txt_num_dias.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_num_dias.Location = new System.Drawing.Point(666, 550);
+            this.txt_num_dias.Location = new System.Drawing.Point(664, 551);
             this.txt_num_dias.Name = "txt_num_dias";
             this.txt_num_dias.Size = new System.Drawing.Size(93, 31);
             this.txt_num_dias.TabIndex = 342;
@@ -1612,6 +1687,7 @@
             // 
             // lbl_num_dias
             // 
+            this.lbl_num_dias.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_num_dias.AutoSize = true;
             this.lbl_num_dias.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_num_dias.Location = new System.Drawing.Point(660, 522);
@@ -1625,7 +1701,7 @@
             this.txt_valor_total.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_valor_total.Enabled = false;
             this.txt_valor_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_valor_total.Location = new System.Drawing.Point(1069, 550);
+            this.txt_valor_total.Location = new System.Drawing.Point(1067, 550);
             this.txt_valor_total.Name = "txt_valor_total";
             this.txt_valor_total.Size = new System.Drawing.Size(150, 31);
             this.txt_valor_total.TabIndex = 340;
@@ -1633,6 +1709,7 @@
             // 
             // lbl_valor_total
             // 
+            this.lbl_valor_total.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_valor_total.AutoSize = true;
             this.lbl_valor_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_valor_total.ForeColor = System.Drawing.Color.Green;
@@ -1644,6 +1721,7 @@
             // 
             // lbl_obs
             // 
+            this.lbl_obs.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_obs.AutoSize = true;
             this.lbl_obs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_obs.Location = new System.Drawing.Point(14, 523);
@@ -1654,6 +1732,7 @@
             // 
             // txt_obs
             // 
+            this.txt_obs.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_obs.Location = new System.Drawing.Point(12, 550);
             this.txt_obs.Name = "txt_obs";
             this.txt_obs.Size = new System.Drawing.Size(615, 105);
@@ -1663,7 +1742,6 @@
             // txt_capacidade_max
             // 
             this.txt_capacidade_max.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_capacidade_max.Enabled = false;
             this.txt_capacidade_max.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_capacidade_max.Location = new System.Drawing.Point(504, 110);
             this.txt_capacidade_max.Name = "txt_capacidade_max";
@@ -1673,6 +1751,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.label1.Location = new System.Drawing.Point(500, 83);
@@ -1683,6 +1762,7 @@
             // 
             // panel_dias
             // 
+            this.panel_dias.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel_dias.Controls.Add(this.panel1);
             this.panel_dias.Controls.Add(this.panel2);
             this.panel_dias.Controls.Add(this.panel3);
@@ -1722,6 +1802,7 @@
             // 
             // lbl_motivo
             // 
+            this.lbl_motivo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_motivo.AutoSize = true;
             this.lbl_motivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.lbl_motivo.Location = new System.Drawing.Point(14, 657);
@@ -1733,6 +1814,7 @@
             // 
             // txt_motivo_checkout
             // 
+            this.txt_motivo_checkout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_motivo_checkout.Location = new System.Drawing.Point(12, 684);
             this.txt_motivo_checkout.Name = "txt_motivo_checkout";
             this.txt_motivo_checkout.Size = new System.Drawing.Size(615, 89);
@@ -1743,7 +1825,7 @@
             // CadastroReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1254, 898);
+            this.ClientSize = new System.Drawing.Size(1281, 917);
             this.Controls.Add(this.lbl_motivo);
             this.Controls.Add(this.txt_motivo_checkout);
             this.Controls.Add(this.panel_dias);
@@ -1805,6 +1887,7 @@
             this.Controls.Add(this.txt_cod_cliente);
             this.Controls.Add(this.lbl_nome);
             this.Controls.Add(this.txt_nome_cliente);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "CadastroReserva";
             this.Text = "Cadastro Reserva";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CadastroReserva_FormClosing);

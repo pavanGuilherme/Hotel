@@ -65,6 +65,14 @@
             // 
             this.status.Location = new System.Drawing.Point(754, 14);
             // 
+            // txt_dat_ult_alt
+            // 
+            this.txt_dat_ult_alt.Text = "23/08/2024 19:33:32";
+            // 
+            // txt_dat_cad
+            // 
+            this.txt_dat_cad.Text = "23/08/2024 19:33:32";
+            // 
             // btn_salvar
             // 
             this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -74,14 +82,6 @@
             // 
             this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_sair.FlatAppearance.BorderSize = 0;
-            // 
-            // txt_dat_ult_alt
-            // 
-            this.txt_dat_ult_alt.Text = "23/08/2024 19:33:32";
-            // 
-            // txt_dat_cad
-            // 
-            this.txt_dat_cad.Text = "23/08/2024 19:33:32";
             // 
             // txt_cond_pagamento
             // 
@@ -99,9 +99,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.label4.Location = new System.Drawing.Point(25, 86);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(219, 24);
+            this.label4.Size = new System.Drawing.Size(231, 24);
             this.label4.TabIndex = 110;
-            this.label4.Text = "Condição de Pagamento";
+            this.label4.Text = "Condição de Pagamento *";
             // 
             // txt_porcentagem
             // 
@@ -112,6 +112,7 @@
             this.txt_porcentagem.Size = new System.Drawing.Size(59, 31);
             this.txt_porcentagem.TabIndex = 113;
             this.txt_porcentagem.Text = "";
+            this.txt_porcentagem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_porcentagem_KeyPress_1);
             // 
             // label1
             // 
@@ -132,6 +133,7 @@
             this.txt_juros.Size = new System.Drawing.Size(153, 31);
             this.txt_juros.TabIndex = 115;
             this.txt_juros.Text = "";
+            this.txt_juros.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_juros_KeyPress);
             // 
             // label2
             // 
@@ -152,6 +154,7 @@
             this.txt_parcela.Size = new System.Drawing.Size(131, 31);
             this.txt_parcela.TabIndex = 117;
             this.txt_parcela.Text = "";
+            this.txt_parcela.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_parcela_KeyPress);
             // 
             // label3
             // 
@@ -172,6 +175,7 @@
             this.txt_desconto.Size = new System.Drawing.Size(153, 31);
             this.txt_desconto.TabIndex = 119;
             this.txt_desconto.Text = "";
+            this.txt_desconto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_desconto_KeyPress);
             // 
             // label5
             // 
@@ -192,6 +196,7 @@
             this.txt_multa.Size = new System.Drawing.Size(153, 31);
             this.txt_multa.TabIndex = 121;
             this.txt_multa.Text = "";
+            this.txt_multa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_multa_KeyPress_1);
             // 
             // label6
             // 
@@ -242,6 +247,7 @@
             this.txt_cod_forma.Size = new System.Drawing.Size(100, 31);
             this.txt_cod_forma.TabIndex = 124;
             this.txt_cod_forma.Text = "";
+            this.txt_cod_forma.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cod_forma_KeyPress_1);
             // 
             // btn_cod_forma
             // 
@@ -355,6 +361,7 @@
             this.txt_dias.Size = new System.Drawing.Size(79, 31);
             this.txt_dias.TabIndex = 132;
             this.txt_dias.Text = "";
+            this.txt_dias.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_dias_KeyPress);
             // 
             // label10
             // 

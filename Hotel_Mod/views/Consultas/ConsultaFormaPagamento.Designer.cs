@@ -41,6 +41,12 @@
             this.btn_pesquisar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_pesquisar.FlatAppearance.BorderSize = 0;
             // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
+            // 
             // btn_incluir
             // 
             this.btn_incluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -55,12 +61,6 @@
             // 
             this.btn_excluir.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btn_excluir.FlatAppearance.BorderSize = 0;
-            // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
             // dataGridViewFormaPagamento
             // 
@@ -96,6 +96,8 @@
             // ConsultaFormaPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1005, 545);
             this.Controls.Add(this.dataGridViewFormaPagamento);
             this.Name = "ConsultaFormaPagamento";

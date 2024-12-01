@@ -95,18 +95,6 @@
             this.txt_codigo.Location = new System.Drawing.Point(27, 43);
             this.txt_codigo.Size = new System.Drawing.Size(86, 31);
             // 
-            // btn_salvar
-            // 
-            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_salvar.FlatAppearance.BorderSize = 0;
-            this.btn_salvar.Location = new System.Drawing.Point(985, 663);
-            // 
-            // btn_sair
-            // 
-            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.Location = new System.Drawing.Point(1101, 663);
-            // 
             // lbl_dat_ult_alt
             // 
             this.lbl_dat_ult_alt.Location = new System.Drawing.Point(256, 627);
@@ -124,6 +112,18 @@
             // 
             this.txt_dat_cad.Location = new System.Drawing.Point(31, 654);
             this.txt_dat_cad.Text = "24/06/2024 19:13:48";
+            // 
+            // btn_salvar
+            // 
+            this.btn_salvar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_salvar.FlatAppearance.BorderSize = 0;
+            this.btn_salvar.Location = new System.Drawing.Point(985, 663);
+            // 
+            // btn_sair
+            // 
+            this.btn_sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_sair.FlatAppearance.BorderSize = 0;
+            this.btn_sair.Location = new System.Drawing.Point(1101, 663);
             // 
             // txt_rg
             // 
@@ -450,7 +450,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(403, 153);
+            this.label9.Location = new System.Drawing.Point(569, 153);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(81, 24);
             this.label9.TabIndex = 217;
@@ -469,7 +469,7 @@
             // txt_celular
             // 
             this.txt_celular.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_celular.Location = new System.Drawing.Point(407, 178);
+            this.txt_celular.Location = new System.Drawing.Point(573, 178);
             this.txt_celular.Name = "txt_celular";
             this.txt_celular.Size = new System.Drawing.Size(204, 29);
             this.txt_celular.TabIndex = 215;
@@ -481,7 +481,7 @@
             this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_email.Location = new System.Drawing.Point(32, 178);
             this.txt_email.Name = "txt_email";
-            this.txt_email.Size = new System.Drawing.Size(354, 29);
+            this.txt_email.Size = new System.Drawing.Size(524, 29);
             this.txt_email.TabIndex = 214;
             this.txt_email.Leave += new System.EventHandler(this.txt_email_Leave);
             // 
@@ -489,7 +489,7 @@
             // 
             this.lbl_telefone.AutoSize = true;
             this.lbl_telefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_telefone.Location = new System.Drawing.Point(625, 153);
+            this.lbl_telefone.Location = new System.Drawing.Point(791, 153);
             this.lbl_telefone.Name = "lbl_telefone";
             this.lbl_telefone.Size = new System.Drawing.Size(85, 24);
             this.lbl_telefone.TabIndex = 213;
@@ -498,7 +498,7 @@
             // txt_telefone
             // 
             this.txt_telefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_telefone.Location = new System.Drawing.Point(627, 178);
+            this.txt_telefone.Location = new System.Drawing.Point(793, 178);
             this.txt_telefone.Name = "txt_telefone";
             this.txt_telefone.Size = new System.Drawing.Size(216, 29);
             this.txt_telefone.TabIndex = 216;
@@ -526,7 +526,7 @@
             // txt_data_admissao
             // 
             this.txt_data_admissao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_data_admissao.Location = new System.Drawing.Point(700, 68);
+            this.txt_data_admissao.Location = new System.Drawing.Point(780, 70);
             this.txt_data_admissao.Mask = "00 /00 /0000";
             this.txt_data_admissao.Name = "txt_data_admissao";
             this.txt_data_admissao.Size = new System.Drawing.Size(130, 29);
@@ -538,7 +538,7 @@
             // 
             this.lblDataDemissao.AutoSize = true;
             this.lblDataDemissao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblDataDemissao.Location = new System.Drawing.Point(849, 41);
+            this.lblDataDemissao.Location = new System.Drawing.Point(929, 43);
             this.lblDataDemissao.Name = "lblDataDemissao";
             this.lblDataDemissao.Size = new System.Drawing.Size(93, 24);
             this.lblDataDemissao.TabIndex = 104;
@@ -548,7 +548,7 @@
             // 
             this.lblDataAdmissao.AutoSize = true;
             this.lblDataAdmissao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblDataAdmissao.Location = new System.Drawing.Point(725, 41);
+            this.lblDataAdmissao.Location = new System.Drawing.Point(776, 43);
             this.lblDataAdmissao.Name = "lblDataAdmissao";
             this.lblDataAdmissao.Size = new System.Drawing.Size(105, 24);
             this.lblDataAdmissao.TabIndex = 103;
@@ -557,7 +557,7 @@
             // txt_data_demissao
             // 
             this.txt_data_demissao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_data_demissao.Location = new System.Drawing.Point(853, 68);
+            this.txt_data_demissao.Location = new System.Drawing.Point(933, 70);
             this.txt_data_demissao.Mask = "00 /00 /0000";
             this.txt_data_demissao.Name = "txt_data_demissao";
             this.txt_data_demissao.Size = new System.Drawing.Size(130, 29);
@@ -569,7 +569,7 @@
             // 
             this.lblPis.AutoSize = true;
             this.lblPis.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblPis.Location = new System.Drawing.Point(493, 52);
+            this.lblPis.Location = new System.Drawing.Point(592, 45);
             this.lblPis.Name = "lblPis";
             this.lblPis.Size = new System.Drawing.Size(50, 24);
             this.lblPis.TabIndex = 100;
@@ -579,7 +579,7 @@
             // 
             this.lblSalario.AutoSize = true;
             this.lblSalario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.lblSalario.Location = new System.Drawing.Point(317, 52);
+            this.lblSalario.Location = new System.Drawing.Point(316, 43);
             this.lblSalario.Name = "lblSalario";
             this.lblSalario.Size = new System.Drawing.Size(79, 24);
             this.lblSalario.TabIndex = 99;
@@ -598,10 +598,10 @@
             // txt_pis
             // 
             this.txt_pis.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.txt_pis.Location = new System.Drawing.Point(496, 68);
+            this.txt_pis.Location = new System.Drawing.Point(596, 70);
             this.txt_pis.MaxLength = 14;
             this.txt_pis.Name = "txt_pis";
-            this.txt_pis.Size = new System.Drawing.Size(100, 29);
+            this.txt_pis.Size = new System.Drawing.Size(161, 29);
             this.txt_pis.TabIndex = 97;
             // 
             // txt_salario
@@ -609,7 +609,7 @@
             this.txt_salario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.txt_salario.Location = new System.Drawing.Point(320, 68);
             this.txt_salario.Name = "txt_salario";
-            this.txt_salario.Size = new System.Drawing.Size(137, 29);
+            this.txt_salario.Size = new System.Drawing.Size(205, 29);
             this.txt_salario.TabIndex = 96;
             // 
             // txt_cargo

@@ -219,6 +219,7 @@ namespace Hotel_Mod.views.Cadastros
                 txt_codigo.Text = novoCodigo.ToString();
             }
 
+            cmb_situacao.Text = "livre";
             // Configuração do ComboBox de Situação no Load do formulário
             cmb_situacao.Items.Add("ocupado");
             cmb_situacao.Items.Add("reservado");
@@ -293,6 +294,24 @@ namespace Hotel_Mod.views.Cadastros
                     txt_descricao.Clear();
                     txt_valor.Clear();  
                 }
+            }
+        }
+
+        private void txt_numero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
+            }
+        }
+
+        private void txt_valor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (ex.: backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada do caractere
             }
         }
     }
